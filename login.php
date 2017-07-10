@@ -31,7 +31,7 @@
 		mysqli_real_escape_string($connection, $login),
 		mysqli_real_escape_string($connection, $pass))));
 		
-		if ($result->num_rows > 0)
+		if ($result->num_rows == 1)
 		{
 			$_SESSION['online'] = true;
 			
@@ -39,6 +39,7 @@
 			$_SESSION['id'] = $row[$db_users_id];
 			$_SESSION['fname'] = $row[$db_users_fname];
 			$_SESSION['lname'] = $row[$db_users_lname];
+			$_SESSION['function'] = $row[$db_users_function];
 			
 			unset($_SESSION['error']);
 			$result->free_result();

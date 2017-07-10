@@ -1,0 +1,33 @@
+<!DOCTYPE HTML>
+<html lang="pl">
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+	<title>HD - dodawanie użytkownika</title>
+</head>
+
+<body>
+	
+	<form action="add.php" method="post">
+		
+		Imię: <br /> <input type="text" name="fname" /> <br />
+		Nazwisko: <br /> <input type="text" name="lname" /> <br />
+		Adres email: <br /> <input type="email" name="email" /> <br />
+		Funkcja: <br />
+				<select name="nazwa">
+				<option>admin</option>
+				<option>manager<ation>
+				<option>grafik<ation>
+				<option>pracownik<ation>
+				<br />
+				</select>
+		<br />
+		Login: <br /> <input type="text" name="login" /> <br />
+		Hasło: <br /> <input type="password" name="pass" /> <br /><br />
+		<input type="submit" value="Zaloguj się" />
+				
+	</form>
+
+
+</body>
+</html>

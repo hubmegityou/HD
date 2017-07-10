@@ -36,8 +36,6 @@
 			$_SESSION['online'] = true;
 			
 			$row = $result->fetch_assoc();
-			//echo $row['first_name'];
-			//echo $row[$db_users_lname];
 			$_SESSION['id'] = $row[$db_users_id];
 			$_SESSION['fname'] = $row[$db_users_fname];
 			$_SESSION['lname'] = $row[$db_users_lname];

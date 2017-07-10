@@ -21,6 +21,7 @@
 <?php
 
 	require_once "dbinfo.php";
+	
 	echo "strona główna, zalogowano pomyślnie użytkownika "."<b>".$_SESSION['fname']." ".$_SESSION['lname']."<b />";
 	echo "<br /><br />";
 	echo '<a href="logout.php">Wyloguj</a>';

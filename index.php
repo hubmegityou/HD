@@ -2,9 +2,9 @@
 
 	session_start();
 	
-	if ((isset($_SESSION['zalogowany'])) && ($_SESSION['zalogowany']==true))
+	if ((isset($_SESSION['online'])) && ($_SESSION['online']==true))
 	{
-		header('Location: gra.php');
+		header('Location: main.php');
 		exit();
 	}
 
@@ -20,18 +20,16 @@
 
 <body>
 	
-	Tylko martwi ujrzeli koniec wojny - Platon<br /><br />
-	
 	<form action="zaloguj.php" method="post">
 	
 		Login: <br /> <input type="text" name="login" /> <br />
-		Hasło: <br /> <input type="password" name="haslo" /> <br /><br />
+		Hasło: <br /> <input type="password" name="pass" /> <br /><br />
 		<input type="submit" value="Zaloguj się" />
 	
 	</form>
 	
 <?php
-	if(isset($_SESSION['blad']))	echo $_SESSION['blad'];
+	if(isset($_SESSION['error']))	echo $_SESSION['error'];
 ?>
 
 </body>

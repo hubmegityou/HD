@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 10 Lip 2017, 10:00
+-- Czas generowania: 10 Lip 2017, 12:35
 -- Wersja serwera: 10.1.24-MariaDB
 -- Wersja PHP: 7.1.6
 
@@ -76,15 +76,16 @@ CREATE TABLE `users` (
   `last_name` text NOT NULL,
   `email` text NOT NULL,
   `login` text NOT NULL,
-  `password` text NOT NULL
+  `password` text NOT NULL,
+  `user_function` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Zrzut danych tabeli `users`
 --
 
-INSERT INTO `users` (`user_ID`, `first_name`, `last_name`, `email`, `login`, `password`) VALUES
-(2, 'hgfds', 'hgfd', 'hgew', 'gf', 'ggrerwq');
+INSERT INTO `users` (`user_ID`, `first_name`, `last_name`, `email`, `login`, `password`, `user_function`) VALUES
+(2, 'hgfds', 'hgfd', 'hgew', 'gf', 'ggrerwq', 0);
 
 --
 -- Indeksy dla zrzutów tabel

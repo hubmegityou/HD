@@ -81,18 +81,7 @@ font-size: 16px;">  <a href="logout.php" class="btn btn-danger square-btn-adjust
             </div>
          <!-- /. PAGE WRAPPER  -->
         </div>
-     <!-- /. WRAPPER  -->
-    <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
-    <!-- JQUERY SCRIPTS -->
-    <script src="template/assets/js/jquery-1.10.2.js"></script>
-      <!-- BOOTSTRAP SCRIPTS -->
-    <script src="template/assets/js/bootstrap.min.js"></script>
-    <!-- METISMENU SCRIPTS -->
-    <script src="template/assets/js/jquery.metisMenu.js"></script>
-
-      <!-- CUSTOM SCRIPTS -->
-    <script src="template/assets/js/custom.js"></script>
-    
+  
    
 </body>
 </html>

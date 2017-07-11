@@ -27,11 +27,10 @@
 		$function = $_POST['function'];
 		$login = $_POST['login'];
 		$password = $_POST['pass'];
-
+                
 		$hash_pass = password_hash($password, PASSWORD_DEFAULT);
-
+		echo $hash_pass;
 		$sql = "SELECT * FROM $db_functions_tab WHERE $db_functions_desc=$function";
-		echo $sql;
 		$result = $connection->query($sql);
 		$row = $result->fetch_assoc();
 		$result->free_result();
@@ -41,7 +40,7 @@
 
 		if ($connection->query($sql))
 		{
-				echo "dodano";
+                    echo "dodano";
 		}
 	}
 

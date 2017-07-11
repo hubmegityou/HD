@@ -1,4 +1,5 @@
 
+
 <?php
 
 	session_start();
@@ -23,7 +24,6 @@
     <link href="template/assets/css/bootstrap.css" rel="stylesheet" />
      <!-- FONTAWESOME STYLES-->
     <link href="template/assets/css/font-awesome.css" rel="stylesheet" />
-     <!-- MORRIS CHART STYLES-->
         <!-- CUSTOM STYLES-->
     <link href="template/assets/css/custom.css" rel="stylesheet" />
      <!-- GOOGLE FONTS-->
@@ -43,8 +43,10 @@
   <div style="color: white;
 padding: 15px 50px 5px 50px;
 float: right;
-font-size: 16px;"> Last access : 30 May 2014 &nbsp; <a href="logout.php" class="btn btn-danger square-btn-adjust">Logout</a> </div>
+font-size: 16px;"> Last access : 30 May 2014 &nbsp; <a href="#" class="btn btn-danger square-btn-adjust">Logout</a> </div>
         </nav>   
+        
+        
            <!-- /. NAV TOP  -->
                 <nav class="navbar-default navbar-side" role="navigation">
             <div class="sidebar-collapse">
@@ -55,11 +57,11 @@ font-size: 16px;"> Last access : 30 May 2014 &nbsp; <a href="logout.php" class="
 				
 					
                     <li>
-                        <a class="active-menu"  href="main.php" ><i class="fa fa-dashboard fa-3x"></i> Dashboard</a>
-                    </li>			
-	 
+                        <a  href="main.php"><i class="fa fa-dashboard fa-3x"></i> Dashboard</a>
+                    </li>
+                      
                   <li  >
-                        <a  href="blank.php"><i class="fa fa-square-o fa-3x"></i> Blank Page</a>
+                        <a class="active-menu"  href="blank.php"><i class="fa fa-square-o fa-3x"></i> Blank Page</a>
                     </li>	
                 </ul>
                
@@ -71,11 +73,13 @@ font-size: 16px;"> Last access : 30 May 2014 &nbsp; <a href="logout.php" class="
             <div id="page-inner">
                 <div class="row">
                     <div class="col-md-12">
-                     <h2>Admin Dashboard</h2>   
+                     <h2>Blank Page</h2> 
+                       
                     </div>
-                </div>              
+                </div>
                  <!-- /. ROW  -->
-                  
+                 <hr />
+               
     </div>
              <!-- /. PAGE INNER  -->
             </div>
@@ -89,13 +93,9 @@ font-size: 16px;"> Last access : 30 May 2014 &nbsp; <a href="logout.php" class="
     <script src="template/assets/js/bootstrap.min.js"></script>
     <!-- METISMENU SCRIPTS -->
     <script src="template/assets/js/jquery.metisMenu.js"></script>
-
       <!-- CUSTOM SCRIPTS -->
     <script src="template/assets/js/custom.js"></script>
     
    
 </body>
 </html>
-
-
-

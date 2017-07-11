@@ -27,9 +27,10 @@
 		$function = $_POST['function'];
 		$login = $_POST['login'];
 		$password = $_POST['pass'];
-                
-		$hash_pass = password_hash($password, PASSWORD_DEFAULT);
+		/*
+                $hash_pass = md5($password);
 		echo $hash_pass;
+                 */
 		$sql = "SELECT * FROM $db_functions_tab WHERE $db_functions_desc=$function";
 		$result = $connection->query($sql);
 		$row = $result->fetch_assoc();

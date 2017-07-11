@@ -1,17 +1,5 @@
 
-/*=============================================================
-    Authour URI: www.binarycart.com
-    License: Commons Attribution 3.0
 
-    http://creativecommons.org/licenses/by/3.0/
-
-    100% To use For Personal And Commercial Use.
-    IN EXCHANGE JUST GIVE US CREDITS AND TELL YOUR FRIENDS ABOUT US
-   
-    ========================================================  */
-/*==============================================
-    GENERAL  STYLES    
-    =============================================*/
 body {
     font-family: 'Open Sans', sans-serif;
 }
@@ -59,9 +47,9 @@ p {
     line-height:25px;
     padding-top:20px;
 }
-/*==============================================
-   DASHBOARD STYLES    
-    =============================================*/
+
+
+
 .panel-back {
     background-color:#F8F8F8;
 
@@ -165,7 +153,7 @@ color:#fff;
 font-size: 16px;
 line-height: 30px;
 }
-     /*CHAT PANEL*/
+   
  .chat-panel .panel-body {
 height: 450px;
 overflow-y: scroll;
@@ -191,9 +179,7 @@ color: #8d8888;
     margin-left:20px;
 }
 
-/*==============================================
-    MENU STYLES    
-    =============================================*/
+
 
 
 .user-image {
@@ -338,9 +324,7 @@ background-color: #FFF;
 }
 
 
-/*==============================================
-    MEDIA QUERIES     
-    =============================================*/
+
  
  @media(min-width:768px) {
      #page-wrapper{

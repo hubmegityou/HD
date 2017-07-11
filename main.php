@@ -18,7 +18,11 @@
 <head>
       <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<<<<<<< HEAD
     <title>TU MA BYĆ JAKIŚ TYTUŁ?</title>
+=======
+    <title>HelpDesk</title>
+>>>>>>> fbe9d64761e06f890e2d4924d7ea62512095c4ee
 	<!-- BOOTSTRAP STYLES-->
     <link href="template/assets/css/bootstrap.css" rel="stylesheet" />
      <!-- FONTAWESOME STYLES-->
@@ -43,7 +47,7 @@
   <div style="color: white;
 padding: 15px 50px 5px 50px;
 float: right;
-font-size: 16px;"> Last access : 30 May 2014 &nbsp; <a href="logout.php" class="btn btn-danger square-btn-adjust">Logout</a> </div>
+font-size: 16px;">  <a href="logout.php" class="btn btn-danger square-btn-adjust">Logout</a> </div>
         </nav>   
            <!-- /. NAV TOP  -->
                 <nav class="navbar-default navbar-side" role="navigation">
@@ -55,11 +59,11 @@ font-size: 16px;"> Last access : 30 May 2014 &nbsp; <a href="logout.php" class="
 				
 					
                     <li>
-                        <a class="active-menu"  href="main.php" ><i class="fa fa-dashboard fa-3x"></i> Dashboard</a>
+                        <a class="active-menu"  href="main.php" ><i "></i> Aktywne zadania</a>
                     </li>			
 	 
                   <li  >
-                        <a  href="blank.php"><i class="fa fa-square-o fa-3x"></i> Blank Page</a>
+                        <a  href="blank.php"><i "></i> Dodaj zadanie</a>
                     </li>	
                 </ul>
                
@@ -71,7 +75,7 @@ font-size: 16px;"> Last access : 30 May 2014 &nbsp; <a href="logout.php" class="
             <div id="page-inner">
                 <div class="row">
                     <div class="col-md-12">
-                     <h2>Admin Dashboard</h2>   
+                     <h2>Aktywne zadania</h2>   
                     </div>
                 </div>              
                  <!-- /. ROW  -->
@@ -81,18 +85,7 @@ font-size: 16px;"> Last access : 30 May 2014 &nbsp; <a href="logout.php" class="
             </div>
          <!-- /. PAGE WRAPPER  -->
         </div>
-     <!-- /. WRAPPER  -->
-    <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
-    <!-- JQUERY SCRIPTS -->
-    <script src="template/assets/js/jquery-1.10.2.js"></script>
-      <!-- BOOTSTRAP SCRIPTS -->
-    <script src="template/assets/js/bootstrap.min.js"></script>
-    <!-- METISMENU SCRIPTS -->
-    <script src="template/assets/js/jquery.metisMenu.js"></script>
-
-      <!-- CUSTOM SCRIPTS -->
-    <script src="template/assets/js/custom.js"></script>
-    
+  
    
 </body>
 </html>

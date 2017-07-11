@@ -25,7 +25,7 @@
 		Nazwisko: <br /> <input type="text" name="lname" /> <br />
 		Adres email: <br /> <input type="email" name="email" /> <br />
 		Funkcja: <br />
-				<select name="nazwa">
+				<select name="function">
 				<option>admin</option>
 				<option>manager<ation>
 				<option>grafik<ation>

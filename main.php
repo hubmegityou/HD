@@ -30,6 +30,7 @@
 		$sql = "SELECT * FROM $db_functions_tab WHERE $db_functions_id=$number";
 		$result = $connection->query($sql);
 		$row = $result->fetch_assoc();
+		$result->free_result();
 		echo "$row[$db_functions_desc]";
 	
 	echo "<br /><br />";

@@ -30,26 +30,27 @@
 		sprintf("SELECT * FROM $db_users_tab WHERE $db_users_login='%s' AND $db_users_pass='%s'",
 		mysqli_real_escape_string($connection, $login),
 		mysqli_real_escape_string($connection, $pass))));
-		
-		if ($result->num_rows == 1)
 		{
-			$_SESSION['online'] = true;
-			
-			$row = $result->fetch_assoc();
-			$_SESSION['id'] = $row[$db_users_id];
-			$_SESSION['fname'] = $row[$db_users_fname];
-			$_SESSION['lname'] = $row[$db_users_lname];
-			$_SESSION['function'] = $row[$db_users_function];
-			$_SESSION['connection'] = $connection;
-			
-			unset($_SESSION['error']);
-			$result->free_result();
-			header('Location: index.php');
-		}
-		else
-		{
-			$_SESSION['error'] = '<span style="color:red; position: absolute;top: 200px;">Nieprawidłowy login lub hasło!</span>';
-			header('Location: index.php');
+			if ($result->num_rows == 1)
+			{
+				$_SESSION['online'] = true;
+				
+				$row = $result->fetch_assoc();
+				$_SESSION['id'] = $row[$db_users_id];
+				$_SESSION['fname'] = $row[$db_users_fname];
+				$_SESSION['lname'] = $row[$db_users_lname];
+				$_SESSION['function'] = $row[$db_users_function];
+				$_SESSION['connection'] = $connection;
+				
+				unset($_SESSION['error']);
+				$result->free_result();
+				header('Location: index.php');
+			}
+			else
+			{
+				$_SESSION['error'] = '<span style="color:red; position: absolute;top: 200px;">Nieprawidłowy login lub hasło!</span>';
+				header('Location: index.php');
+			}
 		}
 	}
 	

@@ -40,6 +40,7 @@
 			$_SESSION['fname'] = $row[$db_users_fname];
 			$_SESSION['lname'] = $row[$db_users_lname];
 			$_SESSION['function'] = $row[$db_users_function];
+			$_SESSION['connection'] = $connection;
 			
 			unset($_SESSION['error']);
 			$result->free_result();

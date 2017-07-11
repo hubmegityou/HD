@@ -1,8 +1,19 @@
+<?php
+
+	session_start();
+	
+	if ($_SESSION['function']!=1)
+	{
+		header('Location: main.php');
+		exit();
+	}
+
+?>
+
 <!DOCTYPE HTML>
 <html lang="pl">
 <head>
 	<meta charset="utf-8" />
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 	<title>HD - dodawanie użytkownika</title>
 </head>
 
@@ -20,11 +31,10 @@
 				<option>grafik<ation>
 				<option>pracownik<ation>
 				<br />
-				</select>
-		<br />
+				</select><br />
 		Login: <br /> <input type="text" name="login" /> <br />
-		Hasło: <br /> <input type="password" name="pass" /> <br /><br />
-		<input type="submit" value="Zaloguj się" />
+		Hasło: <br /> <input type="password" name="pass" /> <br />	<?php if(isset($_SESSION['error']))	echo $_SESSION['error']; ?>
+		<br /><input type="submit" value="Zaloguj się" />
 				
 	</form>
 

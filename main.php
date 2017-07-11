@@ -68,20 +68,19 @@ font-size: 16px;">  <a href="logout.php" class="btn btn-danger square-btn-adjust
             <div id="page-inner">
                 <div class="row">
                     <div class="col-md-12">
-                     <h2>Aktywne zadania</h2>   
+                     <h2>Aktywne zadania</h2> 
+                       
                     </div>
-                </div>              
+                </div>
                  <!-- /. ROW  -->
-                  
+                 <hr />
+               
     </div>
              <!-- /. PAGE INNER  -->
             </div>
          <!-- /. PAGE WRAPPER  -->
         </div>
-  
+    
    
 </body>
 </html>
-
-
-

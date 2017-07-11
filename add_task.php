@@ -27,17 +27,19 @@ DODAWANIE NOWEGO ZADANIA <br />
 
     $sql = "SELECT $db_users_fname, $db_users_lname FROM $db_users_tab ORDER BY $db_users_lname ASC";
     $result = $connection->query($sql);
-        echo '<select name="fname">';
+        echo '<select name="name">';
         echo '<option value="">Wybierz osobę</option>';
         while($row = $result->fetch_assoc()) {
-        echo '<option value="'.$row[$db_users_fname].'">'.$row[$db_users_fname].'</option>';
+            $person = "$row[$db_users_fname] $row[$db_users_lname]";
+            echo '<option value="'.$person.'">'.$person.'</option>';
         }
         echo '</select>';
+       $connection
 ?>
-        <br />Temat zadania: <input type="text"/>
-        <br />Treść zadania: <input type="text"/>
-        <br />Termin wykonania: <input type="date"/>
-        <br /><input type="submit" value="Stwórz" />
+        <br />Temat zadania: <input type="text" name="topic"/>
+        <br />Treść zadania: <input type="text" name="description"/>
+        <br />Termin wykonania: <input type="date" name="time"/>
+        <br /><input type="submit" value="Stwórz"/>
 </form>
 
 </body>

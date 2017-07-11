@@ -1,4 +1,10 @@
-<?php 
+<?php  
+
+/*
+ * DO POPRAWY
+ *  - HASHOWANIE HASEŁ
+ *  - WYŚWIETLANIE BŁĘDU DLA PUSTYCH DANYCH
+ */
 
 	session_start();
 
@@ -46,5 +52,5 @@
 	}
 
 	$connection->close();
-	//header ('Location: main.php');
+	header ('Location: main.php');
 ?>

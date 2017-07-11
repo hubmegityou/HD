@@ -21,9 +21,6 @@
     <title>HelpDesk</title>
 	<!-- BOOTSTRAP STYLES-->
     <link href="template/assets/css/bootstrap.css" rel="stylesheet" />
-     <!-- FONTAWESOME STYLES-->
-    <link href="template/assets/css/font-awesome.css" rel="stylesheet" />
-     <!-- MORRIS CHART STYLES-->
         <!-- CUSTOM STYLES-->
     <link href="template/assets/css/custom.css" rel="stylesheet" />
      <!-- GOOGLE FONTS-->

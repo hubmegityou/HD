@@ -22,8 +22,6 @@
     <title>HelpDesk</title>
 	<!-- BOOTSTRAP STYLES-->
     <link href="template/assets/css/bootstrap.css" rel="stylesheet" />
-     <!-- FONTAWESOME STYLES-->
-    <link href="template/assets/css/font-awesome.css" rel="stylesheet" />
         <!-- CUSTOM STYLES-->
     <link href="template/assets/css/custom.css" rel="stylesheet" />
      <!-- GOOGLE FONTS-->
@@ -85,16 +83,6 @@ font-size: 16px;"> <a href="logout.php" class="btn btn-danger square-btn-adjust"
             </div>
          <!-- /. PAGE WRAPPER  -->
         </div>
-     <!-- /. WRAPPER  -->
-    <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
-    <!-- JQUERY SCRIPTS -->
-    <script src="template/assets/js/jquery-1.10.2.js"></script>
-      <!-- BOOTSTRAP SCRIPTS -->
-    <script src="template/assets/js/bootstrap.min.js"></script>
-    <!-- METISMENU SCRIPTS -->
-    <script src="template/assets/js/jquery.metisMenu.js"></script>
-      <!-- CUSTOM SCRIPTS -->
-    <script src="template/assets/js/custom.js"></script>
     
    
 </body>

@@ -18,7 +18,6 @@
 </head>
 
 <body>
-	
 	<form action="add.php" method="post">
 		
 		Imię: <br /> <input type="text" name="fname" /> <br />
@@ -37,7 +36,5 @@
 		<br /><input type="submit" value="Zaloguj się" />
 				
 	</form>
-
-
 </body>
 </html>

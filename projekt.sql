@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 11 Lip 2017, 08:35
+-- Czas generowania: 11 Lip 2017, 15:02
 -- Wersja serwera: 10.1.22-MariaDB
 -- Wersja PHP: 7.1.4
 
@@ -107,10 +107,9 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`user_ID`, `first_name`, `last_name`, `email`, `login`, `password`, `user_function`) VALUES
-(1, 'hgfds', 'hgfd', 'hgew', 'gf', 'ggrerwq', 1),
-(3, 'imię', 'nazwisko', 'email', 'login', 'hasło', 4),
-(4, 'kjhkj', 'hoopk', 'mni', 'lklk', 'lkklm', 5),
-(5, 'asdas', 'asdasd', 'asdasd', 'aaa', 'qqq', 1);
+(3, 'imię', 'nazwisko', 'email', 'login', 'df0090a4c59f141d203ef0dbd5710fc0', 4),
+(5, 'administrator', 'asdasd', 'asdasd', 'aaa', 'b2ca678b4c936f905fb82f2733f5297f', 1),
+(6, 'Jan', 'Kowalski', 'grafik@firma.pl', 'graf', '62f2596b743b732c244ca5451a334b4f', 3);
 
 --
 -- Indeksy dla zrzutów tabel
@@ -179,7 +178,7 @@ ALTER TABLE `task`
 -- AUTO_INCREMENT dla tabeli `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `user_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- Ograniczenia dla zrzutów tabel
 --

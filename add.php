@@ -2,7 +2,7 @@
 
 /*
  * DO POPRAWY
- *  - HASHOWANIE HASEŁ
+ *  - HASHOWANIE HASEŁ (done)
  *  - WYŚWIETLANIE BŁĘDU DLA PUSTYCH DANYCH
  */
 
@@ -31,16 +31,16 @@
 		$function = $_POST['function'];
 		$login = $_POST['login'];
 		$password = $_POST['pass'];
-		/*
+		
                 $hash_pass = md5($password);
-		echo $hash_pass;
-                 */
+                
 		$sql = "SELECT * FROM $db_functions_tab WHERE $db_functions_desc=$function";
 		$result = $connection->query($sql);
 		$row = $result->fetch_assoc();
 		$result->free_result();
 		$id = $row[$db_functions_id];
 		echo $id."test";
+                
 		$sql = "INSERT INTO $db_users_tab ($db_users_id, $db_users_fname, $db_users_lname, $db_users_email, $db_users_login, $db_users_pass, $db_users_function) VALUES (NULL,$fname,$lname,$email,$login,$hash_pass,$id)";
 
 		if ($connection->query($sql)){

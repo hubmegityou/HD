@@ -1,8 +1,35 @@
 <?php
 
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/*
+ * DOKOŃCZYĆ
+ *  - ŁADOWANIE DANYCH DO BAZY
+ * 
+ * 
  */
+    session_start();
+    
+    if ((!isset($_POST['topic'])) || (!isset($_POST['description'])) || (!isset($_POST['time'])) || (!isset($_POST['name'])))
+	{
+		header('Location: add_task.php');
+		exit();
+	}
+    
+    require_once "dbinfo.php";
+    require_once "connect.php";
+    
+    $connection = new mysqli($host, $db_user, $db_pass, $db_name);
+
+    if ($connection->connect_errno!=0){
+	echo "Error: ".$connection->connect_errno;
+    }
+    else{
+        $fname = $_POST['fname'];
+	$lname = $_POST['lname'];
+	$email = $_POST['email'];
+	$function = $_POST['function'];
+	$login = $_POST['login'];
+	$password = $_POST['pass'];
+    }    
+        
+?>
 

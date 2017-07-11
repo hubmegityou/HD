@@ -1,5 +1,11 @@
 <?php
 
+/*
+ * 
+ * DO POPRAWY
+ *  - KOMUNIKATY O BŁĘDZIE
+ * 
+ */
 	session_start();
 	
 	if ($_SESSION['function']!=1)
@@ -34,7 +40,7 @@ DODAWANIE NOWEGO ZADANIA <br />
             echo '<option value="'.$person.'">'.$person.'</option>';
         }
         echo '</select>';
-       $connection
+       $connection->close();
 ?>
         <br />Temat zadania: <input type="text" name="topic"/>
         <br />Treść zadania: <input type="text" name="description"/>

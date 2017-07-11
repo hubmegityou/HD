@@ -21,12 +21,10 @@
 
 	$connection = new mysqli($host, $db_user, $db_pass, $db_name);
 
-	if ($connection->connect_errno!=0)
-	{
+	if ($connection->connect_errno!=0){
 		echo "Error: ".$connection->connect_errno;
 	}
-	else
-	{
+	else{
 		$fname = $_POST['fname'];
 		$lname = $_POST['lname'];
 		$email = $_POST['email'];
@@ -45,8 +43,7 @@
 		echo $id."test";
 		$sql = "INSERT INTO $db_users_tab ($db_users_id, $db_users_fname, $db_users_lname, $db_users_email, $db_users_login, $db_users_pass, $db_users_function) VALUES (NULL,$fname,$lname,$email,$login,$hash_pass,$id)";
 
-		if ($connection->query($sql))
-		{
+		if ($connection->query($sql)){
                     echo "dodano";
 		}
 	}

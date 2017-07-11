@@ -13,19 +13,25 @@
 <!DOCTYPE HTML>
 <html lang="pl">
 <head>
-	<meta charset="utf-8" />
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-	<title>Help Desk - projekt</title>
+	  <meta charset="UTF-8">
+ 
+      <link rel="stylesheet" href="login/css/style.css">
+  
 </head>
 
 <body>
 	
 	<form action="login.php" method="post">
 	
-		Login: <br /> <input type="text" name="login" /> <br />
-		Hasło: <br /> <input type="password" name="pass" /> <br /><br />
-		<input type="submit" value="Zaloguj się" />
-				
+		<header>Login</header>
+                
+                <label>Username <span></span></label>
+                <input type="text" name="login" />
+                <label>Password <span></span></label>
+                <input type="password" name="pass" />
+                
+                <button type="submit" class="button"/>Log In</button>
+
 	</form>
 	
 <?php

@@ -8,12 +8,12 @@
 		header('Location: index.php');
 		exit();
 	}
-	
+
 	require_once "connect.php";
 	require_once "dbinfo.php";
-	
+
 	$connection = new mysqli($host, $db_user, $db_pass, $db_name);
-	 
+
 	if ($connection->connect_errno!=0)
 	{
 		echo "Error: ".$connection->connect_errno;

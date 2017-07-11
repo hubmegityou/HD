@@ -32,7 +32,7 @@
 				</select><br />
 		Login: <br /> <input type="text" name="login" /> <br />
 		Hasło: <br /> <input type="password" name="pass" /> <br />	<?php if(isset($_SESSION['error']))	echo $_SESSION['error']; ?>
-		<br /><input type="submit" value="Zaloguj się" />
+		<br /><input type="submit" value="Dodaj" />
 				
 	</form>
 </body>

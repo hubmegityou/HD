@@ -4,7 +4,7 @@
  * DO POPRAWY
  *  - HASHOWANIE HASEŁ (done)
  *  - WYŚWIETLANIE BŁĘDU DLA PUSTYCH DANYCH
- *  - POPRAWNE POŁĄCZENIE Z BAZĄ
+ *  - POŁĄCZENIE Z BAZĄ DANYCH
  */
 
 	session_start();
@@ -50,5 +50,5 @@
 	}
 
 	$connection->close();
-	header ('Location: main.php');
+	//header ('Location: main.php');
 ?>

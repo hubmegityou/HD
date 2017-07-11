@@ -19,7 +19,7 @@
 <head>
       <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>TU MA BYĆ JAKIŚ TYTU�?</title>
+    <title>HelpDesk</title>
 	<!-- BOOTSTRAP STYLES-->
     <link href="template/assets/css/bootstrap.css" rel="stylesheet" />
      <!-- FONTAWESOME STYLES-->
@@ -43,7 +43,7 @@
   <div style="color: white;
 padding: 15px 50px 5px 50px;
 float: right;
-font-size: 16px;"> Last access : 30 May 2014 &nbsp; <a href="#" class="btn btn-danger square-btn-adjust">Logout</a> </div>
+font-size: 16px;"> <a href="logout.php" class="btn btn-danger square-btn-adjust">Logout</a> </div>
         </nav>   
         
         
@@ -57,11 +57,11 @@ font-size: 16px;"> Last access : 30 May 2014 &nbsp; <a href="#" class="btn btn-d
 				
 					
                     <li>
-                        <a  href="main.php"><i class="fa fa-dashboard fa-3x"></i> Dashboard</a>
+                        <a  href="main.php"><i "></i> Aktywne zadania</a>
                     </li>
                       
                   <li  >
-                        <a class="active-menu"  href="blank.php"><i class="fa fa-square-o fa-3x"></i> Blank Page</a>
+                        <a class="active-menu"  href="blank.php"><i "></i> Dodaj zadanie</a>
                     </li>	
                 </ul>
                
@@ -73,7 +73,7 @@ font-size: 16px;"> Last access : 30 May 2014 &nbsp; <a href="#" class="btn btn-d
             <div id="page-inner">
                 <div class="row">
                     <div class="col-md-12">
-                     <h2>Blank Page</h2> 
+                     <h2>Dodaj zadanie</h2> 
                        
                     </div>
                 </div>

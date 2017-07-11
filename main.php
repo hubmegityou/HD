@@ -18,7 +18,7 @@
 <head>
       <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>TU MA BYĆ JAKIŚ TYTU�?</title>
+    <title>HelpDesk</title>
 	<!-- BOOTSTRAP STYLES-->
     <link href="template/assets/css/bootstrap.css" rel="stylesheet" />
      <!-- FONTAWESOME STYLES-->
@@ -55,11 +55,11 @@ font-size: 16px;">  <a href="logout.php" class="btn btn-danger square-btn-adjust
 				
 					
                     <li>
-                        <a class="active-menu"  href="main.php" ><i class="fa fa-dashboard fa-3x"></i> Dashboard</a>
+                        <a class="active-menu"  href="main.php" ><i "></i> Aktywne zadania</a>
                     </li>			
 	 
                   <li  >
-                        <a  href="blank.php"><i class="fa fa-square-o fa-3x"></i> Blank Page</a>
+                        <a  href="blank.php"><i "></i> Dodaj zadanie</a>
                     </li>	
                 </ul>
                
@@ -71,7 +71,7 @@ font-size: 16px;">  <a href="logout.php" class="btn btn-danger square-btn-adjust
             <div id="page-inner">
                 <div class="row">
                     <div class="col-md-12">
-                     <h2>Admin Dashboard</h2>   
+                     <h2>Aktywne zadania</h2>   
                     </div>
                 </div>              
                  <!-- /. ROW  -->

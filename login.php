@@ -1,11 +1,5 @@
 <?php
 
-/*
- * DO POPRAWY
- *  - HASHOWANIE HASEŁ
- * 
- */
-
 	session_start();
 		
 	if((!isset($_POST['login'])) || (!isset($_POST['pass'])))

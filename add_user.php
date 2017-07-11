@@ -2,12 +2,11 @@
 
 	session_start();
 	
-	if ($_SESSION['function']!=1)
+	if ($_SESSION['function']!=1) //function := 1 ==> admin
 	{
 		header('Location: main.php');
 		exit();
 	}
-
 ?>
 
 <!DOCTYPE HTML>

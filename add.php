@@ -4,6 +4,7 @@
  * DO POPRAWY
  *  - HASHOWANIE HASEŁ (done)
  *  - WYŚWIETLANIE BŁĘDU DLA PUSTYCH DANYCH
+ *  - POPRAWNE POŁĄCZENIE Z BAZĄ
  */
 
 	session_start();

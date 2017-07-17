@@ -56,7 +56,7 @@
                     </li>
                     
                     <li>
-                        <a  href="tasks.php" ><i "></i> Aktywne zadania</a>
+                        <a  href="tasks.php" ><i "></i>Moje aktywne zadania</a>
                     </li>			
 	 
                   

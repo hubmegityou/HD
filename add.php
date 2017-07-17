@@ -37,7 +37,7 @@
                 
 		$sql = "SELECT * FROM $db_functions_tab WHERE $db_functions_desc=$function";
 		$result = $connection->query($sql);
-		$row = $result->fetch_assoc();
+		//$row = $result->fetch_assoc();
 		$result->free_result();
 		$id = $row[$db_functions_id];
 		echo $id."test";

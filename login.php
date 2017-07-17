@@ -48,8 +48,7 @@
 				
 				unset($_SESSION['error']);
 				$result->free_result();
-                                
-                                
+
                                 
 				header('Location: index.php');
 			}

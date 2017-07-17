@@ -1,5 +1,4 @@
 
-
 <?php
 
 	session_start();
@@ -26,6 +25,7 @@
     <link href="template/assets/css/custom.css" rel="stylesheet" />
      <!-- GOOGLE FONTS-->
    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+   <link rel="Stylesheet" type="text/css" href="timeline/style.css" />
 </head>
 <body>
     <div id="wrapper">
@@ -38,13 +38,11 @@
                 </button>
                 <a class="navbar-brand" href="main.php"><?php echo $_SESSION['fname']." ".$_SESSION['lname']?></a> 
             </div>
-  <div style="color: white;
-padding: 15px 50px 5px 50px;
-float: right;
-font-size: 16px;"> <a href="logout.php" class="btn btn-danger square-btn-adjust">Logout</a> </div>
+    <div style="color: white;
+    padding: 15px 50px 5px 50px;
+    float: right;
+    font-size: 16px;">  <a href="logout.php" class="btn btn-danger square-btn-adjust">Logout</a> </div>
         </nav>   
-        
-        
            <!-- /. NAV TOP  -->
                 <nav class="navbar-default navbar-side" role="navigation">
             <div class="sidebar-collapse">
@@ -53,14 +51,23 @@ font-size: 16px;"> <a href="logout.php" class="btn btn-danger square-btn-adjust"
                     <img src="template/assets/img/find_user.png" class="user-image img-responsive"/>
 					</li>
 				
-					
                     <li>
-                        <a  href="main.php"><i "></i> Aktywne zadania</a>
+                        <a  href="main.php" ><i "></i> Strona główna</a>
                     </li>
-                      
-                  <li  >
-                        <a class="active-menu"  href="blank.php"><i "></i> Dodaj zadanie</a>
-                    </li>	
+                    
+                    <li>
+                        <a  href="tasks.php" ><i "></i> Aktywne zadania</a>
+                    </li>			
+	 
+                  
+                   <?php 
+                   
+                   If ($_SESSION['function']=="1"||$_SESSION['function']=="2" ){
+                      echo '<li>
+                        <a class="active-menu" href="add_tasks.php"><i "></i> Dodaj zadanie</a>
+                    </li>';  
+                   } ?>
+                    	
                 </ul>
                
             </div>
@@ -72,11 +79,17 @@ font-size: 16px;"> <a href="logout.php" class="btn btn-danger square-btn-adjust"
                 <div class="row">
                     <div class="col-md-12">
                      <h2>Dodaj zadanie</h2> 
-                       
-                    </div>
-                </div>
-                 <!-- /. ROW  -->
+                       </div>
+                     </div>
                  <hr />
+                 <br>
+                 <br>
+                 <br>
+                 <br>
+                     
+             
+                 
+                 
                
     </div>
              <!-- /. PAGE INNER  -->

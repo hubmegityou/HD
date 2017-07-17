@@ -104,7 +104,13 @@
                         echo "Error: ".$connection->connect_errno;
                         
                     }else{
-                        $sql = "SELECT $db_subtast_name, $db_subtast_sdate, $db_subtast_edate, $db_subtask_description FROM $db_subtast_tab ";
+                        
+                        If ($_SESSION['function']=="1"||$_SESSION['function']=="2" ){
+                            $sql = "SELECT $db_subtast_name, $db_subtast_sdate, $db_subtast_edate, $db_subtask_description FROM $db_subtast_tab ";  
+                        }else{
+                            $sql = "SELECT $db_subtast_name, $db_subtast_sdate, $db_subtast_edate, $db_subtask_description FROM $db_subtast_tab WHERE user_ID =". $_SESSION['id'];
+                        }
+                        
                         $result = $connection->query($sql);
                     }
                      while($row = $result->fetch_assoc()){

@@ -1,11 +1,5 @@
 <?php
 
-/*
- * DO POPRAWY
- *  - HASHOWANIE HASEŁ
- * 
- */
-
 	session_start();
 		
 	if((!isset($_POST['login'])) || (!isset($_POST['pass'])))
@@ -14,12 +8,12 @@
 		header('Location: index.php');
 		exit();
 	}
-	
+
 	require_once "connect.php";
 	require_once "dbinfo.php";
-	
+
 	$connection = new mysqli($host, $db_user, $db_pass, $db_name);
-	 
+
 	if ($connection->connect_errno!=0)
 	{
 		echo "Error: ".$connection->connect_errno;
@@ -32,14 +26,12 @@
 		$login = htmlentities($login, ENT_QUOTES, "UTF-8");
 		$pass = htmlentities($pass, ENT_QUOTES, "UTF-8");
 		
-                /*if (password_verify ( $pass , password_hash($pass, PASSWORD_DEFAULT)))
-                        echo "działa";
-		$hash_pass = password_hash($pass);
-		*/
+                $hash_pass = md5($pass);
+                
 		if ($result = $connection->query(
 		sprintf("SELECT * FROM $db_users_tab WHERE $db_users_login='%s' AND $db_users_pass='%s'",
 		mysqli_real_escape_string($connection, $login),
-		mysqli_real_escape_string($connection, $pass))));
+		mysqli_real_escape_string($connection, $hash_pass))));
 		{
 			if ($result->num_rows == 1)
 			{
@@ -64,6 +56,5 @@
 		}
 	}
 	
-	$connection->close();
-	
+	$connection->close();	
 ?>

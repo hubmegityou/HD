@@ -1,5 +1,5 @@
 <?php
-
+  
 	session_start();
 	
 	if ((isset($_SESSION['online'])) && ($_SESSION['online']==true))
@@ -9,6 +9,8 @@
 	}
 
 ?>
+
+
 
 <!DOCTYPE HTML>
 <html lang="pl">

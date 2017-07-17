@@ -52,7 +52,7 @@
 					</li>
 				
                     <li>
-                        <a class="active-menu"  href="main.php" ><i "></i> Strona główna</a>
+                        <a   href="main.php" ><i "></i> Strona główna</a>
                     </li>
                     
                     <li>

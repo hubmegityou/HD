@@ -23,6 +23,7 @@
 		$db_subtast_name = 'name';
 		$db_subtast_sdate = 'start_date';
 		$db_subtast_edate = 'end_date';
+                $db_subtask_description= "description";
 		$db_subtast_userid = 'user_ID';
 		
 	$db_functions_tab = 'functions';

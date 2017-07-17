@@ -52,11 +52,11 @@
 					</li>
 				
                     <li>
-                        <a  class="active-menu" href="main.php" ><i "></i> Strona główna</a>
+                        <a   href="main.php" ><i "></i> Strona główna</a>
                     </li>
                     
                     <li>
-                        <a  href="tasks.php" ><i "></i> Aktywne zadania</a>
+                        <a class="active-menu"  href="tasks.php" ><i "></i> Aktywne zadania</a>
                     </li>			
 	 
                   
@@ -78,16 +78,58 @@
             <div id="page-inner">
                 <div class="row">
                     <div class="col-md-12">
-                     <h2>Strona główna</h2> 
+                     <h2>Aktywne zadania</h2> 
                        </div>
                      </div>
                  <hr />
                  <br>
                  <br>
                  <br>
-                 <br>
                      
-             
+                 <div class="container">
+	<div class="row">
+    
+        <div class="timeline-centered">
+
+       
+                    
+                    <?php  
+                    require_once "connect.php";
+                    require_once "dbinfo.php";
+                    
+                    
+                    $connection = new mysqli($host, $db_user, $db_pass, $db_name);
+	 
+                    if ($connection->connect_errno!=0){
+                        echo "Error: ".$connection->connect_errno;
+                        
+                    }else{
+                        $sql = "SELECT $db_subtast_name, $db_subtast_sdate, $db_subtast_edate, $db_subtask_description FROM $db_subtast_tab ";
+                        $result = $connection->query($sql);
+                    }
+                     while($row = $result->fetch_assoc()){
+                      echo '<article class="timeline-entry">
+                            <div class="timeline-entry-inner">
+                            <div class="timeline-icon bg-success">
+                            <i class="entypo-feather"></i>
+                            </div>
+                            <div class="timeline-label">';   
+                      echo "<h2>$row[$db_subtast_name] <span></span></h2>"; 
+                      echo "<p>Data rozpoczęcia: $row[$db_subtast_sdate]  <br> ";
+                      echo "Data zakończenia: $row[$db_subtast_edate]  <br><br>";
+                      echo "Opis zadania: <br> $row[$db_subtask_description]";
+                      echo'</div>
+                           </div>
+                           </article>'
+                          ;}
+                    
+                    ?>
+
+    </div>
+
+    
+	</div>
+</div>
                  
                  
                

@@ -10,7 +10,7 @@
 		$db_users_function = 'user_function';
 	
 	$db_task_tab = 'task';
-		$db_task_id = 'tast_ID';
+		$db_task_id = 'task_ID';
 		$db_task_name = 'name';
 		$db_task_description = 'description';
 		$db_task_sdate = 'start_date';

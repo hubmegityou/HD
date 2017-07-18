@@ -104,18 +104,27 @@
                         echo "Error: ".$connection->connect_errno;
                         
                     }else{
-                        
-                            $sql = "SELECT $db_subtast_name, $db_subtast_sdate, $db_subtast_edate, $db_subtask_description FROM $db_subtast_tab WHERE user_ID =". $_SESSION['id'];
+           
+      
+                            $sql = "SELECT $db_subtast_taskid, $db_subtast_name, $db_subtast_sdate, $db_subtast_edate, $db_subtask_description FROM $db_subtast_tab WHERE $db_subtast_edate >='". date("Y-m-d") ."' AND $db_subtast_userid =". $_SESSION['id'];
                             $result = $connection->query($sql);
+
                     }
                      while($row = $result->fetch_assoc()){
+                        
+                         
+                      $sql = "SELECT $db_task_tab.$db_task_name, $db_task_tab.$db_task_description, $db_task_tab.$db_task_sdate, $db_task_tab.$db_task_edate, $db_users_tab.$db_users_fname, $db_users_tab.$db_users_lname FROM $db_task_tab LEFT JOIN $db_users_tab ON task.$db_task_userid = $db_users_tab.$db_users_id WHERE task.$db_task_id =".$row[$db_subtast_taskid];
+                      $result2 = $connection->query($sql);  
+                      $row2=$result2->fetch_assoc();  
+                         
+                           
                       echo '<article class="timeline-entry">
                             <div class="timeline-entry-inner">
                             <div class="timeline-icon bg-success">
                             <i class="entypo-feather"></i>
                             </div>
                             <div class="timeline-label">';   
-                      echo "<h2>$row[$db_subtast_name] <span></span></h2>"; 
+                      echo "<h2><a class='dymek'>$row[$db_subtast_name]<span><br> <br>Nazwa zadania głównego: $row2[$db_task_name] <br> Manager: $row2[$db_users_fname] $row2[$db_users_lname]<br> Data rozpoczęcia: $row2[$db_task_sdate] <br> Data zakończenia: $row2[$db_task_edate]<br> Opis: $row2[$db_task_description]<br> </span> </a><span></span><h2>"; 
                       echo "<p>Data rozpoczęcia: $row[$db_subtast_sdate]  <br> ";
                       echo "Data zakończenia: $row[$db_subtast_edate]  <br><br>";
                       echo "Opis zadania: <br> $row[$db_subtask_description]";

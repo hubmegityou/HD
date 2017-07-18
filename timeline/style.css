@@ -252,10 +252,15 @@ img {
 .timeline-centered .timeline-entry .timeline-entry-inner .timeline-label h2 {
         font-size: 16px;
         margin-bottom: 10px;
+        
 }
 
 .timeline-centered .timeline-entry .timeline-entry-inner .timeline-label h2 a {
         color: #303641;
+        text-decoration: none;
+        cursor:pointer
+        
+        
 }
 
 .timeline-centered .timeline-entry .timeline-entry-inner .timeline-label h2 span {
@@ -264,4 +269,22 @@ img {
         opacity: .6;
         -ms-filter: alpha(opacity=60);
         filter: alpha(opacity=60);
+        font-size: 12px;
+        font-family: "Noto Sans",sans-serif;
+      
+       
+      
+}
+
+a.dymek span {
+display: none;
+
+}
+
+a.dymek:hover span {
+display: inline;
+position:relative;
+color: black;
+
+
 }

@@ -59,6 +59,66 @@ p {
     line-height:25px;
     padding-top:20px;
 }
+ button {
+	   background-color: #e0610d !important;
+  display: inline-block !important; 
+  padding: 6px 12px !important;
+  margin-bottom: 0 !important;
+  font-size: 14px !important;
+  font-weight: normal !important;
+  line-height: 1.42857143 !important;
+  text-align: center !important;
+  white-space: nowrap !important;
+  vertical-align: middle !important;
+  cursor: pointer !important;
+  -webkit-user-select: none !important;
+     -moz-user-select: none !important;
+      -ms-user-select: none !important;
+          user-select: none !important;
+  background-image: none !important;
+  border: 1px solid transparent !important;
+  border-radius: 4px !important;
+  color: #ffffff !important;
+}
+.task-form {
+	border-style:solid;
+	border-width:1px;
+	width:1008px;
+	height:1000px;
+	border-color:#cecece !important;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+.pick-per {border-style:solid !important;
+	border-width:0px 0px 0px 0px !important;
+}
+.temat,.termin {
+	border-style: solid !important;
+	border-width: 0px 0px 0px 0px !important;
+	}
+	.tresc {
+	border-style:solid !important;
+	border-width:0px 0px 1px 0px !important;
+	border-color: #cecece !important;
+	}
+	p.tematt, p.termint, p.tresct {
+		padding-top:0px;
+		text-align:left;
+		margin-left: 5px;
+		font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+		font-size: 13pt;
+	}
+	.tresc {
+		height: 200px;
+	}
+	input.tematp, input.trescp {
+		width: 850px;
+	}
+		input.trescp {
+		height:175px;
+	}
+	.tematp, .trescp, .terminp {
+		margin-left:5px;
+	}
 /*==============================================
    DASHBOARD STYLES    
     =============================================*/
@@ -152,7 +212,7 @@ color:#fff;
         line-height:25px;
         text-align:justify;
     }
-    .back-footer-green {
+.back-footer-green {
     background-color: #009B50;
     border-top: 0px solid #fff;
 }
@@ -229,7 +289,6 @@ font-weight: 700;
 .active > a > .fa.arrow:before {
     content: "\f107";
 }
-
 
 .nav-second-level li,
 .nav-third-level li {

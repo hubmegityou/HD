@@ -33,12 +33,36 @@
 	<script src='calendar/fullcalendar.js'></script>
 	<script>
 	$(document).ready(function() {
+        
 		$('#calendar').fullCalendar({
                         height: 700,
-			defaultDate: '2017-05-12',
+			defaultDate: Date(),
 			eventLimit: true,
 			events: [ 
-                          //wtranżolić a
+                           
+                          <?php 
+
+                        require_once "connect.php";
+                        require_once "dbinfo.php";
+                    
+                    
+                        $connection = new mysqli($host, $db_user, $db_pass, $db_name);
+                        if ($connection->connect_errno!=0){
+                        echo "Error: ".$connection->connect_errno;
+                        
+                        }else{
+           
+                        $connection -> query ('SET NAMES utf8');
+                        $connection -> query ('SET CHARACTER_SET utf8_unicode_ci');
+                        $sql= "select $db_task_name, $db_task_sdate, $db_task_edate FROM $db_task_tab";                        
+                        $result = $connection->query($sql);
+    
+                        }
+                        while($row = $result->fetch_assoc()){
+                        $rows= "{ title: '".$row[$db_task_name]."', start: '".$row[$db_task_sdate]."', end: '".$row[$db_task_edate]."'},";    
+                        echo $rows;
+                         }
+                            ?>  
 			]
 		});
 		
@@ -117,31 +141,6 @@
    
 </body>
 </html>
-
-
-
-<?php 
-
-require_once "connect.php";
-require_once "dbinfo.php";
-                    
-                    
-    $connection = new mysqli($host, $db_user, $db_pass, $db_name);
-    if ($connection->connect_errno!=0){
-            echo "Error: ".$connection->connect_errno;
-                        
-            }else{
-           
-    $connection -> query ('SET NAMES utf8');
-    $connection -> query ('SET CHARACTER_SET utf8_unicode_ci');
-    $sql= "select $db_task_name, $db_task_sdate, $db_task_edate FROM $db_task_tab";                        
-    $result = $connection->query($sql);
-    
-            }
-        while($row = $result->fetch_assoc()){
-            $rows= "{ title: '".$row[$db_task_name]."', start: '".$row[$db_task_sdate]."', end: '".$row[$db_task_edate]."'},";    
-        }
-?>
     
     
     

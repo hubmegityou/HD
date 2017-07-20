@@ -23,18 +23,17 @@
               
 		$login = $_POST['login'];
 		$pass = $_POST['pass'];
-		
+
 		$login = htmlentities($login, ENT_QUOTES, "UTF-8");
 		$pass = htmlentities($pass, ENT_QUOTES, "UTF-8");
-		
-                $hash_pass = md5($pass); 
-                  
-                
+
+                $hash_pass = md5($pass);  
+
 		if ($result = $connection->query(
 		sprintf("SELECT * FROM $db_users_tab WHERE $db_users_login='%s' AND $db_users_pass='%s'",
 		mysqli_real_escape_string($connection, $login),
-		mysqli_real_escape_string($connection, $pass)))); 
-    
+		mysqli_real_escape_string($connection, $hash_pass)))); 
+
 		{
 			if ($result->num_rows == 1)
 			{

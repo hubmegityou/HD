@@ -33,14 +33,12 @@
 	<script src='calendar/fullcalendar.js'></script>
 	<script>
 	$(document).ready(function() {
-                var a;
 		$('#calendar').fullCalendar({
                         height: 700,
 			defaultDate: '2017-05-12',
 			eventLimit: true,
 			events: [ 
-                          document.write(a)
-                            //wydarzenia 
+                          //wtranżolić a
 			]
 		});
 		
@@ -142,10 +140,9 @@ require_once "dbinfo.php";
             }
         while($row = $result->fetch_assoc()){
             $rows= "{ title: '".$row[$db_task_name]."', start: '".$row[$db_task_sdate]."', end: '".$row[$db_task_edate]."'},";    
-           
-        };
-
+        }
 ?>
     
     
     
+

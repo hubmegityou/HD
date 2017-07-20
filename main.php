@@ -37,10 +37,11 @@
         
       <script>
 	$(document).ready(function() {
+            var date= new Date();
         
 		$('#calendar').fullCalendar({
                         height: 700,
-			defaultDate: Date(),
+			defaultDate: date,
 			eventLimit: true,
 			events: [ 
                            

@@ -33,9 +33,9 @@
         
         $today = date('Y-m-d');
         $sql = "INSERT INTO $db_subtask_tab ($db_subtask_id, $db_subtask_taskid, $db_subtask_name, $db_subtask_sdate, $db_subtask_edate, $db_subtask_description, $db_subtask_userid) VALUES (NULL, $taskid, '$topic', '$today', '$date', '$desc', $userid)";
-        echo $sql;
-        if ($result = $connection->query($sql))
-                echo "działa";
+        if ($result = $connection->query($sql)){
+            //info: dodano poprawnie
+        }
         
     }    
     $connection->close();

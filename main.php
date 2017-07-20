@@ -31,6 +31,7 @@
 	<script src='calendar/lib/jquery.min.js'></script>
 	<script src='calendar/lib/moment.min.js'></script>
 	<script src='calendar/fullcalendar.js'></script>
+        <script> src='/calendar/locale/pl.js'></script>
 	<script>
 	$(document).ready(function() {
         

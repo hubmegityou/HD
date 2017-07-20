@@ -13,15 +13,17 @@
 	require_once "dbinfo.php";
 
 	$connection = new mysqli($host, $db_user, $db_pass, $db_name);
-
+        
 	if ($connection->connect_errno!=0)
 	{
 		echo "Error: ".$connection->connect_errno;
 	}
 	else
 	{
-              
-		$login = $_POST['login'];
+                $connection -> query ('SET NAMES utf8');
+                $connection -> query ('SET CHARACTER_SET utf8_unicode_ci');
+		
+                $login = $_POST['login'];
 		$pass = $_POST['pass'];
 
 		$login = htmlentities($login, ENT_QUOTES, "UTF-8");

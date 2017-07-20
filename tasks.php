@@ -99,20 +99,19 @@
                     
                     
                     $connection = new mysqli($host, $db_user, $db_pass, $db_name);
-	 
                     if ($connection->connect_errno!=0){
                         echo "Error: ".$connection->connect_errno;
                         
                     }else{
            
-      
+                            $connection -> query ('SET NAMES utf8');
+                            $connection -> query ('SET CHARACTER_SET utf8_unicode_ci');
                             $sql = "SELECT $db_subtast_taskid, $db_subtast_name, $db_subtast_sdate, $db_subtast_edate, $db_subtask_description FROM $db_subtast_tab WHERE $db_subtast_edate >='". date("Y-m-d") ."' AND $db_subtast_userid =". $_SESSION['id'];
                             $result = $connection->query($sql);
 
                     }
-                     while($row = $result->fetch_assoc()){
-                        
-                         
+                    while($row = $result->fetch_assoc()){
+                             
                       $sql = "SELECT $db_task_tab.$db_task_name, $db_task_tab.$db_task_description, $db_task_tab.$db_task_sdate, $db_task_tab.$db_task_edate, $db_users_tab.$db_users_fname, $db_users_tab.$db_users_lname FROM $db_task_tab LEFT JOIN $db_users_tab ON task.$db_task_userid = $db_users_tab.$db_users_id WHERE task.$db_task_id =".$row[$db_subtast_taskid];
                       $result2 = $connection->query($sql);  
                       $row2=$result2->fetch_assoc();  
@@ -132,7 +131,7 @@
                            </div>
                            </article>'
                           ;}
-                    
+                    $connection -> close();
                     ?>
 
     </div>

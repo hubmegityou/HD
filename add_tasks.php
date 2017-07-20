@@ -85,19 +85,28 @@
 <?php
     require_once "connect.php";
     require_once "dbinfo.php";
+    
     $connection = mysqli_connect($host, $db_user, $db_pass, $db_name);
+    if ($connection->connect_errno!=0){
+            echo "Error: ".$connection->connect_errno;
+	}
+    else{
+        $connection -> query ('SET NAMES utf8');
+        $connection -> query ('SET CHARACTER_SET utf8_unicode_ci');
 
-    $sql = "SELECT $db_users_fname, $db_users_lname FROM $db_users_tab ORDER BY $db_users_lname ASC";
-    $result = $connection->query($sql);
-        echo '<select name="name">';
-        echo '<option value="">Wybierz osobę</option>';
-        while($row = $result->fetch_assoc()) {
-            $person = "$row[$db_users_fname] $row[$db_users_lname]";
-            echo '<option value="'.$person.'">'.$person.'</option>';
+        $sql = "SELECT $db_users_fname, $db_users_lname FROM $db_users_tab ORDER BY $db_users_lname ASC";
+        $result = $connection->query($sql);
+            echo '<select name="name">';
+            echo '<option value="">Wybierz osobę</option>';
+            while($row = $result->fetch_assoc()) {
+                $person = "$row[$db_users_fname] $row[$db_users_lname]";
+                echo '<option value="'.$person.'">'.$person.'</option>';
+            }
+            echo '</select>';
         }
-        echo '</select>';
        $connection->close();
-?> <br /></div>
+?> 
+        <br /></div>
         <div class="temat"><p class="tematt">Temat zadania: <input type="text" name="topic" class="tematp"/></p></div>
 		<div class="termin"><p class="termint">Termin wykonania: <input type="date" name="time" class="terminp"/></p></div>
         <div class="tresc"><p class="tresct">Treść zadania: <br /><textarea name="description" id="trescp" cols="108" rows="6"></textarea></p></div>

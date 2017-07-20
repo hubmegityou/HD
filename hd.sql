@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 20 Lip 2017, 07:51
+-- Czas generowania: 20 Lip 2017, 09:00
 -- Wersja serwera: 10.1.22-MariaDB
 -- Wersja PHP: 7.1.4
 
@@ -42,8 +42,8 @@ CREATE TABLE `attachment` (
 
 CREATE TABLE `functions` (
   `function_ID` int(11) NOT NULL,
-  `function_description` text CHARACTER SET utf8 COLLATE utf8_polish_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `function_description` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Zrzut danych tabeli `functions`
@@ -79,7 +79,8 @@ CREATE TABLE `subtask` (
 INSERT INTO `subtask` (`subtask_ID`, `task_ID`, `name`, `start_date`, `end_date`, `description`, `user_ID`) VALUES
 (1, 1, 'huehuehuehue', '2017-07-03', '2017-07-04', 'hdhdhdhdhdhdhdhdhdh jsjsjsjsj kkdekkeke ksjsjsssjsj kkekekwkwkwk kssdnxmxkxk xnxsjsjsjs AAAL????????ąąąąąććć', 3),
 (2, 1, 'efghjkl', '2017-07-19', '2017-07-28', 'wefghjkjhnbvdswertyujhnbvfdew45tryhgfdwertghfdertgfdertgfdertgfdertf frerfderdffdew egngtrergre yt434rgr43rtg erght54tgtr54trg wrett4regbr ewrgtr4rtgbrttg ewrfgbgfre4rgbr4 wedfgbfregr wedfbgregr43 efdbgregfr43 edffgrgbfr4 wdfbfrefgr43 wsdvcfregbfre4efre4 wdfbgtrfvfgr4 wdfbgre4fre34 fdfgrefbfgr43 wedfgtr4 ', 4),
-(3, 1, 'efghjkl', '2017-07-19', '2017-07-28', 'wefghjkjhnbvdswertyujhnbvfdew45tryhgfdwertghfdertgfdertgfdertgfdertf frerfderdffdew egngtrergre yt434rgr43rtg erght54tgtr54trg wrett4regbr ewrgtr4rtgbrttg ewrfgbgfre4rgbr4 wedfgbfregr wedfbgregr43 efdbgregfr43 edffgrgbfr4 wdfbfrefgr43 wsdvcfregbfre4efre4 wdfbgtrfvfgr4 wdfbgre4fre34 fdfgrefbfgr43 wedfgtr4 ', 4);
+(3, 1, 'efghjkl', '2017-07-19', '2017-07-28', 'wefghjkjhnbvdswertyujhnbvfdew45tryhgfdwertghfdertgfdertgfdertgfdertf frerfderdffdew egngtrergre yt434rgr43rtg erght54tgtr54trg wrett4regbr ewrgtr4rtgbrttg ewrfgbgfre4rgbr4 wedfgbfregr wedfbgregr43 efdbgregfr43 edffgrgbfr4 wdfbfrefgr43 wsdvcfregbfre4efre4 wdfbgtrfvfgr4 wdfbgre4fre34 fdfgrefbfgr43 wedfgtr4 ', 4),
+(4, 2, 'żółć', '2017-07-21', '2017-07-26', 'zażółć gęślą jaźń', 3);
 
 -- --------------------------------------------------------
 
@@ -101,7 +102,8 @@ CREATE TABLE `task` (
 --
 
 INSERT INTO `task` (`task_ID`, `name`, `description`, `start_date`, `end_date`, `user_ID`) VALUES
-(1, 'hahaha', 'hehehe', '2017-07-02', '2017-07-13', 1);
+(1, 'hahaha', 'hehehe', '2017-07-02', '2017-07-13', 1),
+(2, 'task', 'bla bla bla', '2017-07-20', '2017-07-27', 3);
 
 -- --------------------------------------------------------
 
@@ -186,12 +188,12 @@ ALTER TABLE `functions`
 -- AUTO_INCREMENT dla tabeli `subtask`
 --
 ALTER TABLE `subtask`
-  MODIFY `subtask_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `subtask_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT dla tabeli `task`
 --
 ALTER TABLE `task`
-  MODIFY `task_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `task_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT dla tabeli `users`
 --

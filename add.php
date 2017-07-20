@@ -26,6 +26,9 @@
 		echo "Error: ".$connection->connect_errno;
 	}
 	else{
+                $connection -> query ('SET NAMES utf8');
+                $connection -> query ('SET CHARACTER_SET utf8_unicode_ci');
+                
 		$fname = $_POST['fname'];
 		$lname = $_POST['lname'];
 		$email = $_POST['email'];

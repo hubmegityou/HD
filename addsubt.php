@@ -18,12 +18,13 @@
         $connection -> query ('SET NAMES utf8');
         $connection -> query ('SET CHARACTER_SET utf8_unicode_ci');
         
-        $name = explode(" ", $_POST['name']);
-        $fname = $name[0];
-        $lname = $name[1];
+        $taskid = $_POST['task'];
+        $userid = $_POST['name'];
         $topic = $_POST['topic'];
         $desc = $_POST['description'];
         $date = $_POST['time'];
+        
+        $row = $result->fetch_assoc();
     }    
     $connection->close();
 ?>

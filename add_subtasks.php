@@ -79,7 +79,7 @@
                        </div>
                      </div>
                  <hr />
-                  <form action="addsubt.php" method="post">
+<form action="addsubt.php" method="post">
 <?php
     require_once "connect.php";
     require_once "dbinfo.php";

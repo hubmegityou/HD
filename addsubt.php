@@ -2,7 +2,7 @@
  session_start();
     
     if (($_POST['name'] == '') || ($_POST['task'] == '') || (!isset($_POST['topic'])) || (!isset($_POST['description'])) || (!isset($_POST['time']))){
-	header('Location: add_subtask.php');
+	header('Location: add_subtasks.php');
 	exit();
     }
 

@@ -62,7 +62,7 @@
                       echo '<li>
                         <a  href="add_tasks.php"><i "></i> Dodaj zadanie</a>
                     </li>';
-                      echo '<li><a href="add_tasks.php"><i "></i> Dodaj podzadanie</a>
+                      echo '<li><a href="add_subtasks.php"><i "></i> Dodaj podzadanie</a>
                     </li>';
                    } ?>
                     	

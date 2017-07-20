@@ -1,10 +1,10 @@
 <?php
  session_start();
     
-    if (($_POST['name'] == '') || (!isset($_POST['topic'])) || (!isset($_POST['description'])) || (!isset($_POST['time'])) || (!isset($_POST['name']))){
-		header('Location: add_subtask.php');
-		exit();
-	}
+    if (($_POST['name'] == '') || ($_POST['task'] == '') || (!isset($_POST['topic'])) || (!isset($_POST['description'])) || (!isset($_POST['time']))){
+	header('Location: add_subtask.php');
+	exit();
+    }
 
     require_once "dbinfo.php";
     require_once "connect.php";
@@ -24,8 +24,6 @@
         $topic = $_POST['topic'];
         $desc = $_POST['description'];
         $date = $_POST['time'];
-        
     }    
     $connection->close();
 ?>
-

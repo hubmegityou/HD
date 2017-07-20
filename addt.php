@@ -10,7 +10,7 @@
     
     if ((!isset($_POST['topic'])) || (!isset($_POST['description'])) || (!isset($_POST['time'])) || (!isset($_POST['name'])))
 	{
-		header('Location: add_task.php');
+		header('Location: add_tasks.php');
 		exit();
 	}
     
@@ -31,6 +31,7 @@
 	$function = $_POST['function'];
 	$login = $_POST['login'];
 	$password = $_POST['pass'];
+        
     }    
         
 ?>

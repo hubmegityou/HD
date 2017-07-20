@@ -4,7 +4,7 @@
  * DO POPRAWY
  *  - HASHOWANIE HASEŁ (done)
  *  - WYŚWIETLANIE BŁĘDU DLA PUSTYCH DANYCH
- *  - POŁĄCZENIE Z BAZĄ DANYCH
+ *  - POŁĄCZENIE Z BAZĄ DANYCH (!!!)
  */
 
 	session_start();
@@ -37,10 +37,10 @@
 		$password = $_POST['pass'];
 		
                 $hash_pass = md5($password);
-                echo $hash_pass;
+
 		$sql = "SELECT * FROM $db_functions_tab WHERE $db_functions_desc=$function";
 		$result = $connection->query($sql);
-		$row = $result->fetch_assoc();
+		$row = $result->fetch_array();
 		$result->free_result();
 		$id = $row[$db_functions_id];
 		echo $id."test";

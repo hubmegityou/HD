@@ -34,13 +34,15 @@
 	<script>
 	$(document).ready(function() {
 
-    // page is now ready, initialize the calendar...
-
-    $('#calendar').fullCalendar({
-        // put your options and callbacks here
-    })
-
-});
+		$('#calendar').fullCalendar({
+                        height: 700,
+			defaultDate: '2017-05-12',
+			eventLimit: true, // allow "more" link when too many events
+			events: [
+			]
+		});
+		
+	});
 	</script>
 </head>
 <body>
@@ -112,3 +114,9 @@
    
 </body>
 </html>
+
+<!--                                       {
+					title: 'All Day Event',
+					start: '2017-05-01',
+                                        end: '',
+				       }-->

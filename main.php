@@ -37,8 +37,10 @@
 		$('#calendar').fullCalendar({
                         height: 700,
 			defaultDate: '2017-05-12',
-			eventLimit: true, // allow "more" link when too many events
+			eventLimit: true,
 			events: [
+                            
+                            //wydarzenia 
 			]
 		});
 		
@@ -120,3 +122,19 @@
 					start: '2017-05-01',
                                         end: '',
 				       }-->
+
+
+<?php 
+
+
+
+$sql= "select $db_task_name, $db_task_sdate, $db_task_edate FROM $db_task_tab"
+ 
+
+ 
+
+
+?>
+    
+    
+    

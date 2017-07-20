@@ -1,5 +1,4 @@
 <?php
-
 /*
  * DOKOŃCZYĆ
  *  - ŁADOWANIE DANYCH DO BAZY

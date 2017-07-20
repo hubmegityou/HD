@@ -17,14 +17,14 @@
 		$db_task_edate = 'end_date';
 		$db_task_userid = 'user_ID';
 		
-	$db_subtast_tab = 'subtask';	
-		$db_subtast_id = 'subtask_ID';
-		$db_subtast_taskid = 'task_ID';
-		$db_subtast_name = 'name';
-		$db_subtast_sdate = 'start_date';
-		$db_subtast_edate = 'end_date';
-                $db_subtask_description= "description";
-		$db_subtast_userid = 'user_ID';
+	$db_subtask_tab = 'subtask';	
+		$db_subtask_id = 'subtask_ID';
+		$db_subtask_taskid = 'task_ID';
+		$db_subtask_name = 'name';
+		$db_subtask_sdate = 'start_date';
+		$db_subtask_edate = 'end_date';
+                $db_subtask_description= 'description';
+		$db_subtask_userid = 'user_ID';
 		
 	$db_functions_tab = 'functions';
 		$db_functions_id = 'function_ID';

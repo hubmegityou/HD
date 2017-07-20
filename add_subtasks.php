@@ -1,7 +1,5 @@
-
 <?php
-
-	session_start();
+        session_start();
 	
 	if(!isset($_SESSION['online']) || !$_SESSION['online'] /*&& $_SESSION['function'] == 2 */ ) //function := 2 ==> manager
         {
@@ -86,22 +84,24 @@
     $connection = mysqli_connect($host, $db_user, $db_pass, $db_name);
     $connection -> query ('SET NAMES utf8');
     $connection -> query ('SET CHARACTER_SET utf8_unicode_ci');
-    $sql = "SELECT $db_users_fname, $db_users_lname, $db_functions_desc FROM $db_users_tab INNER JOIN $db_functions_tab ON $db_users_function = $db_functions_id WHERE $db_users_function > 2 ORDER BY $db_users_function, $db_users_lname ASC";
+    
+    $sql = "SELECT $db_users_fname, $db_users_lname, $db_functions_desc, $db_users_id FROM $db_users_tab INNER JOIN $db_functions_tab ON $db_users_function = $db_functions_id WHERE $db_users_function > 2 ORDER BY $db_users_function, $db_users_lname ASC";
     $result = $connection->query($sql);
         echo '<select name="user">';
         echo '<option value="">Wybierz osobę</option>';
         while($row = $result->fetch_assoc()) {
-            echo '<option value="'.$row[$db_users_id].'">'.$row[$db_functions_desc].' '.$row[$db_users_fname].' '.$row[$db_users_lname].'</option>';
+            echo '<option value="'.$row[$db_users_id].'">'.$row[$db_users_fname].' '.$row[$db_users_lname].'</option>';
         }
         echo '</select>';
     echo "<br/>";
+    
     $id = $_SESSION['id'];
-    $sql = "SELECT $db_task_id, $db_task_name, $db_task_edate, $db_task_userid FROM $db_task_tab WHERE $db_task_userid = $id";
+    $sql = "SELECT $db_task_id, $db_task_name FROM $db_task_tab WHERE $db_task_userid = $id";
     $result = $connection->query($sql);
         echo '<select name="task">';
         echo '<option value="">Wybiez zadanie</option>';
         while($row = $result->fetch_assoc()) {
-            echo '<option value="'.$row[$db_task_id].' '.$row[$db_task_edate].'">'.$row[$db_task_name].'</option>';
+            echo '<option value="'.$row[$db_task_id].'">'.$row[$db_task_name].'</option>';
         }
         echo '</select>';
     

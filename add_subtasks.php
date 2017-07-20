@@ -91,8 +91,7 @@
         echo '<select name="name">';
         echo '<option value="">Wybierz osobę</option>';
         while($row = $result->fetch_assoc()) {
-            $person = "$row[$db_users_fname] $row[$db_users_lname]";
-            echo '<option value="'.$person.'">'.$row[$db_functions_desc].' '.$person.'</option>';
+            echo '<option value="'.$row[$db_users_id].'">'.$row[$db_functions_desc].' '.$row[$db_users_fname].' '.$row[$db_users_lname].'</option>';
         }
         echo '</select>';
     echo "<br/>";

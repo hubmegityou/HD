@@ -61,7 +61,9 @@
                    If ($_SESSION['function']=="1"||$_SESSION['function']=="2" ){
                       echo '<li>
                         <a  href="add_tasks.php"><i "></i> Dodaj zadanie</a>
-                    </li>';  
+                    </li>';
+                      echo '<li><a href="add_tasks.php"><i "></i> Dodaj podzadanie</a>
+                    </li>';
                    } ?>
                     	
                 </ul>

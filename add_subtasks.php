@@ -31,6 +31,7 @@
     <div id="wrapper">
         <nav class="navbar navbar-default navbar-cls-top " role="navigation" style="margin-bottom: 0">
             <div class="navbar-header">
+               
                 <a class="navbar-brand" href="main.php"><?php echo $_SESSION['fname']." ".$_SESSION['lname']?></a> 
             </div>
     <div style="color: white;
@@ -47,26 +48,23 @@
 					</li>
 				
                     <li>
-                        <a  href="main.php" ><i "></i> Strona główna</a>
+                        <a   href="main.php" ><i "></i> Strona główna</a>
                     </li>
                     
                     <li>
-                        <a  href="tasks.php" ><i "></i> Moje aktywne zadania</a>
+                        <a  href="tasks.php" ><i "></i>Moje aktywne zadania</a>
                     </li>			
 	 
                   
                    <?php 
                    
-                   If ($_SESSION['function']=="2" ){
+                   If ($_SESSION['function']=="2"){
                       echo '<li>
-                        <a class="active-menu" href="add_tasks.php"><i "></i> Dodaj zadanie</a>
+                        <a  href="add_tasks.php"><i "></i> Dodaj zadanie</a>
                     </li>';  
-                      
-                     echo ' <li><a href="add_subtasks.php"><i "></i> Dodaj podzadanie</a>
+                      echo '<li> <a class= "active-menu" href="add_subtasks.php"><i "></i> Dodaj podzadanie</a>
                     </li>';
-                   }
- 
-                   ?>
+                   } ?>
                     	
                 </ul>
                
@@ -78,28 +76,21 @@
             <div id="page-inner">
                 <div class="row">
                     <div class="col-md-12">
-                     <h2>Dodaj zadanie</h2> 
+                     <h2>Dodaj podzadanie</h2> 
                        </div>
-					   </div>
+                     </div>
                  <hr />
-				 <div class="task-form">
-				  <center>
-				  <br />
-				  <div class="pick-per">
-				  <form action="addt.php" method="post" id="formularz">
- 
-        <br /></div>
-        <div class="temat"><p class="tematt">Temat zadania: <input type="text" name="topic" class="tematp"/></p></div>
-		<div class="termin"><p class="termint">Termin wykonania: <input type="date" name="time" class="terminp"/></p></div>
-        <div class="tresc"><p class="tresct">Treść zadania: <br /><textarea name="description" id="trescp" cols="108" rows="6"></textarea></p></div>
-        <br /><button type="submit">Dodaj</button></center>
-</form>
                  <br>
                  <br>
                  <br>
-                 <br>
-             <!-- #f5f5f6 kolor tła guzika -->        
-             
+                     
+                 
+
+    </div>
+
+    
+	</div>
+</div>
                  
                  
                

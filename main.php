@@ -38,8 +38,7 @@
                         height: 700,
 			defaultDate: '2017-05-12',
 			eventLimit: true,
-			events: [
-                            
+			events: [ 
                             //wydarzenia 
 			]
 		});
@@ -77,9 +76,12 @@
                   
                    <?php 
                    
-                   If ($_SESSION['function']=="1"||$_SESSION['function']=="2" ){
+                   If ($_SESSION['function']=="2" ){
                       echo '<li>
                         <a  href="add_tasks.php"><i "></i> Dodaj zadanie</a>
+                    </li>';  
+                      echo '<li>
+                        <a  href="add_subtasks.php"><i "></i> Dodaj podzadanie</a>
                     </li>';  
                    } ?>
                     	
@@ -117,22 +119,31 @@
 </body>
 </html>
 
-<!--                                       {
-					title: 'All Day Event',
-					start: '2017-05-01',
-                                        end: '',
-				       }-->
 
 
 <?php 
 
-
-
-$sql= "select $db_task_name, $db_task_sdate, $db_task_edate FROM $db_task_tab"
- 
-
- 
-
+require_once "connect.php";
+require_once "dbinfo.php";
+                    
+                    
+    $connection = new mysqli($host, $db_user, $db_pass, $db_name);
+    if ($connection->connect_errno!=0){
+            echo "Error: ".$connection->connect_errno;
+                        
+            }else{
+           
+    $connection -> query ('SET NAMES utf8');
+    $connection -> query ('SET CHARACTER_SET utf8_unicode_ci');
+    $sql= "select $db_task_name, $db_task_sdate, $db_task_edate FROM $db_task_tab";                        
+    $result = $connection->query($sql);
+    
+            }
+        while($row = $result->fetch_assoc()){
+            $dupa= "{ title: '".$row[$db_task_name]."', start: '".$row[$db_task_sdate]."', end: '".$row[$db_task_edate]."'},";    
+            
+            
+        };
 
 ?>
     

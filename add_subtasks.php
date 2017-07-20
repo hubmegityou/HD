@@ -86,9 +86,9 @@
     $connection = mysqli_connect($host, $db_user, $db_pass, $db_name);
     $connection -> query ('SET NAMES utf8');
     $connection -> query ('SET CHARACTER_SET utf8_unicode_ci');
-    $sql = "SELECT $db_users_fname, $db_users_lname, $db_functions_desc FROM $db_users_tab INNER JOIN $db_functions_tab ON $db_users_function = $db_functions_id WHERE $db_users_function > 1 ORDER BY $db_users_function, $db_users_lname ASC";
+    $sql = "SELECT $db_users_fname, $db_users_lname, $db_functions_desc FROM $db_users_tab INNER JOIN $db_functions_tab ON $db_users_function = $db_functions_id WHERE $db_users_function > 2 ORDER BY $db_users_function, $db_users_lname ASC";
     $result = $connection->query($sql);
-        echo '<select name="name">';
+        echo '<select name="user">';
         echo '<option value="">Wybierz osobę</option>';
         while($row = $result->fetch_assoc()) {
             echo '<option value="'.$row[$db_users_id].'">'.$row[$db_functions_desc].' '.$row[$db_users_fname].' '.$row[$db_users_lname].'</option>';

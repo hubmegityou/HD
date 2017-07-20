@@ -3,8 +3,8 @@
 /*
  * DOKOŃCZYĆ
  *  - ŁADOWANIE DANYCH DO BAZY
- * 
- * 
+ *  - KOMUNIKATY O BŁĘDZIE
+ *  - POPRAWNE PRZEKIEROWANIA PO NIEWYPEŁNIENIU FORMULARZA
  */
     session_start();
     /*

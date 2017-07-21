@@ -105,7 +105,7 @@
     $sql = "SELECT $db_task_id, $db_task_name, $db_task_edate, $db_task_userid FROM $db_task_tab WHERE $db_task_userid = $id";
     $result = $connection->query($sql);
         echo '<select name="task" class="task">';
-        echo '<option value="">Wybiez zadanie</option>';
+        echo '<option value="">Wybierz zadanie</option>';
         while($row = $result->fetch_assoc()) {
             echo '<option value="'.$row[$db_task_id].'">'.$row[$db_task_name].'</option>';
         }

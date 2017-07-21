@@ -54,11 +54,11 @@
                     </li>
                     
                     <li>
-                        <a class="active-menu"  href="tasks.php" ><i "></i>Moje aktywne zadania</a>
+                        <a href="tasks.php" ><i "></i>Moje aktywne zadania</a>
                     </li>			
 	 
-                  <li>
-                        <a href="old_tasks.php" ><i "></i>Zamknięte zadania</a>
+                    <li>
+                        <a class="active-menu" href="old_tasks.php" ><i "></i>Zamknięte zadania</a>
                     </li>
                    <?php 
                    
@@ -87,7 +87,7 @@
             <div id="page-inner">
                 <div class="row">
                     <div class="col-md-12">
-                     <h2>Aktywne zadania</h2> 
+                     <h2>Zamknięte zadania</h2> 
                        </div>
                      </div>
                  <hr />
@@ -115,7 +115,7 @@
            
                             $connection -> query ('SET NAMES utf8');
                             $connection -> query ('SET CHARACTER_SET utf8_unicode_ci');
-                            $sql = "SELECT $db_subtask_taskid, $db_subtask_name, $db_subtask_sdate, $db_subtask_edate, $db_subtask_description FROM $db_subtask_tab WHERE $db_subtask_done='0' AND $db_subtask_userid =". $_SESSION['id'];
+                            $sql = "SELECT $db_subtask_taskid, $db_subtask_name, $db_subtask_sdate, $db_subtask_edate, $db_subtask_description FROM $db_subtask_tab WHERE $db_subtask_done='1' AND $db_subtask_userid =". $_SESSION['id'];
                             $result = $connection->query($sql);
 
                     }

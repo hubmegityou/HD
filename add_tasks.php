@@ -54,7 +54,9 @@
                         <a  href="tasks.php" ><i "></i> Moje aktywne zadania</a>
                     </li>			
 	 
-                  
+                  <li>
+                        <a  href="old_tasks.php" ><i "></i>Zamknięte zadania</a>
+                    </li>
                    <?php 
                    
                    If ($_SESSION['function']=="2" ){

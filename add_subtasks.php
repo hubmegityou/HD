@@ -114,7 +114,8 @@
     $connection->close();
 ?>
         <div class="stemat"><p class="tematt">Temat podzadania: <input type="text" name="topic" class="stematp"/></p></div>
-		<div class="stermint"><p class="termint">Termin wykonania: <input type="date" name="time"/></p></div>
+		<div class="stermint"><p class="termint">Termin rozpoczęcia: <input type="date" name="stime"/></p></div>
+          	<div class="stermint"><p class="termint">Termin wykonania: <input type="date" name="etime"/></p></div>
         <div class="stresc"><p class="tresct">Treść podzadania: <textarea name="description" id="trescp" rows="6" style="width:88%"></textarea></p></div>
         <br /><button type="submit">Stwórz</button>
 		</center>

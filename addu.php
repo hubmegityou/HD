@@ -32,8 +32,11 @@ session_start();
         $result = $connection->query($sql);
         $row = $result->fetch_assoc();
         if ($row['ile'] > 0){
-            //info o istniejącym userze
+            
+                //info o istniejącym userze
+            
             header('Location: add_user.php');
+            close();
         }
         
         $fname = ucwords($_POST['fname']);
@@ -41,7 +44,6 @@ session_start();
         $email = $_POST['email'];
         $function = $_POST['function'];
         $password = $_POST['pass'];
-        echo $fname[0];
         $hash_pass = md5($password);
 
         $sql = "SELECT * FROM $db_functions_tab WHERE $db_functions_desc='$function'";
@@ -57,6 +59,6 @@ session_start();
     }
 
     $connection->close();
-    //header ('Location: main.php');
+    header('Location: main.php');
 
 ?>

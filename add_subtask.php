@@ -40,7 +40,7 @@ DODAWANIE NOWEGO PODZADANIA <br />
             echo '<option value="'.$person.'">'.$row[$db_functions_desc].' '.$person.'</option>';
         }
         echo '</select>';
-    echo "<br/>";
+    echo "<br/><br/>";
     $id = $_SESSION['id'];
     $sql = "SELECT $db_task_id, $db_task_name, $db_task_edate, $db_task_userid FROM $db_task_tab WHERE $db_task_userid = $id";
     $result = $connection->query($sql);

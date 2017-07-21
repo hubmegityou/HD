@@ -36,7 +36,7 @@
     <div style="color: white;
     padding: 15px 50px 5px 50px;
     float: right;
-    font-size: 16px;">  <a href="logout.php" class="btn btn-danger square-btn-adjust">Logout</a> </div>
+    font-size: 16px;">  <a href="logout.php" class="btn btn-danger square-btn-adjust">Wyloguj</a> </div>
         </nav>   
            <!-- /. NAV TOP  -->
                 <nav class="navbar-default navbar-side" role="navigation">
@@ -86,8 +86,6 @@
 				  <center>
 				  <br />
 				  <form action="addt.php" method="post" id="formularz">
- 
-        <br />
         <div class="temat"><p class="tematt">Temat zadania: <br /><input type="text" name="topic" class="stematp"/></p></div>
 		<div class="termin"><p class="termint">Termin wykonania: <input type="date" name="time" class="terminp"/></p></div>
         <div class="tresc"><p class="tresct">Treść zadania: <br /><textarea name="description" id="trescp" rows="6" style="width:88%"></textarea></p></div>

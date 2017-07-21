@@ -1,7 +1,7 @@
 <?php
 /*
  * DOKOŃCZYĆ
- *  - ŁADOWANIE DANYCH DO BAZY
+ *  - ŁADOWANIE DANYCH DO BAZY (done)
  *  - KOMUNIKATY O BŁĘDZIE
  *  - POPRAWNE PRZEKIEROWANIA PO NIEWYPEŁNIENIU FORMULARZA
  */
@@ -24,16 +24,18 @@
     else{
         $connection -> query ('SET NAMES utf8');
         $connection -> query ('SET CHARACTER_SET utf8_unicode_ci');
-        $topic = $_POST['topic'];
-        $date = $_POST['date'];
-        $desc = $_POST['desc'];
-        $userid = $_SESSION['id'];
         
-        $sql = "INSERT INTO $db_task_tab () VALUES ()";
+        $topic = $_POST['topic'];
+        $date = $_POST['time'];
+        $desc = $_POST['description'];
+        $userid = $_SESSION['id'];
+        $today = date('Y-m-d');
+        $sql = "INSERT INTO $db_task_tab ($db_task_id, $db_task_name, $db_task_description, $db_task_sdate, $db_task_edate, $db_task_userid) VALUES (NULL, '$topic', '$desc', '$today', '$date', $userid)";
         if ($result = $connection->query($sql)){
             //info: dodano poprawnie
         }
     }    
-        
+    $connection->close();
+    header('Location: index.php');
 ?>
 

@@ -90,7 +90,7 @@
  
         <br /></div>
         <div class="temat"><p class="tematt">Temat zadania: <input type="text" name="topic" class="tematp"/></p></div>
-		<div class="termin"><p class="termint">Termin wykonania: <input type="date" name="time" class="terminp"/></p></div>
+	<div class="termin"><p class="termint">Termin wykonania: <input type="date" name="time" class="terminp"/></p></div>
         <div class="tresc"><p class="tresct">Treść zadania: <br /><textarea name="description" id="trescp" cols="108" rows="6"></textarea></p></div>
         <br /><button type="submit">Dodaj</button></center>
 </form>

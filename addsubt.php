@@ -1,7 +1,7 @@
 <?php 
  /*
  * DOKOŃCZYĆ
- *  - ŁADOWANIE DANYCH DO BAZY
+ *  - ŁADOWANIE DANYCH DO BAZY (done)
  *  - KOMUNIKATY O BŁĘDZIE
  *  - POPRAWNE PRZEKIEROWANIA PO NIEWYPEŁNIENIU FORMULARZA
  *  - WERYFIKACJA DATY (CZY KONIEC NIE WCZEŚNIEJ NIŻ ZADANIE GŁÓWNE LUB WYŚWIETLANIE KOŃCOWEJ DATY)
@@ -39,4 +39,5 @@
         
     }    
     $connection->close();
+    header('Location: index.php');
 ?>

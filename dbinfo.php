@@ -16,6 +16,8 @@
 		$db_task_sdate = 'start_date';
 		$db_task_edate = 'end_date';
 		$db_task_userid = 'user_ID';
+                $db_task_priority = 'priority';
+                $db_task_done = 'done';
 		
 	$db_subtask_tab = 'subtask';	
 		$db_subtask_id = 'subtask_ID';
@@ -25,6 +27,7 @@
 		$db_subtask_edate = 'end_date';
                 $db_subtask_description= 'description';
 		$db_subtask_userid = 'user_ID';
+                $db_subtask_done = 'done';
 		
 	$db_functions_tab = 'functions';
 		$db_functions_id = 'function_ID';

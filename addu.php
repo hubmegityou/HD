@@ -34,8 +34,8 @@ session_start();
         $login = $_POST['login'];
         $password = $_POST['pass'];
         echo $fname[0];
-    $hash_pass = md5($password);}
-/*
+        $hash_pass = md5($password);
+
         $sql = "SELECT * FROM $db_functions_tab WHERE $db_functions_desc='$function'";
         $result = $connection->query($sql);
         $row = $result->fetch_assoc();
@@ -50,5 +50,5 @@ session_start();
 
     $connection->close();
     header ('Location: main.php');
-*/
+
 ?>

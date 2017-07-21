@@ -90,7 +90,7 @@
                  <br>
                  <br>
                  <br>
-                     <form action="add.php" method="post">
+                     <form action="addu.php" method="post">
 		
 		Imię: <br /> <input type="text" name="fname" /> <br />
 		Nazwisko: <br /> <input type="text" name="lname" /> <br />

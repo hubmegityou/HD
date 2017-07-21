@@ -61,7 +61,10 @@
                     </li>';  
                       echo '<li> <a class= "active-menu" href="add_subtasks.php"><i "></i> Dodaj podzadanie</a>
                     </li>';
-                   } ?>
+                   } 
+                   
+                   
+                   ?>
                     	
                 </ul>
                

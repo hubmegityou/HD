@@ -25,12 +25,23 @@
         $connection -> query ('SET NAMES utf8');
         $connection -> query ('SET CHARACTER_SET utf8_unicode_ci');
         
+        $sdate = $_POST['stime'];
+        $edate = $_POST['etime'];
+        
+        if ($sdate > $edate){
+            
+                //info o niepoprawnej dacie
+            
+            header('Location: add_tasks.php');
+            close();
+        }
+        
         $topic = $_POST['topic'];
         $date = $_POST['time'];
         $desc = $_POST['description'];
         $userid = $_SESSION['id'];
-        $today = date('Y-m-d');
-        $sql = "INSERT INTO $db_task_tab ($db_task_id, $db_task_name, $db_task_description, $db_task_sdate, $db_task_edate, $db_task_userid) VALUES (NULL, '$topic', '$desc', '$today', '$date', $userid)";
+        
+        $sql = "INSERT INTO $db_task_tab ($db_task_id, $db_task_name, $db_task_description, $db_task_sdate, $db_task_edate, $db_task_userid) VALUES (NULL, '$topic', '$desc', '$sdate', '$edate', $userid)";
         if ($result = $connection->query($sql)){
             //info: dodano poprawnie
         }

@@ -89,7 +89,8 @@
 				  <br />
 				  <form action="addt.php" method="post" id="formularz">
         <div class="temat"><p class="tematt">Temat zadania: <br /><input type="text" name="topic" class="stematp"/></p></div>
-		<div class="termin"><p class="termint">Termin wykonania: <input type="date" name="time" class="terminp"/></p></div>
+        <div class="termin"><p class="termint">Termin rozpoczęcia: <input type="date" name="stime" class="terminp"/></p></div>
+        <div class="termin"><p class="termint">Termin wykonania: <input type="date" name="etime" class="terminp"/></p></div>
         <div class="tresc"><p class="tresct">Treść zadania: <br /><textarea name="description" id="trescp" rows="6" style="width:88%"></textarea></p></div>
         <br /><button type="submit">Dodaj</button></center>
 </form>

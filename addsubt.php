@@ -7,8 +7,7 @@
  *  - WERYFIKACJA DATY (CZY KONIEC NIE WCZEŚNIEJ NIŻ ZADANIE GŁÓWNE LUB WYŚWIETLANIE KOŃCOWEJ DATY)
  */
     session_start();
-    
-    if (($_POST['user'] == '') || ($_POST['task'] == '') || (!isset($_POST['topic'])) || (!isset($_POST['description'])) || (!isset($_POST['time']))){
+    if (($_POST['user'] == '') || ($_POST['task'] == '') || (!isset($_POST['topic'])) || (!isset($_POST['description'])) || (!isset($_POST['etime']))){
 	header('Location: add_subtasks.php');
 	exit();
     }
@@ -25,14 +24,23 @@
         $connection -> query ('SET NAMES utf8');
         $connection -> query ('SET CHARACTER_SET utf8_unicode_ci');
         
+        $sdate = $_POST['stime'];
+        $edate = $_POST['etime'];
+        
+        if ($sdate > $edate){
+            
+                //info o niepoprawnej dacie
+            
+            header('Location: add_subtasks.php');
+            close();
+        }
+        
         $taskid = $_POST['task'];
         $userid = $_POST['user'];
         $topic = $_POST['topic'];
         $desc = $_POST['description'];
-        $date = $_POST['time'];
         
-        $today = date('Y-m-d');
-        $sql = "INSERT INTO $db_subtask_tab ($db_subtask_id,$db_subtask_taskid,$db_subtask_name,$db_subtask_sdate,$db_subtask_edate,$db_subtask_description,$db_subtask_userid) VALUES (NULL,$taskid,'$topic','$today','$date','$desc',$userid)";
+        $sql = "INSERT INTO $db_subtask_tab ($db_subtask_id,$db_subtask_taskid,$db_subtask_name,$db_subtask_sdate,$db_subtask_edate,$db_subtask_description,$db_subtask_userid) VALUES (NULL,$taskid,'$topic','$sdate','$edate','$desc',$userid)";
         if ($result = $connection->query($sql)){
             // info: dodano poprawnie
         }

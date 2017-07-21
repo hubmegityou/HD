@@ -9,8 +9,7 @@
 
 	session_start();
 
-	if ((!isset($_POST['fname'])) || (!isset($_POST['lname'])) || (!isset($_POST['login'])) || (!isset($_POST['pass'])))
-	{
+	if ((!isset($_POST['fname'])) || (!isset($_POST['lname'])) || (!isset($_POST['login'])) || (!isset($_POST['pass']))){
 		header('Location: add_user.php');
 		exit();
 	}
@@ -38,20 +37,18 @@
 		
                 $hash_pass = md5($password);
 
-		$sql = "SELECT * FROM $db_functions_tab WHERE $db_functions_desc=$function";
+		$sql = "SELECT * FROM $db_functions_tab WHERE $db_functions_desc='$function'";
 		$result = $connection->query($sql);
-		$row = $result->fetch_array();
+		$row = $result->fetch_assoc();
 		$result->free_result();
 		$id = $row[$db_functions_id];
-		echo $id."test";
-                
-		$sql = "INSERT INTO $db_users_tab ($db_users_id, $db_users_fname, $db_users_lname, $db_users_email, $db_users_login, $db_users_pass, $db_users_function) VALUES (NULL,$fname,$lname,$email,$login,$hash_pass,$id)";
 
+		$sql = "INSERT INTO $db_users_tab ($db_users_id,$db_users_fname,$db_users_lname,$db_users_email,$db_users_login,$db_users_pass,$db_users_function) VALUES (NULL,'$fname','$lname','$email','$login','$hash_pass',$id)";
 		if ($connection->query($sql)){
-                    echo "dodano";
+                    // info: dodano poprawnie
 		}
 	}
 
 	$connection->close();
-	//header ('Location: main.php');
+	header ('Location: main.php');
 ?>

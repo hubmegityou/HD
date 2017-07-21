@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 20 Lip 2017, 09:00
+-- Czas generowania: 21 Lip 2017, 13:44
 -- Wersja serwera: 10.1.22-MariaDB
 -- Wersja PHP: 7.1.4
 
@@ -53,8 +53,8 @@ INSERT INTO `functions` (`function_ID`, `function_description`) VALUES
 (1, 'admin'),
 (2, 'manager'),
 (3, 'grafik'),
-(4, 'pracownik'),
-(5, 'sprzątaczka');
+(4, 'wykonawca'),
+(5, 'montażysta');
 
 -- --------------------------------------------------------
 
@@ -69,18 +69,16 @@ CREATE TABLE `subtask` (
   `start_date` date NOT NULL,
   `end_date` date NOT NULL,
   `description` text NOT NULL,
-  `user_ID` int(11) NOT NULL
+  `user_ID` int(11) NOT NULL,
+  `done` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Zrzut danych tabeli `subtask`
 --
 
-INSERT INTO `subtask` (`subtask_ID`, `task_ID`, `name`, `start_date`, `end_date`, `description`, `user_ID`) VALUES
-(1, 1, 'huehuehuehue', '2017-07-03', '2017-07-04', 'hdhdhdhdhdhdhdhdhdh jsjsjsjsj kkdekkeke ksjsjsssjsj kkekekwkwkwk kssdnxmxkxk xnxsjsjsjs AAAL????????ąąąąąććć', 3),
-(2, 1, 'efghjkl', '2017-07-19', '2017-07-28', 'wefghjkjhnbvdswertyujhnbvfdew45tryhgfdwertghfdertgfdertgfdertgfdertf frerfderdffdew egngtrergre yt434rgr43rtg erght54tgtr54trg wrett4regbr ewrgtr4rtgbrttg ewrfgbgfre4rgbr4 wedfgbfregr wedfbgregr43 efdbgregfr43 edffgrgbfr4 wdfbfrefgr43 wsdvcfregbfre4efre4 wdfbgtrfvfgr4 wdfbgre4fre34 fdfgrefbfgr43 wedfgtr4 ', 4),
-(3, 1, 'efghjkl', '2017-07-19', '2017-07-28', 'wefghjkjhnbvdswertyujhnbvfdew45tryhgfdwertghfdertgfdertgfdertgfdertf frerfderdffdew egngtrergre yt434rgr43rtg erght54tgtr54trg wrett4regbr ewrgtr4rtgbrttg ewrfgbgfre4rgbr4 wedfgbfregr wedfbgregr43 efdbgregfr43 edffgrgbfr4 wdfbfrefgr43 wsdvcfregbfre4efre4 wdfbgtrfvfgr4 wdfbgre4fre34 fdfgrefbfgr43 wedfgtr4 ', 4),
-(4, 2, 'żółć', '2017-07-21', '2017-07-26', 'zażółć gęślą jaźń', 3);
+INSERT INTO `subtask` (`subtask_ID`, `task_ID`, `name`, `start_date`, `end_date`, `description`, `user_ID`, `done`) VALUES
+(13, 16, 'podzadanie', '2017-07-21', '2017-07-26', 'podzadanie do wykonania', 18, 0);
 
 -- --------------------------------------------------------
 
@@ -94,16 +92,17 @@ CREATE TABLE `task` (
   `description` text NOT NULL,
   `start_date` date NOT NULL,
   `end_date` date NOT NULL,
-  `user_ID` int(11) NOT NULL
+  `user_ID` int(11) NOT NULL,
+  `priority` tinyint(1) NOT NULL,
+  `done` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Zrzut danych tabeli `task`
 --
 
-INSERT INTO `task` (`task_ID`, `name`, `description`, `start_date`, `end_date`, `user_ID`) VALUES
-(1, 'hahaha', 'hehehe', '2017-07-02', '2017-07-13', 1),
-(2, 'task', 'bla bla bla', '2017-07-20', '2017-07-27', 3);
+INSERT INTO `task` (`task_ID`, `name`, `description`, `start_date`, `end_date`, `user_ID`, `priority`, `done`) VALUES
+(16, 'zadanie1', 'treść żłąłó', '2017-07-21', '2017-07-28', 17, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -126,10 +125,9 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`user_ID`, `first_name`, `last_name`, `email`, `login`, `password`, `user_function`) VALUES
-(1, 'hgfds', 'hgfd', 'hgew', 'gf', 'e5bb23797bfea314a3db43d07dbd6a74', 1),
-(3, 'imię', 'nazwisko', 'email', 'login', '207023ccb44feb4d7dadca005ce29a64', 4),
-(4, 'kjhkj', 'hoopk', 'mni', 'lklk', '7786f458677c72747a6fa1a3c7effff1', 5),
-(5, 'asdas', 'asdasd', 'asdasd', 'aaa', 'b2ca678b4c936f905fb82f2733f5297f', 1);
+(5, 'asdas', 'asdasd', 'asdasd', 'aaa', 'b2ca678b4c936f905fb82f2733f5297f', 1),
+(17, 'Jan', 'Kowalski', 'ksda@dsd', 'qwe', '202cb962ac59075b964b07152d234b70', 2),
+(18, 'Pracownik', 'Aaaa', 'kkk@kkk', 'zxc', '202cb962ac59075b964b07152d234b70', 3);
 
 --
 -- Indeksy dla zrzutów tabel
@@ -188,17 +186,17 @@ ALTER TABLE `functions`
 -- AUTO_INCREMENT dla tabeli `subtask`
 --
 ALTER TABLE `subtask`
-  MODIFY `subtask_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `subtask_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 --
 -- AUTO_INCREMENT dla tabeli `task`
 --
 ALTER TABLE `task`
-  MODIFY `task_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `task_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 --
 -- AUTO_INCREMENT dla tabeli `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `user_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 --
 -- Ograniczenia dla zrzutów tabel
 --

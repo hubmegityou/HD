@@ -7,12 +7,12 @@
  *  - WERYFIKACJA DATY (CZY KONIEC NIE WCZEŚNIEJ NIŻ ZADANIE GŁÓWNE LUB WYŚWIETLANIE KOŃCOWEJ DATY)
  */
     session_start();
-    /*
+    
     if (($_POST['user'] == '') || ($_POST['task'] == '') || (!isset($_POST['topic'])) || (!isset($_POST['description'])) || (!isset($_POST['time']))){
 	header('Location: add_subtasks.php');
 	exit();
     }
-    */
+    
     require_once "dbinfo.php";
     require_once "connect.php";
     
@@ -38,5 +38,5 @@
         }
     }    
     $connection->close();
-    //header('Location: main.php');
+    header('Location: main.php');
 ?>

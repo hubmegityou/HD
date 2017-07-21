@@ -4,6 +4,7 @@
  *  - HASHOWANIE HASEŁ (done)
  *  - WYŚWIETLANIE BŁĘDU DLA PUSTYCH DANYCH
  *  - POŁĄCZENIE Z BAZĄ DANYCH (done)
+ * zmiana testowa
  */
 
 session_start();

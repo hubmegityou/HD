@@ -104,7 +104,7 @@
            
                             $connection -> query ('SET NAMES utf8');
                             $connection -> query ('SET CHARACTER_SET utf8_unicode_ci');
-                            $sql = "SELECT $db_subtast_taskid, $db_subtast_name, $db_subtast_sdate, $db_subtast_edate, $db_subtask_description FROM $db_subtast_tab WHERE $db_subtast_edate >='". date("Y-m-d") ."' AND $db_subtast_userid =". $_SESSION['id'];
+                            $sql = "SELECT $db_subtask_taskid, $db_subtask_name, $db_subtask_sdate, $db_subtask_edate, $db_subtask_description FROM $db_subtask_tab WHERE $db_subtask_edate >='". date("Y-m-d") ."' AND $db_subtask_userid =". $_SESSION['id'];
                             $result = $connection->query($sql);
 
                     }

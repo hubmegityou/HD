@@ -24,13 +24,15 @@
     else{
         $connection -> query ('SET NAMES utf8');
         $connection -> query ('SET CHARACTER_SET utf8_unicode_ci');
-        $fname = $_POST['fname'];
-	$lname = $_POST['lname'];
-	$email = $_POST['email'];
-	$function = $_POST['function'];
-	$login = $_POST['login'];
-	$password = $_POST['pass'];
+        $topic = $_POST['topic'];
+        $date = $_POST['date'];
+        $desc = $_POST['desc'];
+        $userid = $_SESSION['id'];
         
+        $sql = "INSERT INTO $db_task_tab () VALUES ()";
+        if ($result = $connection->query($sql)){
+            //info: dodano poprawnie
+        }
     }    
         
 ?>

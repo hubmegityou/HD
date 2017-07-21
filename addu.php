@@ -2,7 +2,7 @@
 /*
  * DO POPRAWY
  *  - HASHOWANIE HASEŁ (done)
- *  - WYŚWIETLANIE BŁĘDU DLA PUSTYCH DANYCH
+ *  - WYŚWIETLANIE BŁĘDU DLA PUSTYCH DANYCH LUB ISTNIEJĄCEGO USERA
  *  - POŁĄCZENIE Z BAZĄ DANYCH (done)
  * zmiana testowa
  */
@@ -27,12 +27,19 @@ session_start();
     else{
         $connection -> query ('SET NAMES utf8');
         $connection -> query ('SET CHARACTER_SET utf8_unicode_ci');
-
+        $login = $_POST['login'];
+        $sql = "SELECT COUNT($db_users_id) AS 'ile' FROM $db_users_tab WHERE $db_users_login='$login'";
+        $result = $connection->query($sql);
+        $row = $result->fetch_assoc();
+        if ($row['ile'] > 0){
+            //info o istniejącym userze
+            header('Location: add_user.php');
+        }
+        
         $fname = ucwords($_POST['fname']);
         $lname = ucwords($_POST['lname']);
         $email = $_POST['email'];
         $function = $_POST['function'];
-        $login = $_POST['login'];
         $password = $_POST['pass'];
         echo $fname[0];
         $hash_pass = md5($password);
@@ -50,6 +57,6 @@ session_start();
     }
 
     $connection->close();
-    header ('Location: main.php');
+    //header ('Location: main.php');
 
 ?>

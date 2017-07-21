@@ -82,11 +82,11 @@
                        </div>
 					   </div>
                  <hr />
-				 <div class="task-form">
-				  <center>
-				  <br />
-				  <div class="pick-per">
-				  <form action="addt.php" method="post" id="formularz">
+<div class="task-form">
+<center>
+<br />
+<div class="pick-per">
+<form action="addt.php" method="post" id="formularz">
  
         <br /></div>
         <div class="temat"><p class="tematt">Temat zadania: <input type="text" name="topic" class="tematp"/></p></div>

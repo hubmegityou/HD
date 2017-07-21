@@ -27,15 +27,15 @@ session_start();
         $connection -> query ('SET NAMES utf8');
         $connection -> query ('SET CHARACTER_SET utf8_unicode_ci');
 
-        $fname = $_POST['fname'];
-        $lname = $_POST['lname'];
+        $fname = ucwords($_POST['fname']);
+        $lname = ucwords($_POST['lname']);
         $email = $_POST['email'];
         $function = $_POST['function'];
         $login = $_POST['login'];
         $password = $_POST['pass'];
-
-        $hash_pass = md5($password);
-
+        echo $fname[0];
+    $hash_pass = md5($password);}
+/*
         $sql = "SELECT * FROM $db_functions_tab WHERE $db_functions_desc='$function'";
         $result = $connection->query($sql);
         $row = $result->fetch_assoc();
@@ -50,4 +50,5 @@ session_start();
 
     $connection->close();
     header ('Location: main.php');
+*/
 ?>

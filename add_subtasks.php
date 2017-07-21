@@ -77,7 +77,9 @@
                        </div>
                      </div>
                  <hr />
+				 <div class="subtask-form">
 <form action="addsubt.php" method="post">
+<center>
 <?php
     require_once "connect.php";
     require_once "dbinfo.php";
@@ -87,18 +89,19 @@
     
     $sql = "SELECT $db_users_fname, $db_users_lname, $db_functions_desc, $db_users_id FROM $db_users_tab INNER JOIN $db_functions_tab ON $db_users_function = $db_functions_id WHERE $db_users_function > 2 ORDER BY $db_users_function, $db_users_lname ASC";
     $result = $connection->query($sql);
-        echo '<select name="user">';
+	echo "<br />";
+        echo '<select name="user" class="user">';
         echo '<option value="">Wybierz osobę</option>';
         while($row = $result->fetch_assoc()) {
             echo '<option value="'.$row[$db_users_id].'">'.$row[$db_users_fname].' '.$row[$db_users_lname].'</option>';
         }
         echo '</select>';
-    echo "<br/>";
+    echo "<br/> <br />";
     
     $id = $_SESSION['id'];
     $sql = "SELECT $db_task_id, $db_task_name FROM $db_task_tab WHERE $db_task_userid = $id";
     $result = $connection->query($sql);
-        echo '<select name="task">';
+        echo '<select name="task" class="task">';
         echo '<option value="">Wybiez zadanie</option>';
         while($row = $result->fetch_assoc()) {
             echo '<option value="'.$row[$db_task_id].'">'.$row[$db_task_name].'</option>';
@@ -107,11 +110,13 @@
     
     $connection->close();
 ?>
-        <br />Temat podzadania: <input type="text" name="topic"/>
-        <br />Treść podzadania: <input type="text" name="description"/>
-        <br />Termin wykonania: <input type="date" name="time"/>
-        <br /><input type="submit" value="Stwórz"/>
+        <div class="stemat"><p class="tematt">Temat podzadania: <input type="text" name="topic" class="stematp"/></p></div>
+		<div class="stermint"><p class="termint">Termin wykonania: <input type="date" name="time"/></p></div>
+        <div class="stresc"><p class="tresct">Treść podzadania: <textarea name="description" id="trescp" rows="6" style="width:88%"></textarea></p></div>
+        <br /><button type="submit">Stwórz</button>
+		</center>
 </form>
+</div>
                  <br>
                  <br>
                  <br>

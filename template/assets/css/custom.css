@@ -84,22 +84,23 @@ p {
 	border-style:solid;
 	border-width:1px;
 	width:1008px;
-	height:1000px;
+	height:430px;
 	border-color:#cecece !important;
 	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	background-color: #f5f5f6;
+	padding:10px, 10px, 10px, 10px;
 }
-.pick-per {border-style:solid !important;
-	border-width:0px 0px 0px 0px !important;
+.subtask-form {
+	border-style:solid;
+	border-width:1px;
+	width:1008px;
+	height:575px;
+	border-color:#cecece !important;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	background-color: #f5f5f6;
+	padding:10px, 10px, 10px, 10px;
 }
-.temat,.termin {
-	border-style: solid !important;
-	border-width: 0px 0px 0px 0px !important;
-	}
-	.tresc {
-	border-style:solid !important;
-	border-width:0px 0px 1px 0px !important;
-	border-color: #cecece !important;
-	}
+
 	p.tematt, p.termint, p.tresct {
 		padding-top:0px;
 		text-align:left;
@@ -110,14 +111,30 @@ p {
 	.tresc {
 		height: 200px;
 	}
-	input.tematp, input.trescp {
-		width: 850px;
-	}
-		input.trescp {
-		height:175px;
+	input.tematp {
+		width: 75.3%;
 	}
 	.tematp, .trescp, .terminp {
 		margin-left:5px;
+	}
+	textarea {
+		border-color: #E8E7E7;
+		border-width:0.5px;
+		 outline: none;
+	}
+	input {
+			border-color: #E8E7E7;
+		border-width:1px;
+		 outline: none;
+	}
+	input.stematp {
+		width: 87.9%;
+	}
+	.user {
+		width:200px;
+	}
+	.task {
+		width:250px;
 	}
 /*==============================================
    DASHBOARD STYLES    

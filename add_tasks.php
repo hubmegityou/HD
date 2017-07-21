@@ -82,16 +82,15 @@
                        </div>
 					   </div>
                  <hr />
-<div class="task-form">
-<center>
-<br />
-<div class="pick-per">
-<form action="addt.php" method="post" id="formularz">
+				 <div class="task-form">
+				  <center>
+				  <br />
+				  <form action="addt.php" method="post" id="formularz">
  
-        <br /></div>
-        <div class="temat"><p class="tematt">Temat zadania: <input type="text" name="topic" class="tematp"/></p></div>
-	<div class="termin"><p class="termint">Termin wykonania: <input type="date" name="time" class="terminp"/></p></div>
-        <div class="tresc"><p class="tresct">Treść zadania: <br /><textarea name="description" id="trescp" cols="108" rows="6"></textarea></p></div>
+        <br />
+        <div class="temat"><p class="tematt">Temat zadania: <br /><input type="text" name="topic" class="stematp"/></p></div>
+		<div class="termin"><p class="termint">Termin wykonania: <input type="date" name="time" class="terminp"/></p></div>
+        <div class="tresc"><p class="tresct">Treść zadania: <br /><textarea name="description" id="trescp" rows="6" style="width:88%"></textarea></p></div>
         <br /><button type="submit">Dodaj</button></center>
 </form>
                  <br>

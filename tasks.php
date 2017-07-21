@@ -121,8 +121,8 @@
                             <i class="entypo-feather"></i>
                             </div>
                             <div class="timeline-label">';   
-                      echo "<h2><a class='dymek'>$row[$db_subtask_name]<span><br> <br>Nazwa zadania głównego: $row2[$db_task_name] <br> Manager: $row2[$db_users_fname] $row2[$db_users_lname]<br> Data rozpoczęcia: $row2[$db_task_sdate] <br> Data zakończenia: $row2[$db_task_edate]<br> Opis: $row2[$db_task_description]<br> </span> </a><span></span><h2>"; 
-                      echo "<p>Data rozpoczęcia: $row[$db_subtask_sdate]  <br> ";
+                      echo "<h2><a class='dymek'>$row[$db_subtask_name]<span><br> <br>Nazwa zadania głównego: $row2[$db_task_name] <br> Manager: $row2[$db_users_fname] $row2[$db_users_lname]<br> Data rozpoczęcia: $row2[$db_task_sdate] <br> Data zakończenia: $row2[$db_task_edate]<br> Opis: $row2[$db_task_description]<br> <br>----------------------------------------------------<br> </span> </a><span></span><h2>"; 
+                      echo "<a><span>Data rozpoczęcia: $row[$db_subtask_sdate]  <br> ";
                       echo "Data zakończenia: $row[$db_subtask_edate]  <br><br>";
                       echo "Opis zadania: <br> $row[$db_subtask_description]";
                       echo'</div>

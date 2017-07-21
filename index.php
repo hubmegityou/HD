@@ -25,14 +25,14 @@
 	
 	<form action="login.php" method="post">
 	
-		<header>Login</header>
+		<header>Logowanie</header>
                 
-                <label>Username <span></span></label>
+                <label>Login: <span></span></label>
                 <input type="text" name="login" />
-                <label>Password <span></span></label>
+                <label>Hasło: <span></span></label>
                 <input type="password" name="pass" />
                 
-                <button type="submit" class="button"/>Log In</button>
+                <button type="submit" class="button"/>Zaloguj</button>
 
 	</form>
 	

@@ -6,13 +6,13 @@
  *  - POPRAWNE PRZEKIEROWANIA PO NIEWYPEŁNIENIU FORMULARZA
  */
     session_start();
-    /*
-    if ((!isset($_POST['topic'])) || (!isset($_POST['description'])) || (!isset($_POST['time'])) || (!isset($_POST['name'])))
+    
+    if ((!isset($_POST['topic'])) || (!isset($_POST['description'])) || (!isset($_POST['time'])))
 	{
-		header('Location: add_tasks.php');
-		exit();
+            header('Location: add_tasks.php');
+            exit();
 	}
-    */
+    
     require_once "dbinfo.php";
     require_once "connect.php";
     

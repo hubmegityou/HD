@@ -136,7 +136,8 @@
                       echo "<a><span>Data rozpoczęcia: $row[$db_subtask_sdate]  <br> ";
                       echo "Data zakończenia: $row[$db_subtask_edate]  <br><br>";
                       echo "Opis zadania: <br> $row[$db_subtask_description]";
-                      echo " <form action='unactive_subtask.php' method='post' id=$db_subtask_taskid>";
+                      echo " <form action='unactive_subtask.php' method='post'";
+                      echo "<input type='hidden' name='myID' value=$db_subtask_taskid>";
                       echo "<br /><button type='submit'>Przenieś do zrobionych</button></center>";
                       echo "</form>";
                       echo'</div>

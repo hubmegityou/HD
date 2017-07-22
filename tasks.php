@@ -121,11 +121,10 @@
                     }
                     while($row = $result->fetch_assoc()){
                              
-                      $sql = "SELECT $db_task_tab.$db_task_name, $db_task_tab.$db_task_description, $db_task_tab.$db_task_sdate, $db_task_tab.$db_task_edate, $db_users_tab.$db_users_fname, $db_users_tab.$db_users_lname FROM $db_task_tab LEFT JOIN $db_users_tab ON task.$db_task_userid = $db_users_tab.$db_users_id WHERE task.$db_task_id =".$row[$db_subtask_taskid];
-                      $result2 = $connection->query($sql);  
-                      $row2=$result2->fetch_assoc();  
-                         
-                           
+                      $sql = "SELECT $db_subtask_tab.$db_subtask_id, $db_task_tab.$db_task_name, $db_task_tab.$db_task_description, $db_task_tab.$db_task_sdate, $db_task_tab.$db_task_edate, $db_users_tab.$db_users_fname, $db_users_tab.$db_users_lname FROM $db_subtask_tab, $db_task_tab LEFT JOIN $db_users_tab ON task.$db_task_userid = $db_users_tab.$db_users_id WHERE task.$db_task_id =".$row[$db_subtask_taskid];
+                      $result2 = $connection->query($sql);
+                      $row2=$result2->fetch_assoc();
+                      echo "<br/>";
                       echo '<article class="timeline-entry">
                             <div class="timeline-entry-inner">
                             <div class="timeline-icon bg-success">
@@ -134,10 +133,11 @@
                             <div class="timeline-label">';   
                       echo "<h2><a class='dymek' href='add_tasks.php'>$row[$db_subtask_name]<span><br> <br>Nazwa zadania głównego: $row2[$db_task_name] <br> Manager: $row2[$db_users_fname] $row2[$db_users_lname]<br> Data rozpoczęcia: $row2[$db_task_sdate] <br> Data zakończenia: $row2[$db_task_edate]<br> Opis: $row2[$db_task_description]<br> <br>----------------------------------------------------<br> </span> </a><span></span><h2>"; 
                       echo "<a><span>Data rozpoczęcia: $row[$db_subtask_sdate]  <br> ";
-                      echo "Data zakończenia: $row[$db_subtask_edate]  <br><br>";
+                      echo "Data zakończenia: $row[$db_subtask_edate]<br><br>";
                       echo "Opis zadania: <br> $row[$db_subtask_description]";
-                      echo " <form action='unactive_subtask.php' method='post'";
-                      echo "<input type='hidden' name='myID' value=$db_subtask_taskid>";
+                      echo "<form action='unactive_subtask.php' method='post'>";
+                      echo "<input type='hidden' name='active' value=1>";
+                      echo "<input type='hidden' name='myID' value=$row2[$db_subtask_id]>";
                       echo "<br /><button type='submit'>Przenieś do zrobionych</button></center>";
                       echo "</form>";
                       echo'</div>

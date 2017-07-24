@@ -44,11 +44,18 @@
         if ($result = $connection->query($sql)){
             //info: dodano poprawnie
         }
+        $sql = "SELECT $db_task_id FROM $db_task_tab WHERE $db_task_name='$topic' AND $db_task_userid='$userid' AND $db_task_sdate='$sdate' AND $db_task_edate='$edate'";
+        if ($result = $connection->query($sql))
+                echo "done id<br/>";
+        $row = $result->fetch_assoc();
         var_dump($_FILES);
         if (move_uploaded_file($_FILES['attachment']['tmp_name'], 'attachments/'.$_FILES['attachment']['name']))
-                echo "done";
-        //$sql = "INSERT INTO $db_attachment_tab ($db_attachment_id, $db_attachment_name, $db_attachment_taskid) VALUES (NULL, $att, ?? ";
-    }    
+                echo "<br/>done<br/>";
+        $sql = "INSERT INTO $db_attachment_tab ($db_attachment_id, $db_attachment_name, $db_attachment_taskid) VALUES (NULL, '".$_FILES['attachment']['name']."', '$row[$db_task_id]')";
+        echo $sql;
+        if ($result = $connection->query($sql))
+                echo "<br/>done attach";
+    }
     $connection->close();
     //header('Location: main.php');
 ?>

@@ -48,4 +48,3 @@
     $connection->close();
     //header('Location: main.php');
 ?>
-

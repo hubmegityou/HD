@@ -115,7 +115,7 @@
            
                             $connection -> query ('SET NAMES utf8');
                             $connection -> query ('SET CHARACTER_SET utf8_unicode_ci');
-                            $sql = "SELECT $db_subtask_taskid, $db_subtask_name, $db_subtask_sdate, $db_subtask_edate, $db_subtask_description FROM $db_subtask_tab WHERE $db_subtask_done='1' AND $db_subtask_userid =". $_SESSION['id'];
+                            $sql = "SELECT $db_subtask_tab.$db_subtask_id, $db_subtask_taskid, $db_subtask_name, $db_subtask_sdate, $db_subtask_edate, $db_subtask_description FROM $db_subtask_tab WHERE $db_subtask_done='1' AND $db_subtask_userid =". $_SESSION['id'];
                             $result = $connection->query($sql);
 
                     }
@@ -137,7 +137,7 @@
                       echo "Opis zadania: <br> $row[$db_subtask_description]";
                       echo "<form action='unactive_subtask.php' method='post'>";
                       echo "<input type='hidden' name='active' value=0>";
-                      echo "<input type='hidden' name='myID' value=$row2[$db_subtask_id]>";
+                      echo "<input type='hidden' name='myID' value=$row[$db_subtask_id]>";
                       echo "<br /><button type='submit'>Przenieś do aktywnych</button></center>";
                       echo "</form>";
                       echo'</div>

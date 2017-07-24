@@ -15,8 +15,7 @@
                 header('Location: old_tasks.php');
             else
                 header('Location: tasks.php');
-        }
-           
+        }  
         //else komunikat o błędzie
     }                            
 ?>

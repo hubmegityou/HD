@@ -1,6 +1,4 @@
 ﻿
-
-
 <?php
 
 	session_start();
@@ -121,7 +119,7 @@
                     }
                     while($row = $result->fetch_assoc()){
                              
-                      $sql = "SELECT $db_subtask_tab.$db_subtask_id, $db_task_tab.$db_task_name, $db_task_tab.$db_task_description, $db_task_tab.$db_task_sdate, $db_task_tab.$db_task_edate, $db_users_tab.$db_users_fname, $db_users_tab.$db_users_lname FROM $db_subtask_tab, $db_task_tab LEFT JOIN $db_users_tab ON task.$db_task_userid = $db_users_tab.$db_users_id WHERE task.$db_task_id =".$row[$db_subtask_taskid];
+                      $sql = "SELECT $db_subtask_tab.$db_subtask_id, $db_task_tab.$db_task_id, $db_task_tab.$db_task_name, $db_task_tab.$db_task_description, $db_task_tab.$db_task_sdate, $db_task_tab.$db_task_edate, $db_users_tab.$db_users_fname, $db_users_tab.$db_users_lname FROM $db_subtask_tab, $db_task_tab LEFT JOIN $db_users_tab ON $db_task_tab.$db_task_userid = $db_users_tab.$db_users_id WHERE $db_task_tab.$db_task_id =".$row[$db_subtask_taskid];
                       $result2 = $connection->query($sql);
                       $row2=$result2->fetch_assoc();
                       echo "<br/>";
@@ -131,7 +129,7 @@
                             <i class="entypo-feather"></i>
                             </div>
                             <div class="timeline-label">';   
-                      echo "<h2><a class='dymek' href ='tasks_all.php' href='add_tasks.php'>$row[$db_subtask_name]<span><br> <br>Nazwa zadania głównego: $row2[$db_task_name] <br> Manager: $row2[$db_users_fname] $row2[$db_users_lname]<br> Data rozpoczęcia: $row2[$db_task_sdate] <br> Data zakończenia: $row2[$db_task_edate]<br> Opis: $row2[$db_task_description]<br> <br>----------------------------------------------------<br> </span> </a><span></span><h2>"; 
+                      echo "<h2><a class='dymek' href ='tasks_all.php?id=$row[$db_subtask_id]&tid=$row[$db_task_id]' href='add_tasks.php'>$row[$db_subtask_name]<span><br> <br>Nazwa zadania głównego: $row2[$db_task_name] <br> Manager: $row2[$db_users_fname] $row2[$db_users_lname]<br> Data rozpoczęcia: $row2[$db_task_sdate] <br> Data zakończenia: $row2[$db_task_edate]<br> Opis: $row2[$db_task_description]<br> <br>----------------------------------------------------<br> </span> </a><span></span><h2>"; 
                       echo "<a><span>Data rozpoczęcia: $row[$db_subtask_sdate]  <br> ";
                       echo "Data zakończenia: $row[$db_subtask_edate]<br><br>";
                       echo "Opis zadania: <br> $row[$db_subtask_description]";

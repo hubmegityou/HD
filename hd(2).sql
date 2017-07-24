@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 21 Lip 2017, 13:44
--- Wersja serwera: 10.1.22-MariaDB
--- Wersja PHP: 7.1.4
+-- Czas generowania: 24 Lip 2017, 13:40
+-- Wersja serwera: 10.1.24-MariaDB
+-- Wersja PHP: 7.1.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -21,6 +21,8 @@ SET time_zone = "+00:00";
 --
 -- Baza danych: `hd`
 --
+CREATE DATABASE IF NOT EXISTS `hd` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+USE `hd`;
 
 -- --------------------------------------------------------
 
@@ -34,6 +36,12 @@ CREATE TABLE `attachment` (
   `task_ID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- RELATIONSHIPS FOR TABLE `attachment`:
+--   `task_ID`
+--       `task` -> `task_ID`
+--
+
 -- --------------------------------------------------------
 
 --
@@ -46,6 +54,10 @@ CREATE TABLE `functions` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
+-- RELATIONSHIPS FOR TABLE `functions`:
+--
+
+--
 -- Zrzut danych tabeli `functions`
 --
 
@@ -55,6 +67,42 @@ INSERT INTO `functions` (`function_ID`, `function_description`) VALUES
 (3, 'grafik'),
 (4, 'wykonawca'),
 (5, 'montażysta');
+
+-- --------------------------------------------------------
+
+--
+-- Struktura tabeli dla tabeli `messages`
+--
+
+CREATE TABLE `messages` (
+  `message_ID` int(11) NOT NULL,
+  `user_ID` int(11) NOT NULL,
+  `date` datetime NOT NULL,
+  `task_ID` int(11) NOT NULL,
+  `text` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- RELATIONSHIPS FOR TABLE `messages`:
+--   `task_ID`
+--       `task` -> `task_ID`
+--   `user_ID`
+--       `users` -> `user_ID`
+--
+
+--
+-- Zrzut danych tabeli `messages`
+--
+
+INSERT INTO `messages` (`message_ID`, `user_ID`, `date`, `task_ID`, `text`) VALUES
+(1, 5, '2017-07-05 06:38:22', 16, 'sdfghgfdwsdfghgrew'),
+(2, 5, '2017-07-05 06:38:22', 16, 'sdfghgfdwsdfghgrew'),
+(3, 17, '2017-07-24 13:00:52', 16, 'sdfghrewert'),
+(4, 17, '2017-07-24 13:09:01', 16, 'dupa dupa dupa'),
+(5, 17, '2017-07-24 13:09:57', 16, 'wefgwwerfgfwerfgb'),
+(6, 17, '2017-07-24 13:10:09', 16, 'dupa dupa dupa dupa dupa dupa\r\n'),
+(7, 17, '2017-07-24 13:10:29', 16, 'qawertykjytrewq23etyuiouy5432q357uiuytr5w33r6u'),
+(8, 5, '2017-07-24 13:12:28', 16, 'dudnbkwddjwqndskldwqkslv');
 
 -- --------------------------------------------------------
 
@@ -74,11 +122,21 @@ CREATE TABLE `subtask` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
+-- RELATIONSHIPS FOR TABLE `subtask`:
+--   `task_ID`
+--       `task` -> `task_ID`
+--   `user_ID`
+--       `users` -> `user_ID`
+--
+
+--
 -- Zrzut danych tabeli `subtask`
 --
 
 INSERT INTO `subtask` (`subtask_ID`, `task_ID`, `name`, `start_date`, `end_date`, `description`, `user_ID`, `done`) VALUES
-(13, 16, 'podzadanie', '2017-07-21', '2017-07-26', 'podzadanie do wykonania', 18, 0);
+(13, 16, 'podzadanie', '2017-07-21', '2017-07-26', 'podzadanie do wykonania', 17, 0),
+(14, 16, 'asdfghfdsadfg', '2017-07-03', '2017-07-28', 'dfdewqwedfgbfdwqwsdfvbfdfswasdfvb', 5, 0),
+(15, 16, 'asdfghfdsadfg', '2017-07-03', '2017-07-28', 'dfdewqwedfgbfdwqwsdfvbfdfswasdfvb', 5, 0);
 
 -- --------------------------------------------------------
 
@@ -96,6 +154,12 @@ CREATE TABLE `task` (
   `priority` tinyint(1) NOT NULL,
   `done` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- RELATIONSHIPS FOR TABLE `task`:
+--   `user_ID`
+--       `users` -> `user_ID`
+--
 
 --
 -- Zrzut danych tabeli `task`
@@ -119,6 +183,12 @@ CREATE TABLE `users` (
   `password` text NOT NULL,
   `user_function` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- RELATIONSHIPS FOR TABLE `users`:
+--   `user_function`
+--       `functions` -> `function_ID`
+--
 
 --
 -- Zrzut danych tabeli `users`
@@ -145,6 +215,14 @@ ALTER TABLE `attachment`
 --
 ALTER TABLE `functions`
   ADD PRIMARY KEY (`function_ID`);
+
+--
+-- Indexes for table `messages`
+--
+ALTER TABLE `messages`
+  ADD PRIMARY KEY (`message_ID`),
+  ADD KEY `user_ID` (`user_ID`),
+  ADD KEY `task_ID` (`task_ID`);
 
 --
 -- Indexes for table `subtask`
@@ -183,10 +261,15 @@ ALTER TABLE `attachment`
 ALTER TABLE `functions`
   MODIFY `function_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
+-- AUTO_INCREMENT dla tabeli `messages`
+--
+ALTER TABLE `messages`
+  MODIFY `message_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+--
 -- AUTO_INCREMENT dla tabeli `subtask`
 --
 ALTER TABLE `subtask`
-  MODIFY `subtask_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `subtask_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 --
 -- AUTO_INCREMENT dla tabeli `task`
 --
@@ -206,6 +289,13 @@ ALTER TABLE `users`
 --
 ALTER TABLE `attachment`
   ADD CONSTRAINT `attachment_ibfk_1` FOREIGN KEY (`task_ID`) REFERENCES `task` (`task_ID`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Ograniczenia dla tabeli `messages`
+--
+ALTER TABLE `messages`
+  ADD CONSTRAINT `messages_ibfk_1` FOREIGN KEY (`task_ID`) REFERENCES `task` (`task_ID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `messages_ibfk_2` FOREIGN KEY (`user_ID`) REFERENCES `users` (`user_ID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Ograniczenia dla tabeli `subtask`

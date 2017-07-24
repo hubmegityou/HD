@@ -4,7 +4,7 @@
 	session_start();
 	
 	if((!isset($_SESSION['online']) || !$_SESSION['online']) /*&& $_SESSION['function'] == 2 */ ) //function := 2 ==> manager
-	{
+        {
 		header('Location: index.php');
 		exit();
 	}
@@ -85,10 +85,13 @@
 					   </div>
                  <hr />
 				 <div class="task-form">
-				  <center>
-				  <br />
-				  <form action="addt.php" method="post" id="formularz">
+				 <center>
+				 <br />
+<form action="addt.php" method="post" id="formularz">
         <div class="temat"><p class="tematt">Temat zadania: <br /><input type="text" name="topic" class="stematp"/></p></div>
+        <div class="temat"><p class="termint"> Priorytet: </p>
+        </div>  <input type="radio" name="priority" value="1"/> tak 
+                <input type="radio" name="priority" value="0" checked/> nie </p></div>
         <div class="termin"><p class="termint">Termin rozpoczęcia: <input type="date" name="stime" class="terminp"/></p></div>
         <div class="termin"><p class="termint">Termin wykonania: <input type="date" name="etime" class="terminp"/></p></div>
         <div class="tresc"><p class="tresct">Treść zadania: <br /><textarea name="description" id="trescp" rows="6" style="width:88%"></textarea></p></div>

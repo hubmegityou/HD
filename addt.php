@@ -44,6 +44,10 @@
         if ($result = $connection->query($sql)){
             //info: dodano poprawnie
         }
+        var_dump($_FILES);
+        if (move_uploaded_file($_FILES['attachment']['tmp_name'], 'attachments/'.$_FILES['attachment']['name']))
+                echo "done";
+        //$sql = "INSERT INTO $db_attachment_tab ($db_attachment_id, $db_attachment_name, $db_attachment_taskid) VALUES (NULL, $att, ?? ";
     }    
     $connection->close();
     //header('Location: main.php');

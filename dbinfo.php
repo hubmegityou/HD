@@ -37,4 +37,15 @@
 		$db_attachment_id = 'att_ID';
 		$db_attachment_name = 'attachment';
 		$db_attachment_taskid = 'task_ID';
+                
+                
+                
+                
+                
+        $db_messages_tab= 'messages';
+                $db_messages_id = 'message_ID';
+                $db_messages_userid = 'user_ID';
+                $db_messages_date = 'date';
+                $db_messages_taskid = 'task_ID';
+                $db_messages_text = 'text';
 ?>

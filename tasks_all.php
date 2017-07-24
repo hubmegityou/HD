@@ -108,9 +108,9 @@
                             $connection -> query ('SET CHARACTER_SET utf8_unicode_ci');
                             $sql = "SELECT $db_subtask_taskid, $db_subtask_name, $db_subtask_sdate, $db_subtask_edate, $db_subtask_description FROM $db_subtask_tab WHERE $db_subtask_id=$id";
                             $result = $connection->query($sql);
-
-                    }
-                    while($row = $result->fetch_assoc()){
+  
+                    
+                       while($row = $result->fetch_assoc()){
                              
                       $sql = "SELECT $db_subtask_tab.$db_subtask_id, $db_task_tab.$db_task_name, $db_task_tab.$db_task_description, $db_task_tab.$db_task_sdate, $db_task_tab.$db_task_edate, $db_users_tab.$db_users_fname, $db_users_tab.$db_users_lname FROM $db_subtask_tab, $db_task_tab LEFT JOIN $db_users_tab ON $db_task_tab.$db_task_userid = $db_users_tab.$db_users_id WHERE $db_task_tab.$db_task_id =".$row[$db_subtask_taskid];
                       $result2 = $connection->query($sql);
@@ -132,7 +132,7 @@
                       echo "<br /><button type='submit'>Zatwierdź date</button>";
                       echo "</form>";
                     
-                          }
+                    }}
                     $connection -> close();
                     ?>
                      
@@ -168,13 +168,13 @@
 
              
             echo "<form action='add_comment.php' method='post'>";
-            echo "<textarea name='description' id='trescp' rows='6' style='width:50%'></textarea><br><br>";
-            echo "<br /><button type='submit'>Dodaj komentarz</button>";
+            echo "<textarea name='comment' id='trescp' rows='6' style='width:50%'></textarea><br><br>";
+            echo "<input type='hidden' name='myID' value=$tid>";
+            echo "<input type='hidden' name='myTID' value=$id>";
+            echo "<br /><button type='submit'>Dodaj komentarz</button></form>";
              
              
-             
-             
-                    $connection -> close();
+            $connection -> close();
                     ?>   
              
              

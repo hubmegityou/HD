@@ -7,7 +7,7 @@
  */
     session_start();
     
-    if ((!isset($_POST['topic'])) || (!isset($_POST['description'])) || (!isset($_POST['time'])))
+    if ((!isset($_POST['topic'])) || (!isset($_POST['description'])) || (!isset($_POST['stime'])) || (!isset($_POST['etime'])))
 	{
             header('Location: add_tasks.php');
             exit();
@@ -35,9 +35,7 @@
             header('Location: add_tasks.php');
             close();
         }
-        
         $topic = $_POST['topic'];
-        $date = $_POST['time'];
         $desc = $_POST['description'];
         $userid = $_SESSION['id'];
         
@@ -47,6 +45,6 @@
         }
     }    
     $connection->close();
-    header('Location: main.php');
+    //header('Location: main.php');
 ?>
 

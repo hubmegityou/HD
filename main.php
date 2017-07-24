@@ -64,6 +64,8 @@
     
                         }
                         while($row = $result->fetch_assoc()){
+                        $row[$db_task_edate] = strtotime("$row[$db_task_edate] + 1 day");
+                        $row[$db_task_edate] = date("Y-m-d", $row[$db_task_edate]);
                         $rows= "{ title: '".$row[$db_task_name]."', start: '".$row[$db_task_sdate]."', end: '".$row[$db_task_edate]."'},";    
                         echo $rows;
                          }

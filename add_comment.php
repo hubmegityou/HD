@@ -23,16 +23,16 @@
         
       
         $comment = $_POST['comment'];
-        $task_id= $_POST['myID'];
+        $subtask_id= $_POST['myID'];
         $curr_timestamp = date('Y-m-d H:i:s');
-        $subtask_id= $_POST['myTID'];
+        $task_id= $_POST['myTID'];
      
         
         
-        $sql = "INSERT INTO $db_messages_tab ($db_messages_id, $db_messages_userid, $db_messages_taskid, $db_messages_date, $db_messages_text) VALUES (NULL,'". $_SESSION['id']."', '$task_id', '$curr_timestamp', '$comment')";
+        $sql = "INSERT INTO $db_messages_tab ($db_messages_id, $db_messages_userid, $db_messages_taskid, $db_messages_date, $db_messages_text) VALUES (NULL,'". $_SESSION['id']."', '$subtask_id', '$curr_timestamp', '$comment')";
         echo $sql;
         $connection->query($sql);
     }    
     $connection->close();
-    header("Location: tasks_all.php?id=$subtask_id&tid=$task_id");
+    header("Location: tasks_all.php?id=$task_id&tid=$subtask_id");
 ?>

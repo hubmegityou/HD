@@ -25,6 +25,7 @@
         $connection -> query ('SET NAMES utf8');
         $connection -> query ('SET CHARACTER_SET utf8_unicode_ci');
         
+        $priority = $_POST['priority'];
         $sdate = $_POST['stime'];
         $edate = $_POST['etime'];
         
@@ -39,7 +40,7 @@
         $desc = $_POST['description'];
         $userid = $_SESSION['id'];
         
-        $sql = "INSERT INTO $db_task_tab ($db_task_id, $db_task_name, $db_task_description, $db_task_sdate, $db_task_edate, $db_task_userid) VALUES (NULL, '$topic', '$desc', '$sdate', '$edate', $userid)";
+        $sql = "INSERT INTO $db_task_tab ($db_task_id, $db_task_name, $db_task_description, $db_task_sdate, $db_task_edate, $db_task_userid, $db_task_priority, $db_task_done) VALUES (NULL, '$topic', '$desc', '$sdate', '$edate', $userid, $priority, 0)";
         if ($result = $connection->query($sql)){
             //info: dodano poprawnie
         }

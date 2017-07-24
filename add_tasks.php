@@ -87,7 +87,7 @@
 				 <div class="task-form">
 				 <center>
 				 <br />
-<form action="addt.php" method="post" id="formularz">
+<form enctype="multipart/form-data" action="addt.php" method="post" id="formularz">
         <div class="temat"><p class="tematt">Temat zadania: <br /><input type="text" name="topic" class="stematp"/></p></div>
         <div class="temat"><p class="termint"> Priorytet: </p>
         </div>  <input type="radio" name="priority" value="1"/> tak 
@@ -95,6 +95,7 @@
         <div class="termin"><p class="termint">Termin rozpoczęcia: <input type="date" name="stime" class="terminp"/></p></div>
         <div class="termin"><p class="termint">Termin wykonania: <input type="date" name="etime" class="terminp"/></p></div>
         <div class="tresc"><p class="tresct">Treść zadania: <br /><textarea name="description" id="trescp" rows="6" style="width:88%"></textarea></p></div>
+        <div class="tresc"><p class="tresct">Załącz plik: <br /><input type="file" size="32" name="attachment" value=""/><p/><div/>
         <br /><button type="submit">Dodaj</button></center>
 </form>
                  <br>

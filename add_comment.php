@@ -30,7 +30,6 @@
         
         
         $sql = "INSERT INTO $db_messages_tab ($db_messages_id, $db_messages_userid, $db_messages_taskid, $db_messages_date, $db_messages_text) VALUES (NULL,'". $_SESSION['id']."', '$subtask_id', '$curr_timestamp', '$comment')";
-        echo $sql;
         $connection->query($sql);
     }    
     $connection->close();

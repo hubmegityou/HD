@@ -46,16 +46,17 @@
         }
         $sql = "SELECT $db_task_id FROM $db_task_tab WHERE $db_task_name='$topic' AND $db_task_userid='$userid' AND $db_task_sdate='$sdate' AND $db_task_edate='$edate'";
         if ($result = $connection->query($sql))
-                echo "done id<br/>";
+                //info: załadowano task id
         $row = $result->fetch_assoc();
-        var_dump($_FILES);
-        if (move_uploaded_file($_FILES['attachment']['tmp_name'], 'attachments/'.$_FILES['attachment']['name']))
-                echo "<br/>done<br/>";
-        $sql = "INSERT INTO $db_attachment_tab ($db_attachment_id, $db_attachment_name, $db_attachment_type, $db_attachment_size, $db_attachment_taskid) VALUES (NULL, '".$_FILES['attachment']['name']."', '".$_FILES['attachment']['type']."', '".$_FILES['attachment']['size']."', '$row[$db_task_id]')";
-        echo $sql;
-        if ($result = $connection->query($sql))
-                echo "<br/>done attach";
+        if (isset($_FILE)){
+            if (move_uploaded_file($_FILES['attachment']['tmp_name'], 'attachments/'.$_FILES['attachment']['name']))
+                //info: dodano do bazy
+            $sql = "INSERT INTO $db_attachment_tab ($db_attachment_id, $db_attachment_name, $db_attachment_type, $db_attachment_size, $db_attachment_taskid) VALUES (NULL, '".$_FILES['attachment']['name']."', '".$_FILES['attachment']['type']."', '".$_FILES['attachment']['size']."', '$row[$db_task_id]')";
+            if ($result = $connection->query($sql));
+                //ifno: załącznik dodany poprawnie
+            unset($_FILE);
+        }
     }
     $connection->close();
-    //header('Location: main.php');
+    header('Location: main.php');
 ?>

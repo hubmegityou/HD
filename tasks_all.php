@@ -106,10 +106,10 @@
                         
                     }else{
                             $tid= filter_input(INPUT_GET, 'tid', FILTER_VALIDATE_INT);    
-                            $id= filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
+                            $sid= filter_input(INPUT_GET, 'sid', FILTER_VALIDATE_INT);
                             $connection -> query ('SET NAMES utf8');
                             $connection -> query ('SET CHARACTER_SET utf8_unicode_ci');
-                            $sql = "SELECT $db_subtask_taskid, $db_subtask_name, $db_subtask_sdate, $db_subtask_edate, $db_subtask_description FROM $db_subtask_tab WHERE $db_subtask_id=$id";
+                            $sql = "SELECT $db_subtask_taskid, $db_subtask_name, $db_subtask_sdate, $db_subtask_edate, $db_subtask_description FROM $db_subtask_tab WHERE $db_subtask_id=$sid";
                             $result = $connection->query($sql);
   
                     
@@ -130,8 +130,8 @@
                       $sdate= $row[$db_subtask_sdate];
                       $edate= $row[$db_subtask_edate];
                       echo "Termin rozpoczęcia: <input type='date' value= $sdate name='stime'/><br><br>";
-                      echo "<input type='hidden' name='myID' value=$tid>";
-                      echo "<input type='hidden' name='myTID' value=$id>";
+                      echo "<input type='hidden' name='myTID' value=$tid>";
+                      echo "<input type='hidden' name='mySID' value=$sid>";
                       echo "Termin wykonania: <input type='date' value=$edate name='etime'/><br><br>";
                       echo "Opis zadania: <br> $row[$db_subtask_description]<br><br>";
                       echo "<br /><button type='submit'>Zatwierdź date</button>";
@@ -140,6 +140,7 @@
                         }
                     }
     echo "<br><br>ZAŁĄCZNIKI!!!<br><br>";
+//wyświetlanie załączników
 /*
         $connection = new mysqli($host, $db_user, $db_pass, $db_name);
             if ($connection->connect_errno!=0){
@@ -151,14 +152,21 @@
                     $connection -> query ('SET NAMES utf8');
                     $connection -> query ('SET CHARACTER_SET utf8_unicode_ci');
  */
-        $sql = "SELECT $db_attachment_name FROM $db_attachment_tab WHERE $db_attachment_taskid = '$tid'";
+        $sql = "SELECT $db_attachment_name, $db_attachment_id FROM $db_attachment_tab WHERE $db_attachment_taskid = '$tid'";
         $result = $connection->query($sql);
         while ($row = $result->fetch_assoc()){
-            echo "<a href=/'$url"."download.php/?id="/$row[$db_attachment_id]."/'";
+            echo "<a href=\"download.php/?id=".$row[$db_attachment_id]."\">$row[$db_attachment_name]</a><br>";
         }
-
-    echo "<br><br><br><br>KOMENTARZE!!!!<br><br>";
-
+//dodawanie załączników
+        echo "<form enctype=\"multipart/form-data\" action=\"attach.php\" method=\"post\" id=\"formularz\">";
+        echo "<p>Załącz plik: <br /><input type=\"file\" size=\"32\" name=\"attachment\" value=\"\"/><p/>";
+        echo "<input type='hidden' name='mySID' value=$sid>";
+        echo "<input type='hidden' name='myTID' value=$tid>";
+        echo "<button type=\"submit\">Wyślij</button></center>";
+        echo "</form>";
+        
+    
+    echo "<br><br><br>KOMENTARZE!!!!<br><br>";
                 /*
               require_once "connect.php";
               require_once "dbinfo.php";
@@ -180,26 +188,16 @@
                 }
                    
              
-             
-             
-             
-             
-
-             
             echo "<form action='add_comment.php' method='post'>";
             echo "<textarea name='comment' id='trescp' rows='6' style='width:50%'></textarea><br><br>";
-            echo "<input type='hidden' name='myID' value=$tid>";
-            echo "<input type='hidden' name='myTID' value=$id>";
+            echo "<input type='hidden' name='mySID' value=$sid>";
+            echo "<input type='hidden' name='myTID' value=$tid>";
             echo "<br /><button type='submit'>Dodaj komentarz</button></form>";
              
              
             $connection -> close();
                     ?>   
-             
-             
-             
-                          
-                     
+                
     </div>
 
     

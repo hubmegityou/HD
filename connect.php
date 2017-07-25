@@ -5,5 +5,4 @@
 	$db_pass = "";
 	$db_name = "hd";
 
-        $url = "localhost/HD/";
 ?>

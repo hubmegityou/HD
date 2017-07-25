@@ -159,9 +159,6 @@
 
     var div = document.getElementById('sh'+id);
 
-div.style.display = 'none';
-document.getElementById(id).innerHTML = 'pokaż podzadania';
-
 document.getElementById(id).onclick = function()
 {
     if(div.style.display == 'none')

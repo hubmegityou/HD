@@ -209,6 +209,10 @@ img {
         color: #fff;
 }
 
+.timeline-centered .timeline-entry .timeline-entry-inner .timeline-icon.bg-priority {
+        background-color: #ff0000;
+        color: #fff;
+}
 
 .timeline-centered .timeline-entry .timeline-entry-inner .timeline-label {
         position: relative;

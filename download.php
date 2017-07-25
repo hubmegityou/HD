@@ -12,7 +12,5 @@
     header("Content-Type: ".$row[$db_attachment_type]);
     header("Content-Length: ".$row[$db_attachment_size]);
     header("Content-Disposition: attachment; filename=\"".$row[$db_attachment_name]."\"");
-    readfile("attachments/".$row[$db_attachment_name]); 
-    
-    //header("Location: tasks.php")
+    readfile("attachments/".$row[$db_attachment_name]);
 ?>

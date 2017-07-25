@@ -60,8 +60,8 @@ p {
     padding-top:20px;
 }
  button {
-	   background-color: #e0610d !important;
-  display: inline-block !important; 
+  background-color: #e0610d !important;
+  display: block !important; 
   padding: 6px 12px !important;
   margin-bottom: 0 !important;
   font-size: 14px !important;
@@ -108,6 +108,15 @@ p {
 		font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 		font-size: 13pt;
 	}
+        p.left{ width: 40%;
+                float:left;
+                padding-top:0px;
+		text-align:left;
+                margin-left: 5px;
+		font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+		font-size: 13pt;
+            
+        }
 	.tresc {
 		height: 200px;
 	}
@@ -123,7 +132,7 @@ p {
 		 outline: none;
 	}
 	input {
-			border-color: #E8E7E7;
+                border-color: #E8E7E7;
 		border-width:1px;
 		 outline: none;
 	}

@@ -93,29 +93,32 @@
                  <br>
                  <br>
                  <br>
+                     <div class="subtask-form">
                      <form action="addu.php" method="post">
+                         <center>
 		
-		Imię: <br /> <input type="text" name="fname" /> <br />
-		Nazwisko: <br /> <input type="text" name="lname" /> <br />
-		Adres email: <br /> <input type="email" name="email" /> <br />
-		Funkcja: <br />
-				<select name="function">
+                         <div class="stemat"><p class="left">Imię: <br /> <input type="text" name="fname" /></p></div>
+                         <div class="stemat"><p class="left">Nazwisko: <br /> <input type="text" name="lname" /></p></div>
+                         <div class="stemat"><p class="left">Login: <br /> <input type="text" name="login" /></p></div>
+                         <div class="stemat"><p class="left">Hasło: <br /> <input type="password" name="pass" /></p></div><br>	<br>
+                         <div class="stemat"><p class="left">Adres email: <br /> <input type="email" name="email"/></p></div>
+                         <div class="stemat"><p class="left">Funkcja: <br />
+                        <select name="function">
 				<option>admin</option>
 				<option>manager<ation>
 				<option>grafik<ation>
 				<option>pracownik<ation>
 				<br />
-				</select><br />
-		Login: <br /> <input type="text" name="login" /> <br />
-		Hasło: <br /> <input type="password" name="pass" /> <br />	<?php if(isset($_SESSION['error']))	echo $_SESSION['error']; ?>
-		<br /><input type="submit" value="Dodaj" />
-				
+			</select></p></div>
+                         
+                         </center> 
+                         <button type="submit">Dodaj</button>
                 </form>
                  
 
     </div>
 
-    
+                     </div>
 	</div>
 </div>
                  

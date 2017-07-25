@@ -51,7 +51,7 @@
         var_dump($_FILES);
         if (move_uploaded_file($_FILES['attachment']['tmp_name'], 'attachments/'.$_FILES['attachment']['name']))
                 echo "<br/>done<br/>";
-        $sql = "INSERT INTO $db_attachment_tab ($db_attachment_id, $db_attachment_name, $db_attachment_taskid) VALUES (NULL, '".$_FILES['attachment']['name']."', '$row[$db_task_id]')";
+        $sql = "INSERT INTO $db_attachment_tab ($db_attachment_id, $db_attachment_name, $db_attachment_type, $db_attachment_size, $db_attachment_taskid) VALUES (NULL, '".$_FILES['attachment']['name']."', '".$_FILES['attachment']['type']."', '".$_FILES['attachment']['size']."', '$row[$db_task_id]')";
         echo $sql;
         if ($result = $connection->query($sql))
                 echo "<br/>done attach";

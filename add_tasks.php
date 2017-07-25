@@ -86,13 +86,13 @@
                        </div>
 					   </div>
                  <hr />
-				 <div class="task-form">
+				 <div class="subtask-form">
 				 <center>
 				 <br />
 <form enctype="multipart/form-data" action="addt.php" method="post" id="formularz">
         <div class="temat"><p class="tematt">Temat zadania: <br /><input type="text" name="topic" class="stematp"/></p></div>
         <div class="temat"><p class="termint"> Priorytet: </p>
-        </div>  <input type="radio" name="priority" value="1"/> tak 
+        <div>  <input type="radio" name="priority" value="1"/> tak 
                 <input type="radio" name="priority" value="0" checked/> nie </p></div>
         <div class="termin"><p class="termint">Termin rozpoczęcia: <input type="date" name="stime" class="terminp"/></p></div>
         <div class="termin"><p class="termint">Termin wykonania: <input type="date" name="etime" class="terminp"/></p></div>

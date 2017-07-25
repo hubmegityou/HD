@@ -64,6 +64,7 @@
                     </li>';
                       echo '<li><a href="add_subtasks.php"><i "></i> Dodaj podzadanie</a>
                     </li>';
+                      
                    } 
                    
                    If ($_SESSION['function']=="1"){

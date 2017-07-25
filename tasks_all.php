@@ -67,6 +67,8 @@
                     </li>';
                       echo '<li><a href="add_subtasks.php"><i "></i> Dodaj podzadanie</a>
                     </li>';
+                       echo '<li><a href="team_tasks.php"><i "></i> Zadania grupy</a>
+                    </li>';
                    } 
                    
                    

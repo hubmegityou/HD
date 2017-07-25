@@ -158,22 +158,20 @@
   function hide(id){
 
     var div = document.getElementById('sh'+id);
+    var div2=document.getElementById(id);
 
-div.style.display = 'none';
-document.getElementById(id).innerHTML = 'pokaż podzadania';
 
-document.getElementById(id).onclick = function()
-{
+
     if(div.style.display == 'none')
     {
         div.style.display = 'block';
-        this.innerHTML = 'ukryj podzadania';
+        div2.innerHTML = 'ukryj podzadania';
     }
     else
     {
         div.style.display = 'none';
-        this.innerHTML = 'zobacz podadania';
+        div2.innerHTML = 'pokaż podadania';
     }
-};}
+}
 
 </script>

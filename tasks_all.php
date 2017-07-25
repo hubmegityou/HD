@@ -134,25 +134,40 @@
                       echo "Opis zadania: <br> $row[$db_subtask_description]<br><br>";
                       echo "<br /><button type='submit'>Zatwierdź date</button>";
                       echo "</form>";
-                    
-                    }}
-                    $connection -> close();
-                    ?>
-                     
-    <br><br><br><br>
-     KOMENTARZE!!!!
-     <br> <br>
-          <?php  
+                      // $connection->close();
+                        }
+                    }
+    echo "<br><br>ZAŁĄCZNIKI!!!<br><br>";
+/*
+        $connection = new mysqli($host, $db_user, $db_pass, $db_name);
+            if ($connection->connect_errno!=0){
+                echo "Error: ".$connection->connect_errno;
+
+            }else{
+                    $tid= filter_input(INPUT_GET, 'tid', FILTER_VALIDATE_INT);    
+                    $id= filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
+                    $connection -> query ('SET NAMES utf8');
+                    $connection -> query ('SET CHARACTER_SET utf8_unicode_ci');
+ */
+        $sql = "SELECT $db_attachment_name FROM $db_attachment_tab WHERE $db_attachment_taskid = '$tid'";
+        $result = $connection->query($sql);
+        while ($row = $result->fetch_assoc()){
+            echo "<a href=/'$url"."download.php/?id="/$row[$db_attachment_id]."/'";
+        }
+
+    echo "<br><br><br><br>KOMENTARZE!!!!<br><br>";
+
+                /*
               require_once "connect.php";
               require_once "dbinfo.php";
-                    
-                    
+
               $connection = new mysqli($host, $db_user, $db_pass, $db_name);      
              if ($connection->connect_errno!=0){
                 echo "Error: ".$connection->connect_errno;
              }else{
                  $connection -> query ('SET NAMES utf8');
                  $connection -> query ('SET CHARACTER_SET utf8_unicode_ci');
+               */
                  $sql= "select $db_messages_tab.$db_messages_date, $db_messages_tab.$db_messages_text, $db_users_tab.$db_users_fname, $db_users_tab.$db_users_lname FROM $db_messages_tab LEFT JOIN $db_users_tab ON $db_messages_tab.$db_messages_userid= $db_users_tab.$db_users_id WHERE $db_messages_taskid=$tid ";
                  $result = $connection->query($sql);
                  
@@ -162,7 +177,7 @@
                   echo "<br><br>";
                 }
                    
-             }
+             
              
              
              

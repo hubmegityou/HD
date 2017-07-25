@@ -114,11 +114,11 @@
                              
                             
                             echo "nazwa zadania: $row[$db_task_name] <br> manager: $row[$db_users_fname]  $row[$db_users_lname] <br> data rozpoczęcia: $row[$db_task_sdate]<br> data zakończenia:  $row[$db_task_edate]<br> opis:  $row[$db_task_description]";
-                            echo "<br><br><div id='$row[$db_task_id]' style= 'cursor: pointer; color:red' >ukryj podzadania</div> <br>";
-                            echo "<div id='invisible_$row[$db_task_id]'>";
-                           $sql = "SELECT  $db_subtask_tab.$db_subtask_name, $db_subtask_tab.$db_subtask_description, $db_subtask_tab.$db_subtask_sdate, $db_subtask_tab.$db_subtask_edate, $db_users_tab.$db_users_fname, $db_users_tab.$db_users_lname FROM $db_subtask_tab LEFT JOIN $db_users_tab ON $db_subtask_tab.$db_subtask_userid = $db_users_tab.$db_users_id WHERE $db_subtask_taskid=$row[$db_task_id]"; 
-                           $result2 = $connection->query($sql);
-                           while ($row2=$result2->fetch_assoc()){
+                            echo "<br><br><div id='$row[$db_task_id]' style= 'cursor: pointer; color:red' onclick='hide($row[$db_task_id])' >pokaż podzadania</div> <br>";
+                            echo "<div id='sh$row[$db_task_id]' style='display:none'>";
+                            $sql = "SELECT  $db_subtask_tab.$db_subtask_name, $db_subtask_tab.$db_subtask_description, $db_subtask_tab.$db_subtask_sdate, $db_subtask_tab.$db_subtask_edate, $db_users_tab.$db_users_fname, $db_users_tab.$db_users_lname FROM $db_subtask_tab LEFT JOIN $db_users_tab ON $db_subtask_tab.$db_subtask_userid = $db_users_tab.$db_users_id WHERE $db_subtask_taskid=$row[$db_task_id]"; 
+                            $result2 = $connection->query($sql);
+                            while ($row2=$result2->fetch_assoc()){
                                
                             echo " <br><br> nazwa podzadania: $row2[$db_subtask_name] <br> pracownik: $row2[$db_users_fname]  $row2[$db_users_lname] <br> data rozpoczęcia: $row2[$db_subtask_sdate]<br> data zakończenia:  $row2[$db_subtask_edate]<br> opis:  $row2[$db_subtask_description]";   
                             
@@ -126,22 +126,13 @@
                     }
                     echo "</div>";
                            }
-                     
-                    
-                    
-                    
-                    
+       
                       $connection -> close();
                     ?>
                   
                  <br>
                  <br>
-                 <br>
-                  
-                     
-                     
-                     
-                 
+                 <br>        
 
     </div>
 
@@ -161,13 +152,15 @@
 </body>
 </html>
 
+
 <script>
     
-   // nie wiem jak tu przemycić task ID 
-    var div = document.getElementById('invisible_'+id);
+  function hide(id){
+
+    var div = document.getElementById('sh'+id);
 
 div.style.display = 'none';
-document.getElementById(id).innerHTML = 'zobacz podzadania';
+document.getElementById(id).innerHTML = 'pokaż podzadania';
 
 document.getElementById(id).onclick = function()
 {
@@ -181,6 +174,6 @@ document.getElementById(id).onclick = function()
         div.style.display = 'none';
         this.innerHTML = 'zobacz podadania';
     }
-};
+};}
 
 </script>

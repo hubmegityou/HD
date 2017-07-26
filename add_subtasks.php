@@ -95,11 +95,13 @@
     $connection -> query ('SET CHARACTER_SET utf8_unicode_ci');
     $sql = "SELECT $db_users_fname, $db_users_lname, $db_functions_desc, $db_users_id FROM $db_users_tab INNER JOIN $db_functions_tab ON $db_users_function = $db_functions_id WHERE $db_users_function>1 ORDER BY $db_users_function, $db_users_lname ASC";
     $result = $connection->query($sql);
-        echo "<br/>";
-        echo '<select name="user" class="user">';
+        echo '<div class="temat"><p class="stemat">';
+        echo '<select name="user" class="task">';
         echo '<option value="">Wybierz osobę</option>';
         while($row = $result->fetch_assoc()) {
+            //echo "<div class=\"stemat\"><p class=\"tematt\">";
             echo '<option value="'.$row[$db_users_id].'">'.$row[$db_functions_desc].' '.$row[$db_users_fname].' '.$row[$db_users_lname].'</option>';
+            //echo "<p/></div>";
         }
         echo '</select>';
     echo "<br/><br/>";
@@ -112,24 +114,19 @@
             echo '<option value="'.$row[$db_task_id].'">'.$row[$db_task_name].'</option>';
         }
         echo '</select>';
-    
     $connection->close();
 ?>
         <div class="stemat"><p class="tematt">Temat podzadania: <input type="text" name="topic" class="stematp"/></p></div>
-		<div class="stermint"><p class="termint">Termin rozpoczęcia: <input type="date" name="stime"/></p></div>
-          	<div class="stermint"><p class="termint">Termin wykonania: <input type="date" name="etime"/></p></div>
+        <div class="termin"><p class="termint">Termin rozpoczęcia: <input type="date" name="stime"/></p></div>
+        <div class="termin"><p class="termint">Termin wykonania: <input type="date" name="etime"/></p></div>
         <div class="stresc"><p class="tresct">Treść podzadania: <textarea name="description" id="trescp" rows="6" style="width:88%"></textarea></p></div>
-        <br /><button type="submit">Stwórz</button>
+        <div><p><button type="submit" >Stwórz</button></p></div>
 		</center>
 </form>
 </div>
                  <br>
                  <br>
-                 <br>
-                     
-                 
-
-    </div>
+</div>
 
     
 	</div>

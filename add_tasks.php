@@ -82,34 +82,28 @@
             <div id="page-inner">
                 <div class="row">
                     <div class="col-md-12">
-                     <h2>Dodaj zadanie</h2> 
-                       </div>
-					   </div>
+                        <h2>Dodaj zadanie</h2> 
+                    </div>
+                </div>
                  <hr />
-				 <div class="subtask-form">
-				 <center>
-				 <br />
+        <div class="subtask-form">
+        <center>
+        <br />
 <form enctype="multipart/form-data" action="addt.php" method="post" id="formularz">
-        <div class="temat"><p class="tematt">Temat zadania: <br /><input type="text" name="topic" class="stematp"/></p></div>
-        <div class="temat"><p class="termint"> Priorytet: </p>
-        <div>  <input type="radio" name="priority" value="1"/> tak 
-                <input type="radio" name="priority" value="0" checked/> nie </p></div>
+        <div class="stemat"><p class="tematt">Temat zadania: <br /><input type="text" name="topic" class="stematp"/></p></div>
+        <div class="stemat"><p class="termint"> Priorytet:
+            <input type="radio" name="priority" value="1"/> tak 
+            <input type="radio" name="priority" value="0" checked/> nie </p></div>
         <div class="termin"><p class="termint">Termin rozpoczęcia: <input type="date" name="stime" class="terminp"/></p></div>
         <div class="termin"><p class="termint">Termin wykonania: <input type="date" name="etime" class="terminp"/></p></div>
-        <div class="tresc"><p class="tresct">Treść zadania: <br /><textarea name="description" id="trescp" rows="6" style="width:88%"></textarea></p></div>
-        <div class="tresc"><p class="tresct">Załącz plik: <br /><input type="file" size="32" name="attachment" value=""/><p/><div/>
-        <br /><button type="submit">Dodaj</button></center>
+        <div class="stresc"><p class="tresct">Treść zadania: <br /><textarea name="description" id="trescp" rows="6" style="width:88%"></textarea></p></div>
+        <div class="stresc"><p class="tresct">Załącz plik: <br /><input type="file" size="32" name="attachment" value=""/><p/><div/>
+                <div class="stresc"><button type="submit">Dodaj</button></center><div/>
 </form>
                  <br>
                  <br>
-                 <br>
-                 <br>
              <!-- #f5f5f6 kolor tła guzika -->        
-             
-                 
-                 
-               
-    </div>
+        </div>
              <!-- /. PAGE INNER  -->
             </div>
          <!-- /. PAGE WRAPPER  -->

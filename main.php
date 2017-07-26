@@ -194,7 +194,7 @@
                      </div>
                  <hr /><?php
                        If($_SESSION['function']=="2" ){
-                            echo "<br><br>";
+                            echo "<br>";
                             echo "<h2>Zadania</h2>" ;
                             echo "<br><br><br>";
                             echo "<div id='calendar2'></div>";

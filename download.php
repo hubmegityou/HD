@@ -11,6 +11,6 @@
     header("Cache-control: private");
     header("Content-Type: ".$row[$db_attachment_type]);
     header("Content-Length: ".$row[$db_attachment_size]);
-    header("Content-Disposition: attachment; filename=\"".$row[$db_attachment_name]."\"");
+    header("Content-Disposition: attachment; filename=\"".substr($row[$db_attachment_name], 17)."\"");
     readfile("attachments/".$row[$db_attachment_name]);
 ?>

@@ -61,7 +61,7 @@ p {
 }
  button {
   background-color: #e0610d !important;
-  display: block !important; 
+  display: inline-block !important; 
   padding: 6px 12px !important;
   margin-bottom: 0 !important;
   font-size: 14px !important;
@@ -112,7 +112,7 @@ p {
                 float:left;
                 padding-top:0px;
 		text-align:left;
-                margin-left: 5px;
+                margin-left: 30px;
 		font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 		font-size: 13pt;
             
@@ -145,6 +145,16 @@ p {
 	.task {
 		width:250px;
 	}
+        
+        
+        .teamtask-form {
+	width:100%;
+	height:auto;
+	border-color:#cecece !important;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	background-color: #f5f5f6;
+	padding:10px, 10px, 10px, 10px;
+}
 /*==============================================
    DASHBOARD STYLES    
     =============================================*/

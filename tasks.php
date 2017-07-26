@@ -48,7 +48,7 @@
 					</li>
 				
                     <li>
-                        <a   href="main.php" ><i "></i> Strona główna</a>
+                        <a href="main.php" ><i "></i> Strona główna</a>
                     </li>
                     
                     <li>

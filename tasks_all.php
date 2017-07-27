@@ -152,10 +152,21 @@
                     $connection -> query ('SET NAMES utf8');
                     $connection -> query ('SET CHARACTER_SET utf8_unicode_ci');
  */
-        $sql = "SELECT $db_attachment_name, $db_attachment_id FROM $db_attachment_tab WHERE $db_attachment_taskid = '$tid'";
+        $sql = "SELECT $db_attachment_size, $db_attachment_name, $db_attachment_id FROM $db_attachment_tab WHERE $db_attachment_taskid = '$tid'";
         $result = $connection->query($sql);
         while ($row = $result->fetch_assoc()){
-            echo "<a href=\"download.php/?id=".$row[$db_attachment_id]."\">$row[$db_attachment_name]</a><br>";
+            echo "<a href=\"download.php/?id=".$row[$db_attachment_id]."\">".substr($row[$db_attachment_name], 17)."</a>\t";
+            $attachsize = $row[$db_attachment_size];
+            if ($attachsize >= 1073741824) {
+                $attachsize = (round($attachsize / 1073741824 * 100) / 100) . "gb";
+            } elseif ($attachsize >= 1048576) {
+                $attachsize = (round($attachsize / 1048576 * 100) / 100) . "mb";
+            } elseif ($attachsize >= 1024) {
+                $attachsize = (round($attachsize / 1024 * 100) / 100) . "kb";
+            } else {
+                $attachsize = $attachsize . "b";
+            }
+            echo "($attachsize)<br>";
         }
 //dodawanie załączników
         echo "<form enctype=\"multipart/form-data\" action=\"attach.php\" method=\"post\" id=\"formularz\">";
@@ -196,7 +207,7 @@
              
              
             $connection -> close();
-                    ?>   
+?>
                 
     </div>
 

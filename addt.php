@@ -7,8 +7,7 @@
  */
     session_start();
     
-    if ((!isset($_POST['topic'])) || (!isset($_POST['description'])) || (!isset($_POST['stime'])) || (!isset($_POST['etime'])))
-	{
+    if ((!isset($_POST['topic'])) || (!isset($_POST['description'])) || (!isset($_POST['stime'])) || (!isset($_POST['etime']))){
             header('Location: add_tasks.php');
             exit();
 	}
@@ -48,15 +47,18 @@
         if ($result = $connection->query($sql))
                 //info: załadowano task id
         $row = $result->fetch_assoc();
+        
+        //dodawanie załącznika
         if (isset($_FILE)){
-            if (move_uploaded_file($_FILES['attachment']['tmp_name'], 'attachments/'.$_FILES['attachment']['name']))
-                //info: dodano do bazy
-            $sql = "INSERT INTO $db_attachment_tab ($db_attachment_id, $db_attachment_name, $db_attachment_type, $db_attachment_size, $db_attachment_taskid) VALUES (NULL, '".$_FILES['attachment']['name']."', '".$_FILES['attachment']['type']."', '".$_FILES['attachment']['size']."', '$row[$db_task_id]')";
-            if ($result = $connection->query($sql));
-                //ifno: załącznik dodany poprawnie
+            $time=date("y-m-d_H-i-s");
+            if (move_uploaded_file($_FILES['attachment']['tmp_name'], 'attachments/'.$time.$_FILES['attachment']['name'])){
+                $sql = "INSERT INTO $db_attachment_tab ($db_attachment_id, $db_attachment_name, $db_attachment_type, $db_attachment_size, $db_attachment_taskid) VALUES (NULL, '".$time.$_FILES['attachment']['name']."', '".$_FILES['attachment']['type']."', '".$_FILES['attachment']['size']."', '".$_POST['myTID']."')";
+                if ($result = $connection->query($sql));
+                    //info: załącznik dodany poprawnie
+                }
             unset($_FILE);
+            }
         }
-    }
     $connection->close();
     header('Location: main.php');
 ?>

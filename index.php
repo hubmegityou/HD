@@ -28,9 +28,9 @@
 		<header>Logowanie</header>
                 
                 <label>Login: <span></span></label>
-                <input type="text" name="login" />
+                <input type="text" name="login" required/>
                 <label>Hasło: <span></span></label>
-                <input type="password" name="pass" />
+                <input type="password" name="pass" required/>
                 
                 <button type="submit" class="button"/>Zaloguj</button>
 

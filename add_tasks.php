@@ -90,13 +90,13 @@
         <center>
         <br />
 <form enctype="multipart/form-data" action="addt.php" method="post" id="formularz">
-        <div class="stemat"><p class="tematt">Temat zadania: <br /><input type="text" name="topic" class="stematp"/></p></div>
+        <div class="stemat"><p class="tematt">Temat zadania: <br /><input type="text" name="topic" class="stematp" required/></p></div>
         <div class="stemat"><p class="termint"> Priorytet:
             <input type="radio" name="priority" value="1"/> tak 
             <input type="radio" name="priority" value="0" checked/> nie </p></div>
-        <div class="termin"><p class="termint">Termin rozpoczęcia: <input type="date" name="stime" class="terminp"/></p></div>
-        <div class="termin"><p class="termint">Termin wykonania: <input type="date" name="etime" class="terminp"/></p></div>
-        <div class="stresc"><p class="tresct">Treść zadania: <br /><textarea name="description" id="trescp" rows="6" style="width:88%"></textarea></p></div>
+        <div class="termin"><p class="termint">Termin rozpoczęcia: <input type="date" name="stime" class="terminp" required/></p></div>
+        <div class="termin"><p class="termint">Termin wykonania: <input type="date" name="etime" class="terminp" required/></p></div>
+        <div class="stresc"><p class="tresct">Treść zadania: <br /><textarea name="description" id="trescp" rows="6" style="width:88%" required></textarea></p></div>
         <div class="stresc"><p class="tresct">Załącz plik: <br /><input type="file" size="32" name="attachment" value=""/><p/><div/>
                 <div class="stresc"><button type="submit">Dodaj</button></center><div/>
 </form>

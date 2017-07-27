@@ -97,13 +97,13 @@
                      <form action="addu.php" method="post">
                          <center>
 		
-                         <div class="stemat"><p class="left">Imię: <br /> <input type="text" name="fname" /></p></div>
-                         <div class="stemat"><p class="left">Nazwisko: <br /> <input type="text" name="lname" /></p></div>
-                         <div class="stemat"><p class="left">Login: <br /> <input type="text" name="login" /></p></div>
-                         <div class="stemat"><p class="left">Hasło: <br /> <input type="password" name="pass" /></p></div><br>	<br>
-                         <div class="stemat"><p class="left">Adres email: <br /> <input type="email" name="email"/></p></div>
+                         <div class="stemat"><p class="left">Imię: <br /> <input type="text" name="fname" required/></p></div>
+                         <div class="stemat"><p class="left">Nazwisko: <br /> <input type="text" name="lname" required/></p></div>
+                         <div class ="stemat"><p class="left">Login: <br /> <input type="text" name="login" required/></p></div>
+                         <div class="stemat"><p class="left">Hasło: <br /> <input type="password" name="pass" required /></p></div><br>	<br>
+                         <div class="stemat"><p class="left">Adres email: <br /> <input type="email" name="email" required/></p></div>
                          <div class="stemat"><p class="left">Funkcja: <br />
-                        <select name="function">
+                        <select name="function" required>
 				<option>admin</option>
 				<option>manager<ation>
 				<option>grafik<ation>

@@ -116,10 +116,10 @@
         echo '</select>';
     $connection->close();
 ?>
-        <div class="stemat"><p class="tematt">Temat podzadania: <input type="text" name="topic" class="stematp"/></p></div>
-        <div class="termin"><p class="termint">Termin rozpoczęcia: <input type="date" name="stime"/></p></div>
-        <div class="termin"><p class="termint">Termin wykonania: <input type="date" name="etime"/></p></div>
-        <div class="stresc"><p class="tresct">Treść podzadania: <textarea name="description" id="trescp" rows="6" style="width:88%"></textarea></p></div>
+        <div class="stemat"><p class="tematt">Temat podzadania: <input type="text" name="topic" class="stematp" style="width:90%" required/></p></div>
+        <div class="termin"><p class="termint">Termin rozpoczęcia: <input type="date" name="stime" required/></p></div>
+        <div class="termin"><p class="termint">Termin wykonania: <input type="date" name="etime" required/></p></div>
+        <div class="stresc"><p class="tresct">Treść podzadania: <textarea name="description" id="trescp" rows="6" style="width:90%" required></textarea></p></div>
         <div><p><button type="submit" >Stwórz</button></p></div>
 		</center>
 </form>

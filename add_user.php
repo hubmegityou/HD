@@ -110,10 +110,9 @@
 				<option>pracownik<ation>
 				<br />
 			</select></p></div>
-                         <br>
-                             <br>
-                                 
-                             <button type="submit" >Dodaj</button>
+                        <div style="clear:both"></div>
+                        <br> <br> <br><br><br>   
+                             <button type="submit" style="margin-left: -600px">Dodaj</button>
                          </center> 
                         
                 </form>

@@ -96,7 +96,7 @@
     $sql = "SELECT $db_users_fname, $db_users_lname, $db_functions_desc, $db_users_id FROM $db_users_tab INNER JOIN $db_functions_tab ON $db_users_function = $db_functions_id WHERE $db_users_function>1 ORDER BY $db_users_function, $db_users_lname ASC";
     $result = $connection->query($sql);
         echo '<div class="temat"><p class="stemat">';
-        echo '<select name="user" class="task">';
+        echo '<select name="user" class="task" required>';
         echo '<option value="">Wybierz osobę</option>';
         while($row = $result->fetch_assoc()) {
             //echo "<div class=\"stemat\"><p class=\"tematt\">";
@@ -108,7 +108,7 @@
     $id = $_SESSION['id'];
     $sql = "SELECT $db_task_id, $db_task_name, $db_task_edate, $db_task_userid FROM $db_task_tab WHERE $db_task_userid = $id";
     $result = $connection->query($sql);
-        echo '<select name="task" class="task">';
+        echo '<select name="task" class="task" required>';
         echo '<option value="">Wybierz zadanie</option>';
         while($row = $result->fetch_assoc()) {
             echo '<option value="'.$row[$db_task_id].'">'.$row[$db_task_name].'</option>';

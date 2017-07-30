@@ -17,16 +17,9 @@ session_start();
 //$_SESSION['error'] = '<span style="color:red">Uzupełnij wszystkie pola</span>';
 
     require_once "dbinfo.php";
-    require_once "connect.php";
-
-    $connection = new mysqli($host, $db_user, $db_pass, $db_name);
-
-    if ($connection->connect_errno!=0){
-            echo "Error: ".$connection->connect_errno;
-    }
-    else{
-        $connection -> query ('SET NAMES utf8');
-        $connection -> query ('SET CHARACTER_SET utf8_unicode_ci');
+    require_once "objects.php";
+    $connection = db_connection();
+    if ($connection != false){
         $login = $_POST['login'];
         $sql = "SELECT COUNT($db_users_id) AS 'ile' FROM $db_users_tab WHERE $db_users_login='$login'";
         $result = $connection->query($sql);
@@ -57,7 +50,6 @@ session_start();
             // info: dodano poprawnie
         }
     }
-
     $connection->close();
     header('Location: main.php');
 

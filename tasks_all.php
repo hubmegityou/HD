@@ -1,14 +1,10 @@
-﻿
-
-
 <?php
-	session_start();
-	
-	if(!isset($_SESSION['online']) || !$_SESSION['online'])
-	{
-		header('Location: index.php');
-		exit();
-	}
+    session_start();
+
+    if(!isset($_SESSION['online']) || !$_SESSION['online']){
+        header('Location: index.php');
+        exit();
+    }
 	
 ?>
 
@@ -96,61 +92,47 @@
                  <br>
                  <br>
                      <?php  
-                    require_once "connect.php";
                     require_once "dbinfo.php";
-                    
-                    
-                    $connection = new mysqli($host, $db_user, $db_pass, $db_name);
-                    if ($connection->connect_errno!=0){
-                        echo "Error: ".$connection->connect_errno;
-                        
-                    }else{
+                    require_once "objects.php";
+                    $connection = db_connection();
+                    if ($connection != false){
                             $tid= filter_input(INPUT_GET, 'tid', FILTER_VALIDATE_INT);    
                             $sid= filter_input(INPUT_GET, 'sid', FILTER_VALIDATE_INT);
-                            $connection -> query ('SET NAMES utf8');
-                            $connection -> query ('SET CHARACTER_SET utf8_unicode_ci');
                             $sql = "SELECT $db_subtask_taskid, $db_subtask_name, $db_subtask_sdate, $db_subtask_edate, $db_subtask_description FROM $db_subtask_tab WHERE $db_subtask_id=$sid";
                             $result = $connection->query($sql);
-  
-                    
-                       while($row = $result->fetch_assoc()){
-                             
-                      $sql = "SELECT $db_subtask_tab.$db_subtask_id, $db_task_tab.$db_task_name, $db_task_tab.$db_task_description, $db_task_tab.$db_task_sdate, $db_task_tab.$db_task_edate, $db_users_tab.$db_users_fname, $db_users_tab.$db_users_lname FROM $db_subtask_tab, $db_task_tab LEFT JOIN $db_users_tab ON $db_task_tab.$db_task_userid = $db_users_tab.$db_users_id WHERE $db_task_tab.$db_task_id =".$row[$db_subtask_taskid];
-                      $result2 = $connection->query($sql);
-                      $row2=$result2->fetch_assoc();
-                        
-                      echo "<br>Nazwa zadania głównego: $row2[$db_task_name] <br>";
-                      echo "Manager: $row2[$db_users_fname] $row2[$db_users_lname]<br>";
-                      echo "Data rozpoczęcia: $row2[$db_task_sdate] <br>";
-                      echo "Data zakończenia: $row2[$db_task_edate]<br>";
-                      echo "Opis: <br>$row2[$db_task_description]<br>"; 
-                      echo "<br><br><br>";
-                      echo "Nazwa podzadania: $row[$db_subtask_name]<br><br>";
-                      echo "<form action='add_date.php' method='post'>";
-                      $sdate= $row[$db_subtask_sdate];
-                      $edate= $row[$db_subtask_edate];
-                      echo "Termin rozpoczęcia: <input type='date' value= $sdate name='stime'/><br><br>";
-                      echo "<input type='hidden' name='myTID' value=$tid>";
-                      echo "<input type='hidden' name='mySID' value=$sid>";
-                      echo "Termin wykonania: <input type='date' value=$edate name='etime'/><br><br>";
-                      echo "Opis zadania: <br> $row[$db_subtask_description]<br><br>";
-                      echo "<br /><button type='submit'>Zatwierdź date</button>";
-                      echo "</form>";
-                      // $connection->close();
-                        }
+                            while($row = $result->fetch_assoc()){
+                                $sql = "SELECT $db_subtask_tab.$db_subtask_id, $db_task_tab.$db_task_name, $db_task_tab.$db_task_description, $db_task_tab.$db_task_sdate, $db_task_tab.$db_task_edate, $db_users_tab.$db_users_fname, $db_users_tab.$db_users_lname FROM $db_subtask_tab, $db_task_tab LEFT JOIN $db_users_tab ON $db_task_tab.$db_task_userid = $db_users_tab.$db_users_id WHERE $db_task_tab.$db_task_id =".$row[$db_subtask_taskid];
+                                $result2 = $connection->query($sql);
+                                $row2=$result2->fetch_assoc();
+                                echo "<br>Nazwa zadania głównego: $row2[$db_task_name] <br>";
+                                echo "Manager: $row2[$db_users_fname] $row2[$db_users_lname]<br>";
+                                echo "Data rozpoczęcia: $row2[$db_task_sdate] <br>";
+                                echo "Data zakończenia: $row2[$db_task_edate]<br>";
+                                echo "Opis: <br>$row2[$db_task_description]<br>"; 
+                                echo "<br><br><br>";
+                                echo "Nazwa podzadania: $row[$db_subtask_name]<br><br>";
+                                echo "<form action='add_date.php' method='post'>";
+                                $sdate= $row[$db_subtask_sdate];
+                                $edate= $row[$db_subtask_edate];
+                                echo "Termin rozpoczęcia: <input type='date' value= $sdate name='stime'/><br><br>";
+                                echo "<input type='hidden' name='myTID' value=$tid>";
+                                echo "<input type='hidden' name='mySID' value=$sid>";
+                                echo "Termin wykonania: <input type='date' value=$edate name='etime'/><br><br>";
+                                echo "Opis zadania: <br> $row[$db_subtask_description]<br><br>";
+                                echo "<br /><button type='submit'>Zatwierdź date</button>";
+                                echo "</form>";
+                                // $connection->close();
+                            }
                     }
     echo "<br><br>ZAŁĄCZNIKI!!!<br><br>";
 //wyświetlanie załączników
 /*
-        $connection = new mysqli($host, $db_user, $db_pass, $db_name);
-            if ($connection->connect_errno!=0){
-                echo "Error: ".$connection->connect_errno;
-
-            }else{
-                    $tid= filter_input(INPUT_GET, 'tid', FILTER_VALIDATE_INT);    
-                    $id= filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
-                    $connection -> query ('SET NAMES utf8');
-                    $connection -> query ('SET CHARACTER_SET utf8_unicode_ci');
+    require_once "dbinfo.php"
+    require_once "objects.php";
+    $connection = db_connection();
+    if ($connection != false){
+        $tid= filter_input(INPUT_GET, 'tid', FILTER_VALIDATE_INT);    
+        $id= filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
  */
         $sql = "SELECT $db_attachment_size, $db_attachment_name, $db_attachment_id FROM $db_attachment_tab WHERE $db_attachment_taskid = '$tid'";
         $result = $connection->query($sql);
@@ -179,34 +161,26 @@
     
     echo "<br><br><br>KOMENTARZE!!!!<br><br>";
                 /*
-              require_once "connect.php";
-              require_once "dbinfo.php";
-
-              $connection = new mysqli($host, $db_user, $db_pass, $db_name);      
-             if ($connection->connect_errno!=0){
-                echo "Error: ".$connection->connect_errno;
-             }else{
-                 $connection -> query ('SET NAMES utf8');
-                 $connection -> query ('SET CHARACTER_SET utf8_unicode_ci');
+    require_once "dbinfo.php";
+    require_once "objects.php";
+    $connection = db_connection();
+    if ($connection != false){
                */
-                 $sql= "select $db_messages_tab.$db_messages_date, $db_messages_tab.$db_messages_text, $db_users_tab.$db_users_fname, $db_users_tab.$db_users_lname FROM $db_messages_tab LEFT JOIN $db_users_tab ON $db_messages_tab.$db_messages_userid= $db_users_tab.$db_users_id WHERE $db_messages_taskid=$tid ";
-                 $result = $connection->query($sql);
-                 
-                 while($row = $result->fetch_assoc()){       
-                  echo "Użytkownik: $row[$db_users_fname]  $row[$db_users_lname],  $row[$db_messages_date]<br>";
-                  echo $row[$db_messages_text];
-                  echo "<br><br>";
-                }
-                   
-             
-            echo "<form action='add_comment.php' method='post'>";
-            echo "<textarea name='comment' id='trescp' rows='6' style='width:50%'></textarea><br><br>";
-            echo "<input type='hidden' name='mySID' value=$sid>";
-            echo "<input type='hidden' name='myTID' value=$tid>";
-            echo "<br /><button type='submit'>Dodaj komentarz</button></form>";
-             
-             
-            $connection -> close();
+        $sql= "select $db_messages_tab.$db_messages_date, $db_messages_tab.$db_messages_text, $db_users_tab.$db_users_fname, $db_users_tab.$db_users_lname FROM $db_messages_tab LEFT JOIN $db_users_tab ON $db_messages_tab.$db_messages_userid= $db_users_tab.$db_users_id WHERE $db_messages_taskid=$tid ";
+        $result = $connection->query($sql);
+
+        while($row = $result->fetch_assoc()){       
+            echo "Użytkownik: $row[$db_users_fname]  $row[$db_users_lname],  $row[$db_messages_date]<br>";
+            echo $row[$db_messages_text];
+            echo "<br><br>";
+        }
+        echo "<form action='add_comment.php' method='post'>";
+        echo "<textarea name='comment' id='trescp' rows='6' style='width:50%'></textarea><br><br>";
+        echo "<input type='hidden' name='mySID' value=$sid>";
+        echo "<input type='hidden' name='myTID' value=$tid>";
+        echo "<br /><button type='submit'>Dodaj komentarz</button></form>";
+
+        $connection -> close();
 ?>
                 
     </div>

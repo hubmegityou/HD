@@ -1,14 +1,13 @@
-
 <?php
 
-	session_start();
-	
-	if((!isset($_SESSION['online']) || !$_SESSION['online']) /*&& $_SESSION['function'] == 2 */ ) //function := 2 ==> manager
-        {
-		header('Location: index.php');
-		exit();
-	}
-	
+    session_start();
+
+    if((!isset($_SESSION['online']) || !$_SESSION['online']) /*&& $_SESSION['function'] == 2 */ ) //function := 2 ==> manager
+    {
+            header('Location: index.php');
+            exit();
+    }
+
 ?>
 
 

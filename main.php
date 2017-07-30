@@ -1,13 +1,10 @@
-
 <?php
+    session_start();
 
-	session_start();
-	
-	if(!isset($_SESSION['online']) || !$_SESSION['online'])
-	{
-		header('Location: index.php');
-		exit();
-	}
+    if(!isset($_SESSION['online']) || !$_SESSION['online']){
+            header('Location: index.php');
+            exit();
+    }
 	
 ?>
 
@@ -44,21 +41,13 @@
 			defaultDate: date,
 			eventLimit: true,
 			events: [ 
-                           
+       //Z TYM COŚ TRZEBA ZROBIĆ!!!!!!!!!!
                           <?php 
 
-                        require_once "connect.php";
                         require_once "dbinfo.php";
-                    
-                    
-                        $connection = new mysqli($host, $db_user, $db_pass, $db_name);
-                        if ($connection->connect_errno!=0){
-                        echo "Error: ".$connection->connect_errno;
-                        
-                        }else{
-                            $connection -> query ('SET NAMES utf8');
-                            $connection -> query ('SET CHARACTER_SET utf8_unicode_ci');
-                            
+                        require_once "objects.php";
+                        $connection = db_connection();
+                        if ($connection != false){
                             $sql= "select $db_subtask_name, $db_subtask_sdate, $db_subtask_edate FROM $db_subtask_tab WHERE $db_subtask_done='0' AND $db_subtask_userid =". $_SESSION['id'];                        
                             $result = $connection->query($sql);
                             
@@ -68,6 +57,7 @@
                                 $rows= "{ title: '".$row[$db_subtask_name]."', start: '".$row[$db_subtask_sdate]."', end: '".$row[$db_subtask_edate]."'},";    
                                 echo $rows;}  
                         }
+                        //else info o błędzie
 
                         while($row = $result->fetch_assoc()){
                         $row[$db_task_edate] = strtotime("$row[$db_task_edate] + 1 day");
@@ -75,59 +65,52 @@
                         $rows= "{ title: '".$row[$db_task_name]."', start: '".$row[$db_task_sdate]."', end: '".$row[$db_task_edate]."'},";    
                         echo $rows;
                          }
-
-                            ?>  
+                         $connection->close();
+?>  
 			]
 		});
 		
 	});
 	</script>
         
-        <?php 
-              If($_SESSION['function']=="2" ){ ?>
-        
-        
-          <script>
-	$(document).ready(function() {
-            var date= new Date();
-        
-		$('#calendar2').fullCalendar({
-                        height: 700,
-			defaultDate: date,
-			eventLimit: true,
-			events: [ 
-                           
-                          <?php 
+<?php 
+If($_SESSION['function']=="2" ){ ?>
 
-                        require_once "connect.php";
-                        require_once "dbinfo.php";
-                    
-                    
-                        $connection = new mysqli($host, $db_user, $db_pass, $db_name);
-                        if ($connection->connect_errno!=0){
-                        echo "Error: ".$connection->connect_errno;
-                        
-                        }else{
-                            $connection -> query ('SET NAMES utf8');
-                            $connection -> query ('SET CHARACTER_SET utf8_unicode_ci');
-                           
-                            $sql= "select $db_task_name, $db_task_sdate, $db_task_edate FROM $db_task_tab WHERE $db_task_done='0' AND $db_task_userid =". $_SESSION['id'];                        
-                            $result = $connection->query($sql);
-                                
-                            while($row = $result->fetch_assoc()){
-                                $row[$db_task_edate] = strtotime("$row[$db_task_edate] + 1 day");
-                                $row[$db_task_edate] = date("Y-m-d", $row[$db_task_edate]);
-                                $rows= "{ title: '".$row[$db_task_name]."', start: '".$row[$db_task_sdate]."', end: '".$row[$db_task_edate]."'},";    
-                                echo $rows;
-                                }
-                            
+
+  <script>
+$(document).ready(function() {
+    var date= new Date();
+
+        $('#calendar2').fullCalendar({
+                height: 700,
+                defaultDate: date,
+                eventLimit: true,
+                events: [ 
+
+                  <?php 
+        //Z TYM TEŻ
+                require_once "dbinfo.php";
+                require_once "objects.php";
+                $connection = db_connection();
+                if ($connection != false){
+                    $sql= "select $db_task_name, $db_task_sdate, $db_task_edate FROM $db_task_tab WHERE $db_task_done='0' AND $db_task_userid =". $_SESSION['id'];                        
+                    $result = $connection->query($sql);
+
+                    while($row = $result->fetch_assoc()){
+                        $row[$db_task_edate] = strtotime("$row[$db_task_edate] + 1 day");
+                        $row[$db_task_edate] = date("Y-m-d", $row[$db_task_edate]);
+                        $rows= "{ title: '".$row[$db_task_name]."', start: '".$row[$db_task_sdate]."', end: '".$row[$db_task_edate]."'},";    
+                        echo $rows;
                         }
-                            ?>  
-			]
-		});
-		
-	});
-              </script><?php }?>
+
+                }
+                $connection->close();
+                ?>  
+                ]
+        });
+
+});
+              </script><?php } //WTF PO CO TO???? ?> 
 </head>
 <body>
     <div id="wrapper">

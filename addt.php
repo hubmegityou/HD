@@ -13,16 +13,9 @@
 	}
     
     require_once "dbinfo.php";
-    require_once "connect.php";
-    
-    $connection = new mysqli($host, $db_user, $db_pass, $db_name);
-
-    if ($connection->connect_errno!=0){
-	echo "Error: ".$connection->connect_errno;
-    }
-    else{
-        $connection -> query ('SET NAMES utf8');
-        $connection -> query ('SET CHARACTER_SET utf8_unicode_ci');
+    require_once "objects.php";
+    $connection = db_connection();
+    if ($connection != false){
         
         $priority = $_POST['priority'];
         $sdate = $_POST['stime'];
@@ -42,6 +35,9 @@
         $sql = "INSERT INTO $db_task_tab ($db_task_id, $db_task_name, $db_task_description, $db_task_sdate, $db_task_edate, $db_task_userid, $db_task_priority, $db_task_done) VALUES (NULL, '$topic', '$desc', '$sdate', '$edate', $userid, $priority, 0)";
         if ($result = $connection->query($sql)){
             //info: dodano poprawnie
+            var_dump($result);
+            echo "<br>";
+            var_dump($connection);
         }
         $sql = "SELECT $db_task_id FROM $db_task_tab WHERE $db_task_name='$topic' AND $db_task_userid='$userid' AND $db_task_sdate='$sdate' AND $db_task_edate='$edate'";
         if ($result = $connection->query($sql))
@@ -60,5 +56,5 @@
             }
         }
     $connection->close();
-    header('Location: main.php');
+    //header('Location: main.php');
 ?>

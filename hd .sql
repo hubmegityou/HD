@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 31 Lip 2017, 08:34
+-- Czas generowania: 31 Lip 2017, 13:32
 -- Wersja serwera: 10.1.24-MariaDB
 -- Wersja PHP: 7.1.6
 
@@ -113,6 +113,7 @@ INSERT INTO `messages` (`message_ID`, `user_ID`, `date`, `task_ID`, `text`) VALU
 
 CREATE TABLE `notifications` (
   `notification_ID` int(11) NOT NULL,
+  `date` datetime NOT NULL,
   `task_ID` int(11) NOT NULL,
   `subtask_ID` int(11) NOT NULL,
   `text` text NOT NULL,
@@ -131,9 +132,39 @@ CREATE TABLE `notifications` (
 -- Zrzut danych tabeli `notifications`
 --
 
-INSERT INTO `notifications` (`notification_ID`, `task_ID`, `subtask_ID`, `text`, `read_nots`) VALUES
-(1, 17, 19, 'dupa dupa dupa', ''),
-(2, 17, 19, 'dupaaaaaaa dupaaaaaa dupa', '');
+INSERT INTO `notifications` (`notification_ID`, `date`, `task_ID`, `subtask_ID`, `text`, `read_nots`) VALUES
+(1, '0000-00-00 00:00:00', 17, 19, 'dupa dupa dupa', ''),
+(2, '0000-00-00 00:00:00', 17, 19, 'dupaaaaaaa dupaaaaaa dupa', ''),
+(3, '0000-00-00 00:00:00', 17, 19, 'dupa dupa dupa', ''),
+(4, '0000-00-00 00:00:00', 17, 19, 'dupaaaaaaa dupaaaaaa dupa', ''),
+(5, '0000-00-00 00:00:00', 17, 19, 'dupa dupa dupa', ''),
+(6, '0000-00-00 00:00:00', 17, 19, 'dupaaaaaaa dupaaaaaa dupa', ''),
+(7, '0000-00-00 00:00:00', 17, 19, 'dupa dupa dupa', ''),
+(8, '0000-00-00 00:00:00', 17, 19, 'dupaaaaaaa dupaaaaaa dupa', ''),
+(9, '0000-00-00 00:00:00', 17, 19, 'dupa dupa dupa', ''),
+(10, '0000-00-00 00:00:00', 17, 19, 'dupaaaaaaa dupaaaaaa dupa', ''),
+(11, '0000-00-00 00:00:00', 17, 19, 'dupa dupa dupa', ''),
+(12, '0000-00-00 00:00:00', 17, 19, 'dupaaaaaaa dupaaaaaa dupa', ''),
+(13, '0000-00-00 00:00:00', 17, 19, 'dupa dupa dupa', ''),
+(14, '0000-00-00 00:00:00', 17, 19, 'dupaaaaaaa dupaaaaaa dupa', ''),
+(15, '0000-00-00 00:00:00', 17, 19, 'dupa dupa dupa', ''),
+(16, '0000-00-00 00:00:00', 17, 19, 'dupaaaaaaa dupaaaaaa dupa', ''),
+(17, '0000-00-00 00:00:00', 17, 19, 'dupa dupa dupa', ''),
+(18, '0000-00-00 00:00:00', 17, 19, 'dupaaaaaaa dupaaaaaa dupa', ''),
+(19, '0000-00-00 00:00:00', 17, 19, 'dupa dupa dupa', ''),
+(20, '0000-00-00 00:00:00', 17, 19, 'dupaaaaaaa dupaaaaaa dupa', ''),
+(21, '0000-00-00 00:00:00', 17, 19, 'dupa dupa dupa', ''),
+(22, '0000-00-00 00:00:00', 17, 19, 'dupaaaaaaa dupaaaaaa dupa', ''),
+(23, '0000-00-00 00:00:00', 17, 19, 'dupa dupa dupa', ''),
+(24, '0000-00-00 00:00:00', 17, 19, 'dupaaaaaaa dupaaaaaa dupa', ''),
+(25, '0000-00-00 00:00:00', 17, 19, 'dupa dupa dupa', ''),
+(26, '0000-00-00 00:00:00', 17, 19, 'dupaaaaaaa dupaaaaaa dupa', ''),
+(27, '0000-00-00 00:00:00', 17, 19, 'dupa dupa dupa', ''),
+(28, '0000-00-00 00:00:00', 17, 19, 'dupaaaaaaa dupaaaaaa dupa', ''),
+(29, '0000-00-00 00:00:00', 17, 19, 'dupa dupa dupa', ''),
+(30, '0000-00-00 00:00:00', 17, 19, 'dupaaaaaaa dupaaaaaa dupa', ''),
+(31, '0000-00-00 00:00:00', 17, 19, 'dupa dupa dupa', ''),
+(32, '0000-00-00 00:00:00', 17, 19, 'dupaaaaaaa dupaaaaaa dupa', '');
 
 -- --------------------------------------------------------
 
@@ -171,7 +202,12 @@ INSERT INTO `subtask` (`subtask_ID`, `task_ID`, `name`, `start_date`, `end_date`
 (16, 23, 'podzadanie', '2017-07-21', '2017-07-26', 'podzadanie do wykonania', 17, 0),
 (17, 23, 'asdfghfdsadfg', '2017-08-04', '2017-09-29', 'dfdewqwedfgbfdwqwsdfvbfdfswasdfvb', 5, 0),
 (18, 16, 'asdfghfdsadfg', '2017-09-03', '2017-10-28', 'dfdewqwedfgbfdwqwsdfvbfdfswasdfvb', 5, 0),
-(19, 17, 'mmm', '2017-07-06', '2017-07-07', 'mmmm', 17, 1);
+(19, 17, 'mmm', '2017-07-06', '2017-07-07', 'mmmm', 17, 1),
+(20, 16, 'dupa', '2017-07-22', '2018-05-25', 'hehe', 17, 0),
+(21, 19, 'ddd', '2017-07-06', '2018-11-24', 'ee', 17, 0),
+(22, 20, 'ngerwe', '2017-07-14', '2017-07-30', 'ergherwq', 17, 0),
+(23, 19, 'wertjhtrew3q3werr', '2017-07-15', '2017-07-22', 'erghrewerfg', 18, 0),
+(24, 20, 'yhjkjhhjk', '2017-07-05', '2017-07-23', 'ioiuuk', 17, 0);
 
 -- --------------------------------------------------------
 
@@ -321,12 +357,12 @@ ALTER TABLE `messages`
 -- AUTO_INCREMENT dla tabeli `notifications`
 --
 ALTER TABLE `notifications`
-  MODIFY `notification_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `notification_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 --
 -- AUTO_INCREMENT dla tabeli `subtask`
 --
 ALTER TABLE `subtask`
-  MODIFY `subtask_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `subtask_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 --
 -- AUTO_INCREMENT dla tabeli `task`
 --

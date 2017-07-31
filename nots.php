@@ -109,11 +109,11 @@
                            $result_id = $connection->query($sql_id);
                            while($row_id = $result_id->fetch_assoc()){
                       
-                           $sql= "select $db_notifications_tab.$db_notifications_text from $db_notifications_tab left join $db_task_tab ON $db_notifications_tab.$db_notifications_taskid = $db_task_tab.$db_task_id  WHERE $db_task_tab.$db_task_id=".$row_id[$db_subtask_taskid];
+                           $sql= "select $db_notifications_tab.$db_notifications_text ,$db_notifications_tab.$db_notifications_date  from $db_notifications_tab left join $db_task_tab ON $db_notifications_tab.$db_notifications_taskid = $db_task_tab.$db_task_id  WHERE $db_task_tab.$db_task_id=".$row_id[$db_subtask_taskid];
        
                            $result = $connection->query($sql);
                            while($row = $result->fetch_assoc()){
-                           echo $row[$db_notifications_text].'<br>';}
+                           echo "[".$row[$db_notifications_date]."]    ".$row[$db_notifications_text].'<br><br>';}
 
                     }}
                  

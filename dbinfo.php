@@ -48,6 +48,7 @@
                 
         $db_notifications_tab = 'notifications';
                 $db_notifications_id = 'notification_ID';
+                $db_notifications_date = 'date';
                 $db_notifications_taskid = 'task_ID';
                 $db_notfications_subtaskid = 'subtask_ID';
                 $db_notifications_text = 'text';

@@ -17,6 +17,8 @@
         header("Content-Length: ".$row[$db_attachment_size]);
         header("Content-Disposition: attachment; filename=\"".substr($row[$db_attachment_name], 17)."\"");
         readfile("attachments/".$row[$db_attachment_name]);
+    }else {
+         echo "<script type=\"text/javascript\">alert('błąd w połączeniu z bazą');</script>"; 
     }
-    // else: erro info
+   
 ?>

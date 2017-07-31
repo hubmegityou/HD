@@ -18,10 +18,10 @@ session_start();
             if (move_uploaded_file($_FILES['attachment']['tmp_name'], 'attachments/'.$time.$_FILES['attachment']['name'])){
                 $sql = "INSERT INTO $db_attachment_tab ($db_attachment_id, $db_attachment_name, $db_attachment_type, $db_attachment_size, $db_attachment_taskid) VALUES (NULL, '".$time.$_FILES['attachment']['name']."', '".$_FILES['attachment']['type']."', '".$_FILES['attachment']['size']."', '".$_POST['myTID']."')";
                 if ($result = $connection->query($sql));
-                    //info: załącznik dodany poprawnie
+                     echo "<script type=\"text/javascript\">window.alert('Dodano załącznik');</script>";
             }
         }
-        //else info o błędzie
+         echo "<script type=\"text/javascript\">alert('Niepoprawny format pliku');</script>";
         unset($_FILE);
     }
     $connection->close();

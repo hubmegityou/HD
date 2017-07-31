@@ -11,6 +11,6 @@
             else
                 header('Location: tasks.php');
         }  
-        //else komunikat o błędzie
+         echo "<script type=\"text/javascript\">alert('nie udalo się :(');</script>";
     }                            
 ?>

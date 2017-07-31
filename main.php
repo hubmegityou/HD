@@ -120,7 +120,7 @@ $(document).ready(function() {
     <div style="color: white;
     padding: 15px 50px 5px 50px;
     float: right;
-    font-size: 16px;"> 
+    font-size: 16px;"> <a href="nots.php" class="btn btn-danger square-btn-adjust">Powiadomienia</a> 
         <a href="logout.php" class="btn btn-danger square-btn-adjust">Wyloguj</a> 
     </div>
         </nav>   
@@ -191,10 +191,7 @@ $(document).ready(function() {
                      <br>
                      <br>      
                      <div id='calendar'></div>
-                 <br>
-                     
-             
-                 
+                 <br>         
                  
                
     </div>
@@ -207,21 +204,17 @@ $(document).ready(function() {
 </body>
 </html>
       
-
 <script>
+ 
+    
 			var NotifcationsTest = {
 				VerifyBrowserSupport: function() {
 					return ("Notification" in window);
 				},
 				ShowNotification: function(){
-                                    
-                                    <?php 
-                                    // tu będzie kod php który potem trzeba będzie gdzies wywalić xd
-                               
-                                    ?>
+ 
+                                    var notification = new Notification("hehehe");
                                   
-                                        
-					var notification = new Notification(notifications);
 				},
 				RequestForPermissionAndShow: function(){
 					// Mamy prawo wyświetlać powiadomienia

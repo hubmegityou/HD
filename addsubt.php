@@ -22,8 +22,8 @@
         
         if ($sdate > $edate){
             
-                //info o niepoprawnej dacie
-            
+                
+            echo "<script type=\"text/javascript\">alert('Niepoprawna data');</script>"; // sa ale tak jakby ich nie było bo strona przeskakuje dalej i aletu nie widac xDDDD
             header('Location: add_subtasks.php');
             close();
         }
@@ -35,9 +35,9 @@
         
         $sql = "INSERT INTO $db_subtask_tab ($db_subtask_id,$db_subtask_taskid,$db_subtask_name,$db_subtask_sdate,$db_subtask_edate,$db_subtask_description,$db_subtask_userid) VALUES (NULL,$taskid,'$topic','$sdate','$edate','$desc',$userid)";
         if ($result = $connection->query($sql)){
-            // info: dodano poprawnie
+            echo "<script type=\"text/javascript\">alert('dodawanie zakończone');</script>";// sa ale tak jakby ich nie było bo strona przeskakuje dalej i aletu nie widac xDDDD
         }
     }    
     $connection->close();
-    header('Location: main.php');
+    //header('Location: main.php');
 ?>

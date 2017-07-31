@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 24 Lip 2017, 14:59
--- Wersja serwera: 10.1.22-MariaDB
--- Wersja PHP: 7.1.4
+-- Czas generowania: 31 Lip 2017, 08:34
+-- Wersja serwera: 10.1.24-MariaDB
+-- Wersja PHP: 7.1.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -32,9 +32,7 @@ USE `hd`;
 
 CREATE TABLE `attachment` (
   `att_ID` int(11) NOT NULL,
-  `name` text NOT NULL,
-  `type` text NOT NULL,
-  `size` int(11) NOT NULL,
+  `attachment` text NOT NULL,
   `task_ID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -43,13 +41,6 @@ CREATE TABLE `attachment` (
 --   `task_ID`
 --       `task` -> `task_ID`
 --
-
---
--- Zrzut danych tabeli `attachment`
---
-
-INSERT INTO `attachment` (`att_ID`, `name`, `type`, `size`, `task_ID`) VALUES
-(1, 'test.txt', '', 0, 17);
 
 -- --------------------------------------------------------
 
@@ -112,7 +103,37 @@ INSERT INTO `messages` (`message_ID`, `user_ID`, `date`, `task_ID`, `text`) VALU
 (6, 17, '2017-07-24 13:10:09', 16, 'dupa dupa dupa dupa dupa dupa\r\n'),
 (7, 17, '2017-07-24 13:10:29', 16, 'qawertykjytrewq23etyuiouy5432q357uiuytr5w33r6u'),
 (8, 5, '2017-07-24 13:12:28', 16, 'dudnbkwddjwqndskldwqkslv'),
-(9, 17, '2017-07-24 14:31:30', 16, 'działa!!!1\r\n');
+(12, 5, '2017-07-24 14:18:50', 16, 'dd');
+
+-- --------------------------------------------------------
+
+--
+-- Struktura tabeli dla tabeli `notifications`
+--
+
+CREATE TABLE `notifications` (
+  `notification_ID` int(11) NOT NULL,
+  `task_ID` int(11) NOT NULL,
+  `subtask_ID` int(11) NOT NULL,
+  `text` text NOT NULL,
+  `read_nots` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- RELATIONSHIPS FOR TABLE `notifications`:
+--   `task_ID`
+--       `task` -> `task_ID`
+--   `subtask_ID`
+--       `subtask` -> `subtask_ID`
+--
+
+--
+-- Zrzut danych tabeli `notifications`
+--
+
+INSERT INTO `notifications` (`notification_ID`, `task_ID`, `subtask_ID`, `text`, `read_nots`) VALUES
+(1, 17, 19, 'dupa dupa dupa', ''),
+(2, 17, 19, 'dupaaaaaaa dupaaaaaa dupa', '');
 
 -- --------------------------------------------------------
 
@@ -144,9 +165,13 @@ CREATE TABLE `subtask` (
 --
 
 INSERT INTO `subtask` (`subtask_ID`, `task_ID`, `name`, `start_date`, `end_date`, `description`, `user_ID`, `done`) VALUES
-(13, 16, 'podzadanie', '2017-07-21', '2017-07-23', 'podzadanie do wykonania', 17, 0),
-(14, 16, 'asdfghfdsadfg', '2017-07-03', '2017-07-28', 'dfdewqwedfgbfdwqwsdfvbfdfswasdfvb', 5, 0),
-(15, 16, 'asdfghfdsadfg', '2017-07-03', '2017-07-28', 'dfdewqwedfgbfdwqwsdfvbfdfswasdfvb', 5, 0);
+(13, 16, 'podzadanie', '2017-07-21', '2017-07-26', 'podzadanie do wykonania', 17, 0),
+(14, 16, 'asdfghfdsadfg', '2017-08-04', '2017-09-29', 'dfdewqwedfgbfdwqwsdfvbfdfswasdfvb', 5, 0),
+(15, 16, 'asdfghfdsadfg', '2017-09-03', '2017-10-28', 'dfdewqwedfgbfdwqwsdfvbfdfswasdfvb', 5, 0),
+(16, 23, 'podzadanie', '2017-07-21', '2017-07-26', 'podzadanie do wykonania', 17, 0),
+(17, 23, 'asdfghfdsadfg', '2017-08-04', '2017-09-29', 'dfdewqwedfgbfdwqwsdfvbfdfswasdfvb', 5, 0),
+(18, 16, 'asdfghfdsadfg', '2017-09-03', '2017-10-28', 'dfdewqwedfgbfdwqwsdfvbfdfswasdfvb', 5, 0),
+(19, 17, 'mmm', '2017-07-06', '2017-07-07', 'mmmm', 17, 1);
 
 -- --------------------------------------------------------
 
@@ -177,7 +202,13 @@ CREATE TABLE `task` (
 
 INSERT INTO `task` (`task_ID`, `name`, `description`, `start_date`, `end_date`, `user_ID`, `priority`, `done`) VALUES
 (16, 'zadanie1', 'treść żłąłó', '2017-07-21', '2017-07-28', 17, 0, 0),
-(17, 'załącznik jakiś bez pr', 'stare z załącznikiem', '2017-07-12', '2017-07-20', 17, 0, 0);
+(17, 'zadanie1', 'treść żłąłó', '2017-07-21', '2017-07-28', 17, 0, 0),
+(18, 'zadanie1', 'treść żłąłó', '2017-07-21', '2017-07-28', 17, 0, 0),
+(19, 'zadanie1', 'treść żłąłó', '2017-07-21', '2017-07-28', 17, 0, 0),
+(20, 'zadanie1', 'treść żłąłó', '2017-07-21', '2017-07-28', 17, 0, 0),
+(21, 'zadanie1', 'treść żłąłó', '2017-07-21', '2017-07-28', 17, 0, 0),
+(22, 'zadanie1', 'treść żłąłó', '2017-07-21', '2017-07-28', 17, 0, 0),
+(23, 'zadanie1', 'treść żłąłó', '2017-07-21', '2017-07-28', 17, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -208,7 +239,9 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`user_ID`, `first_name`, `last_name`, `email`, `login`, `password`, `user_function`) VALUES
 (5, 'asdas', 'asdasd', 'asdasd', 'aaa', 'b2ca678b4c936f905fb82f2733f5297f', 1),
 (17, 'Jan', 'Kowalski', 'ksda@dsd', 'qwe', '202cb962ac59075b964b07152d234b70', 2),
-(18, 'Pracownik', 'Aaaa', 'kkk@kkk', 'zxc', '202cb962ac59075b964b07152d234b70', 3);
+(18, 'Pracownik', 'Aaaa', 'kkk@kkk', 'zxc', '202cb962ac59075b964b07152d234b70', 3),
+(19, '', '', '', '', 'd41d8cd98f00b204e9800998ecf8427e', 1),
+(20, 'Lol', 'Ll', 'lol@lol.lol', 'lol', '9cdfb439c7876e703e307864c9167a15', 1);
 
 --
 -- Indeksy dla zrzutów tabel
@@ -234,6 +267,14 @@ ALTER TABLE `messages`
   ADD PRIMARY KEY (`message_ID`),
   ADD KEY `user_ID` (`user_ID`),
   ADD KEY `task_ID` (`task_ID`);
+
+--
+-- Indexes for table `notifications`
+--
+ALTER TABLE `notifications`
+  ADD PRIMARY KEY (`notification_ID`),
+  ADD KEY `task_ID` (`task_ID`),
+  ADD KEY `subtask_ID` (`subtask_ID`);
 
 --
 -- Indexes for table `subtask`
@@ -265,7 +306,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT dla tabeli `attachment`
 --
 ALTER TABLE `attachment`
-  MODIFY `att_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `att_ID` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT dla tabeli `functions`
 --
@@ -275,22 +316,27 @@ ALTER TABLE `functions`
 -- AUTO_INCREMENT dla tabeli `messages`
 --
 ALTER TABLE `messages`
-  MODIFY `message_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `message_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+--
+-- AUTO_INCREMENT dla tabeli `notifications`
+--
+ALTER TABLE `notifications`
+  MODIFY `notification_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT dla tabeli `subtask`
 --
 ALTER TABLE `subtask`
-  MODIFY `subtask_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `subtask_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 --
 -- AUTO_INCREMENT dla tabeli `task`
 --
 ALTER TABLE `task`
-  MODIFY `task_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `task_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 --
 -- AUTO_INCREMENT dla tabeli `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `user_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 --
 -- Ograniczenia dla zrzutów tabel
 --
@@ -307,6 +353,13 @@ ALTER TABLE `attachment`
 ALTER TABLE `messages`
   ADD CONSTRAINT `messages_ibfk_1` FOREIGN KEY (`task_ID`) REFERENCES `task` (`task_ID`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `messages_ibfk_2` FOREIGN KEY (`user_ID`) REFERENCES `users` (`user_ID`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Ograniczenia dla tabeli `notifications`
+--
+ALTER TABLE `notifications`
+  ADD CONSTRAINT `notifications_ibfk_1` FOREIGN KEY (`task_ID`) REFERENCES `task` (`task_ID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `notifications_ibfk_2` FOREIGN KEY (`subtask_ID`) REFERENCES `subtask` (`subtask_ID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Ograniczenia dla tabeli `subtask`

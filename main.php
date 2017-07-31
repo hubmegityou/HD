@@ -29,8 +29,7 @@
 	<script src='calendar/lib/moment.min.js'></script>
         <script src='calendar/fullcalendar.js'></script>
         <script src='calendar/locale/pl.js'></script>
-        
-        
+   
         
       <script>
 	$(document).ready(function() {
@@ -121,7 +120,9 @@ $(document).ready(function() {
     <div style="color: white;
     padding: 15px 50px 5px 50px;
     float: right;
-    font-size: 16px;">  <a href="logout.php" class="btn btn-danger square-btn-adjust">Wyloguj</a> </div>
+    font-size: 16px;"> 
+        <a href="logout.php" class="btn btn-danger square-btn-adjust">Wyloguj</a> 
+    </div>
         </nav>   
            <!-- /. NAV TOP  -->
                 <nav class="navbar-default navbar-side" role="navigation">
@@ -205,7 +206,40 @@ $(document).ready(function() {
    
 </body>
 </html>
-    
-    
-    
+      
 
+<script>
+			var NotifcationsTest = {
+				VerifyBrowserSupport: function() {
+					return ("Notification" in window);
+				},
+				ShowNotification: function(){
+					var notification = new Notification("Witaj świecie!");
+				},
+				RequestForPermissionAndShow: function(){
+					// Mamy prawo wyświetlać powiadomienia
+					if (Notification.permission === "granted") {
+						NotifcationsTest.ShowNotification();
+					}
+					// Brak wsparcia w Chrome dla właściwości permission
+					else if (Notification.permission !== "denied") {
+						Notification.requestPermission(function (permission) {
+							// Dodajemy właściwość permission do obiektu Notification
+							if(!("permission" in Notification)) {
+								Notification.permission = permission;
+							}
+							if (permission === "granted") {
+								NotifcationsTest.ShowNotification();
+							}
+						});
+					}
+				}
+			}
+			window.onload = function(){
+					if(!NotifcationsTest.VerifyBrowserSupport()){
+						alert("Brak wsparcia dla Notifications API");				
+					}
+					NotifcationsTest.RequestForPermissionAndShow();	
+			};
+			
+		</script>

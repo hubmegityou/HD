@@ -177,3 +177,40 @@
 }
 
 </script>
+
+
+<script>
+			var NotifcationsTest = {
+				VerifyBrowserSupport: function() {
+					return ("Notification" in window);
+				},
+				ShowNotification: function(){
+					var notification = new Notification("Witaj świecie!");
+				},
+				RequestForPermissionAndShow: function(){
+					// Mamy prawo wyświetlać powiadomienia
+					if (Notification.permission === "granted") {
+						NotifcationsTest.ShowNotification();
+					}
+					// Brak wsparcia w Chrome dla właściwości permission
+					else if (Notification.permission !== "denied") {
+						Notification.requestPermission(function (permission) {
+							// Dodajemy właściwość permission do obiektu Notification
+							if(!("permission" in Notification)) {
+								Notification.permission = permission;
+							}
+							if (permission === "granted") {
+								NotifcationsTest.ShowNotification();
+							}
+						});
+					}
+				}
+			}
+			window.onload = function(){
+					if(!NotifcationsTest.VerifyBrowserSupport()){
+						alert("Brak wsparcia dla Notifications API");				
+					}
+					NotifcationsTest.RequestForPermissionAndShow();	
+			};
+			
+		</script>

@@ -40,7 +40,7 @@
 			defaultDate: date,
 			eventLimit: true,
 			events: [ 
-       //Z TYM COŚ TRZEBA ZROBIĆ!!!!!!!!!!
+       //Z TYM COŚ TRZEBA ZROBIĆ!!!!!!!!!! ////// coś xD
                           <?php 
 
                         require_once "dbinfo.php";
@@ -73,7 +73,7 @@
 	</script>
         
 <?php 
-If($_SESSION['function']=="2" ){ ?>
+If($_SESSION['function']=="2" ){ ///// <-------  tuuuuu sie to zaczyna ?>  
 
 
   <script>
@@ -109,7 +109,7 @@ $(document).ready(function() {
         });
 
 });
-              </script><?php } //WTF PO CO TO???? ?> 
+              </script><?php } //< tu konczy :D-------WTF PO CO TO????      ediiiiiit tak więc jak sobie zauwazysz to nasz kod z php zaczyna sie w linii 75 i to jest jego zamknięcie ponieważ cały ten kod js wykonye sie tylko wtedy session function=2 ?> 
 </head>
 <body>
     <div id="wrapper">
@@ -214,7 +214,14 @@ $(document).ready(function() {
 					return ("Notification" in window);
 				},
 				ShowNotification: function(){
-					var notification = new Notification("Witaj świecie!");
+                                    
+                                    <?php 
+                                    // tu będzie kod php który potem trzeba będzie gdzies wywalić xd
+                               
+                                    ?>
+                                  
+                                        
+					var notification = new Notification(notifications);
 				},
 				RequestForPermissionAndShow: function(){
 					// Mamy prawo wyświetlać powiadomienia

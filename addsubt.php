@@ -36,8 +36,17 @@
         $sql = "INSERT INTO $db_subtask_tab ($db_subtask_id,$db_subtask_taskid,$db_subtask_name,$db_subtask_sdate,$db_subtask_edate,$db_subtask_description,$db_subtask_userid) VALUES (NULL,$taskid,'$topic','$sdate','$edate','$desc',$userid)";
         if ($result = $connection->query($sql)){
             echo "<script type=\"text/javascript\">alert('dodawanie zakończone');</script>";// sa ale tak jakby ich nie było bo strona przeskakuje dalej i aletu nie widac xDDDD
-        }
+            
+            $sql = "SELECT $db_subtask_id FROM $db_subtask_tab WHERE $db_subtask_taskid='$taskid' AND $db_subtask_name='$topic' AND $db_subtask_userid='$userid'";
+            $result = $connection->query($sql);
+            $row = $result -> fetch_assoc();
+            $subtaskid = $row[$db_subtask_id];
+            $text = "Masz przydzielone nowe zadanie";
+            $sql = "INSERT INTO $db_notifications_tab ($db_notifications_id, $db_notifications_date, $db_notifications_taskid, $db_notifications_subtaskid, $db_notifications_text) VALUES (NULL, '".date('Y-m-d H:i:s')."', '$taskid', '$subtaskid', '$text')";        }
+            if ($result = $connection -> query($sql))
+                    echo "działa";
+            
     }    
     $connection->close();
-    //header('Location: main.php');
+    header('Location: main.php');
 ?>

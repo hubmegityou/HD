@@ -6,7 +6,6 @@
 		header('Location: index.php');
 		exit();
 	}
-	
 ?>
 
 
@@ -89,11 +88,11 @@
 <form action="addsubt.php" method="post">
 <center>
 <?php
-    require_once "connect.php";
-    require_once "dbinfo.php";
-    $connection = mysqli_connect($host, $db_user, $db_pass, $db_name);
-    $connection -> query ('SET NAMES utf8');
-    $connection -> query ('SET CHARACTER_SET utf8_unicode_ci');
+    
+    
+    require_once "database/dbinfo.php";
+    require_once "objects.php";
+    $connection = db_connection();
     $sql = "SELECT $db_users_fname, $db_users_lname, $db_functions_desc, $db_users_id FROM $db_users_tab INNER JOIN $db_functions_tab ON $db_users_function = $db_functions_id WHERE $db_users_function>1 ORDER BY $db_users_function, $db_users_lname ASC";
     $result = $connection->query($sql);
         echo '<div class="temat"><p class="stemat">';
@@ -146,37 +145,7 @@
 </html>
 
 <script>
-			var NotifcationsTest = {
-				VerifyBrowserSupport: function() {
-					return ("Notification" in window);
-				},
-				ShowNotification: function(){
-					var notification = new Notification("Witaj świecie!");
-				},
-				RequestForPermissionAndShow: function(){
-					// Mamy prawo wyświetlać powiadomienia
-					if (Notification.permission === "granted") {
-						NotifcationsTest.ShowNotification();
-					}
-					// Brak wsparcia w Chrome dla właściwości permission
-					else if (Notification.permission !== "denied") {
-						Notification.requestPermission(function (permission) {
-							// Dodajemy właściwość permission do obiektu Notification
-							if(!("permission" in Notification)) {
-								Notification.permission = permission;
-							}
-							if (permission === "granted") {
-								NotifcationsTest.ShowNotification();
-							}
-						});
-					}
-				}
-			}
-			window.onload = function(){
-					if(!NotifcationsTest.VerifyBrowserSupport()){
-						alert("Brak wsparcia dla Notifications API");				
-					}
-					NotifcationsTest.RequestForPermissionAndShow();	
-			};
-			
-		</script>
+    <?php
+     include 'js/notifications.js';
+    ?>
+    </script>

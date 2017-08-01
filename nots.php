@@ -5,7 +5,6 @@
             header('Location: index.php');
             exit();
     }
-	
 ?>
 
 
@@ -94,17 +93,9 @@
                         
                  <?php    
                  
-                 require_once "connect.php";
-                 require_once "dbinfo.php";
-                    
-                    
-                 $connection = new mysqli($host, $db_user, $db_pass, $db_name);
-                 if ($connection->connect_errno!=0){
-                     echo "Error: ".$connection->connect_errno;
-                        
-                    }else{
-                           $connection -> query ('SET NAMES utf8');
-                           $connection -> query ('SET CHARACTER_SET utf8_unicode_ci');
+                require_once "database/dbinfo.php";
+                require_once "objects.php";
+                $connection = db_connection();
                            $sql_id= "select $db_subtask_taskid from $db_subtask_tab where $db_subtask_userid=". $_SESSION['id'];
                            $result_id = $connection->query($sql_id);
                            while($row_id = $result_id->fetch_assoc()){
@@ -113,9 +104,9 @@
        
                            $result = $connection->query($sql);
                            while($row = $result->fetch_assoc()){
-                           echo "[".$row[$db_notifications_date]."]    ".$row[$db_notifications_text].'<br><br>';}
+                           echo "<a href=''><img src='template/assets/img/trash.png' /></a>"."[".$row[$db_notifications_date]."]    ".$row[$db_notifications_text].'<br><br>';}
 
-                    }}
+                    }
                  
                  ?>
                
@@ -130,41 +121,7 @@
 </html>
       
 <script>
- 
-    
-			var NotifcationsTest = {
-				VerifyBrowserSupport: function() {
-					return ("Notification" in window);
-				},
-				ShowNotification: function(){
- 
-                                    var notification = new Notification("hehehe");
-                                  
-				},
-				RequestForPermissionAndShow: function(){
-					// Mamy prawo wyświetlać powiadomienia
-					if (Notification.permission === "granted") {
-						NotifcationsTest.ShowNotification();
-					}
-					// Brak wsparcia w Chrome dla właściwości permission
-					else if (Notification.permission !== "denied") {
-						Notification.requestPermission(function (permission) {
-							// Dodajemy właściwość permission do obiektu Notification
-							if(!("permission" in Notification)) {
-								Notification.permission = permission;
-							}
-							if (permission === "granted") {
-								NotifcationsTest.ShowNotification();
-							}
-						});
-					}
-				}
-			}
-			window.onload = function(){
-					if(!NotifcationsTest.VerifyBrowserSupport()){
-						alert("Brak wsparcia dla Notifications API");				
-					}
-					NotifcationsTest.RequestForPermissionAndShow();	
-			};
-			
-		</script>
+    <?php
+     include 'js/notifications.js';
+    ?>
+    </script>

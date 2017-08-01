@@ -8,7 +8,7 @@
 		header('Location: index.php');
 		exit();
 	}
-	
+       
 ?>
 
 
@@ -94,22 +94,13 @@
                      
                          
                     <?php  
-                    require_once "connect.php";
-                    require_once "dbinfo.php";
-                    
-                    
-                    $connection = new mysqli($host, $db_user, $db_pass, $db_name);
-                    if ($connection->connect_errno!=0){
-                        echo "Error: ".$connection->connect_errno;
-                        
-                    }else{
-           
-                           $connection -> query ('SET NAMES utf8');
-                           $connection -> query ('SET CHARACTER_SET utf8_unicode_ci');
+                    require_once "database/dbinfo.php";
+                    require_once "objects.php";
+                    $connection = db_connection();
                            $sql = "SELECT $db_task_tab.$db_task_id, $db_task_tab.$db_task_name, $db_task_tab.$db_task_description, $db_task_tab.$db_task_sdate, $db_task_tab.$db_task_edate, $db_users_tab.$db_users_fname, $db_users_tab.$db_users_lname FROM $db_task_tab LEFT JOIN $db_users_tab ON $db_task_tab.$db_task_userid = $db_users_tab.$db_users_id";
                            $result = $connection->query($sql);
 
-                    }
+                    
                     while($row = $result->fetch_assoc()){
                 
                             echo "<div class='teamtask-form'>";
@@ -156,62 +147,9 @@
    
 </body>
 </html>
-
-
 <script>
-    
-  function hide(id){
-
-    var div = document.getElementById('sh'+id);
-    var div2=document.getElementById(id);
-
-    if(div.style.display == 'none')
-    {
-        div.style.display = 'block';
-        div2.innerHTML = 'ukryj podzadania';
-    }
-    else
-    {
-        div.style.display = 'none';
-        div2.innerHTML = 'pokaż podzadania';
-    }
-}
-
-</script>
-
-
-<script>
-			var NotifcationsTest = {
-				VerifyBrowserSupport: function() {
-					return ("Notification" in window);
-				},
-				ShowNotification: function(){
-					var notification = new Notification("Witaj świecie!");
-				},
-				RequestForPermissionAndShow: function(){
-					// Mamy prawo wyświetlać powiadomienia
-					if (Notification.permission === "granted") {
-						NotifcationsTest.ShowNotification();
-					}
-					// Brak wsparcia w Chrome dla właściwości permission
-					else if (Notification.permission !== "denied") {
-						Notification.requestPermission(function (permission) {
-							// Dodajemy właściwość permission do obiektu Notification
-							if(!("permission" in Notification)) {
-								Notification.permission = permission;
-							}
-							if (permission === "granted") {
-								NotifcationsTest.ShowNotification();
-							}
-						});
-					}
-				}
-			}
-			window.onload = function(){
-					if(!NotifcationsTest.VerifyBrowserSupport()){
-						alert("Brak wsparcia dla Notifications API");				
-					}
-					NotifcationsTest.RequestForPermissionAndShow();	
-			};
-			
-		</script>
+    <?php
+     include 'js/notifications.js';
+     include 'js/subtasks.js'
+    ?>
+    </script>

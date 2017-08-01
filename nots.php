@@ -93,31 +93,18 @@
                      </div>
                  <hr />
                         
-
-                 <?php
-                 require_once "database/dbinfo.php";
-                 require_once "objects.php";
-                 $connection = db_connection();
-                 if ($connection != false){
-                        $sql_id= "select $db_subtask_taskid from $db_subtask_tab where $db_subtask_userid=". $_SESSION['id'];
-                        $result_id = $connection->query($sql_id);
-                        while($row_id = $result_id->fetch_assoc()){
-                            $sql= "select $db_notifications_tab.$db_notifications_text ,$db_notifications_tab.$db_notifications_date  from $db_notifications_tab left join $db_task_tab ON $db_notifications_tab.$db_notifications_taskid = $db_task_tab.$db_task_id  WHERE $db_task_tab.$db_task_id=".$row_id[$db_subtask_taskid];
-
-                            $result = $connection->query($sql);
-                            while($row = $result->fetch_assoc()){
-                                echo "[".$row[$db_notifications_date]."] ".$row[$db_notifications_text].'<br><br>';
-                            }
-                        }
-                    }
-                $sql= "select $db_notifications_tab.$db_notifications_text ,$db_notifications_tab.$db_notifications_date, $db_nots_user_tab.$db_nots_user_id  from $db_notifications_tab left join $db_nots_user_tab ON $db_notifications_tab.$db_notifications_id = $db_nots_user_tab.$db_nots_user_notiicationid  WHERE $db_nots_user_tab.$db_nots_user_userid=".$_SESSION['id'];
-                $result = $connection->query($sql);
-                while($row = $result->fetch_assoc()){
-                echo "<a href='' id='$row[$db_nots_user_id] onclick='delete_nots($row[$db_nots_user_id])' ><img src='template/assets/img/trash.png' /></a>"."[".$row[$db_notifications_date]."]    ".$row[$db_notifications_text].'<br><br>';}           
-
+                 <?php    
+                 
+                require_once "database/dbinfo.php";
+                require_once "objects.php";
+                $connection = db_connection();
+       
+                           $sql= "select $db_notifications_tab.$db_notifications_subtaskid ,$db_notifications_tab.$db_notifications_taskid, $db_notifications_tab.$db_notifications_text ,$db_notifications_tab.$db_notifications_date, $db_nots_user_tab.$db_nots_user_id  from $db_notifications_tab left join $db_nots_user_tab ON $db_notifications_tab.$db_notifications_id = $db_nots_user_tab.$db_nots_user_notiicationid  WHERE $db_nots_user_tab.$db_nots_user_userid=".$_SESSION['id'];
+                           $result = $connection->query($sql);
+                           while($row = $result->fetch_assoc()){
+                           echo "<a href='tasks_all.php?sid=$row[$db_notifications_subtaskid]&tid=$row[$db_notifications_taskid]'  style='color:black; text-decoration: none'>$row[$db_notifications_date]     $row[$db_notifications_text]</a>".'<br><br>';}           
                    
-                ?>
-
+                           ?>
                
     </d
              <!-- /. PAGE INNER  -->

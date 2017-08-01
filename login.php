@@ -8,7 +8,7 @@
         exit();
     }
 
-    require_once "dbinfo.php";
+    require_once "database/dbinfo.php";
     require_once "objects.php";
     $connection = db_connection();
     if ($connection != false){

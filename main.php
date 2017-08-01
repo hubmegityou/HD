@@ -5,7 +5,6 @@
             header('Location: index.php');
             exit();
     }
-	
 ?>
 
 
@@ -42,7 +41,7 @@
        //Z TYM COŚ TRZEBA ZROBIĆ!!!!!!!!!! ////// coś xD
                           <?php 
 
-                        require_once "dbinfo.php";
+                        require_once "database/dbinfo.php";
                         require_once "objects.php";
                         $connection = db_connection();
                         if ($connection != false){
@@ -87,7 +86,7 @@ $(document).ready(function() {
 
                   <?php 
         //Z TYM TEŻ
-                require_once "dbinfo.php";
+                require_once "database/dbinfo.php";
                 require_once "objects.php";
                 $connection = db_connection();
                 if ($connection != false){
@@ -204,6 +203,7 @@ $(document).ready(function() {
 </html>
       
 <script>
+<<<<<<< HEAD
     var NotifcationsTest = {
             VerifyBrowserSupport: function() {
                     return ("Notification" in window);
@@ -239,3 +239,9 @@ $(document).ready(function() {
                     NotifcationsTest.RequestForPermissionAndShow();	
     };
 </script>
+=======
+    <?php
+     include 'js/notifications.js';
+    ?>
+    </script>
+>>>>>>> 04dfe01653d1776326f38071aee25b312f35fe49

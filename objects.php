@@ -1,7 +1,7 @@
 <?php
 
 function db_connection(){
-    require "connect.php";
+    require "database/connect.php";
     $conn = new mysqli($host, $db_user, $db_pass, $db_name);
     if ($conn->connect_errno!=0){
         echo "Error: ".$connection->connect_errno;

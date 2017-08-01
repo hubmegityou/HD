@@ -5,8 +5,9 @@
             header('Location: index.php');
             exit();
     }
-	
-?>
+
+    include 'objects.php';
+    ?>
 
 
 
@@ -93,6 +94,7 @@
                  <hr />
                         
                  <?php    
+<<<<<<< HEAD
                  require_once "dbinfo.php";
                  require_once "objects.php";
                  $connection = db_connection();
@@ -110,8 +112,21 @@
                     }
                  
                  ?>
+=======
+                 
+                require_once "database/dbinfo.php";
+                require_once "objects.php";
+                $connection = db_connection();
+       
+                           $sql= "select $db_notifications_tab.$db_notifications_text ,$db_notifications_tab.$db_notifications_date, $db_nots_user_tab.$db_nots_user_id  from $db_notifications_tab left join $db_nots_user_tab ON $db_notifications_tab.$db_notifications_id = $db_nots_user_tab.$db_nots_user_notiicationid  WHERE $db_nots_user_tab.$db_nots_user_userid=".$_SESSION['id'];
+                           $result = $connection->query($sql);
+                           while($row = $result->fetch_assoc()){
+                           echo "<a href='' id='$row[$db_nots_user_id] onclick='delete_nots($row[$db_nots_user_id])' ><img src='template/assets/img/trash.png' /></a>"."[".$row[$db_notifications_date]."]    ".$row[$db_notifications_text].'<br><br>';}           
+                   
+                           ?>
+>>>>>>> 04dfe01653d1776326f38071aee25b312f35fe49
                
-    </div>
+    </d
              <!-- /. PAGE INNER  -->
             </div>
          <!-- /. PAGE WRAPPER  -->
@@ -122,41 +137,25 @@
 </html>
       
 <script>
+    <?php
+     include 'js/notifications.js';
+    ?>
+</script>
+
+
+
+<script>
  
-    
-			var NotifcationsTest = {
-				VerifyBrowserSupport: function() {
-					return ("Notification" in window);
-				},
-				ShowNotification: function(){
+ function delete_nots(id){
+ // tu jakoś trzeba przesłać to dalej do tego poniżej xD 
+   };
+</script>
  
-                                    var notification = new Notification("hehehe");
-                                  
-				},
-				RequestForPermissionAndShow: function(){
-					// Mamy prawo wyświetlać powiadomienia
-					if (Notification.permission === "granted") {
-						NotifcationsTest.ShowNotification();
-					}
-					// Brak wsparcia w Chrome dla właściwości permission
-					else if (Notification.permission !== "denied") {
-						Notification.requestPermission(function (permission) {
-							// Dodajemy właściwość permission do obiektu Notification
-							if(!("permission" in Notification)) {
-								Notification.permission = permission;
-							}
-							if (permission === "granted") {
-								NotifcationsTest.ShowNotification();
-							}
-						});
-					}
-				}
-			}
-			window.onload = function(){
-					if(!NotifcationsTest.VerifyBrowserSupport()){
-						alert("Brak wsparcia dla Notifications API");				
-					}
-					NotifcationsTest.RequestForPermissionAndShow();	
-			};
-			
-		</script>
+<?php  
+ require_once "database/dbinfo.php";
+ require_once "objects.php";
+ $connection = db_connection();
+ $sql = "DELETE FROM $db_nots_user_tab WHERE $db_nots_user_id=$id";
+ $connection->query($sql);
+
+?>

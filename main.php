@@ -203,7 +203,6 @@ $(document).ready(function() {
 </html>
       
 <script>
-<<<<<<< HEAD
     var NotifcationsTest = {
             VerifyBrowserSupport: function() {
                     return ("Notification" in window);
@@ -239,9 +238,7 @@ $(document).ready(function() {
                     NotifcationsTest.RequestForPermissionAndShow();	
     };
 </script>
-=======
     <?php
      include 'js/notifications.js';
     ?>
     </script>
->>>>>>> 04dfe01653d1776326f38071aee25b312f35fe49

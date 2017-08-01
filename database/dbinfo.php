@@ -50,7 +50,7 @@
                 $db_notifications_id = 'notification_ID';
                 $db_notifications_date = 'date';
                 $db_notifications_taskid = 'task_ID';
-                $db_notfications_subtaskid = 'subtask_ID';
+                $db_notifications_subtaskid = 'subtask_ID';
                 $db_notifications_text = 'text';
                 
         $db_nots_user_tab = 'nots_user';

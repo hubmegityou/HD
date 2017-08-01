@@ -5,7 +5,9 @@
             header('Location: index.php');
             exit();
     }
-?>
+
+    include 'objects.php';
+    ?>
 
 
 
@@ -96,21 +98,15 @@
                 require_once "database/dbinfo.php";
                 require_once "objects.php";
                 $connection = db_connection();
-                           $sql_id= "select $db_subtask_taskid from $db_subtask_tab where $db_subtask_userid=". $_SESSION['id'];
-                           $result_id = $connection->query($sql_id);
-                           while($row_id = $result_id->fetch_assoc()){
-                      
-                           $sql= "select $db_notifications_tab.$db_notifications_text ,$db_notifications_tab.$db_notifications_date  from $db_notifications_tab left join $db_task_tab ON $db_notifications_tab.$db_notifications_taskid = $db_task_tab.$db_task_id  WHERE $db_task_tab.$db_task_id=".$row_id[$db_subtask_taskid];
        
+                           $sql= "select $db_notifications_tab.$db_notifications_text ,$db_notifications_tab.$db_notifications_date, $db_nots_user_tab.$db_nots_user_id  from $db_notifications_tab left join $db_nots_user_tab ON $db_notifications_tab.$db_notifications_id = $db_nots_user_tab.$db_nots_user_notiicationid  WHERE $db_nots_user_tab.$db_nots_user_userid=".$_SESSION['id'];
                            $result = $connection->query($sql);
                            while($row = $result->fetch_assoc()){
-                           echo "<a href=''><img src='template/assets/img/trash.png' /></a>"."[".$row[$db_notifications_date]."]    ".$row[$db_notifications_text].'<br><br>';}
-
-                    }
-                 
-                 ?>
+                           echo "<a href='' id='$row[$db_nots_user_id] onclick='delete_nots($row[$db_nots_user_id])' ><img src='template/assets/img/trash.png' /></a>"."[".$row[$db_notifications_date]."]    ".$row[$db_notifications_text].'<br><br>';}           
+                   
+                           ?>
                
-    </div>
+    </d
              <!-- /. PAGE INNER  -->
             </div>
          <!-- /. PAGE WRAPPER  -->
@@ -124,4 +120,22 @@
     <?php
      include 'js/notifications.js';
     ?>
-    </script>
+</script>
+
+
+
+<script>
+ 
+ function delete_nots(id){
+ // tu jakoś trzeba przesłać to dalej do tego poniżej xD 
+   };
+</script>
+ 
+<?php  
+ require_once "database/dbinfo.php";
+ require_once "objects.php";
+ $connection = db_connection();
+ $sql = "DELETE FROM $db_nots_user_tab WHERE $db_nots_user_id=$id";
+ $connection->query($sql);
+
+?>

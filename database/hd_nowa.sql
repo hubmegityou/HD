@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 31 Lip 2017, 13:32
+-- Czas generowania: 01 Sie 2017, 11:43
 -- Wersja serwera: 10.1.24-MariaDB
 -- Wersja PHP: 7.1.6
 
@@ -32,7 +32,9 @@ USE `hd`;
 
 CREATE TABLE `attachment` (
   `att_ID` int(11) NOT NULL,
-  `attachment` text NOT NULL,
+  `name` text NOT NULL,
+  `type` text NOT NULL,
+  `size` int(11) NOT NULL,
   `task_ID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -116,8 +118,7 @@ CREATE TABLE `notifications` (
   `date` datetime NOT NULL,
   `task_ID` int(11) NOT NULL,
   `subtask_ID` int(11) NOT NULL,
-  `text` text NOT NULL,
-  `read_nots` text NOT NULL
+  `text` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -132,39 +133,70 @@ CREATE TABLE `notifications` (
 -- Zrzut danych tabeli `notifications`
 --
 
-INSERT INTO `notifications` (`notification_ID`, `date`, `task_ID`, `subtask_ID`, `text`, `read_nots`) VALUES
-(1, '0000-00-00 00:00:00', 17, 19, 'dupa dupa dupa', ''),
-(2, '0000-00-00 00:00:00', 17, 19, 'dupaaaaaaa dupaaaaaa dupa', ''),
-(3, '0000-00-00 00:00:00', 17, 19, 'dupa dupa dupa', ''),
-(4, '0000-00-00 00:00:00', 17, 19, 'dupaaaaaaa dupaaaaaa dupa', ''),
-(5, '0000-00-00 00:00:00', 17, 19, 'dupa dupa dupa', ''),
-(6, '0000-00-00 00:00:00', 17, 19, 'dupaaaaaaa dupaaaaaa dupa', ''),
-(7, '0000-00-00 00:00:00', 17, 19, 'dupa dupa dupa', ''),
-(8, '0000-00-00 00:00:00', 17, 19, 'dupaaaaaaa dupaaaaaa dupa', ''),
-(9, '0000-00-00 00:00:00', 17, 19, 'dupa dupa dupa', ''),
-(10, '0000-00-00 00:00:00', 17, 19, 'dupaaaaaaa dupaaaaaa dupa', ''),
-(11, '0000-00-00 00:00:00', 17, 19, 'dupa dupa dupa', ''),
-(12, '0000-00-00 00:00:00', 17, 19, 'dupaaaaaaa dupaaaaaa dupa', ''),
-(13, '0000-00-00 00:00:00', 17, 19, 'dupa dupa dupa', ''),
-(14, '0000-00-00 00:00:00', 17, 19, 'dupaaaaaaa dupaaaaaa dupa', ''),
-(15, '0000-00-00 00:00:00', 17, 19, 'dupa dupa dupa', ''),
-(16, '0000-00-00 00:00:00', 17, 19, 'dupaaaaaaa dupaaaaaa dupa', ''),
-(17, '0000-00-00 00:00:00', 17, 19, 'dupa dupa dupa', ''),
-(18, '0000-00-00 00:00:00', 17, 19, 'dupaaaaaaa dupaaaaaa dupa', ''),
-(19, '0000-00-00 00:00:00', 17, 19, 'dupa dupa dupa', ''),
-(20, '0000-00-00 00:00:00', 17, 19, 'dupaaaaaaa dupaaaaaa dupa', ''),
-(21, '0000-00-00 00:00:00', 17, 19, 'dupa dupa dupa', ''),
-(22, '0000-00-00 00:00:00', 17, 19, 'dupaaaaaaa dupaaaaaa dupa', ''),
-(23, '0000-00-00 00:00:00', 17, 19, 'dupa dupa dupa', ''),
-(24, '0000-00-00 00:00:00', 17, 19, 'dupaaaaaaa dupaaaaaa dupa', ''),
-(25, '0000-00-00 00:00:00', 17, 19, 'dupa dupa dupa', ''),
-(26, '0000-00-00 00:00:00', 17, 19, 'dupaaaaaaa dupaaaaaa dupa', ''),
-(27, '0000-00-00 00:00:00', 17, 19, 'dupa dupa dupa', ''),
-(28, '0000-00-00 00:00:00', 17, 19, 'dupaaaaaaa dupaaaaaa dupa', ''),
-(29, '0000-00-00 00:00:00', 17, 19, 'dupa dupa dupa', ''),
-(30, '0000-00-00 00:00:00', 17, 19, 'dupaaaaaaa dupaaaaaa dupa', ''),
-(31, '0000-00-00 00:00:00', 17, 19, 'dupa dupa dupa', ''),
-(32, '0000-00-00 00:00:00', 17, 19, 'dupaaaaaaa dupaaaaaa dupa', '');
+INSERT INTO `notifications` (`notification_ID`, `date`, `task_ID`, `subtask_ID`, `text`) VALUES
+(1, '0000-00-00 00:00:00', 17, 19, 'dupa dupa dupa'),
+(2, '0000-00-00 00:00:00', 17, 19, 'dupaaaaaaa dupaaaaaa dupa'),
+(3, '0000-00-00 00:00:00', 17, 19, 'dupa dupa dupa'),
+(4, '0000-00-00 00:00:00', 17, 19, 'dupaaaaaaa dupaaaaaa dupa'),
+(5, '0000-00-00 00:00:00', 17, 19, 'dupa dupa dupa'),
+(6, '0000-00-00 00:00:00', 17, 19, 'dupaaaaaaa dupaaaaaa dupa'),
+(7, '0000-00-00 00:00:00', 17, 19, 'dupa dupa dupa'),
+(8, '0000-00-00 00:00:00', 17, 19, 'dupaaaaaaa dupaaaaaa dupa'),
+(9, '0000-00-00 00:00:00', 17, 19, 'dupa dupa dupa'),
+(10, '0000-00-00 00:00:00', 17, 19, 'dupaaaaaaa dupaaaaaa dupa'),
+(11, '0000-00-00 00:00:00', 17, 19, 'dupa dupa dupa'),
+(12, '0000-00-00 00:00:00', 17, 19, 'dupaaaaaaa dupaaaaaa dupa'),
+(13, '0000-00-00 00:00:00', 17, 19, 'dupa dupa dupa'),
+(14, '0000-00-00 00:00:00', 17, 19, 'dupaaaaaaa dupaaaaaa dupa'),
+(15, '0000-00-00 00:00:00', 17, 19, 'dupa dupa dupa'),
+(16, '0000-00-00 00:00:00', 17, 19, 'dupaaaaaaa dupaaaaaa dupa'),
+(17, '0000-00-00 00:00:00', 17, 19, 'dupa dupa dupa'),
+(18, '0000-00-00 00:00:00', 17, 19, 'dupaaaaaaa dupaaaaaa dupa'),
+(19, '0000-00-00 00:00:00', 17, 19, 'dupa dupa dupa'),
+(20, '0000-00-00 00:00:00', 17, 19, 'dupaaaaaaa dupaaaaaa dupa'),
+(21, '0000-00-00 00:00:00', 17, 19, 'dupa dupa dupa'),
+(22, '0000-00-00 00:00:00', 17, 19, 'dupaaaaaaa dupaaaaaa dupa'),
+(23, '0000-00-00 00:00:00', 17, 19, 'dupa dupa dupa'),
+(24, '0000-00-00 00:00:00', 17, 19, 'dupaaaaaaa dupaaaaaa dupa'),
+(25, '0000-00-00 00:00:00', 17, 19, 'dupa dupa dupa'),
+(26, '0000-00-00 00:00:00', 17, 19, 'dupaaaaaaa dupaaaaaa dupa'),
+(27, '0000-00-00 00:00:00', 17, 19, 'dupa dupa dupa'),
+(28, '0000-00-00 00:00:00', 17, 19, 'dupaaaaaaa dupaaaaaa dupa'),
+(29, '0000-00-00 00:00:00', 17, 19, 'dupa dupa dupa'),
+(30, '0000-00-00 00:00:00', 17, 19, 'dupaaaaaaa dupaaaaaa dupa'),
+(31, '0000-00-00 00:00:00', 17, 19, 'dupa dupa dupa'),
+(32, '0000-00-00 00:00:00', 17, 19, 'dupaaaaaaa dupaaaaaa dupa');
+
+-- --------------------------------------------------------
+
+--
+-- Struktura tabeli dla tabeli `nots_user`
+--
+
+CREATE TABLE `nots_user` (
+  `nots_ID` int(11) NOT NULL,
+  `notification_ID` int(11) NOT NULL,
+  `user_ID` int(11) NOT NULL,
+  `read_nots` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- RELATIONSHIPS FOR TABLE `nots_user`:
+--   `notification_ID`
+--       `notifications` -> `notification_ID`
+--   `user_ID`
+--       `users` -> `user_ID`
+--
+
+--
+-- Zrzut danych tabeli `nots_user`
+--
+
+INSERT INTO `nots_user` (`nots_ID`, `notification_ID`, `user_ID`, `read_nots`) VALUES
+(1, 2, 17, 0),
+(2, 31, 17, 0),
+(3, 2, 17, 0),
+(4, 31, 17, 0);
 
 -- --------------------------------------------------------
 
@@ -313,6 +345,14 @@ ALTER TABLE `notifications`
   ADD KEY `subtask_ID` (`subtask_ID`);
 
 --
+-- Indexes for table `nots_user`
+--
+ALTER TABLE `nots_user`
+  ADD PRIMARY KEY (`nots_ID`),
+  ADD KEY `user_ID` (`user_ID`),
+  ADD KEY `notification_ID` (`notification_ID`);
+
+--
 -- Indexes for table `subtask`
 --
 ALTER TABLE `subtask`
@@ -359,6 +399,11 @@ ALTER TABLE `messages`
 ALTER TABLE `notifications`
   MODIFY `notification_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 --
+-- AUTO_INCREMENT dla tabeli `nots_user`
+--
+ALTER TABLE `nots_user`
+  MODIFY `nots_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+--
 -- AUTO_INCREMENT dla tabeli `subtask`
 --
 ALTER TABLE `subtask`
@@ -396,6 +441,13 @@ ALTER TABLE `messages`
 ALTER TABLE `notifications`
   ADD CONSTRAINT `notifications_ibfk_1` FOREIGN KEY (`task_ID`) REFERENCES `task` (`task_ID`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `notifications_ibfk_2` FOREIGN KEY (`subtask_ID`) REFERENCES `subtask` (`subtask_ID`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Ograniczenia dla tabeli `nots_user`
+--
+ALTER TABLE `nots_user`
+  ADD CONSTRAINT `nots_user_ibfk_1` FOREIGN KEY (`notification_ID`) REFERENCES `notifications` (`notification_ID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `nots_user_ibfk_2` FOREIGN KEY (`user_ID`) REFERENCES `users` (`user_ID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Ograniczenia dla tabeli `subtask`

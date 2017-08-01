@@ -35,9 +35,6 @@
         $sql = "INSERT INTO $db_task_tab ($db_task_id, $db_task_name, $db_task_description, $db_task_sdate, $db_task_edate, $db_task_userid, $db_task_priority, $db_task_done) VALUES (NULL, '$topic', '$desc', '$sdate', '$edate', $userid, $priority, 0)";
         if ($result = $connection->query($sql)){
             //info: dodano poprawnie
-            var_dump($result);
-            echo "<br>";
-            var_dump($connection);
         }
         $sql = "SELECT $db_task_id FROM $db_task_tab WHERE $db_task_name='$topic' AND $db_task_userid='$userid' AND $db_task_sdate='$sdate' AND $db_task_edate='$edate'";
         if ($result = $connection->query($sql))

@@ -88,9 +88,7 @@
                        </div>
                      </div>
                  <hr />
-                 <br>
-                 <br>
-                 <br>
+               
                      <?php  
                     require_once "database/dbinfo.php";
                     require_once "objects.php";

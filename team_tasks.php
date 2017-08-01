@@ -23,6 +23,8 @@
         <!-- CUSTOM STYLES-->
     <link href="template/assets/css/custom.css" rel="stylesheet" />
      <!-- GOOGLE FONTS-->
+     <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+   <link rel="Stylesheet" type="text/css" href="timeline/style.css" />
    
 </head>
 <body>
@@ -91,8 +93,7 @@
                           </div>
                      </div>
                  <hr />
-                     
-                         
+                          
                     <?php  
                     require_once "database/dbinfo.php";
                     require_once "objects.php";
@@ -105,7 +106,7 @@
                 
                             echo "<div class='teamtask-form'>";
                             echo "<p class='team-taskform'";
-                            echo "nazwa zadania: $row[$db_task_name] <br>  manager: $row[$db_users_fname]  $row[$db_users_lname] <br>  data rozpoczęcia: $row[$db_task_sdate]<br>  data zakończenia:  $row[$db_task_edate]<br> opis:  $row[$db_task_description]";
+                            echo "<br> nazwa zadania: $row[$db_task_name] <br> manager: $row[$db_users_fname]  $row[$db_users_lname] <br>  data rozpoczęcia: $row[$db_task_sdate]<br>  data zakończenia:  $row[$db_task_edate]<br> opis:  $row[$db_task_description]";
                             echo "<br><br><div id='$row[$db_task_id]' style= 'cursor: pointer; color:red; margin-left: 30px' onclick='hide($row[$db_task_id])' >pokaż podzadania</div> <br>";
                             echo "<div id='sh$row[$db_task_id]' style='display:none'>";
                             echo "</p>";

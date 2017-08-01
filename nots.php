@@ -93,29 +93,21 @@
                  <hr />
                         
                  <?php    
-                 
-                 require_once "connect.php";
                  require_once "dbinfo.php";
-                    
-                    
-                 $connection = new mysqli($host, $db_user, $db_pass, $db_name);
-                 if ($connection->connect_errno!=0){
-                     echo "Error: ".$connection->connect_errno;
-                        
-                    }else{
-                           $connection -> query ('SET NAMES utf8');
-                           $connection -> query ('SET CHARACTER_SET utf8_unicode_ci');
-                           $sql_id= "select $db_subtask_taskid from $db_subtask_tab where $db_subtask_userid=". $_SESSION['id'];
-                           $result_id = $connection->query($sql_id);
-                           while($row_id = $result_id->fetch_assoc()){
-                      
-                           $sql= "select $db_notifications_tab.$db_notifications_text ,$db_notifications_tab.$db_notifications_date  from $db_notifications_tab left join $db_task_tab ON $db_notifications_tab.$db_notifications_taskid = $db_task_tab.$db_task_id  WHERE $db_task_tab.$db_task_id=".$row_id[$db_subtask_taskid];
-       
-                           $result = $connection->query($sql);
-                           while($row = $result->fetch_assoc()){
-                           echo "[".$row[$db_notifications_date]."]    ".$row[$db_notifications_text].'<br><br>';}
+                 require_once "objects.php";
+                 $connection = db_connection();
+                 if ($connection != false){
+                        $sql_id= "select $db_subtask_taskid from $db_subtask_tab where $db_subtask_userid=". $_SESSION['id'];
+                        $result_id = $connection->query($sql_id);
+                        while($row_id = $result_id->fetch_assoc()){
+                            $sql= "select $db_notifications_tab.$db_notifications_text ,$db_notifications_tab.$db_notifications_date  from $db_notifications_tab left join $db_task_tab ON $db_notifications_tab.$db_notifications_taskid = $db_task_tab.$db_task_id  WHERE $db_task_tab.$db_task_id=".$row_id[$db_subtask_taskid];
 
-                    }}
+                            $result = $connection->query($sql);
+                            while($row = $result->fetch_assoc()){
+                                echo "[".$row[$db_notifications_date]."] ".$row[$db_notifications_text].'<br><br>';
+                            }
+                        }
+                    }
                  
                  ?>
                

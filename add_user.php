@@ -100,7 +100,7 @@
 		
                          <div class="stemat"><p class="left">Imię: <br /> <input type="text" name="fname" required/></p></div>
                          <div class="stemat"><p class="left">Nazwisko: <br /> <input type="text" name="lname" required/></p></div>
-                         <div class ="stemat"><p class="left">Login: <br /> <input type="text" name="login" required/></p></div>
+                         <div class="stemat"><p class="left">Login: <br /> <input type="text" name="login" required/></p></div>
                          <div class="stemat"><p class="left">Hasło: <br /> <input type="password" name="pass" required /></p></div><br>	<br>
                          <div class="stemat"><p class="left">Adres email: <br /> <input type="email" name="email" required/></p></div>
                          <div class="stemat"><p class="left">Funkcja: <br />
@@ -108,8 +108,9 @@
 				<option>admin</option>
 				<option>manager<ation>
 				<option>grafik<ation>
-				<option>pracownik<ation>
-				<br />
+				<option>wykonawca<ation>
+				<option>montażysta<ation>
+                                <br />
 			</select></p></div>
                         <div style="clear:both"></div>
                         <br> <br> <br><br><br>   

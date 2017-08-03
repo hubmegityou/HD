@@ -148,9 +148,5 @@
    
 </body>
 </html>
-<script>
-    <?php
-     include 'js/notifications.js';
-     include 'js/subtasks.js'
-    ?>
-    </script>
+
+<script type="text/javascript" src="js/subtasks.js"></script>

@@ -123,15 +123,7 @@
                             }
                     }
     echo "<br><br>ZAŁĄCZNIKI!!!<br><br>";
-//wyświetlanie załączników
-/*
-    require_once "database/dbinfo.php"
-    require_once "objects.php";
-    $connection = db_connection();
-    if ($connection != false){
-        $tid= filter_input(INPUT_GET, 'tid', FILTER_VALIDATE_INT);    
-        $id= filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
- */
+
         $sql = "SELECT $db_attachment_size, $db_attachment_name, $db_attachment_id FROM $db_attachment_tab WHERE $db_attachment_taskid = '$tid'";
         $result = $connection->query($sql);
         while ($row = $result->fetch_assoc()){
@@ -158,12 +150,7 @@
         
     
     echo "<br><br><br>KOMENTARZE!!!!<br><br>";
-                /*
-    require_once "database/dbinfo.php";
-    require_once "objects.php";
-    $connection = db_connection();
-    if ($connection != false){
-               */
+               
         $sql= "select $db_messages_tab.$db_messages_date, $db_messages_tab.$db_messages_text, $db_users_tab.$db_users_fname, $db_users_tab.$db_users_lname FROM $db_messages_tab LEFT JOIN $db_users_tab ON $db_messages_tab.$db_messages_userid= $db_users_tab.$db_users_id WHERE $db_messages_taskid=$tid ";
         $result = $connection->query($sql);
 
@@ -196,8 +183,4 @@
    
 </body>
 </html>
-<script>
-    <?php
-     include 'js/notifications.js';
-    ?>
-    </script>
+

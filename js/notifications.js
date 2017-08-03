@@ -1,11 +1,11 @@
 
-
 var NotifcationsTest = {
 				VerifyBrowserSupport: function() {
 					return ("Notification" in window);
 				},
 				ShowNotification: function(){
-					var notification = new Notification("Witaj świecie!");
+
+					var notification = new Notification(nots);
 				},
 				RequestForPermissionAndShow: function(){
 					

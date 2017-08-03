@@ -144,8 +144,3 @@
 </body>
 </html>
 
-<script>
-    <?php
-     include 'js/notifications.js';
-    ?>
-    </script>

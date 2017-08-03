@@ -21,8 +21,7 @@
         $edate = $_POST['etime'];
         
         if ($sdate > $edate){
-            
-                
+               
             echo "<script type=\"text/javascript\">alert('Niepoprawna data');</script>"; // sa ale tak jakby ich nie było bo strona przeskakuje dalej i aletu nie widac xDDDD
             header('Location: add_subtasks.php');
             close();
@@ -32,6 +31,22 @@
         $userid = $_POST['user'];
         $topic = $_POST['topic'];
         $desc = $_POST['description'];
+        
+        
+        $sql= "Select $db_task_edate, $db_task_priority from $db_task_tab WHERE $db_task_id=$taskid";
+        $select_result = $connection->query($sql);
+        $select_row = $select_result -> fetch_assoc();
+        
+        If($edate>$select_row[$db_task_edate]&& $select_row[$db_task_priority]==1){
+         
+            echo "<script type=\"text/javascript\">alert('Niepoprawna data');</script>";
+            header('Location: add_subtasks.php');
+            
+        }else{
+        if ($edate>$select_row[$db_task_edate]){
+            $sql = "UPDATE $db_task_tab SET $db_task_edate='$edate' WHERE $db_task_id= $taskid"; 
+            $connection->query($sql);
+         }
         
         $sql = "INSERT INTO $db_subtask_tab ($db_subtask_id,$db_subtask_taskid,$db_subtask_name,$db_subtask_sdate,$db_subtask_edate,$db_subtask_description,$db_subtask_userid) VALUES (NULL,$taskid,'$topic','$sdate','$edate','$desc',$userid)";
         if ($result = $connection->query($sql)){
@@ -46,7 +61,7 @@
             if ($result = $connection -> query($sql))
                     echo "działa";
             
-    }    
+    }}  
     $connection->close();
     header('Location: main.php');
 ?>

@@ -99,13 +99,25 @@
                 require_once "objects.php";
                 $connection = db_connection();
        
-                           $sql= "select $db_notifications_tab.$db_notifications_subtaskid ,$db_notifications_tab.$db_notifications_taskid, $db_notifications_tab.$db_notifications_text ,$db_notifications_tab.$db_notifications_date, $db_nots_user_tab.$db_nots_user_id  from $db_notifications_tab left join $db_nots_user_tab ON $db_notifications_tab.$db_notifications_id = $db_nots_user_tab.$db_nots_user_notiicationid  WHERE $db_nots_user_tab.$db_nots_user_userid=".$_SESSION['id'];
+                           $sql= "select $db_notifications_tab.$db_notifications_subtaskid ,$db_notifications_tab.$db_notifications_taskid, $db_notifications_tab.$db_notifications_text ,$db_notifications_tab.$db_notifications_date, $db_nots_user_tab.$db_nots_user_id, $db_nots_user_tab.$db_nots_user_readnots from $db_notifications_tab left join $db_nots_user_tab ON $db_notifications_tab.$db_notifications_id = $db_nots_user_tab.$db_nots_user_notiicationid  WHERE $db_nots_user_tab.$db_nots_user_userid=".$_SESSION['id'];
                            $result = $connection->query($sql);
                            while($row = $result->fetch_assoc()){
-                           echo "<a href='tasks_all.php?sid=$row[$db_notifications_subtaskid]&tid=$row[$db_notifications_taskid]'  style='color:black; text-decoration: none'>$row[$db_notifications_date]".'    '." $row[$db_notifications_text]</a>".'<br><br>';}           
-                   
+                                if ($row[$db_nots_user_readnots]==0){
+                                    echo "<div class='teamtask-form'>";
+                                    echo "<p class='team-taskform'>";
+                                    echo "<a  href='javascript:change_read($row[$db_nots_user_id],$row[$db_notifications_subtaskid], $row[$db_notifications_taskid])' style='color:black; text-decoration: none'>$row[$db_notifications_date]".'    '." $row[$db_notifications_text]</a>".'<br><br>';
+                                    echo "</p>";
+                                    echo "</div>";
+     
+                                }else {
+                                    echo "<p class='team-taskform'>";
+                                    echo "<a href='tasks_all.php?sid=$row[$db_notifications_subtaskid]&tid=$row[$db_notifications_taskid]'  style='color:black; text-decoration: none'>$row[$db_notifications_date]".'    '." $row[$db_notifications_text]</a>".'<br><br>'; 
+                                    echo "</p>";     
+                                    }
+                           }         
+                          
                            ?>
-               
+                                 
     </d
              <!-- /. PAGE INNER  -->
             </div>
@@ -115,10 +127,6 @@
    
 </body>
 </html>
-      
-<script>
-    <?php
-     include 'js/notifications.js';
-    ?>
-</script>
 
+
+<script type="text/javascript" src="js/change_readnots.js"></script>

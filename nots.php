@@ -99,7 +99,7 @@
                 require_once "objects.php";
                 $connection = db_connection();
        
-                           $sql= "select $db_notifications_tab.$db_notifications_subtaskid ,$db_notifications_tab.$db_notifications_taskid, $db_notifications_tab.$db_notifications_text ,$db_notifications_tab.$db_notifications_date, $db_nots_user_tab.$db_nots_user_id, $db_nots_user_tab.$db_nots_user_readnots from $db_notifications_tab left join $db_nots_user_tab ON $db_notifications_tab.$db_notifications_id = $db_nots_user_tab.$db_nots_user_notiicationid  WHERE $db_nots_user_tab.$db_nots_user_userid=".$_SESSION['id'];
+                           $sql= "select $db_notifications_tab.$db_notifications_subtaskid ,$db_notifications_tab.$db_notifications_taskid, $db_notifications_tab.$db_notifications_text ,$db_notifications_tab.$db_notifications_date, $db_nots_user_tab.$db_nots_user_id, $db_nots_user_tab.$db_nots_user_readnots from $db_notifications_tab left join $db_nots_user_tab ON $db_notifications_tab.$db_notifications_id = $db_nots_user_tab.$db_nots_user_notificationid  WHERE $db_nots_user_tab.$db_nots_user_userid=".$_SESSION['id'];
 
                            $result = $connection->query($sql);
                            while($row = $result->fetch_assoc()){

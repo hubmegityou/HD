@@ -1,5 +1,5 @@
 
-    
+  
   function hide(id){
 
     var div = document.getElementById('sh'+id);
@@ -16,4 +16,3 @@
         div2.innerHTML = 'pokaż podzadania';
     }
 }
-

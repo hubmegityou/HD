@@ -116,10 +116,10 @@
             echo  '<article class="timeline-entry">
                   <div class="timeline-entry-inner">';
 
-            if ($row2[$db_task_priority] == 1)
-                  echo '<div class="timeline-icon bg-priority">';
-            else
-                  echo '<div class="timeline-icon bg-success">';
+            if ($row2[$db_task_priority] == 1){
+                echo '<div class="timeline-icon bg-priority">';}
+            else{
+                echo '<div class="timeline-icon bg-success">';}
 
             echo  '<i class="entypo-feather"></i>
                   </div>

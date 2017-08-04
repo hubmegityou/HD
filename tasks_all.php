@@ -94,6 +94,7 @@
                     require_once "objects.php";
                     $connection = db_connection();
                     if ($connection != false){
+                            echo "<div class='subtask-form'>";
                             $tid= filter_input(INPUT_GET, 'tid', FILTER_VALIDATE_INT);    
                             $sid= filter_input(INPUT_GET, 'sid', FILTER_VALIDATE_INT);
                             $sql = "SELECT $db_subtask_taskid, $db_subtask_name, $db_subtask_sdate, $db_subtask_edate, $db_subtask_description FROM $db_subtask_tab WHERE $db_subtask_id=$sid";
@@ -102,6 +103,7 @@
                                 $sql = "SELECT $db_subtask_tab.$db_subtask_id, $db_task_tab.$db_task_name, $db_task_tab.$db_task_description, $db_task_tab.$db_task_sdate, $db_task_tab.$db_task_edate, $db_users_tab.$db_users_fname, $db_users_tab.$db_users_lname FROM $db_subtask_tab, $db_task_tab LEFT JOIN $db_users_tab ON $db_task_tab.$db_task_userid = $db_users_tab.$db_users_id WHERE $db_task_tab.$db_task_id =".$row[$db_subtask_taskid];
                                 $result2 = $connection->query($sql);
                                 $row2=$result2->fetch_assoc();
+                                echo "<div style='float:left; width:57%; margin-left:10px'>";
                                 echo "<br>Nazwa zadania głównego: $row2[$db_task_name] <br>";
                                 echo "Manager: $row2[$db_users_fname] $row2[$db_users_lname]<br>";
                                 echo "Data rozpoczęcia: $row2[$db_task_sdate] <br>";
@@ -119,10 +121,11 @@
                                 echo "Opis zadania: <br> $row[$db_subtask_description]<br><br>";
                                 echo "<br /><button type='submit'>Zatwierdź date</button>";
                                 echo "</form>";
+                                echo '</div>';
                                 // $connection->close();
                             }
                     }
-    echo "<br><br>ZAŁĄCZNIKI!!!<br><br>";
+    echo "<br>ZAŁĄCZNIKI!!!<br><br>";
 
         $sql = "SELECT $db_attachment_size, $db_attachment_name, $db_attachment_id FROM $db_attachment_tab WHERE $db_attachment_taskid = '$tid'";
         $result = $connection->query($sql);
@@ -148,8 +151,9 @@
         echo "<button type=\"submit\">Wyślij</button></center>";
         echo "</form>";
         
-    
-    echo "<br><br><br>KOMENTARZE!!!!<br><br>";
+    echo "<div style='clear:both'></div>";
+    echo '<div style="margin-left:10px">';
+    echo "<br><br><br><br><br><br><br>KOMENTARZE!!!!<br><br>";
                
         $sql= "select $db_messages_tab.$db_messages_date, $db_messages_tab.$db_messages_text, $db_users_tab.$db_users_fname, $db_users_tab.$db_users_lname FROM $db_messages_tab LEFT JOIN $db_users_tab ON $db_messages_tab.$db_messages_userid= $db_users_tab.$db_users_id WHERE $db_messages_taskid=$tid ";
         $result = $connection->query($sql);
@@ -164,7 +168,8 @@
         echo "<input type='hidden' name='mySID' value=$sid>";
         echo "<input type='hidden' name='myTID' value=$tid>";
         echo "<br /><button type='submit'>Dodaj komentarz</button></form>";
-
+        echo "<br><br></div>";
+        echo"</div>";
         $connection -> close();
 ?>
                 

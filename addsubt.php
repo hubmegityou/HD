@@ -52,18 +52,19 @@
         if ($result = $connection->query($sql)){
             echo "<script type=\"text/javascript\">alert('dodawanie zakończone');</script>";// sa ale tak jakby ich nie było bo strona przeskakuje dalej i aletu nie widac xDDDD
             $subtaskid = $connection->insert_id;
+            
             $text = "Masz przydzielone nowe zadanie";
-
             $curr_timestamp = date('Y-m-d H:i:s');
             $sql = "INSERT INTO $db_notifications_tab ($db_notifications_id, $db_notifications_date, $db_notifications_taskid, $db_notifications_subtaskid, $db_notifications_text) VALUES (NULL, '".$curr_timestamp."', '$taskid', '$subtaskid', '$text')";        }
-            if ($result = $connection -> query($sql));{
+            if ($result = $connection -> query($sql)){
                     //info testowe: działa
                 $notificationid = $connection->insert_id;       
                 $sql = "INSERT INTO $db_nots_user_tab ($db_nots_user_id, $db_nots_user_notificationid, $db_nots_user_userid, $db_nots_user_readnots) VALUES (NULL, '$notificationid', '$userid', '0')";
                 if ($result = $connection->query($sql)){
                         //info testowe: działa
-            }
-    }  }     
+                }
+            }  
+    }     
 
     $connection->close();
     header('Location: main.php');

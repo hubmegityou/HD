@@ -1,11 +1,11 @@
 <?php
 session_start();
-    /*
-    if (!isset($_FILE)){
-        header("Location: tasks_all.php?id=".$_POST['myTID']."&tid=".$_POST['myID']);
+    
+    if (!isset($_FILES)){
+        header("Location: main.php");
         exit();
     }
-    */
+    
     require_once "database/dbinfo.php";
     require_once "objects.php";
     $connection = db_connection();
@@ -21,8 +21,8 @@ session_start();
                      echo "<script type=\"text/javascript\">window.alert('Dodano załącznik');</script>";
             }
         }
-         echo "<script type=\"text/javascript\">alert('Niepoprawny format pliku');</script>";
-        unset($_FILE);
+        echo "<script type=\"text/javascript\">alert('Niepoprawny format pliku');</script>";
+        unset($_FILES);
     }
     $connection->close();
     header("Location: tasks_all.php?sid=".$_POST['mySID']."&tid=".$_POST['myTID']);

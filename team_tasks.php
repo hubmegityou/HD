@@ -106,10 +106,10 @@
                 
                             echo "<div class='teamtask-form'>";
                             echo "<p class='team-taskform'";
-                            echo "<br><div style ='float:left; width:40%'> nazwa zadania: $row[$db_task_name] <br> manager: $row[$db_users_fname]  $row[$db_users_lname] <br>  data rozpoczęcia: $row[$db_task_sdate]<br>  data zakończenia:  $row[$db_task_edate]<br> opis:  $row[$db_task_description]</div>";
-                            echo "<br><br><button style ='float:right' type='submit' id='utask'  onclick='deleteTask($row[$db_task_id])'>usuń</button>";
-                            echo "<br> <br><button style ='float:right' type='submit' id='etask'  onclick='editTask($row[$db_task_id])'>edytuj</button><br><br> <br>";  
-                            echo "<br><br><button type='submit' id='$row[$db_task_id]'  onclick='hide($row[$db_task_id])'>pokaż podzadania</button><br><br> <br>";
+                            echo "<br><div style ='float:left;position: relative;left: 30px; width:40%'> nazwa zadania: $row[$db_task_name] <br> manager: $row[$db_users_fname]  $row[$db_users_lname] <br>  data rozpoczęcia: $row[$db_task_sdate]<br>  data zakończenia:  $row[$db_task_edate]<br> opis:  $row[$db_task_description]</div>";
+                            echo "<br><br><button style ='float:right;position: relative;right: 30px;' type='submit' id='utask'  onclick='deleteTask($row[$db_task_id])'>usuń</button>";
+                            echo "<br> <br><button style ='float:right;position: relative;right: 30px;' type='submit' id='etask'  onclick='editTask($row[$db_task_id])'>edytuj</button><br><br> <br>";  
+                            echo "<br><br><button type='submit' style='position: relative;left: 30px;' id='$row[$db_task_id]'  onclick='hide($row[$db_task_id])'>pokaż podzadania</button><br><br> <br>";
                             echo "<div id='sh$row[$db_task_id]' style='display:none'>";
                             echo "</p>";
                             $sql = "SELECT  $db_subtask_tab.$db_subtask_name, $db_subtask_tab.$db_subtask_id, $db_subtask_tab.$db_subtask_description, $db_subtask_tab.$db_subtask_sdate, $db_subtask_tab.$db_subtask_edate, $db_users_tab.$db_users_fname, $db_users_tab.$db_users_lname FROM $db_subtask_tab LEFT JOIN $db_users_tab ON $db_subtask_tab.$db_subtask_userid = $db_users_tab.$db_users_id WHERE $db_subtask_taskid=$row[$db_task_id]"; 

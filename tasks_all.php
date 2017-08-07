@@ -114,10 +114,10 @@
                                 echo "<form action='add_date.php' method='post'>";
                                 $sdate= $row[$db_subtask_sdate];
                                 $edate= $row[$db_subtask_edate];
-                                echo "Termin rozpoczęcia: <input type='date' value= $sdate name='stime'/><br><br>";
+                                echo "Termin rozpoczęcia: <input type='date' id='calendar' value= $sdate name='stime'/><br><br>";
                                 echo "<input type='hidden' name='myTID' value=$tid>";
                                 echo "<input type='hidden' name='mySID' value=$sid>";
-                                echo "Termin wykonania: <input type='date' value=$edate name='etime'/><br><br>";
+                                echo "Termin wykonania: <input type='date' id='calendar2' value=$edate name='etime'/><br><br>";
                                 echo "Opis zadania: <br> $row[$db_subtask_description]<br><br>";
                                 echo "<br /><button type='submit'>Zatwierdź date</button>";
                                 echo "</form>";
@@ -207,4 +207,23 @@
    
 </body>
 </html>
-
+<script type="text/javascript">
+    var datefield=document.createElement("input")
+    datefield.setAttribute("type", "date")
+    if (datefield.type!=="date"){
+        document.write('<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />\n')
+        document.write('<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"><\/script>\n')
+        document.write('<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"><\/script>\n') 
+    }
+</script>
+ 
+<script>
+if (datefield.type!=="date"){ 
+    jQuery(function($){ 
+        $('#calendar').datepicker({dateFormat: "yy-mm-dd"});
+            
+        
+        $('#calendar2').datepicker({dateFormat: "yy-mm-dd"});
+    });
+}
+</script>

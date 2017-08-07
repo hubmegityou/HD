@@ -102,8 +102,8 @@
        echo "<div class='stemat'><p class='termint'> Priorytet:
             <input type='radio' name='priority' value='1'/> tak 
             <input type='radio' name='priority' value='0' checked/> nie </p></div>";
-       echo "<div class='termin'><p class='termint'>Termin rozpoczęcia: <input type='date' name='stime' value=\"$row[$db_task_sdate]\" class='terminp' required/></p></div>";
-       echo "<div class='termin'><p class='termint'>Termin wykonania: <input type='date' name='etime' value=\"$row[$db_task_edate]\" class='terminp' required/></p></div>";
+       echo "<div class='termin'><p class='termint'>Termin rozpoczęcia: <input type='date' id='calendar' name='stime' value=\"$row[$db_task_sdate]\" class='terminp' required/></p></div>";
+       echo "<div class='termin'><p class='termint'>Termin wykonania: <input type='date' id='calendar2' name='etime' value=\"$row[$db_task_edate]\" class='terminp' required/></p></div>";
        echo "<div class='stresc'><p class='tresct'>Treść zadania: <br /><textarea name='description' id='trescp' rows='6' style='width:88%' required> $row[$db_task_description]</textarea></p></div>";
        echo "<div class='stresc'><p class='tresct'>Załącz plik: <br /><input type='file' size='32' name='attachment' value=''/><p/><div/>";
        echo "<input type='hidden' value='".$_GET['id']."' name='taskid' />";
@@ -125,4 +125,23 @@
 </html>
 
 
-
+<script type="text/javascript">
+    var datefield=document.createElement("input")
+    datefield.setAttribute("type", "date")
+    if (datefield.type!=="date"){
+        document.write('<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />\n')
+        document.write('<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"><\/script>\n')
+        document.write('<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"><\/script>\n') 
+    }
+</script>
+ 
+<script>
+if (datefield.type!=="date"){ 
+    jQuery(function($){ 
+        $('#calendar').datepicker({dateFormat: "yy-mm-dd"});
+            
+        
+        $('#calendar2').datepicker({dateFormat: "yy-mm-dd"});
+    });
+}
+</script>

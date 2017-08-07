@@ -31,16 +31,13 @@
         if ($result = $connection->query($sql)){
             //info: dodano poprawnie
         }
-//        $sql = "SELECT $db_task_id FROM $db_task_tab WHERE $db_task_name='$topic' AND $db_task_userid='$userid' AND $db_task_sdate='$sdate' AND $db_task_edate='$edate'";
-//        if ($result = $connection->query($sql))
-//                //info: załadowano task id
-//        $row = $result->fetch_assoc();
+    $tid=$connection->insert_id;
         
         //dodawanie załącznika
         if (isset($_FILE)){
             $time=date("y-m-d_H-i-s");
             if (move_uploaded_file($_FILES['attachment']['tmp_name'], 'attachments/'.$time.$_FILES['attachment']['name'])){
-                $sql = "INSERT INTO $db_attachment_tab ($db_attachment_id, $db_attachment_name, $db_attachment_type, $db_attachment_size, $db_attachment_taskid) VALUES (NULL, '".$time.$_FILES['attachment']['name']."', '".$_FILES['attachment']['type']."', '".$_FILES['attachment']['size']."', '".$_POST['myTID']."')";
+                $sql = "INSERT INTO $db_attachment_tab ($db_attachment_id, $db_attachment_name, $db_attachment_type, $db_attachment_size, $db_attachment_taskid) VALUES (NULL, '".$time.$_FILES['attachment']['name']."', '".$_FILES['attachment']['type']."', '".$_FILES['attachment']['size']."','$tid')";
                 if ($result = $connection->query($sql));
                      echo "<script type=\"text/javascript\">alert('Załącznik został dodany');</script>";// to też niby jest ake go nie ma xd
                 }

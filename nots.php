@@ -92,9 +92,21 @@
                        </div>
                      </div>
                  <hr />
-                        
-                 <?php    
+
+                  <form action="delete_nots.php">
+                  <select name="deletenots" style="margin-left: 30px">
+                        <option value="----">----</option>
+                        <option value="wszystkie">wszystkie</option>
+                        <option value="przeczytane">przeczytane</option>
+                        <option value="nieprzeczytane">nieprzeczytane</option>
+                  </select>
+                      <button type="submit" value="delete">Usuń</button>
+                  </form> 
+
+                 <br><br><br><br><br>
                  
+                 <?php 
+ 
                 require_once "database/dbinfo.php";
                 require_once "objects.php";
                 $connection = db_connection();

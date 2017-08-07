@@ -1,11 +1,5 @@
 <?php 
- /*
- * DOKOŃCZYĆ
- *  - ŁADOWANIE DANYCH DO BAZY (done)
- *  - KOMUNIKATY O BŁĘDZIE
- *  - POPRAWNE PRZEKIEROWANIA PO NIEWYPEŁNIENIU FORMULARZA (done)
- *  - WERYFIKACJA DATY (CZY KONIEC NIE WCZEŚNIEJ NIŻ ZADANIE GŁÓWNE LUB WYŚWIETLANIE KOŃCOWEJ DATY) (done)
- */
+
     session_start();
     if (($_POST['user'] == '') || ($_POST['task'] == '') || (!isset($_POST['topic'])) || (!isset($_POST['description'])) || (!isset($_POST['etime']))){
 	header('Location: add_subtasks.php');

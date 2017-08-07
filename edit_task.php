@@ -98,12 +98,12 @@
         $row = $result->fetch_assoc();
         
        echo " <form enctype='multipart/form-data' action='editt.php' method='post'>";
-       echo " <div class='stemat'><p class='tematt'>Temat zadania: <br /><input type='text' name='topic' value='$row[$db_task_name]' class='stematp' required/></p></div>";
+       echo " <div class='stemat'><p class='tematt'>Temat zadania: <br /><input type='text' name='topic' value=\"$row[$db_task_name]\" class='stematp' required/></p></div>";
        echo "<div class='stemat'><p class='termint'> Priorytet:
             <input type='radio' name='priority' value='1'/> tak 
             <input type='radio' name='priority' value='0' checked/> nie </p></div>";
-       echo "<div class='termin'><p class='termint'>Termin rozpoczęcia: <input type='date' name='stime' value='$row[$db_task_sdate]' class='terminp' required/></p></div>";
-       echo "<div class='termin'><p class='termint'>Termin wykonania: <input type='date' name'etime' value='$row[$db_task_edate]' class='terminp' required/></p></div>";
+       echo "<div class='termin'><p class='termint'>Termin rozpoczęcia: <input type='date' name='stime' value=\"$row[$db_task_sdate]\" class='terminp' required/></p></div>";
+       echo "<div class='termin'><p class='termint'>Termin wykonania: <input type='date' name='etime' value=\"$row[$db_task_edate]\" class='terminp' required/></p></div>";
        echo "<div class='stresc'><p class='tresct'>Treść zadania: <br /><textarea name='description' id='trescp' rows='6' style='width:88%' required> $row[$db_task_description]</textarea></p></div>";
        echo "<div class='stresc'><p class='tresct'>Załącz plik: <br /><input type='file' size='32' name='attachment' value=''/><p/><div/>";
        echo "<input type='hidden' value='".$_GET['id']."' name='taskid' />";

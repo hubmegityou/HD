@@ -95,8 +95,8 @@
                     $connection = db_connection();
                     if ($connection != false){
                             echo "<div class='subtask-form'>";
-                            $tid= filter_input(INPUT_GET, 'tid', FILTER_VALIDATE_INT);    
-                            $sid= filter_input(INPUT_GET, 'sid', FILTER_VALIDATE_INT);
+                            $tid= $_GET['tid'];    
+                            $sid= $_GET['sid'];
                             $sql = "SELECT $db_subtask_taskid, $db_subtask_name, $db_subtask_sdate, $db_subtask_edate, $db_subtask_description FROM $db_subtask_tab WHERE $db_subtask_id=$sid";
                             $result = $connection->query($sql);
                             while($row = $result->fetch_assoc()){
@@ -141,7 +141,17 @@
             } else {
                 $attachsize = $attachsize . "b";
             }
-            echo "($attachsize)<br>";
+            echo "($attachsize)";
+            //usuwanie załączników (admin lub manager)
+            if ($_SESSION['function'] <= 2){
+                echo "<form action=\"delete_att.php\" method=\"post\">";
+                echo "<input type=\"hidden\" name=\"tid\" value=$tid>";
+                echo "<input type=\"hidden\" name=\"sid\" value=$sid>";
+                echo "<input type=\"hidden\" name=\"id\" value=$row[$db_attachment_id]>";
+                echo "<input type=\"hidden\" name=\"fname\" value=$row[$db_attachment_name]>";
+                echo "<button type=\"submit\">usuń</button>";
+                echo "</form>";
+            }
         }
 //dodawanie załączników
         echo "<form enctype=\"multipart/form-data\" action=\"attach.php\" method=\"post\" id=\"formularz\">";
@@ -155,12 +165,21 @@
     echo '<div style="margin-left:10px">';
     echo "<br><br><br><br><br><br><br>KOMENTARZE!!!!<br><br>";
                
-        $sql= "select $db_messages_tab.$db_messages_date, $db_messages_tab.$db_messages_text, $db_users_tab.$db_users_fname, $db_users_tab.$db_users_lname FROM $db_messages_tab LEFT JOIN $db_users_tab ON $db_messages_tab.$db_messages_userid= $db_users_tab.$db_users_id WHERE $db_messages_taskid=$tid ";
+        $sql= "select $db_messages_tab.$db_messages_id, $db_messages_tab.$db_messages_date, $db_messages_tab.$db_messages_text, $db_users_tab.$db_users_fname, $db_users_tab.$db_users_lname FROM $db_messages_tab LEFT JOIN $db_users_tab ON $db_messages_tab.$db_messages_userid= $db_users_tab.$db_users_id WHERE $db_messages_taskid=$tid ";
         $result = $connection->query($sql);
 
         while($row = $result->fetch_assoc()){       
             echo "Użytkownik: $row[$db_users_fname]  $row[$db_users_lname],  $row[$db_messages_date]<br>";
             echo $row[$db_messages_text];
+            //usuwanie komentarzy (admin lub manager)
+            if ($_SESSION['function'] <= 2){
+                echo "<form action=\"delete_com.php\" method=\"post\">";
+                echo "<input type=\"hidden\" name=\"tid\" value=$tid>";
+                echo "<input type=\"hidden\" name=\"sid\" value=$sid>";
+                echo "<input type=\"hidden\" name=\"id\" value=$row[$db_messages_id]>";
+                echo "<button type=\"submit\">usuń</button>";
+                echo "</form>";
+            }
             echo "<br><br>";
         }
         echo "<form action='add_comment.php' method='post'>";

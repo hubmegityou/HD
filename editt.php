@@ -2,7 +2,7 @@
 session_start();
     
 if ((!isset($_POST['topic'])) || (!isset($_POST['description'])) || (!isset($_POST['stime'])) || (!isset($_POST['etime']))){
-      //  header('Location: add_tasks.php');
+        header('Location: add_tasks.php');
         exit();
     }
 
@@ -33,16 +33,16 @@ if ($connection != false){
     }
 
     //dodawanie załącznika
-    if (isset($_FILE)){
+    if (isset($_FILES)){
         $time=date("y-m-d_H-i-s");
         if (move_uploaded_file($_FILES['attachment']['tmp_name'], 'attachments/'.$time.$_FILES['attachment']['name'])){
             $sql = "INSERT INTO $db_attachment_tab ($db_attachment_id, $db_attachment_name, $db_attachment_type, $db_attachment_size, $db_attachment_taskid) VALUES (NULL, '".$time.$_FILES['attachment']['name']."', '".$_FILES['attachment']['type']."', '".$_FILES['attachment']['size']."','$taskid')";
             if ($result = $connection->query($sql));
                  echo "<script type=\"text/javascript\">alert('Załącznik został dodany');</script>";// to też niby jest ake go nie ma xd
             }
-        unset($_FILE);
+        unset($_FILES);
         }
     }
 $connection->close();
-// header('Location: main.php');
+header('Location: main.php');
 ?>

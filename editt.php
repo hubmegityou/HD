@@ -1,9 +1,13 @@
 <?php
 
+var_dump($_POST);
+
+
+
     session_start();
     
     if ((!isset($_POST['topic'])) || (!isset($_POST['description'])) || (!isset($_POST['stime'])) || (!isset($_POST['etime']))){
-            header('Location: add_tasks.php');
+          //  header('Location: add_tasks.php');
             exit();
 	}
     
@@ -12,9 +16,9 @@
     $connection = db_connection();
     if ($connection != false){
         
-        $priority = $_POST['priority'];
-        $sdate = $_POST['stime'];
-        $edate = $_POST['etime'];
+       echo  $priority = $_POST['priority'];
+       echo  $sdate = $_POST['stime'];
+       echo  $edate = $_POST['etime'];
         
         if ($sdate > $edate){
             
@@ -23,24 +27,26 @@
             header('Location: add_tasks.php');
             close();
         }
-        $topic = $_POST['topic'];
-        $desc = $_POST['description'];
-        $userid = $_SESSION['id'];
         
-        $sql = "INSERT INTO $db_task_tab ($db_task_id, $db_task_name, $db_task_description, $db_task_sdate, $db_task_edate, $db_task_userid, $db_task_priority, $db_task_done) VALUES (NULL, '$topic', '$desc', '$sdate', '$edate', $userid, $priority, 0)";
+       echo  $taskid= $_POST['taskid'];
+       echo  $topic = $_POST['topic'];
+       echo  $desc = $_POST['description'];
+       echo $userid = $_SESSION['id'];
+        
+        
+        
+        
+        
+        $sql = "UPDATE $db_task_tab SET  $db_task_name='$topic', $db_task_description='$desc', $db_task_sdate='$sdate', $db_task_edate='$edate', $db_task_userid= '$userid', $db_task_priority='$priority', $db_task_done='0' WHERE $db_task_id=$taskid";
         if ($result = $connection->query($sql)){
             //info: dodano poprawnie
         }
-//        $sql = "SELECT $db_task_id FROM $db_task_tab WHERE $db_task_name='$topic' AND $db_task_userid='$userid' AND $db_task_sdate='$sdate' AND $db_task_edate='$edate'";
-//        if ($result = $connection->query($sql))
-//                //info: załadowano task id
-//        $row = $result->fetch_assoc();
         
         //dodawanie załącznika
         if (isset($_FILE)){
             $time=date("y-m-d_H-i-s");
             if (move_uploaded_file($_FILES['attachment']['tmp_name'], 'attachments/'.$time.$_FILES['attachment']['name'])){
-                $sql = "INSERT INTO $db_attachment_tab ($db_attachment_id, $db_attachment_name, $db_attachment_type, $db_attachment_size, $db_attachment_taskid) VALUES (NULL, '".$time.$_FILES['attachment']['name']."', '".$_FILES['attachment']['type']."', '".$_FILES['attachment']['size']."', '".$_POST['myTID']."')";
+                $sql = "INSERT INTO $db_attachment_tab ($db_attachment_id, $db_attachment_name, $db_attachment_type, $db_attachment_size, $db_attachment_taskid) VALUES (NULL, '".$time.$_FILES['attachment']['name']."', '".$_FILES['attachment']['type']."', '".$_FILES['attachment']['size']."','$taskid')";
                 if ($result = $connection->query($sql));
                      echo "<script type=\"text/javascript\">alert('Załącznik został dodany');</script>";// to też niby jest ake go nie ma xd
                 }
@@ -48,5 +54,5 @@
             }
         }
     $connection->close();
-    header('Location: main.php');
+   // header('Location: main.php');
 ?>

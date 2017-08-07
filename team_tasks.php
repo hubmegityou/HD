@@ -108,8 +108,7 @@
                             echo "<p class='team-taskform'";
                             echo "<br><div style ='float:left; width:40%'> nazwa zadania: $row[$db_task_name] <br> manager: $row[$db_users_fname]  $row[$db_users_lname] <br>  data rozpoczęcia: $row[$db_task_sdate]<br>  data zakończenia:  $row[$db_task_edate]<br> opis:  $row[$db_task_description]</div>";
                             echo "<br><br><button style ='float:right' type='submit' id='utask'  onclick='deleteTask($row[$db_task_id])'>usuń</button>";
-                            echo "<br> <br><button style ='float:right' type='submit' id='etask'  onclick='editTask($row[$db_task_id])'>edytuj</button><br><br> <br>";
-                            
+                            echo "<br> <br><button style ='float:right' type='submit' id='etask'  onclick='editTask($row[$db_task_id])'>edytuj</button><br><br> <br>";  
                             echo "<br><br><button type='submit' id='$row[$db_task_id]'  onclick='hide($row[$db_task_id])'>pokaż podzadania</button><br><br> <br>";
                             echo "<div id='sh$row[$db_task_id]' style='display:none'>";
                             echo "</p>";
@@ -118,10 +117,11 @@
                             while ($row2=$result2->fetch_assoc()){ 
                                 echo "<p class='team-subtaskform'>";
                                 echo "nazwa podzadania: $row2[$db_subtask_name] <br> pracownik: $row2[$db_users_fname]  $row2[$db_users_lname] <br> data rozpoczęcia: $row2[$db_subtask_sdate]<br> data zakończenia:  $row2[$db_subtask_edate]<br> opis:  $row2[$db_subtask_description]";  
-                                echo "</p>";
-                                echo "<br><br><button style ='float:right' type='submit' id='usub'  onclick='deleteSubtask($row2[$db_subtask_id])'>usuń</button><br><br> <br>";
-                                echo "<button type='submit' style ='float:right' id='esub'  onclick='editSubtask($row2[$db_subtask_id])'>edytuj</button><br><br>";
+                                echo "<br><br><button  type='submit' id='usub'  onclick='deleteSubtask($row2[$db_subtask_id])'>usuń</button>";
+                                echo '  ';
+                                echo "<button type='submit'  id='esub'  onclick='editSubtask($row2[$db_subtask_id])'>edytuj</button><br><br>";
                                 echo "<br><br>";
+                                echo "</p>";
                             }
                             echo "</div>";
                             echo "</div>";

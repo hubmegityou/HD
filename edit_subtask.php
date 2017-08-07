@@ -87,7 +87,7 @@
                      </div>
                  <hr />
 				 <div class="subtask-form">
-<form action="addsubt.php" method="post">
+<form action="editsubt.php" method="post">
 <center>
 <?php
     
@@ -95,33 +95,43 @@
     require_once "database/dbinfo.php";
     require_once "objects.php";
     $connection = db_connection();
-    $sql = "SELECT $db_users_fname, $db_users_lname, $db_functions_desc, $db_users_id FROM $db_users_tab INNER JOIN $db_functions_tab ON $db_users_function = $db_functions_id WHERE $db_users_function>1 ORDER BY $db_users_function, $db_users_lname ASC";
+    $sql= "SELECT * FROM $db_subtask_tab WHERE $db_subtask_id=".$_GET['id'];
+    $result = $connection->query($sql);
+    $row_sub = $result->fetch_assoc();
+    
+    $sql = "SELECT $db_users_tab.$db_users_fname, $db_users_tab.$db_users_lname, $db_functions_desc, $db_users_tab.$db_users_id FROM $db_users_tab INNER JOIN $db_functions_tab ON $db_users_function = $db_functions_id INNER JOIN $db_subtask_tab ON  $db_users_tab.$db_users_id=$db_subtask_tab.$db_subtask_userid  WHERE $db_subtask_id=".$_GET['id'];
+    $result = $connection->query($sql);
+    $row_subtask = $result->fetch_assoc();
+    
+    $sql = "SELECT $db_users_fname, $db_users_lname, $db_functions_desc, $db_users_id FROM $db_users_tab INNER JOIN $db_functions_tab ON $db_users_function = $db_functions_id WHERE NOT $db_users_id=$row_subtask[$db_users_id] AND $db_users_function>1  ORDER BY $db_users_function, $db_users_lname ASC";
     $result = $connection->query($sql);
         echo '<div class="temat"><p class="stemat">';
         echo '<select name="user" class="task" required>';
-        echo '<option value="">Wybierz osobę</option>';
+        echo '<option value="'.$row_subtask[$db_users_id].'">'.$row_subtask[$db_functions_desc].' '.$row_subtask[$db_users_fname].' '.$row_subtask[$db_users_lname].'</option>';
         while($row = $result->fetch_assoc()) {
-            //echo "<div class=\"stemat\"><p class=\"tematt\">";
             echo '<option value="'.$row[$db_users_id].'">'.$row[$db_functions_desc].' '.$row[$db_users_fname].' '.$row[$db_users_lname].'</option>';
-            //echo "<p/></div>";
         }
         echo '</select>';
     echo "<br/><br/>";
     $id = $_SESSION['id'];
-    $sql = "SELECT $db_task_id, $db_task_name, $db_task_edate, $db_task_userid FROM $db_task_tab WHERE $db_task_userid = $id";
+    $sql = "SELECT $db_task_tab.$db_task_id, $db_task_tab.$db_task_name, $db_task_tab.$db_task_edate, $db_task_tab.$db_task_userid FROM $db_task_tab INNER JOIN $db_subtask_tab ON $db_task_tab.$db_task_id=$db_subtask_tab.$db_subtask_taskid WHERE $db_subtask_id=".$_GET['id'];
+    $result = $connection->query($sql);
+    $row_task = $result->fetch_assoc();
+    $sql = "SELECT $db_task_id, $db_task_name, $db_task_edate, $db_task_userid FROM $db_task_tab WHERE NOT $db_task_id=$row_task[$db_task_id] AND $db_task_userid = $id";
     $result = $connection->query($sql);
         echo '<select name="task" class="task" required>';
-        echo '<option value="">Wybierz zadanie</option>';
+        echo '<option value="'.$row_task[$db_task_id].'">'.$row_task[$db_task_name].'</option>';
         while($row = $result->fetch_assoc()) {
             echo '<option value="'.$row[$db_task_id].'">'.$row[$db_task_name].'</option>';
         }
         echo '</select>';
     $connection->close();
-?>
-        <div class="stemat"><p class="tematt">Temat podzadania: <br><input type="text" name="topic" class="stematp" style="width:90%" required/></p></div>
-        <div class="termin"><p class="termint">Termin rozpoczęcia: <input type="date" name="stime" required/></p></div>
-        <div class="termin"><p class="termint">Termin wykonania: <input type="date" name="etime" required/></p></div>
-        <div class="stresc"><p class="tresct">Treść podzadania: <br><textarea name="description" id="trescp" rows="6" style="width:90%" required></textarea></p></div>
+    echo "<input type='hidden' value='".$_GET['id']."' name='subtaskid' />";
+     echo"<div class='stemat'><p class='tematt'>Temat podzadania: <br><input type='text' value='$row_sub[$db_subtask_name]' name='topic' class='stematp' style='width:90%' required/></p></div>";
+     echo "<div class='termin'><p class='termint'>Termin rozpoczęcia: <input type='date' value='$row_sub[$db_subtask_sdate]' name='stime' required/></p></div>";
+     echo "<div class='termin'><p class='termint'>Termin wykonania: <input type='date' value='$row_sub[$db_subtask_edate]' name='etime' required/></p></div>";
+     echo "<div class='stresc'><p class='tresct'>Treść podzadania: <br><textarea name='description' id='trescp' rows='6' style='width:90%' required>$row_sub[$db_subtask_description]</textarea></p></div>";
+                ?>
         <div><p><button type="submit" >Zapisz</button></p></div>
 		</center>
 </form>

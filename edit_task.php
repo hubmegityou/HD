@@ -88,15 +88,27 @@
         <div class="subtask-form">
         <center>
         <br />
-<form enctype="multipart/form-data" action="addt.php" method="post" id="formularz">
-        <div class="stemat"><p class="tematt">Temat zadania: <br /><input type="text" name="topic" class="stematp" required/></p></div>
-        <div class="stemat"><p class="termint"> Priorytet:
-            <input type="radio" name="priority" value="1"/> tak 
-            <input type="radio" name="priority" value="0" checked/> nie </p></div>
-        <div class="termin"><p class="termint">Termin rozpoczęcia: <input type="date" name="stime" class="terminp" required/></p></div>
-        <div class="termin"><p class="termint">Termin wykonania: <input type="date" name="etime" class="terminp" required/></p></div>
-        <div class="stresc"><p class="tresct">Treść zadania: <br /><textarea name="description" id="trescp" rows="6" style="width:88%" required></textarea></p></div>
-        <div class="stresc"><p class="tresct">Załącz plik: <br /><input type="file" size="32" name="attachment" value=""/><p/><div/>
+        
+        <?php
+        require_once "database/dbinfo.php";
+        require_once "objects.php";
+        $connection = db_connection();
+        $sql= "SELECT * FROM $db_task_tab WHERE $db_task_id=".$_GET['id'];
+        $result = $connection->query($sql);
+        $row = $result->fetch_assoc();
+        
+       echo " <form enctype='multipart/form-data' action='editt.php' method='post'>";
+       echo " <div class='stemat'><p class='tematt'>Temat zadania: <br /><input type='text' name='topic' value='$row[$db_task_name]' class='stematp' required/></p></div>";
+       echo "<div class='stemat'><p class='termint'> Priorytet:
+            <input type='radio' name='priority' value='1'/> tak 
+            <input type='radio' name='priority' value='0' checked/> nie </p></div>";
+       echo "<div class='termin'><p class='termint'>Termin rozpoczęcia: <input type='date' name='stime' value='$row[$db_task_sdate]' class='terminp' required/></p></div>";
+       echo "<div class='termin'><p class='termint'>Termin wykonania: <input type='date' name'etime' value='$row[$db_task_edate]' class='terminp' required/></p></div>";
+       echo "<div class='stresc'><p class='tresct'>Treść zadania: <br /><textarea name='description' id='trescp' rows='6' style='width:88%' required> $row[$db_task_description]</textarea></p></div>";
+       echo "<div class='stresc'><p class='tresct'>Załącz plik: <br /><input type='file' size='32' name='attachment' value=''/><p/><div/>";
+       echo "<input type='hidden' value='".$_GET['id']."' name='taskid' />";
+        ?>
+
                 <div class="stresc"><button type="submit">Zapisz</button></center><div/>
 </form>
                  <br>

@@ -99,9 +99,7 @@
         echo '<select name="user" class="task" required>';
         echo '<option value="">Wybierz osobę</option>';
         while($row = $result->fetch_assoc()) {
-            //echo "<div class=\"stemat\"><p class=\"tematt\">";
             echo '<option value="'.$row[$db_users_id].'">'.$row[$db_functions_desc].' '.$row[$db_users_fname].' '.$row[$db_users_lname].'</option>';
-            //echo "<p/></div>";
         }
         echo '</select>';
     echo "<br/><br/>";

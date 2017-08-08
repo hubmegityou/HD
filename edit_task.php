@@ -97,7 +97,7 @@
         $result = $connection->query($sql);
         $row = $result->fetch_assoc();
         
-       echo " <form enctype='multipart/form-data' action='editsubt.php' method='post'>";
+       echo " <form enctype='multipart/form-data' action='edit_st.php' method='post'>";
        echo " <div class='stemat'><p class='tematt'>Temat zadania: <br /><input type='text' name='topic' value=\"$row[$db_task_name]\" class='stematp' required/></p></div>";
        echo "<div class='stemat'><p class='termint'> Priorytet:
             <input type='radio' name='priority' value='1'/> tak 

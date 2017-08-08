@@ -87,7 +87,7 @@
                      </div>
                  <hr />
 				 <div class="subtask-form">
-<form action="editsubt.php" method="post">
+<form action="edit_st.php" method="post">
 <center>
 <?php
     

@@ -61,6 +61,7 @@ function editSubtask(id){
     window.location.href = "edit_subtask.php?id="+id;
 }
 
+
 var deleteST=
 function deleteST(id, typ){
     

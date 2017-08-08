@@ -154,6 +154,4 @@
 </body>
 </html>
 <script type="text/javascript" src="js/subtasks.js"></script>
-<script type="text/javascript" src="js/deleteST.js"></script>
 <script type="text/javascript" src="js/editSubtask.js"></script>
-<script type="text/javascript" src="js/editTask.js"></script>

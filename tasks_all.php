@@ -149,7 +149,7 @@
                 echo "<input type=\"hidden\" name=\"sid\" value=$sid>";
                 echo "<input type=\"hidden\" name=\"id\" value=$row[$db_attachment_id]>";
                 echo "<input type=\"hidden\" name=\"fname\" value=$row[$db_attachment_name]>";
-                echo "<div><input type=\"image\" src=\"template/assets/img/trash.png\" onClick=\"this.form.submit()\"></div>";
+                echo "<div style='position: relative; top: -6px'><input type=\"image\" src=\"template/assets/img/trash.png\" onClick=\"this.form.submit()\"></div>";
                 echo "</form>";
             }
         }

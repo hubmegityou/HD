@@ -119,7 +119,7 @@
                                 echo "<input type='hidden' name='mySID' value=$sid>";
                                 echo "Termin wykonania: <input type='date' id='calendar2' value=$edate name='etime'/><br><br>";
                                 echo "Opis zadania: <br> $row[$db_subtask_description]<br><br>";
-                                echo "<br /><button type='submit'>Zatwierdź date</button>";
+                                echo "<br /><button type='submit'>Zatwierdź datę</button>";
                                 echo "</form>";
                                 echo '</div>';
                                 // $connection->close();
@@ -130,7 +130,7 @@
         $sql = "SELECT $db_attachment_size, $db_attachment_name, $db_attachment_id FROM $db_attachment_tab WHERE $db_attachment_taskid = '$tid'";
         $result = $connection->query($sql);
         while ($row = $result->fetch_assoc()){
-            echo "<div style=\"float: left\"><a href=\"download.php/?id=$row[$db_attachment_id]&sid=$sid&tid=$tid\">".substr($row[$db_attachment_name], 17)."</a>\t";
+            echo "<div><a style=\"float: left\" href=\"download.php/?id=$row[$db_attachment_id]&sid=$sid&tid=$tid\">".substr($row[$db_attachment_name], 17)."</a>\t";
             $attachsize = $row[$db_attachment_size];
             if ($attachsize >= 1073741824) {
                 $attachsize = (round($attachsize / 1073741824 * 100) / 100) . "gb";
@@ -144,7 +144,7 @@
             echo "($attachsize)</div>";
             //usuwanie załączników (admin lub manager)
             if ($_SESSION['function'] <= 2){
-                echo "<form action=\"delete_att.php\" method=\"post\">";
+                echo "<form action=\"delete_ac.php\" method=\"post\">";
                 echo "<input type=\"hidden\" name=\"tid\" value=$tid>";
                 echo "<input type=\"hidden\" name=\"sid\" value=$sid>";
                 echo "<input type=\"hidden\" name=\"id\" value=$row[$db_attachment_id]>";
@@ -153,8 +153,8 @@
                 echo "</form>";
             }
         }
-//dodawanie załączników
-        echo "<form enctype=\"multipart/form-data\" action=\"attach.php\" method=\"post\" id=\"formularz\">";
+        //dodawanie załączników
+        echo "<form enctype=\"multipart/form-data\" action=\"attach.php\" method=\"post\">";
         echo "<p>Załącz plik: <br /><input type=\"file\" size=\"32\" name=\"attachment\" value=\"\"/><p/>";
         echo "<input type='hidden' name='mySID' value=$sid>";
         echo "<input type='hidden' name='myTID' value=$tid>";
@@ -169,17 +169,17 @@
         $result = $connection->query($sql);
 
         while($row = $result->fetch_assoc()){       
-            echo "Użytkownik: $row[$db_users_fname]  $row[$db_users_lname],  $row[$db_messages_date]<br>";
-            echo $row[$db_messages_text];
+            echo "<div style=\"float: left\">Użytkownik: $row[$db_users_fname]  $row[$db_users_lname],  $row[$db_messages_date]</div>";
             //usuwanie komentarzy (admin lub manager)
             if ($_SESSION['function'] <= 2){
-                echo "<form action=\"delete_com.php\" method=\"post\">";
+                echo "<form action=\"delete_ac.php\" method=\"post\">";
                 echo "<input type=\"hidden\" name=\"tid\" value=$tid>";
                 echo "<input type=\"hidden\" name=\"sid\" value=$sid>";
                 echo "<input type=\"hidden\" name=\"id\" value=$row[$db_messages_id]>";
-                echo "<button type=\"submit\">usuń</button>";
+                echo "<div style='position: relative; top: -6px'><input type=\"image\" src=\"template/assets/img/trash.png\" onClick=\"this.form.submit()\"></div>";
                 echo "</form>";
             }
+            echo $row[$db_messages_text];
             echo "<br><br>";
         }
         echo "<form action='add_comment.php' method='post'>";

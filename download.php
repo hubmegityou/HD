@@ -24,7 +24,7 @@ if ($connection != false){
             echo "<script type=\"text/javascript\">alert('wystąpił błąd: plik nie istnieje!');</script>";
             $sql = "DELETE FROM $db_attachment_tab WHERE $db_attachment_id='$id'";
             $connection->query($sql);
-            //header("Location: ../tasks_all.php?sid=13&tid=16");
+            header("Location: tasks_all.php?sid=".$_GET['sid']."&tid=".$_GET['tid']);
         }
         $connection->close();
     }

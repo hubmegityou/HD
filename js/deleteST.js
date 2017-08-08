@@ -1,4 +1,4 @@
-function deleteSubtask(id){
+function deleteST(id, typ){
     
 
        if (window.XMLHttpRequest){
@@ -9,10 +9,11 @@ function deleteSubtask(id){
             xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
         }
 
-    var PageToSendTo = "delete_subtask.php?";
+    var PageToSendTo = "delete_st.php?";
     var IDPlaceholder = "id=";
+    var TYPPlaceholder = "typ=";
     
-    var UrlToSend = PageToSendTo + IDPlaceholder + id ;
+    var UrlToSend = PageToSendTo + IDPlaceholder + id + '&' + TYPPlaceholder + typ;
 
     xmlhttp.open("GET", UrlToSend, false);
     xmlhttp.send();

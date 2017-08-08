@@ -1,6 +1,7 @@
 
   
   function hide(id){
+ 
 
     var div = document.getElementById('sh'+id);
     var div2=document.getElementById(id);

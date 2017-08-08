@@ -19,7 +19,7 @@
         if ($sdate > $edate){
             
                  echo "<script type=\"text/javascript\">window.alert('Niepoprawna data');
-                 window.location.href = 'add_tasks';</script>";
+                 window.location.href = 'add_tasks.php';</script>";
                  close();
         }
         $topic = $_POST['topic'];
@@ -30,7 +30,7 @@
         if ($result = $connection->query($sql)){
             
             echo "<script type=\"text/javascript\">window.alert('Dodano zadanie');
-                 window.location.href = 'add_tasks';</script>";
+                 window.location.href = 'add_tasks.php';</script>";
         }
     $tid=$connection->insert_id;
         
@@ -46,5 +46,5 @@
             }
         }
     $connection->close();
-    echo "<script type=\"text/javascript\">window.location.href = 'add_tasks';</script>";
+    echo "<script type=\"text/javascript\">window.location.href = 'add_tasks.php';</script>";
 ?>

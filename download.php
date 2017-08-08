@@ -2,6 +2,7 @@
 /*
  * DOKOŃCZYĆ:
  * - KONTROLA BŁĘDÓW DLA NIEISTNIEJĄCYCH PLIKÓW
+ * - POPRAWIĆ POBIERANIE, BŁĘDY W PLIKACH !!!!!!
  */
 require_once 'database/dbinfo.php';
 $id = $_GET['id'];
@@ -17,8 +18,9 @@ if ($connection != false){
             header("Cache-control: private");
             header("Content-Type: ".$row[$db_attachment_type]);
             header("Content-Length: ".$row[$db_attachment_size]);
-            header("Content-Disposition: attachment; filename=\"".substr($name, 17)."\"");
+            header("Content-Disposition: attachment; filename=\"".substr($name, 17)."\";");
             readfile("attachments/".$name);
+            
         }
         else{
             echo "<script type=\"text/javascript\">window.alert('Wystąpił błąd: plik nie istnieje');</script>";

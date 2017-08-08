@@ -14,7 +14,6 @@ session_start();
         exit();
     }
 
-//$_SESSION['error'] = '<span style="color:red">Uzupełnij wszystkie pola</span>';
 
     require_once "database/dbinfo.php";
     require_once "objects.php";
@@ -26,9 +25,9 @@ session_start();
         $row = $result->fetch_assoc();
         if ($row['ile'] > 0){
             
-                 echo "<script type=\"text/javascript\">alert('Użytkownik już istnieje');</script>";
-            
-            header('Location: add_user.php');
+            echo "<script type=\"text/javascript\">window.alert('Użytkownik już istnieje');
+            window.location.href = 'add_user.php';</script>";
+          
             close();
         }
         
@@ -47,10 +46,10 @@ session_start();
 
         $sql = "INSERT INTO $db_users_tab ($db_users_id,$db_users_fname,$db_users_lname,$db_users_email,$db_users_login,$db_users_pass,$db_users_function) VALUES (NULL,'$fname','$lname','$email','$login','$hash_pass',$id)";
         if ($connection->query($sql)){
-             echo "<script type=\"text/javascript\">alert('Dodawanie zakończone');</script>";
+             echo "<script type=\"text/javascript\">window.alert('Dodano użytkownika');</script>";
         }
     }
     $connection->close();
-    header('Location: main.php');
+    echo "<script type='text/javascript'>window.location.href = 'add_user.php';</script>";
 
 ?>

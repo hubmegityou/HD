@@ -15,12 +15,11 @@
         $edate = $_POST['etime'];
         
         if ($sdate > $edate){
-
-            echo "<script type=\"text/javascript\">alert('Niepoprawna data');</script>"; // sa ale tak jakby ich nie było bo strona przeskakuje dalej i aletu nie widac xDDDD
-            header('Location: add_subtasks.php');
+           echo "<script type=\"text/javascript\">window.alert('Niepoprawna data');
+            window.location.href = 'add_subtasks';</script>";
             close();
         }
-        
+
         $taskid = $_POST['task'];
         $userid = $_POST['user'];
         $topic = $_POST['topic'];
@@ -33,9 +32,8 @@
         
         If($edate>$select_row[$db_task_edate]&& $select_row[$db_task_priority]==1){
          
-            echo "<script type=\"text/javascript\">alert('Niepoprawna data');</script>";
-            header('Location: add_subtasks.php');
-            
+            echo "<script type=\"text/javascript\">window.alert('Niepoprawna data');
+            window.location.href = 'add_subtasks';</script>";
         }else{
         if ($edate>$select_row[$db_task_edate]){
             $sql = "UPDATE $db_task_tab SET $db_task_edate='$edate' WHERE $db_task_id= $taskid"; 
@@ -44,22 +42,26 @@
         
         $sql = "INSERT INTO $db_subtask_tab ($db_subtask_id,$db_subtask_taskid,$db_subtask_name,$db_subtask_sdate,$db_subtask_edate,$db_subtask_description,$db_subtask_userid) VALUES (NULL,$taskid,'$topic','$sdate','$edate','$desc',$userid)";
         if ($result = $connection->query($sql)){
-            echo "<script type=\"text/javascript\">alert('dodawanie zakończone');</script>";// sa ale tak jakby ich nie było bo strona przeskakuje dalej i aletu nie widac xDDDD
             $subtaskid = $connection->insert_id;
             
             $text = "Masz przydzielone nowe zadanie";
             $curr_timestamp = date('Y-m-d H:i:s');
-            $sql = "INSERT INTO $db_notifications_tab ($db_notifications_id, $db_notifications_date, $db_notifications_taskid, $db_notifications_subtaskid, $db_notifications_text) VALUES (NULL, '".$curr_timestamp."', '$taskid', '$subtaskid', '$text')";        }
+            $sql = "INSERT INTO $db_notifications_tab ($db_notifications_id, $db_notifications_date, $db_notifications_taskid, $db_notifications_subtaskid, $db_notifications_text) VALUES (NULL, '".$curr_timestamp."', '$taskid', '$subtaskid', '$text')";
+            
             if ($result = $connection -> query($sql)){
                     //info testowe: działa
                 $notificationid = $connection->insert_id;       
                 $sql = "INSERT INTO $db_nots_user_tab ($db_nots_user_id, $db_nots_user_notificationid, $db_nots_user_userid, $db_nots_user_readnots) VALUES (NULL, '$notificationid', '$userid', '0')";
                 if ($result = $connection->query($sql)){
                         //info testowe: działa
-                }
+                      
+                }}
+                $connection->close();
+                 echo "<script type=\"text/javascript\">window.alert('Dodano podzadanie');window.location.href = 'add_subtasks.php';</script>";
+                 
             }  
+            
     }     
 
-    $connection->close();
-    header('Location: main.php');
+    
 ?>

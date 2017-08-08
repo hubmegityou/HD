@@ -21,7 +21,7 @@ if ($connection != false){
             readfile("attachments/".$name);
         }
         else{
-            echo "<script type=\"text/javascript\">alert('wystąpił błąd: plik nie istnieje!');</script>";
+            echo "<script type=\"text/javascript\">window.alert('Wystąpił błąd: plik nie istnieje');</script>";
             $sql = "DELETE FROM $db_attachment_tab WHERE $db_attachment_id='$id'";
             $connection->query($sql);
             //header("Location: ../tasks_all.php?sid=13&tid=16");
@@ -30,6 +30,6 @@ if ($connection != false){
     }
 }
 else {
-    echo "<script type=\"text/javascript\">alert('błąd w połączeniu z bazą');</script>"; 
+    echo "<script type=\"text/javascript\">window.alert('Błąd w połączeniu z bazą');</script>"; 
 }
 ?>

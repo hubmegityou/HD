@@ -4,7 +4,7 @@
     
     if ((!isset($_POST['myTID'])) || (!isset($_POST['mySID'])) || (!isset($_POST['stime'])) || (!isset($_POST['etime'])))
 	{
-         //   header('Location: tasks_all.php');
+            header("Location: tasks_all.php?sid=$subtask_id&tid=$task_id");
             exit();
 	}
     
@@ -23,18 +23,20 @@
         
         If(($edate>$select_row[$db_task_edate]) && ($select_row[$db_task_priority]==1)){
          
-            echo "<script type=\"text/javascript\">alert('Niepoprawna data');</script>";
-            header('Location: add_subtasks.php');
+            echo "<script type=\"text/javascript\">window.alert('Niepoprawna data');
+                window.location.href = 'tasks_all.php?sid=$subtask_id&tid=$task_id';</script>";
             
         }else{
   
             if ($edate>$select_row[$db_task_edate]){
                 $sql_u = "UPDATE $db_task_tab SET $db_task_edate='$edate' WHERE $db_task_id= $task_id"; 
                 $connection->query($sql_u);
+                
             }
         
         $sql = "UPDATE $db_subtask_tab SET $db_subtask_sdate='$sdate', $db_subtask_edate= '$edate' WHERE $db_subtask_id='$subtask_id'";
         $connection->query($sql);
+        echo "<script type=\"text/javascript\">window.alert('Zmieniono datę');</script>";
         
         //add notification
         $text = "Zmieniono datę jednego z podzadań";
@@ -54,5 +56,5 @@
         }
     }
     $connection->close();
-    header("Location: tasks_all.php?sid=$subtask_id&tid=$task_id");
+    echo "<script type=\"text/javascript\">window.location.href = 'tasks_all.php?sid=$subtask_id&tid=$task_id';</script>";
 ?>

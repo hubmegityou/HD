@@ -12,10 +12,9 @@ if ($_SESSION['function'] <= 2){
     $connection = db_connection();
     if ($connection != false){
         $sql = "DELETE FROM $db_attachment_tab WHERE $db_attachment_id='$id'";
-        if ($connection->query($sql));
-            //info że ok
+        if ($connection->query($sql));  
         $connection->close();
     }
 }
-header("Location: tasks_all.php?sid=$sid&tid=$tid");
+header("location:tasks_all.php?sid=$sid&tid=$tid");
 ?>

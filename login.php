@@ -42,8 +42,9 @@
                 }
                 else
                 {      
-                    $_SESSION['error'] = '<span style="color:red; position: absolute;top: 200px;">Nieprawidłowy login lub hasło!</span>';
-                    header('Location: index.php');
+                echo "<script type=\"text/javascript\">window.alert('Nieprawidłowy login lub hasło');
+                     window.location.href = 'index.php';</script>";
+                
                 }
         }
     }

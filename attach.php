@@ -2,7 +2,7 @@
 session_start();
     
     if (!isset($_FILES)){
-        header("Location: main.php");
+        header("location: tasks_all.php?sid=$sid&tid=$tid");
         exit();
     }
     
@@ -17,13 +17,14 @@ session_start();
         if($ext != 'exe' && $ext!='php' && $ext !='.js'){
             if (move_uploaded_file($_FILES['attachment']['tmp_name'], 'attachments/'.$time.$_FILES['attachment']['name'])){
                 $sql = "INSERT INTO $db_attachment_tab ($db_attachment_id, $db_attachment_name, $db_attachment_type, $db_attachment_size, $db_attachment_taskid) VALUES (NULL, '".$time.$_FILES['attachment']['name']."', '".$_FILES['attachment']['type']."', '".$_FILES['attachment']['size']."', '".$_POST['myTID']."')";
-                if ($result = $connection->query($sql));
-                     echo "<script type=\"text/javascript\">window.alert('Dodano załącznik');</script>";
+                if ($result = $connection->query($sql));      
             }
         }
-        echo "<script type=\"text/javascript\">alert('Niepoprawny format pliku');</script>";
         unset($_FILES);
-    }
+    
     $connection->close();
-    header("Location: tasks_all.php?sid=".$_POST['mySID']."&tid=".$_POST['myTID']);
-?>
+    $sid=$_POST['mySID'];
+    $tid=$_POST['myTID'];
+    header("location: tasks_all.php?sid=$sid&tid=$tid"); 
+    }
+    ?>

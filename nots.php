@@ -105,30 +105,36 @@
 
                  <br><br><br><br><br>
                  
-                 <?php 
- 
-                require_once "database/dbinfo.php";
-                require_once "objects.php";
-                $connection = db_connection();
-       
-                           $sql= "select $db_notifications_tab.$db_notifications_subtaskid ,$db_notifications_tab.$db_notifications_taskid, $db_notifications_tab.$db_notifications_text ,$db_notifications_tab.$db_notifications_date, $db_nots_user_tab.$db_nots_user_id, $db_nots_user_tab.$db_nots_user_readnots from $db_notifications_tab left join $db_nots_user_tab ON $db_notifications_tab.$db_notifications_id = $db_nots_user_tab.$db_nots_user_notificationid  WHERE $db_nots_user_tab.$db_nots_user_userid=".$_SESSION['id']." ORDER BY $db_notifications_tab.$db_notifications_date DESC";
+<?php 
 
-                           $result = $connection->query($sql);
-                           while($row = $result->fetch_assoc()){
-                                if ($row[$db_nots_user_readnots]==0){
-                                    echo "<div class='teamtask-form'>";
-                                    echo "<p class='team-taskform'>";
-                                    echo "<a  href='javascript:change_read($row[$db_nots_user_id],$row[$db_notifications_subtaskid], $row[$db_notifications_taskid])' style='color:black; text-decoration: none'>$row[$db_notifications_date]".'    '." $row[$db_notifications_text]</a>".'<br><br>';
-                                    echo "</p>";
-                                    echo "</div>";
-                                }else {
-                                    echo "<p class='team-taskform'>";
-                                    echo "<a href='tasks_all.php?sid=$row[$db_notifications_subtaskid]&tid=$row[$db_notifications_taskid]'  style='color:black; text-decoration: none'>$row[$db_notifications_date]".'    '." $row[$db_notifications_text]</a>".'<br><br>'; 
-                                    echo "</p>";     
-                                    }
-                           }         
-                          
-                           ?>
+    require_once "database/dbinfo.php";
+    require_once "objects.php";
+    $connection = db_connection();
+
+        $sql = "SELECT $db_subtask_tab.$db_subtask_id,$db_notifications_tab.$db_notifications_taskid, $db_notifications_tab.$db_notifications_text ,$db_notifications_tab.$db_notifications_date, $db_nots_user_tab.$db_nots_user_id, $db_nots_user_tab.$db_nots_user_readnots "
+                . "FROM $db_notifications_tab INNER JOIN $db_nots_user_tab ON $db_notifications_tab.$db_notifications_id = $db_nots_user_tab.$db_nots_user_notificationid "
+                . "INNER JOIN $db_subtask_tab ON $db_notifications_tab.$db_notifications_taskid=$db_subtask_tab.$db_subtask_taskid "
+                . "WHERE $db_nots_user_tab.$db_nots_user_userid=".$_SESSION['id']." AND $db_subtask_tab.$db_subtask_userid=".$_SESSION['id']." "
+                . "GROUP BY $db_subtask_tab.$db_subtask_taskid "
+                . "ORDER BY $db_notifications_tab.$db_notifications_date DESC";
+        
+        $result = $connection->query($sql);
+        
+        while($row = $result->fetch_assoc()){
+            if ($row[$db_nots_user_readnots]==0){
+                echo "<div class='teamtask-form'>";
+                echo "<p class='team-taskform'>";
+                echo "<a  href='javascript:change_read($row[$db_nots_user_id],$row[$db_subtask_id], $row[$db_notifications_taskid])' style='color:black; text-decoration: none'>$row[$db_notifications_date]".'    '." $row[$db_notifications_text]</a>".'<br><br>';
+                echo "</p>";
+                echo "</div>";
+            }else {
+                echo "<p class='team-taskform'>";
+                echo "<a href='tasks_all.php?sid=$row[$db_subtask_id]&tid=$row[$db_notifications_taskid]'  style='color:black; text-decoration: none'>$row[$db_notifications_date]".'    '." $row[$db_notifications_text]</a>".'<br><br>'; 
+                echo "</p>";     
+                }
+        }         
+
+?>
                                  
     </d
              <!-- /. PAGE INNER  -->

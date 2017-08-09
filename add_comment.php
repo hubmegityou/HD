@@ -27,7 +27,6 @@
                 $result = $connection->query($sql);
                 while ($row = $result->fetch_assoc()){
                     $sql = "INSERT INTO $db_nots_user_tab ($db_nots_user_id, $db_nots_user_notificationid, $db_nots_user_userid, $db_nots_user_readnots) VALUES (NULL, '$notificationid', '$row[$db_subtask_userid]', '0')";
-                    echo $sql."<br>";
                     $connection->query($sql);
                 }
             }

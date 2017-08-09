@@ -27,8 +27,10 @@
         $userid = $_SESSION['id'];
         
         $sql = "INSERT INTO $db_task_tab ($db_task_id, $db_task_name, $db_task_description, $db_task_sdate, $db_task_edate, $db_task_userid, $db_task_priority, $db_task_done) VALUES (NULL, '$topic', '$desc', '$sdate', '$edate', $userid, $priority, 0)";
+
         if ($result = $connection->query($sql)){   
                 $_SESSION['alert']= 'Dodano zadanie';
+
         }
     $tid=$connection->insert_id;
         
@@ -43,5 +45,7 @@
             }
         }
     $connection->close();
+
     header('Location: add_tasks.php');
+
 ?>

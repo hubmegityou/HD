@@ -185,6 +185,7 @@
                 echo "<div style='position: relative; top: -6px'><input type=\"image\" src=\"template/assets/img/trash.png\" onClick=\"this.form.submit()\"></div>";
                 echo "</form>";
             }
+            else echo "<br>";
             echo $row[$db_messages_text];
             echo "<br><br>";
         }

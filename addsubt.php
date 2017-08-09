@@ -15,8 +15,8 @@
         $edate = $_POST['etime'];
         
         if ($sdate > $edate){
-           echo "<script type=\"text/javascript\">window.alert('Niepoprawna data');
-            window.location.href = 'add_subtasks';</script>";
+            $_SESSION['alert']= 'Niepoprawna data';
+            header('Location: add_subtasks.php');
             close();
         }
 
@@ -32,8 +32,8 @@
         
         If($edate>$select_row[$db_task_edate]&& $select_row[$db_task_priority]==1){
          
-            echo "<script type=\"text/javascript\">window.alert('Niepoprawna data');
-            window.location.href = 'add_subtasks';</script>";
+            $_SESSION['alert']= 'Niepoprawna data';
+            header('Location: add_subtasks.php');
         }else{
         if ($edate>$select_row[$db_task_edate]){
             $sql = "UPDATE $db_task_tab SET $db_task_edate='$edate' WHERE $db_task_id= $taskid"; 
@@ -43,7 +43,7 @@
         $sql = "INSERT INTO $db_subtask_tab ($db_subtask_id,$db_subtask_taskid,$db_subtask_name,$db_subtask_sdate,$db_subtask_edate,$db_subtask_description,$db_subtask_userid) VALUES (NULL,$taskid,'$topic','$sdate','$edate','$desc',$userid)";
         if ($result = $connection->query($sql)){
             $subtaskid = $connection->insert_id;
-            
+            $_SESSION['alert']= 'Dodano podzadanie';
             $text = "Masz przydzielone nowe zadanie";
             $curr_timestamp = date('Y-m-d H:i:s');
             $sql = "INSERT INTO $db_notifications_tab ($db_notifications_id, $db_notifications_date, $db_notifications_taskid, $db_notifications_subtaskid, $db_notifications_text) VALUES (NULL, '".$curr_timestamp."', '$taskid', '$subtaskid', '$text')";
@@ -57,7 +57,7 @@
                       
                 }}
                 $connection->close();
-                 echo "<script type=\"text/javascript\">window.alert('Dodano podzadanie');window.location.href = 'add_subtasks.php';</script>";
+                 header('Location: add_subtasks.php');
                  
             }  
             

@@ -97,7 +97,7 @@
         $result = $connection->query($sql);
         $row = $result->fetch_assoc();
         
-       echo " <form enctype='multipart/form-data' action='editt.php' method='post'>";
+       echo " <form enctype='multipart/form-data' action='edit_st.php' method='post'>";
        echo " <div class='stemat'><p class='tematt'>Temat zadania: <br /><input type='text' name='topic' value=\"$row[$db_task_name]\" class='stematp' required/></p></div>";
        echo "<div class='stemat'><p class='termint'> Priorytet:
             <input type='radio' name='priority' value='1'/> tak 
@@ -107,6 +107,7 @@
        echo "<div class='stresc'><p class='tresct'>Treść zadania: <br /><textarea name='description' id='trescp' rows='6' style='width:88%' required> $row[$db_task_description]</textarea></p></div>";
        echo "<div class='stresc'><p class='tresct'>Załącz plik: <br /><input type='file' size='32' name='attachment' value=''/><p/><div/>";
        echo "<input type='hidden' value='".$_GET['id']."' name='taskid' />";
+       echo "<input type='hidden' value='task' name='task' />";
         ?>
 
                 <div class="stresc"><button type="submit">Zapisz</button></center><div/>
@@ -125,23 +126,5 @@
 </html>
 
 
-<script type="text/javascript">
-    var datefield=document.createElement("input")
-    datefield.setAttribute("type", "date")
-    if (datefield.type!=="date"){
-        document.write('<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />\n')
-        document.write('<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"><\/script>\n')
-        document.write('<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"><\/script>\n') 
-    }
-</script>
- 
-<script>
-if (datefield.type!=="date"){ 
-    jQuery(function($){ 
-        $('#calendar').datepicker({dateFormat: "yy-mm-dd"});
-            
-        
-        $('#calendar2').datepicker({dateFormat: "yy-mm-dd"});
-    });
-}
-</script>
+<script type="text/javascript" src="js/datefield.js"></script>
+<script type="text/javascript" src="js/datefield2.js"></script>

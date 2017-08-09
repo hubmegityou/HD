@@ -1,11 +1,12 @@
 
 var NotifcationsTest = {
+
 				VerifyBrowserSupport: function() {
 					return ("Notification" in window);
 				},
 				ShowNotification: function(){
 
-					var notification = new Notification(nots);
+					var notification = new Notification('dupadupa');
 				},
 				RequestForPermissionAndShow: function(){
 					

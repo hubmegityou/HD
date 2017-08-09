@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 09 Sie 2017, 07:41
+-- Czas generowania: 09 Sie 2017, 13:18
 -- Wersja serwera: 10.1.22-MariaDB
 -- Wersja PHP: 7.1.4
 
@@ -43,8 +43,7 @@ CREATE TABLE `attachment` (
 --
 
 INSERT INTO `attachment` (`att_ID`, `name`, `type`, `size`, `task_ID`) VALUES
-(4, '17-08-08_08-13-04test.txt', 'text/plain', 53, 16),
-(13, '17-08-08_12-59-58test.txt', 'text/plain', 53, 20);
+(19, '17-08-09_11-23-37test.txt', 'text/plain', 53, 22);
 
 -- --------------------------------------------------------
 
@@ -87,14 +86,8 @@ CREATE TABLE `messages` (
 --
 
 INSERT INTO `messages` (`message_ID`, `user_ID`, `date`, `task_ID`, `text`) VALUES
-(2, 5, '2017-07-05 06:38:22', 16, 'sdfghgfdwsdfghgrew'),
-(3, 17, '2017-07-24 13:00:52', 16, 'sdfghrewert'),
-(5, 17, '2017-07-24 13:09:57', 16, 'wefgwwerfgfwerfgb'),
-(6, 17, '2017-07-24 13:10:09', 16, 'dupa dupa dupa dupa dupa dupa\r\n'),
-(7, 17, '2017-07-24 13:10:29', 16, 'qawertykjytrewq23etyuiouy5432q357uiuytr5w33r6u'),
-(8, 5, '2017-07-24 13:12:28', 16, 'dudnbkwddjwqndskldwqkslv'),
-(12, 17, '2017-08-08 21:30:06', 19, 'heheheh\r\n'),
-(13, 17, '2017-08-08 21:30:14', 19, 'kom');
+(23, 18, '2017-08-09 11:22:59', 22, 'dodaje komentarz heh'),
+(29, 18, '2017-08-09 13:12:14', 22, 'zmieniam datę');
 
 -- --------------------------------------------------------
 
@@ -115,11 +108,13 @@ CREATE TABLE `notifications` (
 --
 
 INSERT INTO `notifications` (`notification_ID`, `date`, `task_ID`, `subtask_ID`, `text`) VALUES
-(51, '2017-08-06 16:58:18', 16, 13, 'Zmieniono datę jednego z podzadań'),
-(66, '2017-08-07 12:17:29', 16, 13, 'edytowano podzadanie'),
-(67, '2017-08-07 12:21:46', 16, 13, 'edytowano podzadanie'),
-(69, '2017-08-08 13:00:25', 19, 44, 'Masz przydzielone nowe zadanie'),
-(71, '2017-08-08 14:44:36', 19, 46, 'Masz przydzielone nowe zadanie');
+(98, '2017-08-09 11:20:38', 22, 52, 'Masz przydzielone nowe zadanie'),
+(99, '2017-08-09 11:21:00', 22, 53, 'Masz przydzielone nowe zadanie'),
+(100, '2017-08-09 11:22:59', 22, NULL, 'Dodano komentarz do aktywnego zadania'),
+(101, '2017-08-09 11:23:37', 22, NULL, 'Dodano załącznik do aktywnego zadania'),
+(109, '2017-08-09 12:59:15', 22, 53, 'Zmieniono datę jednego z podzadań'),
+(114, '2017-08-09 13:12:03', 22, 53, 'Zmieniono datę jednego z podzadań'),
+(115, '2017-08-09 13:12:14', 22, NULL, 'Dodano komentarz do aktywnego zadania');
 
 -- --------------------------------------------------------
 
@@ -139,11 +134,10 @@ CREATE TABLE `nots_user` (
 --
 
 INSERT INTO `nots_user` (`nots_ID`, `notification_ID`, `user_ID`, `read_nots`) VALUES
-(7, 51, 17, 1),
-(18, 66, 17, 0),
-(19, 67, 17, 1),
-(21, 69, 17, 1),
-(23, 71, 18, 0);
+(43, 99, 18, 1),
+(55, 109, 17, 1),
+(61, 114, 17, 0),
+(62, 115, 17, 0);
 
 -- --------------------------------------------------------
 
@@ -167,9 +161,8 @@ CREATE TABLE `subtask` (
 --
 
 INSERT INTO `subtask` (`subtask_ID`, `task_ID`, `name`, `start_date`, `end_date`, `description`, `user_ID`, `done`) VALUES
-(13, 16, 'podzadanie', '2017-07-21', '2017-07-28', 'podzadanie do wykonania poprawka', 17, 1),
-(44, 19, 'slakjdlajsd', '2017-08-09', '2017-08-09', 'las;da', 17, 0),
-(46, 19, 'podzadanieada sda', '2017-08-09', '2017-08-16', 'asdasda', 18, 0);
+(52, 22, 'podzadanie 2.1', '2017-08-10', '2017-08-11', 'dasda', 17, 0),
+(53, 22, 'podzadanie 2.2', '2017-12-10', '2017-12-14', ';ajipdml', 18, 0);
 
 -- --------------------------------------------------------
 
@@ -193,9 +186,7 @@ CREATE TABLE `task` (
 --
 
 INSERT INTO `task` (`task_ID`, `name`, `description`, `start_date`, `end_date`, `user_ID`, `priority`, `done`) VALUES
-(16, 'zadanie1', 'nowa tresc\r\n', '2017-07-21', '2017-08-16', 17, 0, 0),
-(19, 'php edycja', ' palwdksokflaw', '2017-08-18', '2017-08-25', 17, 0, 0),
-(20, 'problem', 'as;ld;alsd', '2017-08-02', '2017-08-30', 17, 0, 0);
+(22, 'zadanie 2', 'ble ble test', '2017-08-09', '2017-12-14', 17, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -221,7 +212,8 @@ INSERT INTO `users` (`user_ID`, `first_name`, `last_name`, `email`, `login`, `pa
 (5, 'asdas', 'asdasd', 'asdasd', 'aaa', 'b2ca678b4c936f905fb82f2733f5297f', 1),
 (17, 'Jan', 'Kowalski', 'ksda@dsd', 'qwe', '202cb962ac59075b964b07152d234b70', 2),
 (18, 'Pracownik', 'Aaaa', 'kkk@kkk', 'zxc', '202cb962ac59075b964b07152d234b70', 3),
-(20, 'Lol', 'Ll', 'lol@lol.lol', 'lol', '9cdfb439c7876e703e307864c9167a15', 1);
+(20, 'Lol', 'Ll', 'lol@lol.lol', 'lol', '9cdfb439c7876e703e307864c9167a15', 1),
+(21, 'Anna', 'Nowak', 'anowak@pl', 'asd', '202cb962ac59075b964b07152d234b70', 5);
 
 --
 -- Indeksy dla zrzutów tabel
@@ -294,7 +286,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT dla tabeli `attachment`
 --
 ALTER TABLE `attachment`
-  MODIFY `att_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `att_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 --
 -- AUTO_INCREMENT dla tabeli `functions`
 --
@@ -304,32 +296,32 @@ ALTER TABLE `functions`
 -- AUTO_INCREMENT dla tabeli `messages`
 --
 ALTER TABLE `messages`
-  MODIFY `message_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `message_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 --
 -- AUTO_INCREMENT dla tabeli `notifications`
 --
 ALTER TABLE `notifications`
-  MODIFY `notification_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=72;
+  MODIFY `notification_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=116;
 --
 -- AUTO_INCREMENT dla tabeli `nots_user`
 --
 ALTER TABLE `nots_user`
-  MODIFY `nots_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `nots_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
 --
 -- AUTO_INCREMENT dla tabeli `subtask`
 --
 ALTER TABLE `subtask`
-  MODIFY `subtask_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
+  MODIFY `subtask_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
 --
 -- AUTO_INCREMENT dla tabeli `task`
 --
 ALTER TABLE `task`
-  MODIFY `task_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `task_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 --
 -- AUTO_INCREMENT dla tabeli `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `user_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 --
 -- Ograniczenia dla zrzutów tabel
 --

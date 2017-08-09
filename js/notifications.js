@@ -17,5 +17,7 @@
         }, 17000);}
 
 }
+
+
+
             
-    a to ma niby postem odpalac notifications.php i zwracac wynik do zmiennej liczba 

@@ -1,23 +1,26 @@
               
-  var getNotifications = {
-       getNotifications: function(){
 
-    $.ajax({
-        type: "POST",
-        url: "notifications.php",
-        data: dataString,
-        success: function(liczba){
-            document.getElementById('circle').innerHTML=liczba;
-
-        }
-    });
-    
-    setTimeout(function(){
+    window.onload= function getNotifications(){
+      
+              
+           $.ajax({
+            type:"GET", 
+            url:"notifications.php", 
+            contentType:"application/json; charset=utf-8", 
+            dataType:'json', 
+             
+                success: function(json) { 
+                       
+                 document.getElementById('circle').innerHTML=json;
+                
+                
+                }
+              });
+          
+            setTimeout(function(){
             getNotifications();
-        }, 17000);}
-
-}
-
-
-
-            
+            }, 17000);
+    
+    }   
+                
+                

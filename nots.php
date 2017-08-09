@@ -121,7 +121,6 @@
                                     echo "<a  href='javascript:change_read($row[$db_nots_user_id],$row[$db_notifications_subtaskid], $row[$db_notifications_taskid])' style='color:black; text-decoration: none'>$row[$db_notifications_date]".'    '." $row[$db_notifications_text]</a>".'<br><br>';
                                     echo "</p>";
                                     echo "</div>";
-     
                                 }else {
                                     echo "<p class='team-taskform'>";
                                     echo "<a href='tasks_all.php?sid=$row[$db_notifications_subtaskid]&tid=$row[$db_notifications_taskid]'  style='color:black; text-decoration: none'>$row[$db_notifications_date]".'    '." $row[$db_notifications_text]</a>".'<br><br>'; 

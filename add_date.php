@@ -39,10 +39,10 @@
         $_SESSION['alert']= 'Zmieniono datę';
         
         //add notification
-        $text = "Zmieniono datę jednego z podzadań";
+        $text = "Zmieniono datę podzadania";
         $curr_timestamp = date('Y-m-d H:i:s');
         $sql = "INSERT INTO $db_notifications_tab ($db_notifications_id, $db_notifications_date, $db_notifications_taskid, $db_notifications_subtaskid, $db_notifications_text) VALUES (NULL, '$curr_timestamp', '$task_id', '$subtask_id', '$text')";        }
-        if ($result = $connection -> query($sql));{
+        if ($result = $connection -> query($sql)){
             //info testowe: działa
             $notificationid = $connection->insert_id;
             $sql = "SELECT $db_task_userid FROM $db_task_tab WHERE $db_task_id=$task_id";

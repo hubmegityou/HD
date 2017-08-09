@@ -23,8 +23,8 @@
         
         If(($edate>$select_row[$db_task_edate]) && ($select_row[$db_task_priority]==1)){
          
-            echo "<script type=\"text/javascript\">window.alert('Niepoprawna data');
-                window.location.href = 'tasks_all.php?sid=$subtask_id&tid=$task_id';</script>";
+             $_SESSION['alert']= 'Niepoprawna data';
+            header("Location: tasks_all.php?sid=$subtask_id&tid=$task_id");
             
         }else{
   
@@ -36,7 +36,7 @@
         
         $sql = "UPDATE $db_subtask_tab SET $db_subtask_sdate='$sdate', $db_subtask_edate= '$edate' WHERE $db_subtask_id='$subtask_id'";
         $connection->query($sql);
-        echo "<script type=\"text/javascript\">window.alert('Zmieniono datę');</script>";
+        $_SESSION['alert']= 'Zmieniono datę';
         
         //add notification
         $text = "Zmieniono datę jednego z podzadań";
@@ -56,5 +56,5 @@
         }
     }
     $connection->close();
-    echo "<script type=\"text/javascript\">window.location.href = 'tasks_all.php?sid=$subtask_id&tid=$task_id';</script>";
+    header("Location: tasks_all.php?sid=$subtask_id&tid=$task_id");
 ?>

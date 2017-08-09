@@ -8,7 +8,12 @@
 		header('Location: index.php');
 		exit();
 	}
-       
+  
+    If(isset($_SESSION['alert']) && $_SESSION['alert']!=''){      
+         echo "<script type=\"text/javascript\">window.onload = function(){alert('".$_SESSION['alert']."')}</script>";  
+         $_SESSION['alert']='';
+        }      
+        
 ?>
 
 

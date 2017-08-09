@@ -20,8 +20,8 @@ if ($connection != false){
     $desc = $_POST['description'];
     
      if ($sdate > $edate){
-        echo "<script type=\"text/javascript\">window.alert('Niepoprawna data');
-        window.location.href = 'team_tasks.php';</script>"; 
+         $_SESSION['alert']= 'Niepoprawna data';
+        header('Location: team_tasks.php'); 
         close();
     } 
     
@@ -32,7 +32,7 @@ if ($connection != false){
     $userid = $_SESSION['id'];
     $sql = "UPDATE $db_task_tab SET  $db_task_name='$topic', $db_task_description='$desc', $db_task_sdate='$sdate', $db_task_edate='$edate', $db_task_userid= '$userid', $db_task_priority='$priority', $db_task_done='0' WHERE $db_task_id='$taskid'";
     if ($result = $connection->query($sql)){
-        echo "<script type=\"text/javascript\">window.alert('Edytowano zadanie');</script>";
+        $_SESSION['alert']= 'Edytowano zadanie';
     }
 
     //dodawanie załącznika
@@ -56,7 +56,7 @@ if ($connection != false){
 
     $sql = "UPDATE $db_subtask_tab SET $db_subtask_taskid='$taskid' ,$db_subtask_name='$topic',$db_subtask_sdate='$sdate',$db_subtask_edate='$edate',$db_subtask_description='$desc',$db_subtask_userid='$userid' WHERE $db_subtask_id='$subtaskid'";
     if ($result = $connection->query($sql)){
-        echo "<script type=\"text/javascript\">window.alert('Edytwano podzadanie');</script>"; 
+        $_SESSION['alert']= 'Edytowano podzadanie'; 
         $text = "Edytowano podzadanie";
         $curr_timestamp = date('Y-m-d H:i:s');
         $sql = "INSERT INTO $db_notifications_tab ($db_notifications_id, $db_notifications_date, $db_notifications_taskid, $db_notifications_subtaskid, $db_notifications_text) VALUES (NULL, '$curr_timestamp', '$taskid', '$subtaskid', '$text')";
@@ -77,5 +77,5 @@ if ($connection != false){
     
     $connection->close();
 }
-echo "<script type=\"text/javascript\">window.location.href = 'team_tasks.php';</script>";
+header('location: team_tasks.php');
 ?>

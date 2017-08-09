@@ -201,18 +201,3 @@ $(document).ready(function() {
    
 </body>
 </html>
-      
-
-    <?php
-//    require_once "database/dbinfo.php";
-//    require_once "objects.php";
-//    $connection = db_connection();
-//    $sql= "select $db_notifications_tab.$db_notifications_text ,$db_notifications_tab.$db_notifications_date from $db_notifications_tab left join $db_nots_user_tab ON $db_notifications_tab.$db_notifications_id = $db_nots_user_tab.$db_nots_user_notiicationid  WHERE $db_nots_user_readnots='0' AND $db_nots_user_tab.$db_nots_user_userid=".$_SESSION['id'];
-//    $result = $connection -> query($sql);
-//    while ($row = $result->fetch_assoc()){
-        echo "var nots='$row[$db_notifications_text]ggg';";
-    
-   // }
-    ?>
-
-<script type="text/javascript" src="js/notifications.js"></script>

@@ -25,8 +25,8 @@ session_start();
         $row = $result->fetch_assoc();
         if ($row['ile'] > 0){
             
-            echo "<script type=\"text/javascript\">window.alert('Użytkownik już istnieje');
-            window.location.href = 'add_user.php';</script>";
+            $_SESSION['alert']='Użytkownik już istnieje';
+            header('Location: add_user.php');
           
             close();
         }
@@ -46,10 +46,10 @@ session_start();
 
         $sql = "INSERT INTO $db_users_tab ($db_users_id,$db_users_fname,$db_users_lname,$db_users_email,$db_users_login,$db_users_pass,$db_users_function) VALUES (NULL,'$fname','$lname','$email','$login','$hash_pass',$id)";
         if ($connection->query($sql)){
-             echo "<script type=\"text/javascript\">window.alert('Dodano użytkownika');</script>";
+              $_SESSION['alert']='Dodano użytkownika';
         }
     }
     $connection->close();
-    echo "<script type='text/javascript'>window.location.href = 'add_user.php';</script>";
+    header('Location: add_user.php');
 
 ?>

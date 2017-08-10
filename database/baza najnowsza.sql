@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 10 Sie 2017, 12:28
--- Wersja serwera: 10.1.24-MariaDB
--- Wersja PHP: 7.1.6
+-- Czas generowania: 10 Sie 2017, 15:00
+-- Wersja serwera: 10.1.22-MariaDB
+-- Wersja PHP: 7.1.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -35,22 +35,17 @@ CREATE TABLE `attachment` (
   `name` text NOT NULL,
   `type` text NOT NULL,
   `size` int(11) NOT NULL,
-  `task_ID` int(11) NOT NULL
+  `task_ID` int(11) NOT NULL,
+  `description` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- RELATIONSHIPS FOR TABLE `attachment`:
---   `task_ID`
---       `task` -> `task_ID`
---
 
 --
 -- Zrzut danych tabeli `attachment`
 --
 
-INSERT INTO `attachment` (`att_ID`, `name`, `type`, `size`, `task_ID`) VALUES
-(24, '17-08-09_14-38-47find_user.png', 'image/png', 10387, 41),
-(25, '17-08-09_14-58-51find_user.png', 'image/png', 10387, 41);
+INSERT INTO `attachment` (`att_ID`, `name`, `type`, `size`, `task_ID`, `description`) VALUES
+(26, '17-08-10_14-45-48test.txt', 'text/plain', 53, 41, 'opis'),
+(29, '17-08-10_14-55-06obrazek.bmp', 'image/bmp', 208914, 41, 'opis ble ble ble');
 
 -- --------------------------------------------------------
 
@@ -62,10 +57,6 @@ CREATE TABLE `functions` (
   `function_ID` int(11) NOT NULL,
   `function_description` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- RELATIONSHIPS FOR TABLE `functions`:
---
 
 --
 -- Zrzut danych tabeli `functions`
@@ -93,14 +84,6 @@ CREATE TABLE `messages` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- RELATIONSHIPS FOR TABLE `messages`:
---   `task_ID`
---       `task` -> `task_ID`
---   `user_ID`
---       `users` -> `user_ID`
---
-
---
 -- Zrzut danych tabeli `messages`
 --
 
@@ -124,14 +107,6 @@ CREATE TABLE `notifications` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- RELATIONSHIPS FOR TABLE `notifications`:
---   `task_ID`
---       `task` -> `task_ID`
---   `subtask_ID`
---       `subtask` -> `subtask_ID`
---
-
---
 -- Zrzut danych tabeli `notifications`
 --
 
@@ -146,7 +121,11 @@ INSERT INTO `notifications` (`notification_ID`, `date`, `task_ID`, `subtask_ID`,
 (99, '2017-08-09 14:44:54', 42, 48, 'Masz przydzielone nowe zadanie'),
 (100, '2017-08-09 14:46:50', 41, NULL, 'Dodano komentarz do aktywnego zadania'),
 (101, '2017-08-09 14:46:58', 41, NULL, 'Dodano komentarz do aktywnego zadania'),
-(102, '2017-08-09 14:58:51', 41, NULL, 'Dodano załącznik do aktywnego zadania');
+(102, '2017-08-09 14:58:51', 41, NULL, 'Dodano załącznik do aktywnego zadania'),
+(103, '2017-08-10 14:45:48', 41, NULL, 'Dodano załącznik do aktywnego zadania'),
+(104, '2017-08-10 14:52:44', 41, NULL, 'Dodano załącznik do aktywnego zadania'),
+(105, '2017-08-10 14:53:55', 41, NULL, 'Dodano załącznik do aktywnego zadania'),
+(106, '2017-08-10 14:55:06', 41, NULL, 'Dodano załącznik do aktywnego zadania');
 
 -- --------------------------------------------------------
 
@@ -163,14 +142,6 @@ CREATE TABLE `nots_user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- RELATIONSHIPS FOR TABLE `nots_user`:
---   `notification_ID`
---       `notifications` -> `notification_ID`
---   `user_ID`
---       `users` -> `user_ID`
---
-
---
 -- Zrzut danych tabeli `nots_user`
 --
 
@@ -182,10 +153,14 @@ INSERT INTO `nots_user` (`nots_ID`, `notification_ID`, `user_ID`, `read_nots`, `
 (74, 96, 18, 1, 0),
 (75, 97, 18, 1, 0),
 (76, 98, 18, 1, 0),
-(77, 99, 17, 1, 0),
+(77, 99, 17, 1, 1),
 (78, 100, 17, 0, 0),
-(79, 101, 17, 0, 0),
-(80, 102, 17, 0, 1);
+(79, 101, 17, 0, 1),
+(80, 102, 17, 1, 1),
+(81, 103, 18, 1, 0),
+(82, 104, 18, 1, 0),
+(83, 105, 18, 1, 0),
+(84, 106, 17, 0, 1);
 
 -- --------------------------------------------------------
 
@@ -203,14 +178,6 @@ CREATE TABLE `subtask` (
   `user_ID` int(11) NOT NULL,
   `done` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- RELATIONSHIPS FOR TABLE `subtask`:
---   `task_ID`
---       `task` -> `task_ID`
---   `user_ID`
---       `users` -> `user_ID`
---
 
 --
 -- Zrzut danych tabeli `subtask`
@@ -241,12 +208,6 @@ CREATE TABLE `task` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- RELATIONSHIPS FOR TABLE `task`:
---   `user_ID`
---       `users` -> `user_ID`
---
-
---
 -- Zrzut danych tabeli `task`
 --
 
@@ -270,12 +231,6 @@ CREATE TABLE `users` (
   `password` text NOT NULL,
   `user_function` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- RELATIONSHIPS FOR TABLE `users`:
---   `user_function`
---       `functions` -> `function_ID`
---
 
 --
 -- Zrzut danych tabeli `users`
@@ -359,7 +314,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT dla tabeli `attachment`
 --
 ALTER TABLE `attachment`
-  MODIFY `att_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `att_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 --
 -- AUTO_INCREMENT dla tabeli `functions`
 --
@@ -374,12 +329,12 @@ ALTER TABLE `messages`
 -- AUTO_INCREMENT dla tabeli `notifications`
 --
 ALTER TABLE `notifications`
-  MODIFY `notification_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=103;
+  MODIFY `notification_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=107;
 --
 -- AUTO_INCREMENT dla tabeli `nots_user`
 --
 ALTER TABLE `nots_user`
-  MODIFY `nots_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=81;
+  MODIFY `nots_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=85;
 --
 -- AUTO_INCREMENT dla tabeli `subtask`
 --

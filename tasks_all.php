@@ -131,9 +131,9 @@
                                 // $connection->close();
                             }
                     }
-    echo "<br>ZAŁĄCZNIKI!!!<br><br>";
+    echo "<br><b>ZAŁĄCZNIKI!!!</b><br><br>";
 
-        $sql = "SELECT $db_attachment_size, $db_attachment_name, $db_attachment_id FROM $db_attachment_tab WHERE $db_attachment_taskid = '$tid'";
+        $sql = "SELECT $db_attachment_size, $db_attachment_name, $db_attachment_id, $db_attachment_desc FROM $db_attachment_tab WHERE $db_attachment_taskid = '$tid'";
         $result = $connection->query($sql);
         while ($row = $result->fetch_assoc()){
             echo "<div><a  style=\"float: left\" href=\"download.php?id=$row[$db_attachment_id]&sid=$sid&tid=$tid\">".substr($row[$db_attachment_name], 17)."</a>\t";
@@ -148,6 +148,7 @@
                 $attachsize = $attachsize . "b";
             }
             echo "($attachsize)</div>";
+            echo "<i>$row[$db_attachment_desc]</i><br>";
             //usuwanie załączników (admin lub manager)
             if ($_SESSION['function'] <= 2){
                 echo "<form action=\"delete_ac.php\" method=\"post\">";
@@ -161,7 +162,8 @@
         }
         //dodawanie załączników
         echo "<form enctype=\"multipart/form-data\" action=\"attach.php\" method=\"post\">";
-        echo "<p>Załącz plik: <br /><input type=\"file\" size=\"32\" name=\"attachment\" value=\"\"/><p/>";
+        echo "<p>Załącz plik: <br><input type=\"file\" size=\"32\" name=\"attachment\" value=\"\"/></p>";
+        echo "<p>Opis <br><textarea name=\"desc\" rows='2' style='width:20%'></textarea></p>";
         echo "<input type='hidden' name='mySID' value=$sid>";
         echo "<input type='hidden' name='myTID' value=$tid>";
         echo "<button type=\"submit\">Wyślij</button></center>";
@@ -169,7 +171,7 @@
         
     echo "<div style='clear:both'></div>";
     echo '<div style="margin-left:10px">';
-    echo "<br><br><br><br><br><br><br>KOMENTARZE!!!!<br><br>";
+    echo "<br><br><br><br><br><b>KOMENTARZE!!!!</b><br><br>";
                
         $sql= "select $db_messages_tab.$db_messages_id, $db_messages_tab.$db_messages_date, $db_messages_tab.$db_messages_text, $db_users_tab.$db_users_fname, $db_users_tab.$db_users_lname FROM $db_messages_tab LEFT JOIN $db_users_tab ON $db_messages_tab.$db_messages_userid= $db_users_tab.$db_users_id WHERE $db_messages_taskid=$tid ";
         $result = $connection->query($sql);
@@ -189,6 +191,7 @@
             echo $row[$db_messages_text];
             echo "<br><br>";
         }
+        //dodawanie komentarzy
         echo "<form action='add_comment.php' method='post'>";
         echo "<textarea name='comment' id='trescp' rows='6' style='width:50%'></textarea><br><br>";
         echo "<input type='hidden' name='mySID' value=$sid>";

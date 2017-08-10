@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 01 Sie 2017, 11:43
+-- Czas generowania: 10 Sie 2017, 12:28
 -- Wersja serwera: 10.1.24-MariaDB
 -- Wersja PHP: 7.1.6
 
@@ -43,6 +43,14 @@ CREATE TABLE `attachment` (
 --   `task_ID`
 --       `task` -> `task_ID`
 --
+
+--
+-- Zrzut danych tabeli `attachment`
+--
+
+INSERT INTO `attachment` (`att_ID`, `name`, `type`, `size`, `task_ID`) VALUES
+(24, '17-08-09_14-38-47find_user.png', 'image/png', 10387, 41),
+(25, '17-08-09_14-58-51find_user.png', 'image/png', 10387, 41);
 
 -- --------------------------------------------------------
 
@@ -97,15 +105,9 @@ CREATE TABLE `messages` (
 --
 
 INSERT INTO `messages` (`message_ID`, `user_ID`, `date`, `task_ID`, `text`) VALUES
-(1, 5, '2017-07-05 06:38:22', 16, 'sdfghgfdwsdfghgrew'),
-(2, 5, '2017-07-05 06:38:22', 16, 'sdfghgfdwsdfghgrew'),
-(3, 17, '2017-07-24 13:00:52', 16, 'sdfghrewert'),
-(4, 17, '2017-07-24 13:09:01', 16, 'dupa dupa dupa'),
-(5, 17, '2017-07-24 13:09:57', 16, 'wefgwwerfgfwerfgb'),
-(6, 17, '2017-07-24 13:10:09', 16, 'dupa dupa dupa dupa dupa dupa\r\n'),
-(7, 17, '2017-07-24 13:10:29', 16, 'qawertykjytrewq23etyuiouy5432q357uiuytr5w33r6u'),
-(8, 5, '2017-07-24 13:12:28', 16, 'dudnbkwddjwqndskldwqkslv'),
-(12, 5, '2017-07-24 14:18:50', 16, 'dd');
+(4, 17, '2017-08-09 14:41:39', 41, 'vvv'),
+(5, 18, '2017-08-09 14:46:50', 41, 'hhhhhh'),
+(6, 18, '2017-08-09 14:46:58', 41, 'vvvvvvv');
 
 -- --------------------------------------------------------
 
@@ -117,7 +119,7 @@ CREATE TABLE `notifications` (
   `notification_ID` int(11) NOT NULL,
   `date` datetime NOT NULL,
   `task_ID` int(11) NOT NULL,
-  `subtask_ID` int(11) NOT NULL,
+  `subtask_ID` int(11) DEFAULT NULL,
   `text` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -134,38 +136,17 @@ CREATE TABLE `notifications` (
 --
 
 INSERT INTO `notifications` (`notification_ID`, `date`, `task_ID`, `subtask_ID`, `text`) VALUES
-(1, '0000-00-00 00:00:00', 17, 19, 'dupa dupa dupa'),
-(2, '0000-00-00 00:00:00', 17, 19, 'dupaaaaaaa dupaaaaaa dupa'),
-(3, '0000-00-00 00:00:00', 17, 19, 'dupa dupa dupa'),
-(4, '0000-00-00 00:00:00', 17, 19, 'dupaaaaaaa dupaaaaaa dupa'),
-(5, '0000-00-00 00:00:00', 17, 19, 'dupa dupa dupa'),
-(6, '0000-00-00 00:00:00', 17, 19, 'dupaaaaaaa dupaaaaaa dupa'),
-(7, '0000-00-00 00:00:00', 17, 19, 'dupa dupa dupa'),
-(8, '0000-00-00 00:00:00', 17, 19, 'dupaaaaaaa dupaaaaaa dupa'),
-(9, '0000-00-00 00:00:00', 17, 19, 'dupa dupa dupa'),
-(10, '0000-00-00 00:00:00', 17, 19, 'dupaaaaaaa dupaaaaaa dupa'),
-(11, '0000-00-00 00:00:00', 17, 19, 'dupa dupa dupa'),
-(12, '0000-00-00 00:00:00', 17, 19, 'dupaaaaaaa dupaaaaaa dupa'),
-(13, '0000-00-00 00:00:00', 17, 19, 'dupa dupa dupa'),
-(14, '0000-00-00 00:00:00', 17, 19, 'dupaaaaaaa dupaaaaaa dupa'),
-(15, '0000-00-00 00:00:00', 17, 19, 'dupa dupa dupa'),
-(16, '0000-00-00 00:00:00', 17, 19, 'dupaaaaaaa dupaaaaaa dupa'),
-(17, '0000-00-00 00:00:00', 17, 19, 'dupa dupa dupa'),
-(18, '0000-00-00 00:00:00', 17, 19, 'dupaaaaaaa dupaaaaaa dupa'),
-(19, '0000-00-00 00:00:00', 17, 19, 'dupa dupa dupa'),
-(20, '0000-00-00 00:00:00', 17, 19, 'dupaaaaaaa dupaaaaaa dupa'),
-(21, '0000-00-00 00:00:00', 17, 19, 'dupa dupa dupa'),
-(22, '0000-00-00 00:00:00', 17, 19, 'dupaaaaaaa dupaaaaaa dupa'),
-(23, '0000-00-00 00:00:00', 17, 19, 'dupa dupa dupa'),
-(24, '0000-00-00 00:00:00', 17, 19, 'dupaaaaaaa dupaaaaaa dupa'),
-(25, '0000-00-00 00:00:00', 17, 19, 'dupa dupa dupa'),
-(26, '0000-00-00 00:00:00', 17, 19, 'dupaaaaaaa dupaaaaaa dupa'),
-(27, '0000-00-00 00:00:00', 17, 19, 'dupa dupa dupa'),
-(28, '0000-00-00 00:00:00', 17, 19, 'dupaaaaaaa dupaaaaaa dupa'),
-(29, '0000-00-00 00:00:00', 17, 19, 'dupa dupa dupa'),
-(30, '0000-00-00 00:00:00', 17, 19, 'dupaaaaaaa dupaaaaaa dupa'),
-(31, '0000-00-00 00:00:00', 17, 19, 'dupa dupa dupa'),
-(32, '0000-00-00 00:00:00', 17, 19, 'dupaaaaaaa dupaaaaaa dupa');
+(92, '2017-08-09 14:35:47', 40, 44, 'Masz przydzielone nowe zadanie'),
+(93, '2017-08-09 14:37:03', 41, 45, 'Masz przydzielone nowe zadanie'),
+(94, '2017-08-09 14:37:39', 41, 46, 'Masz przydzielone nowe zadanie'),
+(95, '2017-08-09 14:37:55', 40, 47, 'Masz przydzielone nowe zadanie'),
+(96, '2017-08-09 14:38:38', 41, NULL, 'Dodano komentarz do aktywnego zadania'),
+(97, '2017-08-09 14:38:47', 41, NULL, 'Dodano załącznik do aktywnego zadania'),
+(98, '2017-08-09 14:41:39', 41, NULL, 'Dodano komentarz do aktywnego zadania'),
+(99, '2017-08-09 14:44:54', 42, 48, 'Masz przydzielone nowe zadanie'),
+(100, '2017-08-09 14:46:50', 41, NULL, 'Dodano komentarz do aktywnego zadania'),
+(101, '2017-08-09 14:46:58', 41, NULL, 'Dodano komentarz do aktywnego zadania'),
+(102, '2017-08-09 14:58:51', 41, NULL, 'Dodano załącznik do aktywnego zadania');
 
 -- --------------------------------------------------------
 
@@ -177,7 +158,8 @@ CREATE TABLE `nots_user` (
   `nots_ID` int(11) NOT NULL,
   `notification_ID` int(11) NOT NULL,
   `user_ID` int(11) NOT NULL,
-  `read_nots` int(11) NOT NULL
+  `read_nots` int(11) NOT NULL,
+  `delete_n` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -192,11 +174,18 @@ CREATE TABLE `nots_user` (
 -- Zrzut danych tabeli `nots_user`
 --
 
-INSERT INTO `nots_user` (`nots_ID`, `notification_ID`, `user_ID`, `read_nots`) VALUES
-(1, 2, 17, 0),
-(2, 31, 17, 0),
-(3, 2, 17, 0),
-(4, 31, 17, 0);
+INSERT INTO `nots_user` (`nots_ID`, `notification_ID`, `user_ID`, `read_nots`, `delete_n`) VALUES
+(70, 92, 17, 0, 0),
+(71, 93, 17, 1, 0),
+(72, 94, 18, 0, 0),
+(73, 95, 18, 0, 0),
+(74, 96, 18, 1, 0),
+(75, 97, 18, 1, 0),
+(76, 98, 18, 1, 0),
+(77, 99, 17, 1, 0),
+(78, 100, 17, 0, 0),
+(79, 101, 17, 0, 0),
+(80, 102, 17, 0, 1);
 
 -- --------------------------------------------------------
 
@@ -228,18 +217,11 @@ CREATE TABLE `subtask` (
 --
 
 INSERT INTO `subtask` (`subtask_ID`, `task_ID`, `name`, `start_date`, `end_date`, `description`, `user_ID`, `done`) VALUES
-(13, 16, 'podzadanie', '2017-07-21', '2017-07-26', 'podzadanie do wykonania', 17, 0),
-(14, 16, 'asdfghfdsadfg', '2017-08-04', '2017-09-29', 'dfdewqwedfgbfdwqwsdfvbfdfswasdfvb', 5, 0),
-(15, 16, 'asdfghfdsadfg', '2017-09-03', '2017-10-28', 'dfdewqwedfgbfdwqwsdfvbfdfswasdfvb', 5, 0),
-(16, 23, 'podzadanie', '2017-07-21', '2017-07-26', 'podzadanie do wykonania', 17, 0),
-(17, 23, 'asdfghfdsadfg', '2017-08-04', '2017-09-29', 'dfdewqwedfgbfdwqwsdfvbfdfswasdfvb', 5, 0),
-(18, 16, 'asdfghfdsadfg', '2017-09-03', '2017-10-28', 'dfdewqwedfgbfdwqwsdfvbfdfswasdfvb', 5, 0),
-(19, 17, 'mmm', '2017-07-06', '2017-07-07', 'mmmm', 17, 1),
-(20, 16, 'dupa', '2017-07-22', '2018-05-25', 'hehe', 17, 0),
-(21, 19, 'ddd', '2017-07-06', '2018-11-24', 'ee', 17, 0),
-(22, 20, 'ngerwe', '2017-07-14', '2017-07-30', 'ergherwq', 17, 0),
-(23, 19, 'wertjhtrew3q3werr', '2017-07-15', '2017-07-22', 'erghrewerfg', 18, 0),
-(24, 20, 'yhjkjhhjk', '2017-07-05', '2017-07-23', 'ioiuuk', 17, 0);
+(44, 40, 'bbbbbb', '2017-08-10', '2017-08-18', 'bbbb', 17, 0),
+(45, 41, 'gggggg', '2017-08-11', '2017-08-24', 'ghjjhjk', 17, 0),
+(46, 41, 'gggggg', '2017-08-10', '2017-08-17', 'fffff', 18, 0),
+(47, 40, 'dddddd', '2017-08-10', '2017-08-13', 'ggggg', 18, 1),
+(48, 42, 'jjjjjj', '2017-08-10', '2017-08-12', 'vvvvvv', 17, 0);
 
 -- --------------------------------------------------------
 
@@ -269,14 +251,9 @@ CREATE TABLE `task` (
 --
 
 INSERT INTO `task` (`task_ID`, `name`, `description`, `start_date`, `end_date`, `user_ID`, `priority`, `done`) VALUES
-(16, 'zadanie1', 'treść żłąłó', '2017-07-21', '2017-07-28', 17, 0, 0),
-(17, 'zadanie1', 'treść żłąłó', '2017-07-21', '2017-07-28', 17, 0, 0),
-(18, 'zadanie1', 'treść żłąłó', '2017-07-21', '2017-07-28', 17, 0, 0),
-(19, 'zadanie1', 'treść żłąłó', '2017-07-21', '2017-07-28', 17, 0, 0),
-(20, 'zadanie1', 'treść żłąłó', '2017-07-21', '2017-07-28', 17, 0, 0),
-(21, 'zadanie1', 'treść żłąłó', '2017-07-21', '2017-07-28', 17, 0, 0),
-(22, 'zadanie1', 'treść żłąłó', '2017-07-21', '2017-07-28', 17, 0, 0),
-(23, 'zadanie1', 'treść żłąłó', '2017-07-21', '2017-07-28', 17, 0, 0);
+(40, 'bbbb', 'mmm', '2017-08-10', '2017-08-18', 17, 0, 0),
+(41, 'vvvvv', 'ssss', '2017-08-10', '2017-08-25', 17, 1, 0),
+(42, 'zdanie', 'vvvv', '2017-08-10', '2017-08-18', 17, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -382,7 +359,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT dla tabeli `attachment`
 --
 ALTER TABLE `attachment`
-  MODIFY `att_ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `att_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 --
 -- AUTO_INCREMENT dla tabeli `functions`
 --
@@ -392,27 +369,27 @@ ALTER TABLE `functions`
 -- AUTO_INCREMENT dla tabeli `messages`
 --
 ALTER TABLE `messages`
-  MODIFY `message_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `message_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT dla tabeli `notifications`
 --
 ALTER TABLE `notifications`
-  MODIFY `notification_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `notification_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=103;
 --
 -- AUTO_INCREMENT dla tabeli `nots_user`
 --
 ALTER TABLE `nots_user`
-  MODIFY `nots_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `nots_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=81;
 --
 -- AUTO_INCREMENT dla tabeli `subtask`
 --
 ALTER TABLE `subtask`
-  MODIFY `subtask_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `subtask_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
 --
 -- AUTO_INCREMENT dla tabeli `task`
 --
 ALTER TABLE `task`
-  MODIFY `task_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `task_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 --
 -- AUTO_INCREMENT dla tabeli `users`
 --

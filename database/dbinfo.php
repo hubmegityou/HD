@@ -57,6 +57,7 @@
                 $db_nots_user_id = 'nots_ID';
                 $db_nots_user_notificationid = 'notification_ID';
                 $db_nots_user_userid = 'user_ID';
-                $db_nots_user_readnots = 'read_nots';          
+                $db_nots_user_readnots = 'read_nots';
+                $db_nots_user_delete= 'delete_n';
 ?>
 

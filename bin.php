@@ -88,12 +88,12 @@
             <div id="page-inner">
                 <div class="row">
                     <div class="col-md-12">
-                     <h2>Powiadomienia</h2> 
+                     <h2>Kosz</h2> 
                        </div>
                      </div>
                  <hr />
 
-                 <form  action="delete_nots.php" method='post' >
+                 <form  action="restore_nots.php" method='post' >
                   <select onchange='changeChecked()' id='deletenots' name="deletenots" style="margin-left: 30px">
                         <option value="----" >----</option>
                         <option value="wszystkie">wszystkie</option>
@@ -101,10 +101,10 @@
                         <option value="nieprzeczytane">nieprzeczytane</option>
                   </select>
                  
-                      <button type="submit" value="delete">Usuń</button>
+                      <button type="submit" value="delete">Przywróć</button>
                   
 
-                 <a href="nots.php" style='position:relative ;margin-left: 30%' class="btn btn-danger square-btn-adjust">Powiadomienia</a>
+                 <a href="nots.php" style='position:relative; margin-left: 30%' class="btn btn-danger square-btn-adjust">Powiadomienia</a>
                  <a href="bin.php" style='position:relative' class="btn btn-danger square-btn-adjust">Kosz</a> 
                  
                  <br><br><br><br><br>
@@ -118,8 +118,9 @@
         $sql = "SELECT $db_subtask_tab.$db_subtask_id,$db_notifications_tab.$db_notifications_taskid, $db_notifications_tab.$db_notifications_text ,$db_notifications_tab.$db_notifications_date, $db_nots_user_tab.$db_nots_user_id, $db_nots_user_tab.$db_nots_user_readnots "
                 . "FROM $db_notifications_tab INNER JOIN $db_nots_user_tab ON $db_notifications_tab.$db_notifications_id = $db_nots_user_tab.$db_nots_user_notificationid "
                 . "INNER JOIN $db_subtask_tab ON $db_notifications_tab.$db_notifications_taskid=$db_subtask_tab.$db_subtask_taskid "
-                . "WHERE  $db_nots_user_tab.$db_nots_user_delete='0'  AND $db_nots_user_tab.$db_nots_user_userid=".$_SESSION['id']." AND $db_subtask_tab.$db_subtask_userid=".$_SESSION['id']." "
+                . "WHERE  $db_nots_user_tab.$db_nots_user_delete='1'  AND $db_nots_user_tab.$db_nots_user_userid=".$_SESSION['id']." AND $db_subtask_tab.$db_subtask_userid=".$_SESSION['id']." "
                 //. "GROUP BY $db_subtask_tab.$db_subtask_taskid, $db_notifications_tab.$db_notifications_text "
+
                 . "ORDER BY $db_notifications_tab.$db_notifications_date DESC";
         
         $result = $connection->query($sql);

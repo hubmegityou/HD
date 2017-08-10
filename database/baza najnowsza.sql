@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 10 Sie 2017, 08:42
+-- Czas generowania: 10 Sie 2017, 12:28
 -- Wersja serwera: 10.1.24-MariaDB
 -- Wersja PHP: 7.1.6
 
@@ -159,7 +159,7 @@ CREATE TABLE `nots_user` (
   `notification_ID` int(11) NOT NULL,
   `user_ID` int(11) NOT NULL,
   `read_nots` int(11) NOT NULL,
-  `delete` int(11) NOT NULL
+  `delete_n` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -174,7 +174,7 @@ CREATE TABLE `nots_user` (
 -- Zrzut danych tabeli `nots_user`
 --
 
-INSERT INTO `nots_user` (`nots_ID`, `notification_ID`, `user_ID`, `read_nots`, `delete`) VALUES
+INSERT INTO `nots_user` (`nots_ID`, `notification_ID`, `user_ID`, `read_nots`, `delete_n`) VALUES
 (70, 92, 17, 0, 0),
 (71, 93, 17, 1, 0),
 (72, 94, 18, 0, 0),
@@ -182,10 +182,10 @@ INSERT INTO `nots_user` (`nots_ID`, `notification_ID`, `user_ID`, `read_nots`, `
 (74, 96, 18, 1, 0),
 (75, 97, 18, 1, 0),
 (76, 98, 18, 1, 0),
-(77, 99, 17, 0, 0),
+(77, 99, 17, 1, 0),
 (78, 100, 17, 0, 0),
 (79, 101, 17, 0, 0),
-(80, 102, 17, 0, 0);
+(80, 102, 17, 0, 1);
 
 -- --------------------------------------------------------
 

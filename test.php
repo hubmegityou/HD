@@ -9,4 +9,8 @@
  <hr />
  <p>Oto treść diva.</p>
  <hr>
+ <br>
 </div>
+<?php
+echo phpinfo();
+?>

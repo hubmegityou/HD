@@ -120,7 +120,6 @@
                 . "INNER JOIN $db_subtask_tab ON $db_notifications_tab.$db_notifications_taskid=$db_subtask_tab.$db_subtask_taskid "
                 . "WHERE  $db_nots_user_tab.$db_nots_user_delete='0'  AND $db_nots_user_tab.$db_nots_user_userid=".$_SESSION['id']." AND $db_subtask_tab.$db_subtask_userid=".$_SESSION['id']." "
                 //. "GROUP BY $db_subtask_tab.$db_subtask_taskid, $db_notifications_tab.$db_notifications_text "
-
                 . "ORDER BY $db_notifications_tab.$db_notifications_date DESC";
         
         $result = $connection->query($sql);

@@ -101,7 +101,7 @@
                         <option value="nieprzeczytane">nieprzeczytane</option>
                   </select>
                  
-                      <button type="submit" value="delete">Usuń</button>
+                      <button type="submit" name="bin">Usuń</button>
                   
 
                  <a href="nots.php" style='position:relative ;margin-left: 30%' class="btn btn-danger square-btn-adjust">Powiadomienia</a>

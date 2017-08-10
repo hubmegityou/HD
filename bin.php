@@ -101,7 +101,8 @@
                         <option value="nieprzeczytane">nieprzeczytane</option>
                   </select>
                  
-                      <button type="submit" value="delete">Przywróć</button>
+                      <button type="submit" name="restore">Przywróć</button>
+                      <button type="submit"  name="delete" value="delete"  >Usuń</button>
                   
 
                  <a href="nots.php" style='position:relative; margin-left: 30%' class="btn btn-danger square-btn-adjust">Powiadomienia</a>

@@ -1,5 +1,7 @@
 <?php session_start();
 
+
+
 require_once "database/dbinfo.php";
     require_once "objects.php";
     $connection = db_connection();

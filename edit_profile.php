@@ -1,13 +1,14 @@
 <?php
+    session_start();
 
-
-        session_start();
-	
-	if(!isset($_SESSION['online']) || !$_SESSION['online'] /*&& $_SESSION['function'] == 2 */ ) //function := 2 ==> manager
-        {
-		header('Location: index.php');
-		exit();
-	}
+    if(!isset($_SESSION['online']) || !$_SESSION['online']){
+            header('Location: index.php');
+            exit();
+    }
+    if(isset($_SESSION['alert'])){      
+        echo "<script type=\"text/javascript\">window.onload = function(){alert('".$_SESSION['alert']."')}</script>";
+        unset($_SESSION['alert']);
+        }
 ?>
 
 
@@ -67,7 +68,7 @@
                     </li>';
                        echo '<li><a href="team_tasks.php"><i "></i> Zadania grupy</a>
                     </li>';
-                   } 
+                   }
                    
                    
                    ?>

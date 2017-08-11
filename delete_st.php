@@ -15,3 +15,4 @@ if ($connection != false){
     $sql="DELETE FROM $db_tab WHERE $db_id=".$_GET['id'];      
     $connection->query($sql);   
 }
+?>

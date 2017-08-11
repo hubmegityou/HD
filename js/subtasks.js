@@ -85,3 +85,23 @@ function deleteST(id, typ){
     window.location.href = "team_tasks.php";
 
  }
+ 
+ var blockSubtask=
+ function blockSubtask (id){
+    if (window.XMLHttpRequest){
+        xmlhttp=new XMLHttpRequest();
+    }
+
+    else{
+        xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+    }
+
+    var PageToSendTo = "blocksubt.php?";
+    var IDPlaceholder = "id=";
+
+    var UrlToSend = PageToSendTo + IDPlaceholder + id;
+
+    xmlhttp.open("GET", UrlToSend, false);
+    xmlhttp.send();  
+    window.location.href = "blocksubt.php?id="+id;
+ }

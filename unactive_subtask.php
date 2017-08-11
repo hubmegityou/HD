@@ -10,6 +10,7 @@
                 header('Location: tasks.php');
             else
                 header('Location: old_tasks.php');
-        }  
+        }
+        $connection->close();
     }                            
 ?>

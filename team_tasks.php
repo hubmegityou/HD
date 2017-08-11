@@ -117,14 +117,26 @@
                             echo "<br><br><button type='submit' style='position: relative;left: 30px;' id='$row[$db_task_id]'  onclick='hide($row[$db_task_id])'>pokaż podzadania</button><br><br> <br>";
                             echo "<div id='sh$row[$db_task_id]' style='display:none'>";
                             echo "</p>";
-                            $sql = "SELECT  $db_subtask_tab.$db_subtask_name, $db_subtask_tab.$db_subtask_id, $db_subtask_tab.$db_subtask_description, $db_subtask_tab.$db_subtask_sdate, $db_subtask_tab.$db_subtask_edate, $db_subtask_tab.$db_subtask_conf, $db_users_tab.$db_users_fname, $db_users_tab.$db_users_lname FROM $db_subtask_tab LEFT JOIN $db_users_tab ON $db_subtask_tab.$db_subtask_userid = $db_users_tab.$db_users_id WHERE $db_subtask_taskid=$row[$db_task_id]"; 
+                            $sql = "SELECT  $db_subtask_tab.$db_subtask_name, $db_subtask_tab.$db_subtask_id, $db_subtask_tab.$db_subtask_description, $db_subtask_tab.$db_subtask_sdate, $db_subtask_tab.$db_subtask_edate, $db_subtask_tab.$db_subtask_conf, $db_subtask_tab.$db_subtask_block, $db_users_tab.$db_users_fname, $db_users_tab.$db_users_lname FROM $db_subtask_tab LEFT JOIN $db_users_tab ON $db_subtask_tab.$db_subtask_userid = $db_users_tab.$db_users_id WHERE $db_subtask_taskid=$row[$db_task_id]"; 
                             $result2 = $connection->query($sql);
                             while ($row2=$result2->fetch_assoc()){ 
                                 echo "<p class='team-subtaskform'>";
-                                echo "nazwa podzadania: $row2[$db_subtask_name] <br> pracownik: $row2[$db_users_fname]  $row2[$db_users_lname] <br> data rozpoczęcia: $row2[$db_subtask_sdate]<br> data zakończenia:  $row2[$db_subtask_edate]<br> opis:  $row2[$db_subtask_description]";  
-                                echo "<br><br><button  type='submit' id='usub'  onclick='deleteSubtask($row2[$db_subtask_id])'>usuń</button>";
+                                echo "nazwa podzadania: $row2[$db_subtask_name] <br> pracownik: $row2[$db_users_fname]  $row2[$db_users_lname] <br> data rozpoczęcia: $row2[$db_subtask_sdate]<br> data zakończenia:  $row2[$db_subtask_edate]<br> opis:  $row2[$db_subtask_description]<br>";
+                                if ($row2[$db_subtask_conf])
+                                    echo "<font color='green'>zatwierdzono</font><br>";
+                                else
+                                    echo "<font color='red'>niezatwierdzono</font><br>";
+                                if ($row2[$db_subtask_block]){
+                                    echo "<i>użytkownik nie może wprowadzać zmian w dacie</i>";
+                                    $pref = 'od';
+                                }else{
+                                    echo "<i>użytkownik może wprowadzać zmiany w dacie</i>";
+                                    $pref = 'za';
+                                }echo "<br><br><button  type='submit' id='usub' onclick='deleteSubtask($row2[$db_subtask_id])'>usuń</button>";
                                 echo '  ';
-                                echo "<button type='submit'  id='esub'  onclick='editSubtask($row2[$db_subtask_id])'>edytuj</button><br><br>";
+                                echo "<button type='submit' id='esub' onclick='editSubtask($row2[$db_subtask_id])'>edytuj</button>";
+                                echo '  ';
+                                echo "<button type='submit' onclick='blockSubtask($row2[$db_subtask_id])'>".$pref."blokuj zmiany</button><br><br>";
                                 echo "<br><br>";
                                 echo "</p>";
                             }

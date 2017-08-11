@@ -105,8 +105,8 @@
                       <button type="submit"  name="delete" value="delete"  >Usuń</button>
                   
 
-                 <a href="nots.php" style='position:relative; margin-left: 30%' class="btn btn-danger square-btn-adjust">Powiadomienia</a>
-                 <a href="bin.php" style='position:relative' class="btn btn-danger square-btn-adjust">Kosz</a> 
+                 <a href="nots.php" style='position:relative; margin-left: 30%; background-color: grey' class="btn btn-danger square-btn-adjust">Powiadomienia</a>
+                 <a href="bin.php" style='position:relative; background-color: #e0610d' class="btn btn-danger square-btn-adjust">Kosz</a> 
                  
                  <br><br><br><br><br>
                  

@@ -117,7 +117,7 @@
                             echo "<br><br><button type='submit' style='position: relative;left: 30px;' id='$row[$db_task_id]'  onclick='hide($row[$db_task_id])'>pokaż podzadania</button><br><br> <br>";
                             echo "<div id='sh$row[$db_task_id]' style='display:none'>";
                             echo "</p>";
-                            $sql = "SELECT  $db_subtask_tab.$db_subtask_name, $db_subtask_tab.$db_subtask_id, $db_subtask_tab.$db_subtask_description, $db_subtask_tab.$db_subtask_sdate, $db_subtask_tab.$db_subtask_edate, $db_users_tab.$db_users_fname, $db_users_tab.$db_users_lname FROM $db_subtask_tab LEFT JOIN $db_users_tab ON $db_subtask_tab.$db_subtask_userid = $db_users_tab.$db_users_id WHERE $db_subtask_taskid=$row[$db_task_id]"; 
+                            $sql = "SELECT  $db_subtask_tab.$db_subtask_name, $db_subtask_tab.$db_subtask_id, $db_subtask_tab.$db_subtask_description, $db_subtask_tab.$db_subtask_sdate, $db_subtask_tab.$db_subtask_edate, $db_subtask_tab.$db_subtask_conf, $db_users_tab.$db_users_fname, $db_users_tab.$db_users_lname FROM $db_subtask_tab LEFT JOIN $db_users_tab ON $db_subtask_tab.$db_subtask_userid = $db_users_tab.$db_users_id WHERE $db_subtask_taskid=$row[$db_task_id]"; 
                             $result2 = $connection->query($sql);
                             while ($row2=$result2->fetch_assoc()){ 
                                 echo "<p class='team-subtaskform'>";
@@ -131,10 +131,8 @@
                             echo "</div>";
                             echo "</div>";
                             echo "<br><br><br>";
-                    
-                           }
-       
-                      $connection -> close();
+                    }
+                    $connection -> close();
                     ?>
                   
                  <br>

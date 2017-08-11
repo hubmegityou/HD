@@ -27,6 +27,8 @@
                 $db_subtask_description= 'description';
                 $db_subtask_userid = 'user_ID';
                 $db_subtask_done = 'done';
+                $db_subtask_conf = 'confirmed';
+                $db_subtask_block = 'blocked';
 
         $db_functions_tab = 'functions';
                 $db_functions_id = 'function_ID';

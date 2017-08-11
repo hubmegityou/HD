@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 10 Sie 2017, 15:00
+-- Czas generowania: 11 Sie 2017, 13:11
 -- Wersja serwera: 10.1.22-MariaDB
 -- Wersja PHP: 7.1.4
 
@@ -125,7 +125,8 @@ INSERT INTO `notifications` (`notification_ID`, `date`, `task_ID`, `subtask_ID`,
 (103, '2017-08-10 14:45:48', 41, NULL, 'Dodano załącznik do aktywnego zadania'),
 (104, '2017-08-10 14:52:44', 41, NULL, 'Dodano załącznik do aktywnego zadania'),
 (105, '2017-08-10 14:53:55', 41, NULL, 'Dodano załącznik do aktywnego zadania'),
-(106, '2017-08-10 14:55:06', 41, NULL, 'Dodano załącznik do aktywnego zadania');
+(106, '2017-08-10 14:55:06', 41, NULL, 'Dodano załącznik do aktywnego zadania'),
+(107, '2017-08-11 11:42:38', 40, 44, 'Edytowano podzadanie');
 
 -- --------------------------------------------------------
 
@@ -160,7 +161,8 @@ INSERT INTO `nots_user` (`nots_ID`, `notification_ID`, `user_ID`, `read_nots`, `
 (81, 103, 18, 1, 0),
 (82, 104, 18, 1, 0),
 (83, 105, 18, 1, 0),
-(84, 106, 17, 0, 1);
+(84, 106, 17, 0, 1),
+(85, 107, 17, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -176,19 +178,21 @@ CREATE TABLE `subtask` (
   `end_date` date NOT NULL,
   `description` text NOT NULL,
   `user_ID` int(11) NOT NULL,
-  `done` tinyint(1) NOT NULL
+  `done` tinyint(1) NOT NULL,
+  `confirmed` tinyint(1) NOT NULL,
+  `blocked` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Zrzut danych tabeli `subtask`
 --
 
-INSERT INTO `subtask` (`subtask_ID`, `task_ID`, `name`, `start_date`, `end_date`, `description`, `user_ID`, `done`) VALUES
-(44, 40, 'bbbbbb', '2017-08-10', '2017-08-18', 'bbbb', 17, 0),
-(45, 41, 'gggggg', '2017-08-11', '2017-08-24', 'ghjjhjk', 17, 0),
-(46, 41, 'gggggg', '2017-08-10', '2017-08-17', 'fffff', 18, 0),
-(47, 40, 'dddddd', '2017-08-10', '2017-08-13', 'ggggg', 18, 1),
-(48, 42, 'jjjjjj', '2017-08-10', '2017-08-12', 'vvvvvv', 17, 0);
+INSERT INTO `subtask` (`subtask_ID`, `task_ID`, `name`, `start_date`, `end_date`, `description`, `user_ID`, `done`, `confirmed`, `blocked`) VALUES
+(44, 40, 'bbbbbb', '2017-08-10', '2017-08-18', 'bbbb', 17, 0, 0, 0),
+(45, 41, 'gggggg', '2017-08-11', '2017-08-24', 'ghjjhjk', 17, 0, 0, 0),
+(46, 41, 'gggggg', '2017-08-10', '2017-08-17', 'fffff', 18, 0, 0, 0),
+(47, 40, 'dddddd', '2017-08-10', '2017-08-13', 'ggggg', 18, 1, 0, 0),
+(48, 42, 'jjjjjj', '2017-08-10', '2017-08-12', 'vvvvvv', 17, 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -237,11 +241,11 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`user_ID`, `first_name`, `last_name`, `email`, `login`, `password`, `user_function`) VALUES
-(5, 'asdas', 'asdasd', 'asdasd', 'aaa', 'b2ca678b4c936f905fb82f2733f5297f', 1),
-(17, 'Jan', 'Kowalski', 'ksda@dsd', 'qwe', '202cb962ac59075b964b07152d234b70', 2),
-(18, 'Pracownik', 'Aaaa', 'kkk@kkk', 'zxc', '202cb962ac59075b964b07152d234b70', 3),
+(5, 'asdas', 'asdasd', '', 'aaa', 'b2ca678b4c936f905fb82f2733f5297f', 1),
+(17, 'Jan', 'Kowalski', 'email@lajs', 'qwe', '202cb962ac59075b964b07152d234b70', 2),
+(18, 'Pracownik', 'Aaaa', '', 'zxc', '202cb962ac59075b964b07152d234b70', 3),
 (19, '', '', '', '', 'd41d8cd98f00b204e9800998ecf8427e', 1),
-(20, 'Lol', 'Ll', 'lol@lol.lol', 'lol', '9cdfb439c7876e703e307864c9167a15', 1);
+(20, 'Lol', 'Ll', '', '', '9cdfb439c7876e703e307864c9167a15', 1);
 
 --
 -- Indeksy dla zrzutów tabel
@@ -329,12 +333,12 @@ ALTER TABLE `messages`
 -- AUTO_INCREMENT dla tabeli `notifications`
 --
 ALTER TABLE `notifications`
-  MODIFY `notification_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=107;
+  MODIFY `notification_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=108;
 --
 -- AUTO_INCREMENT dla tabeli `nots_user`
 --
 ALTER TABLE `nots_user`
-  MODIFY `nots_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=85;
+  MODIFY `nots_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=86;
 --
 -- AUTO_INCREMENT dla tabeli `subtask`
 --

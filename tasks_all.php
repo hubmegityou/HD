@@ -6,10 +6,10 @@
         exit();
     }
     
-     If(isset($_SESSION['alert'])){ 
-         $alert=$_SESSION['alert'];
-         echo "<script>alert('".$_SESSION['alert']."')</script>";  
-         unset ($_SESSION['alert']);
+
+    if(isset($_SESSION['alert'])){      
+        echo "<script type=\"text/javascript\">window.onload = function(){alert('".$_SESSION['alert']."')}</script>";  
+        unset($_SESSION['alert']);
         }
         
 ?>

@@ -34,7 +34,7 @@
                 
             }
         
-        $sql = "UPDATE $db_subtask_tab SET $db_subtask_sdate='$sdate', $db_subtask_edate= '$edate' WHERE $db_subtask_id='$subtask_id'";
+        $sql = "UPDATE $db_subtask_tab SET $db_subtask_sdate='$sdate', $db_subtask_edate= '$edate', $db_subtask_conf= '1'  WHERE $db_subtask_id='$subtask_id'";
         $connection->query($sql);
         $_SESSION['alert']= 'Zmieniono datę';
         

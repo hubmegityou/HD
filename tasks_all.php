@@ -108,7 +108,7 @@
                             $sql = "SELECT $db_subtask_taskid, $db_subtask_name, $db_subtask_sdate, $db_subtask_edate, $db_subtask_description FROM $db_subtask_tab WHERE $db_subtask_id=$sid";
                             $result = $connection->query($sql);
                             while($row = $result->fetch_assoc()){
-                                $sql = "SELECT $db_subtask_tab.$db_subtask_id, $db_task_tab.$db_task_name, $db_task_tab.$db_task_description, $db_task_tab.$db_task_sdate, $db_task_tab.$db_task_edate, $db_users_tab.$db_users_fname, $db_users_tab.$db_users_lname FROM $db_subtask_tab, $db_task_tab LEFT JOIN $db_users_tab ON $db_task_tab.$db_task_userid = $db_users_tab.$db_users_id WHERE $db_task_tab.$db_task_id =".$row[$db_subtask_taskid];
+                                $sql = "SELECT $db_subtask_tab.$db_subtask_id,$db_subtask_tab.$db_subtask_block, $db_task_tab.$db_task_name, $db_task_tab.$db_task_description, $db_task_tab.$db_task_sdate, $db_task_tab.$db_task_edate, $db_users_tab.$db_users_fname, $db_users_tab.$db_users_lname FROM $db_subtask_tab, $db_task_tab LEFT JOIN $db_users_tab ON $db_task_tab.$db_task_userid = $db_users_tab.$db_users_id WHERE $db_task_tab.$db_task_id =".$row[$db_subtask_taskid];
                                 $result2 = $connection->query($sql);
                                 $row2=$result2->fetch_assoc();
                                 echo "<br>Nazwa zadania głównego: $row2[$db_task_name] <br>";
@@ -121,10 +121,15 @@
                                 echo "<form action='add_date.php' method='post'>";
                                 $sdate= $row[$db_subtask_sdate];
                                 $edate= $row[$db_subtask_edate];
-                                echo "Termin rozpoczęcia: <input type='date' id='calendar' value= $sdate name='stime'/><br><br>";
+                                if($row2[$db_subtask_block]=='1'){
+                                    echo "Termin rozpoczęcia: <input type='date' id='calendar' value= $sdate name='stime' disabled/><br><br>";
+                                    echo "Termin wykonania: <input type='date' id='calendar2' value=$edate name='etime' disabled/><br><br>";
+                                }else {
+                                    echo "Termin rozpoczęcia: <input type='date' id='calendar' value= $sdate name='stime'/><br><br>";
+                                    echo "Termin wykonania: <input type='date' id='calendar2' value=$edate name='etime'/><br><br>";
+                                }
                                 echo "<input type='hidden' name='myTID' value=$tid>";
                                 echo "<input type='hidden' name='mySID' value=$sid>";
-                                echo "Termin wykonania: <input type='date' id='calendar2' value=$edate name='etime'/><br><br>";
                                 echo "Opis zadania: <br> $row[$db_subtask_description]<br><br>";
                                 echo "<br /><button type='submit'>Zatwierdź datę</button>";
                                 echo "</form>";

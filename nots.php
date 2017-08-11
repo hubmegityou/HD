@@ -104,8 +104,8 @@
                       <button type="submit" name="bin">Usuń</button>
                   
 
-                 <a href="nots.php" style='position:relative ;margin-left: 30%' class="btn btn-danger square-btn-adjust">Powiadomienia</a>
-                 <a href="bin.php" style='position:relative' class="btn btn-danger square-btn-adjust">Kosz</a> 
+                 <a href="nots.php" style='position:relative ;margin-left: 30%; background-color: #e0610d' class="btn btn-danger square-btn-adjust">Powiadomienia</a>
+                 <a href="bin.php" style='position:relative; background-color: grey' class="btn btn-danger square-btn-adjust">Kosz</a> 
                  
                  <br><br><br><br><br>
                  
@@ -136,8 +136,7 @@
                 echo "<input class='checkboxr' type='checkbox' name='not[]' id='not' value='$row[$db_nots_user_id]'><a href='tasks_all.php?sid=$row[$db_subtask_id]&tid=$row[$db_notifications_taskid]'  style='color:black; text-decoration: none'>       $row[$db_notifications_date]".'    '." $row[$db_notifications_text]</a>".'<br><br>'; 
                 echo "</p>";     
                 }
-        }         
-
+        }                 
 ?>
      </form>
                                  

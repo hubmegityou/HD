@@ -100,7 +100,9 @@
                     require_once "objects.php";
                     $connection = db_connection();
                     if ($connection != false){
-                            echo "<div class='subtask-form'>";
+                            echo "<div class='subtask-form'><div style='margin-left:10px'>"; ///poczatek szarego tla
+                            echo "<div style='float:left; width:57%; height:auto'>"; ///float left 57%
+                            
                             $tid= $_GET['tid'];    
                             $sid= $_GET['sid'];
                             $sql = "SELECT $db_subtask_taskid, $db_subtask_name, $db_subtask_sdate, $db_subtask_edate, $db_subtask_description FROM $db_subtask_tab WHERE $db_subtask_id=$sid";
@@ -109,7 +111,6 @@
                                 $sql = "SELECT $db_subtask_tab.$db_subtask_id, $db_task_tab.$db_task_name, $db_task_tab.$db_task_description, $db_task_tab.$db_task_sdate, $db_task_tab.$db_task_edate, $db_users_tab.$db_users_fname, $db_users_tab.$db_users_lname FROM $db_subtask_tab, $db_task_tab LEFT JOIN $db_users_tab ON $db_task_tab.$db_task_userid = $db_users_tab.$db_users_id WHERE $db_task_tab.$db_task_id =".$row[$db_subtask_taskid];
                                 $result2 = $connection->query($sql);
                                 $row2=$result2->fetch_assoc();
-                                echo "<div style='float:left; width:57%; margin-left:10px'>";
                                 echo "<br>Nazwa zadania głównego: $row2[$db_task_name] <br>";
                                 echo "Manager: $row2[$db_users_fname] $row2[$db_users_lname]<br>";
                                 echo "Data rozpoczęcia: $row2[$db_task_sdate] <br>";
@@ -127,57 +128,16 @@
                                 echo "Opis zadania: <br> $row[$db_subtask_description]<br><br>";
                                 echo "<br /><button type='submit'>Zatwierdź datę</button>";
                                 echo "</form>";
-                                echo '</div>';
                                 // $connection->close();
                             }
-                    }
-    echo "<br><b>ZAŁĄCZNIKI!!!</b><br><br>";
-
-        $sql = "SELECT $db_attachment_size, $db_attachment_name, $db_attachment_id, $db_attachment_desc FROM $db_attachment_tab WHERE $db_attachment_taskid = '$tid'";
-        $result = $connection->query($sql);
-        while ($row = $result->fetch_assoc()){
-            echo "<div><a  style=\"float: left\" href=\"download.php?id=$row[$db_attachment_id]&sid=$sid&tid=$tid\">".substr($row[$db_attachment_name], 17)."</a>\t";
-            $attachsize = $row[$db_attachment_size];
-            if ($attachsize >= 1073741824) {
-                $attachsize = (round($attachsize / 1073741824 * 100) / 100) . "gb";
-            } elseif ($attachsize >= 1048576) {
-                $attachsize = (round($attachsize / 1048576 * 100) / 100) . "mb";
-            } elseif ($attachsize >= 1024) {
-                $attachsize = (round($attachsize / 1024 * 100) / 100) . "kb";
-            } else {
-                $attachsize = $attachsize . "b";
-            }
-            echo "($attachsize)</div>";
-            echo "<i>$row[$db_attachment_desc]</i><br>";
-            //usuwanie załączników (admin lub manager)
-            if ($_SESSION['function'] <= 2){
-                echo "<form action=\"delete_ac.php\" method=\"post\">";
-                echo "<input type=\"hidden\" name=\"tid\" value=$tid>";
-                echo "<input type=\"hidden\" name=\"sid\" value=$sid>";
-                echo "<input type=\"hidden\" name=\"id\" value=$row[$db_attachment_id]>";
-                echo "<input type=\"hidden\" name=\"fname\" value=$row[$db_attachment_name]>";
-                echo "<div style='position: relative; top: -6px'><input type=\"image\" src=\"template/assets/img/trash.png\" onClick=\"this.form.submit()\"></div>";
-                echo "</form>";
-            }
-        }
-        //dodawanie załączników
-        echo "<form enctype=\"multipart/form-data\" action=\"attach.php\" method=\"post\">";
-        echo "<p>Załącz plik: <br><input type=\"file\" size=\"32\" name=\"attachment\" value=\"\"/></p>";
-        echo "<p>Opis <br><textarea name=\"desc\" rows='2' style='width:20%'></textarea></p>";
-        echo "<input type='hidden' name='mySID' value=$sid>";
-        echo "<input type='hidden' name='myTID' value=$tid>";
-        echo "<button type=\"submit\">Wyślij</button></center>";
-        echo "</form>";
-        
-    echo "<div style='clear:both'></div>";
-    echo '<div style="margin-left:10px">';
+                    
     echo "<br><br><br><br><br><b>KOMENTARZE!!!!</b><br><br>";
                
         $sql= "select $db_messages_tab.$db_messages_id, $db_messages_tab.$db_messages_date, $db_messages_tab.$db_messages_text, $db_users_tab.$db_users_fname, $db_users_tab.$db_users_lname FROM $db_messages_tab LEFT JOIN $db_users_tab ON $db_messages_tab.$db_messages_userid= $db_users_tab.$db_users_id WHERE $db_messages_taskid=$tid ";
         $result = $connection->query($sql);
 
         while($row = $result->fetch_assoc()){       
-            echo "<div style=\"float: left\">Użytkownik: $row[$db_users_fname]  $row[$db_users_lname],  $row[$db_messages_date]</div>";
+            echo "Użytkownik: $row[$db_users_fname]  $row[$db_users_lname],  $row[$db_messages_date]";
             //usuwanie komentarzy (admin lub manager)
             if ($_SESSION['function'] <= 2){
                 echo "<form action=\"delete_ac.php\" method=\"post\">";
@@ -197,8 +157,52 @@
         echo "<input type='hidden' name='mySID' value=$sid>";
         echo "<input type='hidden' name='myTID' value=$tid>";
         echo "<br /><button type='submit'>Dodaj komentarz</button></form>";
-        echo "<br><br></div>";
-        echo"</div>";
+        echo "<br><br>";
+        echo "</div>"; ///zakończenie div 57% czemu tie to sypie???????
+                            
+        echo"<div style='float:left; width:43%'>"; //loat 43%                    
+        echo "<br><b>ZAŁĄCZNIKI!!!</b><br><br>";
+
+        $sql = "SELECT $db_attachment_size, $db_attachment_name, $db_attachment_id, $db_attachment_desc FROM $db_attachment_tab WHERE $db_attachment_taskid = '$tid'";
+        $result = $connection->query($sql);
+        while ($row = $result->fetch_assoc()){
+            echo "<a  href=\"download.php?id=$row[$db_attachment_id]&sid=$sid&tid=$tid\">".substr($row[$db_attachment_name], 17)."</a>\t";
+            $attachsize = $row[$db_attachment_size];
+            if ($attachsize >= 1073741824) {
+                $attachsize = (round($attachsize / 1073741824 * 100) / 100) . "gb";
+            } elseif ($attachsize >= 1048576) {
+                $attachsize = (round($attachsize / 1048576 * 100) / 100) . "mb";
+            } elseif ($attachsize >= 1024) {
+                $attachsize = (round($attachsize / 1024 * 100) / 100) . "kb";
+            } else {
+                $attachsize = $attachsize . "b";
+            }
+            echo "($attachsize)";
+            echo "<i>$row[$db_attachment_desc]</i><br>";
+            //usuwanie załączników (admin lub manager)
+            if ($_SESSION['function'] <= 2){
+                echo "<form action=\"delete_ac.php\" method=\"post\">";
+                echo "<input type=\"hidden\" name=\"tid\" value=$tid>";
+                echo "<input type=\"hidden\" name=\"sid\" value=$sid>";
+                echo "<input type=\"hidden\" name=\"id\" value=$row[$db_attachment_id]>";
+                echo "<input type=\"hidden\" name=\"fname\" value=$row[$db_attachment_name]>";
+                echo "<div style='position: relative; top: -6px'><input type=\"image\" src=\"template/assets/img/trash.png\" onClick=\"this.form.submit()\"></div>";
+                echo "</form>";
+            }
+        }
+        //dodawanie załączników
+        echo "<form enctype=\"multipart/form-data\" action=\"attach.php\" method=\"post\">";
+        echo "<p>Załącz plik: <br><input type=\"file\" size=\"32\" name=\"attachment\" value=\"\"/></p>";
+        echo "<p>Opis <br><textarea name=\"desc\" rows='2' style='width:60%'></textarea></p>";
+        echo "<input type='hidden' name='mySID' value=$sid>";
+        echo "<input type='hidden' name='myTID' value=$tid>";
+        echo "<button type=\"submit\">Wyślij</button></center>";
+        echo "</form></div>";/// koniec float 43%
+        
+        
+        echo "<div style='clear:both'>";
+        echo "<br><br><br><br>";
+         echo"</div></div>";}    /// koniec szarego tła i marginesu 10px
         $connection -> close();
 ?>
                 

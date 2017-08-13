@@ -122,17 +122,19 @@
                             while ($row2=$result2->fetch_assoc()){ 
                                 echo "<p class='team-subtaskform'>";
                                 echo "nazwa podzadania: $row2[$db_subtask_name] <br> pracownik: $row2[$db_users_fname]  $row2[$db_users_lname] <br> data rozpoczęcia: $row2[$db_subtask_sdate]<br> data zakończenia:  $row2[$db_subtask_edate]<br> opis:  $row2[$db_subtask_description]<br>";
-                                if ($row2[$db_subtask_conf])
+                                if ($row2[$db_subtask_conf]){
                                     echo "<font color='green'>zatwierdzono</font><br>";
-                                else
+                                }
+                                else{
                                     echo "<font color='red'>niezatwierdzono</font><br>";
+                                }
                                 if ($row2[$db_subtask_block]){
                                     echo "<i>użytkownik nie może wprowadzać zmian w dacie</i>";
                                     $pref = 'od';
                                 }else{
                                     echo "<i>użytkownik może wprowadzać zmiany w dacie</i>";
                                     $pref = 'za';
-                                }echo "<br><br><button  type='submit' id='usub' onclick='deleteSubtask($row2[$db_subtask_id])'>usuń</button>";
+                                }echo "<br><br><button  type='submit' id='usub' onclick='deleteST($row2[$db_subtask_id], 0)'>usuń</button>";
                                 echo '  ';
                                 echo "<button type='submit' id='esub' onclick='editSubtask($row2[$db_subtask_id])'>edytuj</button>";
                                 echo '  ';

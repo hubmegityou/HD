@@ -79,7 +79,9 @@
                         <a  href="add_user.php"><i "></i> Dodaj użytkownika</a>
                     </li>';    
                    }?>
-                    	
+                    <li>
+                        <a  href="edit_profile.php" ><i "></i>Edytuj profil</a>
+                    </li>	
                 </ul>
                
             </div>
@@ -161,7 +163,7 @@
             echo "<br><br>";
         }
         //dodawanie komentarzy
-        echo "<form action='add_comment.php' method='post'>";
+        echo "<form action='addcom.php' method='post'>";
         echo "<textarea name='comment' id='trescp' rows='6' style='width:50%'></textarea><br><br>";
         echo "<input type='hidden' name='mySID' value=$sid>";
         echo "<input type='hidden' name='myTID' value=$tid>";

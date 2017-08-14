@@ -140,7 +140,7 @@
 ?>
      </form>
                                  
-    </d
+            </div>
              <!-- /. PAGE INNER  -->
             </div>
          <!-- /. PAGE WRAPPER  -->
@@ -149,9 +149,7 @@
    
 </body>
 </html>
-
 <script type="text/javascript" src="js/changeChecked.js"></script>
 <script type="text/javascript" src="js/change_readnots.js"></script>
 <script type="text/javascript" src="js/notifications.js"></script>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-

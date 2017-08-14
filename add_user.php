@@ -8,9 +8,9 @@
             exit();
     }
     
-    If(isset($_SESSION['alert']) && $_SESSION['alert']!=''){      
-         echo "<script type=\"text/javascript\">window.onload = function(){alert('".$_SESSION['alert']."')}</script>";  
-         $_SESSION['alert']='';
+    if(isset($_SESSION['alert'])){      
+        echo "<script type=\"text/javascript\">window.onload = function(){alert('".$_SESSION['alert']."')}</script>";
+        unset($_SESSION['alert']);
         } 
 ?>
 
@@ -99,32 +99,29 @@
                        </div>
                      </div>
                  <hr />
-                 <br>
-                 <br>
-                 <br>
                      <div class="subtask-form">
                      <form action="addu.php" method="post">
                          <center>
 		
-                         <div class="stemat"><p class="left">Imię: <br /> <input type="text" name="fname" required/></p></div>
-                         <div class="stemat"><p class="left">Nazwisko: <br /> <input type="text" name="lname" required/></p></div>
-                         <div class="stemat"><p class="left">Login: <br /> <input type="text" name="login" required/></p></div>
-                         <div class="stemat"><p class="left">Hasło: <br /> <input type="password" name="pass" required /></p></div><br>	<br>
-                         <div class="stemat"><p class="left">Adres email: <br /> <input type="email" name="email" required/></p></div>
-                         <div class="stemat"><p class="left">Funkcja: <br />
+                         <div class="stemat"><p class="left">Imię: <br> <input type="text" name="fname" required/></p></div>
+                         <div class="stemat"><p class="left">Nazwisko: <br> <input type="text" name="lname" required/></p></div>
+                         <div class="stemat"><p class="left">Login: <br> <input type="text" name="login" required/></p></div>
+                         <div class="stemat"><p class="left">Adres email: <br> <input type="email" name="email" required/></p></div>
+                         <div class="stemat"><p class="left">Hasło: <br> <input type="password" name="pass1" required /></p></div>
+                         <div class="stemat"><p class="left">Powtórz hasło: <br> <input type="password" name="pass2" required /></p><br></div>
+                         <div class="stemat"><p class="left">Funkcja: <br>
                         <select name="function" required>
-				<option>admin</option>
-				<option>manager<ation>
-				<option>grafik<ation>
-				<option>wykonawca<ation>
-				<option>montażysta<ation>
+				<option value="1">admin</option>
+				<option value="2">manager</option>
+				<option value="3">grafik</option>
+				<option value="4">wykonawca</option>
+                                <option value="5">montażysta</option>
                                 <br />
 			</select></p></div>
-                        <div style="clear:both"></div>
-                        <br> <br> <br><br><br>   
-                             <button type="submit" style="margin-left: -600px">Dodaj</button>
-                             <br><br><br><br><br>
-                         </center> 
+                        <div><p class="left"><br><button type="submit">Dodaj</button></p></div>
+                            <div style="clear:both"></div>
+                            <br><br><br>
+                        </center> 
                         
                 </form>
                  

@@ -67,11 +67,11 @@
                     </li>';
                        echo '<li><a href="team_tasks.php"><i "></i> Zadania grupy</a>
                     </li>';
-                   } 
-                   
-                   
+                   }
                    ?>
-                    	
+                   <li>
+                       <a  href="edit_profile.php" ><i "></i>Edytuj profil</a>
+                    </li>	
                 </ul>
                
             </div>

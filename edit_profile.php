@@ -76,7 +76,7 @@
                    }
                    ?>
                    <li>
-                        <a class="active-menu" href="edit_profile.php" ><i "></i>Edytuj profil</a>
+                        <a class="active-menu" href="edit_profile.php" ><i ></i>Edytuj profil</a>
                     </li> 	
                 </ul>
                
@@ -103,15 +103,17 @@
         $sql = "SELECT $db_users_fname, $db_users_lname, $db_users_login, $db_users_email FROM $db_users_tab WHERE $db_users_id=".$_SESSION['id'];
         if ($result = $connection->query($sql))
         $row = $result->fetch_assoc();
-        echo "<div class='stemat'><p class='tematt'>imię: <br><input type='text' value='$row[$db_users_fname]' name='fname' class='stematp' style='width:40%' required/></p></div>";
-        echo "<div class='stemat'><p class='tematt'>nazwisko: <br><input type='text' value='$row[$db_users_lname]' name='lname' class='stematp' style='width:40%' required/></p></div>";
-        echo "<div class='stemat'><p class='tematt'>login: <br><input type='text' value='$row[$db_users_login]' name='login' class='stematp' style='width:40%' required/></p></div>";
-        echo "<div class='stemat'><p class='tematt'>email: <br><input type='email' value='$row[$db_users_email]' name='email' required/></p></div>";
-        echo "<div class='stemat'><p class='tematt'>nowe hasło: <br><input type='password' name='pass1' ></p></div>";
-        echo "<div class='stemat'><p class='tematt'>powtórz hasło: <br><input type='password' name='pass2' ></p></div>";
+        echo "<div class='stemat'><p class='left'>Imię: <br><input type='text' value='$row[$db_users_fname]' name='fname'  required/></p></div>";
+        echo "<div class='stemat'><p class='left'>Nazwisko: <br><input type='text' value='$row[$db_users_lname]' name='lname'  required/></p></div>";
+        echo "<div class='stemat'><p class='left'>Login: <br><input type='text' value='$row[$db_users_login]' name='login'  required/></p></div>";
+        echo "<div class='stemat'><p class='left'>Adres email: <br><input type='email' value='$row[$db_users_email]' name='email' required/></p></div>";
+        echo "<div class='stemat'><p class='left'>Nowe hasło: <br><input type='password' name='pass1' ></p></div>";
+        echo "<div class='stemat'><p class='left'>Powtórz hasło: <br><input type='password' name='pass2' ></p></div>";
         }
 ?>
+    <div style="clear:both"></div>
 <div><p><button type="submit" >Zapisz</button></p></div>
+<br><br>
 </center>
 </form>
 </div>

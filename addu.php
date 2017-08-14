@@ -9,11 +9,10 @@
 
 session_start();
 
-    if ((!isset($_POST['fname'])) || (!isset($_POST['lname'])) || (!isset($_POST['login'])) || (!isset($_POST['pass']))){
+    if (empty($_POST)){
         header('Location: add_user.php');
         exit();
     }
-
 
     require_once "database/dbinfo.php";
     require_once "objects.php";
@@ -25,9 +24,8 @@ session_start();
         $row = $result->fetch_assoc();
         if ($row['ile'] > 0){
             
-            $_SESSION['alert']='Użytkownik już istnieje';
+            $_SESSION['alert']='Użytkownik o podanym loginie już istnieje';
             header('Location: add_user.php');
-          
             close();
         }
         
@@ -35,21 +33,19 @@ session_start();
         $lname = ucwords($_POST['lname']);
         $email = $_POST['email'];
         $function = $_POST['function'];
-        $password = $_POST['pass'];
-        $hash_pass = md5($password);
-
-        $sql = "SELECT * FROM $db_functions_tab WHERE $db_functions_desc='$function'";
-        $result = $connection->query($sql);
-        $row = $result->fetch_assoc();
-        $result->free_result();
-        $id = $row[$db_functions_id];
-
-        $sql = "INSERT INTO $db_users_tab ($db_users_id,$db_users_fname,$db_users_lname,$db_users_email,$db_users_login,$db_users_pass,$db_users_function) VALUES (NULL,'$fname','$lname','$email','$login','$hash_pass',$id)";
-        if ($connection->query($sql)){
-              $_SESSION['alert']='Dodano użytkownika';
+        $pass1 = $_POST['pass1'];
+        $pass2 = $_POST['pass2'];
+        if ($pass1 == $pass2){
+            $hash_pass = md5($password);
+            $sql = "INSERT INTO $db_users_tab ($db_users_id,$db_users_fname,$db_users_lname,$db_users_email,$db_users_login,$db_users_pass,$db_users_function) VALUES (NULL,'$fname','$lname','$email','$login','$hash_pass',$function)";
+            if ($connection->query($sql)){
+                  $_SESSION['alert']='Dodano użytkownika';
+            }
         }
-    }
+        else {
+            $_SESSION['alert']="Błąd: hasła nie są jednakowe";
+        }
     $connection->close();
+    }
     header('Location: add_user.php');
-
 ?>

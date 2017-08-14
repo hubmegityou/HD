@@ -77,6 +77,9 @@
                     </li>';    
                    }
                    ?>
+                    <li>
+                        <a  href="edit_profile.php" ><i "></i>Edytuj profil</a>
+                    </li>
                     	
                 </ul>
                

@@ -179,15 +179,12 @@ $(document).ready(function() {
                        </div>
                      </div>
                  <hr /><?php
-                       If($_SESSION['function']=="2" ){
+                        if($_SESSION['function']=="2" ){
                             echo "<br>";
                             echo "<h2>Zadania</h2>" ;
-                            echo "<br><br><br>";
+                            echo "<br><br>";
                             echo "<div id='calendar2'></div>";
                             } ?>
-                 <br>
-                 <br>
-                 <br>
                  <br>
                      <h2>Podzadania</h2>
                      <br>

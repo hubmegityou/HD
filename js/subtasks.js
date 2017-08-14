@@ -103,5 +103,5 @@ function deleteST(id, typ){
 
     xmlhttp.open("GET", UrlToSend, false);
     xmlhttp.send();  
-    window.location.href = "team_task.php";
+    window.location.href = "team_tasks.php";
  }

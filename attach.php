@@ -5,12 +5,12 @@
  */
 session_start();
     
-    if (!isset($_FILES)){
+    if (empty($_FILES)){
         header("location: main.php");
         exit();
     }
-    $sid=$_POST['mySID'];
-    $tid=$_POST['myTID'];
+    $sid=$_POST['sid'];
+    $tid=$_POST['tid'];
     require_once "database/dbinfo.php";
     require_once "objects.php";
     $connection = db_connection();

@@ -208,8 +208,8 @@
         echo "<form enctype=\"multipart/form-data\" action=\"attach.php\" method=\"post\">";
         echo "<p>Załącz plik: <br><input type=\"file\" size=\"32\" name=\"attachment\" value=\"\"/></p>";
         echo "<p>Opis <br><textarea name=\"desc\" rows='2' style='width:60%'></textarea></p>";
-        echo "<input type='hidden' name='mySID' value=$sid>";
-        echo "<input type='hidden' name='myTID' value=$tid>";
+        echo "<input type='hidden' name='sid' value=$sid>";
+        echo "<input type='hidden' name='tid' value=$tid>";
         echo "<button type=\"submit\">Wyślij</button></center>";
         echo "</form></div>";/// koniec float 43%
         

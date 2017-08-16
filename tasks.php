@@ -147,13 +147,12 @@
     ?>
 
     </div>
-         </div>
-    
-	</div>
-</div>
+    </div>
+    </div>
+    </div>
                      
                      <div style='float:left; width: 50%'> 
-                      <div style='color: black; text-decoration: none'> <center style='color: black; text-decoration: none'> Zadania dłuższe niż tydzień </center></div>
+                      <div style='color: black; text-decoration: none;'> <center style='color: black; text-decoration: none'> Zadania dłuższe niż tydzień </center></div>
                       <div class="container">
 	<div class="row">
     
@@ -203,13 +202,8 @@
     ?>
 
     </div>
-
-    
-	</div>
-</div>
-                 
-                 
-               
+    </div>
+    </div>
     </div>
              <!-- /. PAGE INNER  -->
             </div>

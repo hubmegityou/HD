@@ -29,8 +29,8 @@ if ($connection != false){
         if ($result = $connection->query($sql)){
             $_SESSION['alert']= 'Edytowano zadanie';
         }
-        $text = "Edytowano aktywne zadanie";
-        $sql = "INSERT INTO $db_notifications_tab ($db_notifications_id, $db_notifications_date, $db_notifications_taskid, $db_notifications_subtaskid, $db_notifications_text) VALUES (NULL, '".date('Y-m-d H:i:s')."', '$taskid', NULL, '$text')";
+        $text = 3; //3: edytowano zadanie
+        $sql = "INSERT INTO $db_notifications_tab ($db_notifications_id, $db_notifications_date, $db_notifications_taskid, $db_notifications_subtaskid, $db_notifications_type) VALUES (NULL, '".date('Y-m-d H:i:s')."', '$taskid', NULL, '$text')";
         if ($result = $connection -> query($sql)){
             //info kontrolne, że działa
             $notificationid = $connection->insert_id;
@@ -60,9 +60,9 @@ if ($connection != false){
         $sql = "UPDATE $db_subtask_tab SET $db_subtask_taskid='$taskid' ,$db_subtask_name='$topic',$db_subtask_sdate='$sdate',$db_subtask_edate='$edate',$db_subtask_description='$desc',$db_subtask_userid='$userid' WHERE $db_subtask_id='$subtaskid'";
         if ($result = $connection->query($sql)){
             $_SESSION['alert']= 'Edytowano podzadanie'; 
-            $text = "Edytowano podzadanie";
+            $text = 5; //5: edytowano podzadanie
             $curr_timestamp = date('Y-m-d H:i:s');
-            $sql = "INSERT INTO $db_notifications_tab ($db_notifications_id, $db_notifications_date, $db_notifications_taskid, $db_notifications_subtaskid, $db_notifications_text) VALUES (NULL, '$curr_timestamp', '$taskid', '$subtaskid', '$text')";
+            $sql = "INSERT INTO $db_notifications_tab ($db_notifications_id, $db_notifications_date, $db_notifications_taskid, $db_notifications_subtaskid, $db_notifications_type) VALUES (NULL, '$curr_timestamp', '$taskid', '$subtaskid', '$text')";
             if ($result = $connection -> query($sql)){
                     //info testowe: działa
                 $notificationid = $connection->insert_id;       

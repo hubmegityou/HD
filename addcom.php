@@ -18,8 +18,8 @@
         $sql = "INSERT INTO $db_messages_tab ($db_messages_id, $db_messages_userid, $db_messages_taskid, $db_messages_date, $db_messages_text) VALUES (NULL,'". $_SESSION['id']."', '$tid', '$curr_timestamp', '$comment')";
         $connection->query($sql);
 
-            $text = "Dodano komentarz do aktywnego zadania";
-            $sql = "INSERT INTO $db_notifications_tab ($db_notifications_id, $db_notifications_date, $db_notifications_taskid, $db_notifications_subtaskid, $db_notifications_text) VALUES (NULL, '".date('Y-m-d H:i:s')."', '$tid', NULL, '$text')";
+            $text = 1; // 1: dodano nowy komentarz
+            $sql = "INSERT INTO $db_notifications_tab ($db_notifications_id, $db_notifications_date, $db_notifications_taskid, $db_notifications_subtaskid, $db_notifications_type) VALUES (NULL, '".date('Y-m-d H:i:s')."', '$tid', NULL, '$text')";
             if ($result = $connection -> query($sql)){
                 //info kontrolne, że działa
                 $notificationid = $connection->insert_id;

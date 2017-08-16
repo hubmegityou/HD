@@ -20,10 +20,9 @@
         
         if(($edate>$select_row[$db_task_edate]) && ($select_row[$db_task_priority]==1)){
             $_SESSION['alert']= 'Niepoprawna data';
-            header("Location: tasks_all.php?sid=$sid&tid=$tid");
         }
         else{
-            $text = "Zmieniono datę podzadania";
+            $text = 6; // zmieniono datę podzadania
             if ($edate>$select_row[$db_task_edate]){ //data końcowa podzadania zmienia datę zadania gównego
                 $sql_u = "UPDATE $db_task_tab SET $db_task_edate='$edate' WHERE $db_task_id=$tid"; 
                 $connection->query($sql_u);
@@ -33,14 +32,14 @@
                 $result = $connection->query($sql);
                 $row = $result->fetch_assoc();
                 if ($row[$db_subtask_sdate]==$sdate && $row[$db_subtask_edate]==$edate){
-                    $text = "Zatwierdzono datę podzadania";
+                    $text = 7; // zatwierdzono datę podzadania
                 }
             }
             $sql = "UPDATE $db_subtask_tab SET $db_subtask_sdate='$sdate', $db_subtask_edate= '$edate', $db_subtask_conf= '1'  WHERE $db_subtask_id='$sid'";
             $connection->query($sql);
             //add notification
             $curr_timestamp = date('Y-m-d H:i:s');
-            $sql = "INSERT INTO $db_notifications_tab ($db_notifications_id, $db_notifications_date, $db_notifications_taskid, $db_notifications_subtaskid, $db_notifications_text) VALUES (NULL, '$curr_timestamp', '$tid', '$sid', '$text')";        
+            $sql = "INSERT INTO $db_notifications_tab ($db_notifications_id, $db_notifications_date, $db_notifications_taskid, $db_notifications_subtaskid, $db_notifications_type) VALUES (NULL, '$curr_timestamp', '$tid', '$sid', '$text')";        
             if ($result = $connection -> query($sql)){
                 //info testowe: działa
                 $notificationid = $connection->insert_id;

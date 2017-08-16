@@ -22,7 +22,7 @@ var UrlToSend = PageToSendTo + IDPlaceholder + ID + And + SIDPlaceholder + SID +
 xmlhttp.open("GET", UrlToSend, false);
 xmlhttp.send();
 
-if (typ <=3){
+if (typ <=6){
     location.href='tasks_all.php?tid='+tid+'&sid='+sid; 
 }else{
     location.href='team_tasks.php';      

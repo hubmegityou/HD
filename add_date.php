@@ -35,7 +35,7 @@
                     $text = 7; // zatwierdzono datę podzadania
                 }
             }
-            $sql = "UPDATE $db_subtask_tab SET $db_subtask_sdate='$sdate', $db_subtask_edate= '$edate', $db_subtask_conf= '1'  WHERE $db_subtask_id='$sid'";
+            $sql = "UPDATE $db_subtask_tab SET $db_subtask_sdate='$sdate', $db_subtask_edate= '$edate', $db_subtask_conf='1' WHERE $db_subtask_id='$sid'";
             $connection->query($sql);
             //add notification
             $curr_timestamp = date('Y-m-d H:i:s');

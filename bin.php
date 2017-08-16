@@ -119,30 +119,56 @@
     require_once "objects.php";
     $connection = db_connection();
 
-        $sql = "SELECT $db_subtask_tab.$db_subtask_id,$db_notifications_tab.$db_notifications_taskid, $db_notifications_tab.$db_notifications_type ,$db_notifications_tab.$db_notifications_date, $db_nots_user_tab.$db_nots_user_id, $db_nots_user_tab.$db_nots_user_readnots "
-                . "FROM $db_notifications_tab INNER JOIN $db_nots_user_tab ON $db_notifications_tab.$db_notifications_id = $db_nots_user_tab.$db_nots_user_notificationid "
-                . "INNER JOIN $db_subtask_tab ON $db_notifications_tab.$db_notifications_taskid=$db_subtask_tab.$db_subtask_taskid "
-                . "WHERE  $db_nots_user_tab.$db_nots_user_delete='1'  AND $db_nots_user_tab.$db_nots_user_userid=".$_SESSION['id']." AND $db_subtask_tab.$db_subtask_userid=".$_SESSION['id']." "
-                //. "GROUP BY $db_subtask_tab.$db_subtask_taskid, $db_notifications_tab.$db_notifications_text "
-
-                . "ORDER BY $db_notifications_tab.$db_notifications_date DESC";
-        
+$sql = "SELECT $db_notifications_tab.$db_notifications_date, $db_notifications_tab.$db_notifications_type, $db_nots_user_tab.$db_nots_user_id, $db_nots_user_tab.$db_nots_user_taskid, $db_nots_user_tab.$db_nots_user_subtaskid, $db_nots_user_tab.$db_nots_user_readnots "
+        . " FROM $db_notifications_tab INNER JOIN $db_nots_user_tab ON $db_notifications_tab.$db_notifications_id=$db_nots_user_tab.$db_nots_user_notificationid "
+        . " WHERE $db_nots_user_tab.$db_nots_user_userid = ".$_SESSION['id']." AND $db_nots_user_delete=1 "
+        . " ORDER BY $db_notifications_tab.$db_notifications_date DESC";
         $result = $connection->query($sql);
-        
         while($row = $result->fetch_assoc()){
+            switch ($row[$db_notifications_type]){
+                case 1: $text = "Dodano nowy komentarz do aktywnego zadania";
+                        break;
+                case 2: $text = "Dodano nowy załącznik do aktywnego zadania";
+                        break;
+                case 3: $text = "Edytowano aktywne zadanie";
+                        break;
+                case 4: $text = "Masz przydzielone nowe podzadanie";
+                        break;
+                case 5: $text = "Edytowano twoje aktywne podzadanie";
+                        break;
+                case 6: $sql = "SELECT $db_users_tab.$db_users_fname, $db_users_tab.$db_users_lname, $db_subtask_tab.$db_subtask_name "
+                        . "FROM $db_subtask_tab INNER JOIN $db_users_tab ON $db_subtask_tab.$db_subtask_userid=$db_users_tab.$db_users_id "
+                        . "WHERE $db_subtask_id=$row[$db_nots_user_subtaskid]";
+                        $result2 = $connection->query($sql);
+                        $row2 = $result2->fetch_assoc();
+                        $text = "Użytkownik ".$row2[$db_users_fname]." ".$row2[$db_users_lname]." zmienił datę w podzadaniu: ".$row2[$db_subtask_name];
+                        break;
+                case 7: $sql = "SELECT $db_users_tab.$db_users_fname, $db_users_tab.$db_users_lname, $db_subtask_tab.$db_subtask_name "
+                        . "FROM $db_subtask_tab INNER JOIN $db_users_tab ON $db_subtask_tab.$db_subtask_userid=$db_users_tab.$db_users_id "
+                        . "WHERE $db_subtask_id=$row[$db_nots_user_subtaskid]";
+                        $result2 = $connection->query($sql);
+                        $row2 = $result2->fetch_assoc();
+                        $text = "Użytkownik ".$row2[$db_users_fname]." ".$row2[$db_users_lname]." zatwierdził datę w podzadaniu: ".$row2[$db_subtask_name];
+                        break;
+            }
             if ($row[$db_nots_user_readnots]==0){
                 echo "<div class='teamtask-form'>";
                 echo "<p class='team-taskform'>";
-                echo "<input class='checkboxu' type='checkbox' name='not[]' id='not' value='$row[$db_nots_user_id]'>   <a  href='javascript:change_read($row[$db_nots_user_id],$row[$db_subtask_id], $row[$db_notifications_taskid])' style='color:black; text-decoration: none'>      $row[$db_notifications_date]".'    '." $row[$db_notifications_type]</a>".'<br><br>';
+                echo "<input class='checkboxu' type='checkbox' name='not[]' id='not' value='$row[$db_nots_user_id]'>   <a  href='javascript:change_read($row[$db_nots_user_id],$row[$db_nots_user_subtaskid], $row[$db_nots_user_taskid], $row[$db_notifications_type])' style='color:black; text-decoration: none'>      $row[$db_notifications_date]".'    '." $text</a>".'<br><br>';
                 echo "</p>";
                 echo "</div>";
             }else {
-                echo "<p class='team-taskform'>";
-                echo "<input class='checkboxr' type='checkbox' name='not[]' id='not' value='$row[$db_nots_user_id]'><a href='tasks_all.php?sid=$row[$db_subtask_id]&tid=$row[$db_notifications_taskid]'  style='color:black; text-decoration: none'>       $row[$db_notifications_date]".'    '." $row[$db_notifications_type]</a>".'<br><br>'; 
-                echo "</p>";     
+                if ($row[$db_notifications_type] >= 6){
+                    $url = "team_tasks.php";
                 }
-        }         
-
+                else{
+                    $url = "tasks_all.php?sid=$row[$db_nots_user_subtaskid]&tid=$row[$db_nots_user_taskid]";
+                }
+                echo "<p class='team-taskform'>";
+                echo "<input class='checkboxr' type='checkbox' name='not[]' id='not' value='$row[$db_nots_user_id]'><a href=\"$url\" style='color:black; text-decoration: none'>       $row[$db_notifications_date]".'    '." $text</a>".'<br><br>'; 
+                echo "</p>";
+                }
+        }
 ?>
      </form>
                                  

@@ -108,7 +108,6 @@
                 echo "<option value='$row[$db_users_id]'>$row[$db_functions_desc] $row[$db_users_fname] $row[$db_users_lname]</option>";
             }
             echo "</select>";
-            var_dump($r);
             echo "<div class='stemat'><p class='tematt'>login: <br><input type='text' value='$row[$db_users_login]' name='login' class='stematp' style='width:40%' required/></p></div>";
             echo "<div class='stemat'><p class='tematt'>email: <br><input type='email' value='$row[$db_users_email]' name='email' required/></p></div>";
             echo "<div class='stemat'><p class='tematt'>nowe hasło: <br><input type='password' name='pass1' ></p></div>";

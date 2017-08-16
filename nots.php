@@ -117,13 +117,13 @@
     require_once "database/dbinfo.php";
     require_once "objects.php";
     $connection = db_connection();
+    
     $sql = "SELECT $db_notifications_tab.$db_notifications_date, $db_notifications_tab.$db_notifications_type, $db_nots_user_tab.$db_nots_user_id, $db_nots_user_tab.$db_nots_user_taskid, $db_nots_user_tab.$db_nots_user_subtaskid, $db_nots_user_tab.$db_nots_user_readnots "
         . " FROM $db_notifications_tab INNER JOIN $db_nots_user_tab ON $db_notifications_tab.$db_notifications_id=$db_nots_user_tab.$db_nots_user_notificationid "
-        . " WHERE $db_nots_user_tab.$db_nots_user_userid = ".$_SESSION['id']
+        . " WHERE $db_nots_user_tab.$db_nots_user_userid = ".$_SESSION['id']." AND $db_nots_user_delete=0 "
         . " ORDER BY $db_notifications_tab.$db_notifications_date DESC";
         $result = $connection->query($sql);
         while($row = $result->fetch_assoc()){
-            //var_dump($row);
             switch ($row[$db_notifications_type]){
                 case 1: $text = "Dodano nowy komentarz do aktywnego zadania";
                         break;
@@ -140,7 +140,6 @@
                         . "WHERE $db_subtask_id=$row[$db_nots_user_subtaskid]";
                         $result2 = $connection->query($sql);
                         $row2 = $result2->fetch_assoc();
-                        //var_dump($row2);
                         $text = "Użytkownik ".$row2[$db_users_fname]." ".$row2[$db_users_lname]." zmienił datę w podzadaniu: ".$row2[$db_subtask_name];
                         break;
                 case 7: $sql = "SELECT $db_users_tab.$db_users_fname, $db_users_tab.$db_users_lname, $db_subtask_tab.$db_subtask_name "
@@ -148,7 +147,6 @@
                         . "WHERE $db_subtask_id=$row[$db_nots_user_subtaskid]";
                         $result2 = $connection->query($sql);
                         $row2 = $result2->fetch_assoc();
-                        //var_dump($row2);
                         $text = "Użytkownik ".$row2[$db_users_fname]." ".$row2[$db_users_lname]." zatwierdził datę w podzadaniu: ".$row2[$db_subtask_name];
                         break;
             }

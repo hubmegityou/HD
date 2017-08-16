@@ -39,7 +39,7 @@
             $connection->query($sql);
             //add notification
             $curr_timestamp = date('Y-m-d H:i:s');
-            $sql = "INSERT INTO $db_notifications_tab ($db_notifications_id, $db_notifications_date, $db_notifications_taskid, $db_notifications_subtaskid, $db_notifications_type) VALUES (NULL, '$curr_timestamp', '$tid', '$sid', '$text')";        
+            $sql = "INSERT INTO $db_notifications_tab ($db_notifications_id, $db_notifications_date, $db_notifications_type) VALUES (NULL, '$curr_timestamp', '$text')";        
             if ($result = $connection -> query($sql)){
                 //info testowe: działa
                 $notificationid = $connection->insert_id;
@@ -47,7 +47,8 @@
                 $result = $connection -> query($sql);
                 $row = $result -> fetch_assoc();
                 $masterid = $row[$db_task_userid];
-                $sql = "INSERT INTO $db_nots_user_tab ($db_nots_user_id, $db_nots_user_notificationid, $db_nots_user_userid, $db_nots_user_readnots) VALUES (NULL, '$notificationid', '$masterid', '0')";
+                //powiadomienie tylko dla managera: w pola taskID i subtaskID wrzucamy dane dla usera który dokonuje zmian, nie dla usera, który je odczytuje w powiadomieniu (dla managera nie są one potrzebne)
+                $sql = "INSERT INTO $db_nots_user_tab ($db_nots_user_id, $db_nots_user_notificationid, $db_nots_user_userid, $db_nots_user_taskid, $db_nots_user_subtaskid, $db_nots_user_readnots) VALUES (NULL, '$notificationid', '$masterid', '$tid', '$sid', '0')";
                 if ($result = $connection->query($sql)){
                     $_SESSION['alert'] = $text;
                 }

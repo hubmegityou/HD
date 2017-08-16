@@ -46,12 +46,12 @@
             $_SESSION['alert']= 'Dodano podzadanie';
             $text = 4; //4: masz przydzielone nowe podzadanie
             $curr_timestamp = date('Y-m-d H:i:s');
-            $sql = "INSERT INTO $db_notifications_tab ($db_notifications_id, $db_notifications_date, $db_notifications_taskid, $db_notifications_subtaskid, $db_notifications_type) VALUES (NULL, '".$curr_timestamp."', '$taskid', '$subtaskid', '$text')";
+            $sql = "INSERT INTO $db_notifications_tab ($db_notifications_id, $db_notifications_date, $db_notifications_type) VALUES (NULL, '".$curr_timestamp."', '$text')";
             
             if ($result = $connection -> query($sql)){
                     //info testowe: działa
                 $notificationid = $connection->insert_id;       
-                $sql = "INSERT INTO $db_nots_user_tab ($db_nots_user_id, $db_nots_user_notificationid, $db_nots_user_userid, $db_nots_user_readnots) VALUES (NULL, '$notificationid', '$userid', '0')";
+                $sql = "INSERT INTO $db_nots_user_tab ($db_nots_user_id, $db_nots_user_notificationid, $db_nots_user_userid, $db_nots_user_taskid, $db_nots_user_subtaskid, $db_nots_user_readnots) VALUES (NULL, '$notificationid', '$userid', '$taskid', '$subtaskid', '0')";
                 if ($result = $connection->query($sql)){
                         //info testowe: działa
                 }

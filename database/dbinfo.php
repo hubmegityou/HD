@@ -52,14 +52,14 @@
         $db_notifications_tab = 'notifications';
                 $db_notifications_id = 'notification_ID';
                 $db_notifications_date = 'date';
-                $db_notifications_taskid = 'task_ID';
-                $db_notifications_subtaskid = 'subtask_ID';
                 $db_notifications_type = 'type';
                 
         $db_nots_user_tab = 'nots_user';
                 $db_nots_user_id = 'nots_ID';
                 $db_nots_user_notificationid = 'notification_ID';
                 $db_nots_user_userid = 'user_ID';
+                $db_nots_user_taskid = '';
+                $db_nots_user_subtaskid = '';
                 $db_nots_user_readnots = 'read_nots';
                 $db_nots_user_delete= 'delete_n';
 ?>

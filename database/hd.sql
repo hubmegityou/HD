@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 11 Sie 2017, 13:11
--- Wersja serwera: 10.1.22-MariaDB
--- Wersja PHP: 7.1.4
+-- Czas generowania: 16 Sie 2017, 13:16
+-- Wersja serwera: 10.1.24-MariaDB
+-- Wersja PHP: 7.1.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -40,12 +40,10 @@ CREATE TABLE `attachment` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Zrzut danych tabeli `attachment`
+-- RELATIONSHIPS FOR TABLE `attachment`:
+--   `task_ID`
+--       `task` -> `task_ID`
 --
-
-INSERT INTO `attachment` (`att_ID`, `name`, `type`, `size`, `task_ID`, `description`) VALUES
-(26, '17-08-10_14-45-48test.txt', 'text/plain', 53, 41, 'opis'),
-(29, '17-08-10_14-55-06obrazek.bmp', 'image/bmp', 208914, 41, 'opis ble ble ble');
 
 -- --------------------------------------------------------
 
@@ -57,6 +55,10 @@ CREATE TABLE `functions` (
   `function_ID` int(11) NOT NULL,
   `function_description` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- RELATIONSHIPS FOR TABLE `functions`:
+--
 
 --
 -- Zrzut danych tabeli `functions`
@@ -84,13 +86,25 @@ CREATE TABLE `messages` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
+-- RELATIONSHIPS FOR TABLE `messages`:
+--   `task_ID`
+--       `task` -> `task_ID`
+--   `user_ID`
+--       `users` -> `user_ID`
+--
+
+--
 -- Zrzut danych tabeli `messages`
 --
 
 INSERT INTO `messages` (`message_ID`, `user_ID`, `date`, `task_ID`, `text`) VALUES
 (4, 17, '2017-08-09 14:41:39', 41, 'vvv'),
 (5, 18, '2017-08-09 14:46:50', 41, 'hhhhhh'),
-(6, 18, '2017-08-09 14:46:58', 41, 'vvvvvvv');
+(6, 18, '2017-08-09 14:46:58', 41, 'vvvvvvv'),
+(7, 17, '2017-08-16 10:50:33', 41, 'bb'),
+(8, 17, '2017-08-16 10:51:18', 41, 'hyehyehehehehe'),
+(9, 17, '2017-08-16 11:13:47', 43, 'eee'),
+(10, 17, '2017-08-16 11:13:52', 43, 'fff');
 
 -- --------------------------------------------------------
 
@@ -101,32 +115,12 @@ INSERT INTO `messages` (`message_ID`, `user_ID`, `date`, `task_ID`, `text`) VALU
 CREATE TABLE `notifications` (
   `notification_ID` int(11) NOT NULL,
   `date` datetime NOT NULL,
-  `task_ID` int(11) NOT NULL,
-  `subtask_ID` int(11) DEFAULT NULL,
-  `text` text NOT NULL
+  `type` tinyint(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Zrzut danych tabeli `notifications`
+-- RELATIONSHIPS FOR TABLE `notifications`:
 --
-
-INSERT INTO `notifications` (`notification_ID`, `date`, `task_ID`, `subtask_ID`, `text`) VALUES
-(92, '2017-08-09 14:35:47', 40, 44, 'Masz przydzielone nowe zadanie'),
-(93, '2017-08-09 14:37:03', 41, 45, 'Masz przydzielone nowe zadanie'),
-(94, '2017-08-09 14:37:39', 41, 46, 'Masz przydzielone nowe zadanie'),
-(95, '2017-08-09 14:37:55', 40, 47, 'Masz przydzielone nowe zadanie'),
-(96, '2017-08-09 14:38:38', 41, NULL, 'Dodano komentarz do aktywnego zadania'),
-(97, '2017-08-09 14:38:47', 41, NULL, 'Dodano załącznik do aktywnego zadania'),
-(98, '2017-08-09 14:41:39', 41, NULL, 'Dodano komentarz do aktywnego zadania'),
-(99, '2017-08-09 14:44:54', 42, 48, 'Masz przydzielone nowe zadanie'),
-(100, '2017-08-09 14:46:50', 41, NULL, 'Dodano komentarz do aktywnego zadania'),
-(101, '2017-08-09 14:46:58', 41, NULL, 'Dodano komentarz do aktywnego zadania'),
-(102, '2017-08-09 14:58:51', 41, NULL, 'Dodano załącznik do aktywnego zadania'),
-(103, '2017-08-10 14:45:48', 41, NULL, 'Dodano załącznik do aktywnego zadania'),
-(104, '2017-08-10 14:52:44', 41, NULL, 'Dodano załącznik do aktywnego zadania'),
-(105, '2017-08-10 14:53:55', 41, NULL, 'Dodano załącznik do aktywnego zadania'),
-(106, '2017-08-10 14:55:06', 41, NULL, 'Dodano załącznik do aktywnego zadania'),
-(107, '2017-08-11 11:42:38', 40, 44, 'Edytowano podzadanie');
 
 -- --------------------------------------------------------
 
@@ -138,31 +132,23 @@ CREATE TABLE `nots_user` (
   `nots_ID` int(11) NOT NULL,
   `notification_ID` int(11) NOT NULL,
   `user_ID` int(11) NOT NULL,
+  `task_ID` int(11) NOT NULL,
+  `subtask_ID` int(11) NOT NULL,
   `read_nots` int(11) NOT NULL,
   `delete_n` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Zrzut danych tabeli `nots_user`
+-- RELATIONSHIPS FOR TABLE `nots_user`:
+--   `notification_ID`
+--       `notifications` -> `notification_ID`
+--   `user_ID`
+--       `users` -> `user_ID`
+--   `subtask_ID`
+--       `subtask` -> `subtask_ID`
+--   `task_ID`
+--       `task` -> `task_ID`
 --
-
-INSERT INTO `nots_user` (`nots_ID`, `notification_ID`, `user_ID`, `read_nots`, `delete_n`) VALUES
-(70, 92, 17, 0, 0),
-(71, 93, 17, 1, 0),
-(72, 94, 18, 0, 0),
-(73, 95, 18, 0, 0),
-(74, 96, 18, 1, 0),
-(75, 97, 18, 1, 0),
-(76, 98, 18, 1, 0),
-(77, 99, 17, 1, 1),
-(78, 100, 17, 0, 0),
-(79, 101, 17, 0, 1),
-(80, 102, 17, 1, 1),
-(81, 103, 18, 1, 0),
-(82, 104, 18, 1, 0),
-(83, 105, 18, 1, 0),
-(84, 106, 17, 0, 1),
-(85, 107, 17, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -184,15 +170,26 @@ CREATE TABLE `subtask` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
+-- RELATIONSHIPS FOR TABLE `subtask`:
+--   `task_ID`
+--       `task` -> `task_ID`
+--   `user_ID`
+--       `users` -> `user_ID`
+--
+
+--
 -- Zrzut danych tabeli `subtask`
 --
 
 INSERT INTO `subtask` (`subtask_ID`, `task_ID`, `name`, `start_date`, `end_date`, `description`, `user_ID`, `done`, `confirmed`, `blocked`) VALUES
-(44, 40, 'bbbbbb', '2017-08-10', '2017-08-18', 'bbbb', 17, 0, 0, 0),
+(44, 40, 'bbbbbb', '2017-08-10', '2017-08-18', 'bbbb', 17, 0, 1, 0),
 (45, 41, 'gggggg', '2017-08-11', '2017-08-24', 'ghjjhjk', 17, 0, 0, 0),
 (46, 41, 'gggggg', '2017-08-10', '2017-08-17', 'fffff', 18, 0, 0, 0),
 (47, 40, 'dddddd', '2017-08-10', '2017-08-13', 'ggggg', 18, 1, 0, 0),
-(48, 42, 'jjjjjj', '2017-08-10', '2017-08-12', 'vvvvvv', 17, 0, 0, 0);
+(48, 42, 'jjjjjj', '2017-08-10', '2017-08-13', 'vvvvvv', 17, 0, 0, 1),
+(49, 43, 'vv', '2017-08-17', '2017-08-21', 'bb', 17, 0, 1, 0),
+(50, 41, 'cccc', '0000-00-00', '0000-00-00', 'sddd', 17, 0, 1, 0),
+(51, 43, 'cccccc', '2019-12-18', '2021-12-20', 'ddd', 17, 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -212,13 +209,21 @@ CREATE TABLE `task` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
+-- RELATIONSHIPS FOR TABLE `task`:
+--   `user_ID`
+--       `users` -> `user_ID`
+--
+
+--
 -- Zrzut danych tabeli `task`
 --
 
 INSERT INTO `task` (`task_ID`, `name`, `description`, `start_date`, `end_date`, `user_ID`, `priority`, `done`) VALUES
 (40, 'bbbb', 'mmm', '2017-08-10', '2017-08-18', 17, 0, 0),
 (41, 'vvvvv', 'ssss', '2017-08-10', '2017-08-25', 17, 1, 0),
-(42, 'zdanie', 'vvvv', '2017-08-10', '2017-08-18', 17, 0, 0);
+(42, 'zdanie', 'vvvv', '2017-08-10', '2017-08-18', 17, 0, 0),
+(43, 'xx', 'xx', '2017-08-24', '2017-08-31', 17, 1, 0),
+(44, 'ccccccc', 'cc', '2017-08-24', '2017-08-31', 17, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -235,6 +240,12 @@ CREATE TABLE `users` (
   `password` text NOT NULL,
   `user_function` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- RELATIONSHIPS FOR TABLE `users`:
+--   `user_function`
+--       `functions` -> `function_ID`
+--
 
 --
 -- Zrzut danych tabeli `users`
@@ -276,9 +287,7 @@ ALTER TABLE `messages`
 -- Indexes for table `notifications`
 --
 ALTER TABLE `notifications`
-  ADD PRIMARY KEY (`notification_ID`),
-  ADD KEY `task_ID` (`task_ID`),
-  ADD KEY `subtask_ID` (`subtask_ID`);
+  ADD PRIMARY KEY (`notification_ID`);
 
 --
 -- Indexes for table `nots_user`
@@ -286,7 +295,9 @@ ALTER TABLE `notifications`
 ALTER TABLE `nots_user`
   ADD PRIMARY KEY (`nots_ID`),
   ADD KEY `user_ID` (`user_ID`),
-  ADD KEY `notification_ID` (`notification_ID`);
+  ADD KEY `notification_ID` (`notification_ID`),
+  ADD KEY `task_ID` (`task_ID`),
+  ADD KEY `subtask_ID` (`subtask_ID`);
 
 --
 -- Indexes for table `subtask`
@@ -318,7 +329,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT dla tabeli `attachment`
 --
 ALTER TABLE `attachment`
-  MODIFY `att_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `att_ID` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT dla tabeli `functions`
 --
@@ -328,27 +339,27 @@ ALTER TABLE `functions`
 -- AUTO_INCREMENT dla tabeli `messages`
 --
 ALTER TABLE `messages`
-  MODIFY `message_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `message_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT dla tabeli `notifications`
 --
 ALTER TABLE `notifications`
-  MODIFY `notification_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=108;
+  MODIFY `notification_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=121;
 --
 -- AUTO_INCREMENT dla tabeli `nots_user`
 --
 ALTER TABLE `nots_user`
-  MODIFY `nots_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=86;
+  MODIFY `nots_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=97;
 --
 -- AUTO_INCREMENT dla tabeli `subtask`
 --
 ALTER TABLE `subtask`
-  MODIFY `subtask_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
+  MODIFY `subtask_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 --
 -- AUTO_INCREMENT dla tabeli `task`
 --
 ALTER TABLE `task`
-  MODIFY `task_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+  MODIFY `task_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 --
 -- AUTO_INCREMENT dla tabeli `users`
 --
@@ -372,18 +383,13 @@ ALTER TABLE `messages`
   ADD CONSTRAINT `messages_ibfk_2` FOREIGN KEY (`user_ID`) REFERENCES `users` (`user_ID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Ograniczenia dla tabeli `notifications`
---
-ALTER TABLE `notifications`
-  ADD CONSTRAINT `notifications_ibfk_1` FOREIGN KEY (`task_ID`) REFERENCES `task` (`task_ID`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `notifications_ibfk_2` FOREIGN KEY (`subtask_ID`) REFERENCES `subtask` (`subtask_ID`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
 -- Ograniczenia dla tabeli `nots_user`
 --
 ALTER TABLE `nots_user`
   ADD CONSTRAINT `nots_user_ibfk_1` FOREIGN KEY (`notification_ID`) REFERENCES `notifications` (`notification_ID`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `nots_user_ibfk_2` FOREIGN KEY (`user_ID`) REFERENCES `users` (`user_ID`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `nots_user_ibfk_2` FOREIGN KEY (`user_ID`) REFERENCES `users` (`user_ID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `nots_user_ibfk_3` FOREIGN KEY (`subtask_ID`) REFERENCES `subtask` (`subtask_ID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `nots_user_ibfk_4` FOREIGN KEY (`task_ID`) REFERENCES `task` (`task_ID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Ograniczenia dla tabeli `subtask`

@@ -41,7 +41,7 @@
     padding: 15px 50px 5px 50px;
     float: right;
     font-size: 16px;"> <div class="circle" id="circle"> </div><a href="nots.php" class="btn btn-danger square-btn-adjust">Powiadomienia</a>
-        <a href="logout.php" class="btn btn-danger square-btn-adjust">Logout</a> </div>
+        <a href="logout.php" class="btn btn-danger square-btn-adjust">Wyloguj</a> </div>
         </nav>   
            <!-- /. NAV TOP  -->
                 <nav class="navbar-default navbar-side" role="navigation">

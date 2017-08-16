@@ -1,4 +1,4 @@
-function change_read(id, sid, tid){ 
+function change_read(id, sid, tid, typ){ 
 
     if (window.XMLHttpRequest){
     xmlhttp=new XMLHttpRequest();
@@ -7,6 +7,7 @@ function change_read(id, sid, tid){
 else{
     xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
 }
+
 
 var PageToSendTo = "change_readnots.php?";
 var ID = id;
@@ -21,6 +22,8 @@ var UrlToSend = PageToSendTo + IDPlaceholder + ID + And + SIDPlaceholder + SID +
 xmlhttp.open("GET", UrlToSend, false);
 xmlhttp.send();
 
-
-location.href='tasks_all.php?tid='+tid+'&sid='+sid; 
-} 
+if (typ <=3){
+    location.href='tasks_all.php?tid='+tid+'&sid='+sid; 
+}else{
+    location.href='team_tasks.php';      
+ }}

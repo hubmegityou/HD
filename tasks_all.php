@@ -130,8 +130,8 @@
                                     echo "Termin rozpoczęcia: <input type='date' id='calendar' value= $sdate name='stime'/><br><br>";
                                     echo "Termin wykonania: <input type='date' id='calendar2' value=$edate name='etime'/><br><br>";
                                 }
-                                echo "<input type='hidden' name='myTID' value=$tid>";
-                                echo "<input type='hidden' name='mySID' value=$sid>";
+                                echo "<input type='hidden' name='tid' value=$tid>";
+                                echo "<input type='hidden' name='sid' value=$sid>";
                                 echo "Opis zadania: <br> $row[$db_subtask_description]<br><br>";
                                 if ($row2[$db_subtask_conf]=='0'){
                                     echo "<i>oczekuje na zatwierdzenie</i>";

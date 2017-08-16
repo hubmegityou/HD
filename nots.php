@@ -123,7 +123,7 @@
         . " ORDER BY $db_notifications_tab.$db_notifications_date DESC";
         $result = $connection->query($sql);
         while($row = $result->fetch_assoc()){
-            var_dump($row);
+            //var_dump($row);
             switch ($row[$db_notifications_type]){
                 case 1: $text = "Dodano nowy komentarz do aktywnego zadania";
                         break;
@@ -136,18 +136,20 @@
                 case 5: $text = "Edytowano twoje aktywne podzadania";
                         break;
                 case 6: $sql = "SELECT $db_users_tab.$db_users_fname, $db_users_tab.$db_users_lname, $db_subtask_tab.$db_subtask_name "
-                        . "FROM $db_subtask_tab INNER JOIN $db_users_tab ON $db_subtask_tab.$db_subtask_userid=$db_users_tab.$db_users_id";
-                        $result = $connection->query($sql);
-                        $row2 = $result->fetch_assoc();
-                        var_dump($row2);
-                        $text = "Użytkownik ".$row[$db_users_fname]." ".$row[$db_users_lname]." zmeinił datę w zadaniu ".$row[$db_subtask_name];
+                        . "FROM $db_subtask_tab INNER JOIN $db_users_tab ON $db_subtask_tab.$db_subtask_userid=$db_users_tab.$db_users_id "
+                        . "WHERE $db_subtask_id=$row[$db_nots_user_subtaskid]";
+                        $result2 = $connection->query($sql);
+                        $row2 = $result2->fetch_assoc();
+                        //var_dump($row2);
+                        $text = "Użytkownik ".$row2[$db_users_fname]." ".$row2[$db_users_lname]." zmienił datę w zadaniu ".$row2[$db_subtask_name];
                         break;
                 case 7: $sql = "SELECT $db_users_tab.$db_users_fname, $db_users_tab.$db_users_lname, $db_subtask_tab.$db_subtask_name "
-                        . "FROM $db_subtask_tab INNER JOIN $db_users_tab ON $db_subtask_tab.$db_subtask_userid=$db_users_tab.$db_users_id";
-                        $result = $connection->query($sql);
-                        $row2 = $result->fetch_assoc();
-                        var_dump($row2);
-                        $text = "Użytkownik ".$row[$db_users_fname]." ".$row[$db_users_lname]." zatwierdził datę w zadaniu ".$row[$db_subtask_name];
+                        . "FROM $db_subtask_tab INNER JOIN $db_users_tab ON $db_subtask_tab.$db_subtask_userid=$db_users_tab.$db_users_id "
+                        . "WHERE $db_subtask_id=$row[$db_nots_user_subtaskid]";
+                        $result2 = $connection->query($sql);
+                        $row2 = $result2->fetch_assoc();
+                        //var_dump($row2);
+                        $text = "Użytkownik ".$row2[$db_users_fname]." ".$row2[$db_users_lname]." zatwierdził datę w zadaniu ".$row2[$db_subtask_name];
                         break;
             }
             if ($row[$db_nots_user_readnots]==0){
@@ -161,7 +163,7 @@
                     $url = "team_tasks.php";
                 }
                 else{
-                    $url = "tasks_all.php?sid=$row[$db_subtask_id]&tid=$row[$db_notifications_taskid]";
+                    $url = "tasks_all.php?sid=$row[$db_nots_user_subtaskid]&tid=$row[$db_nots_user_taskid]";
                 }
                 echo "<p class='team-taskform'>";
                 echo "<input class='checkboxr' type='checkbox' name='not[]' id='not' value='$row[$db_nots_user_id]'><a href=\"$url\" style='color:black; text-decoration: none'>       $row[$db_notifications_date]".'    '." $text</a>".'<br><br>'; 

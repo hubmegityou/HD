@@ -129,11 +129,11 @@
                         break;
                 case 2: $text = "Dodano nowy załącznik do aktywnego zadania";
                         break;
-                case 3: $text = "Edytowano aktywne zadania";
+                case 3: $text = "Edytowano aktywne zadanie";
                         break;
                 case 4: $text = "Masz przydzielone nowe podzadanie";
                         break;
-                case 5: $text = "Edytowano twoje aktywne podzadania";
+                case 5: $text = "Edytowano twoje aktywne podzadanie";
                         break;
                 case 6: $sql = "SELECT $db_users_tab.$db_users_fname, $db_users_tab.$db_users_lname, $db_subtask_tab.$db_subtask_name "
                         . "FROM $db_subtask_tab INNER JOIN $db_users_tab ON $db_subtask_tab.$db_subtask_userid=$db_users_tab.$db_users_id "
@@ -141,7 +141,7 @@
                         $result2 = $connection->query($sql);
                         $row2 = $result2->fetch_assoc();
                         //var_dump($row2);
-                        $text = "Użytkownik ".$row2[$db_users_fname]." ".$row2[$db_users_lname]." zmienił datę w zadaniu ".$row2[$db_subtask_name];
+                        $text = "Użytkownik ".$row2[$db_users_fname]." ".$row2[$db_users_lname]." zmienił datę w podzadaniu: ".$row2[$db_subtask_name];
                         break;
                 case 7: $sql = "SELECT $db_users_tab.$db_users_fname, $db_users_tab.$db_users_lname, $db_subtask_tab.$db_subtask_name "
                         . "FROM $db_subtask_tab INNER JOIN $db_users_tab ON $db_subtask_tab.$db_subtask_userid=$db_users_tab.$db_users_id "
@@ -149,7 +149,7 @@
                         $result2 = $connection->query($sql);
                         $row2 = $result2->fetch_assoc();
                         //var_dump($row2);
-                        $text = "Użytkownik ".$row2[$db_users_fname]." ".$row2[$db_users_lname]." zatwierdził datę w zadaniu ".$row2[$db_subtask_name];
+                        $text = "Użytkownik ".$row2[$db_users_fname]." ".$row2[$db_users_lname]." zatwierdził datę w podzadaniu: ".$row2[$db_subtask_name];
                         break;
             }
             if ($row[$db_nots_user_readnots]==0){

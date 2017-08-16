@@ -2,7 +2,7 @@
     session_start();
 
     if(!isset($_SESSION['online']) || !$_SESSION['online']){
-            header('Location: index.php');
+            header('Location: main.php');
             exit();
     }
     if(isset($_SESSION['alert'])){      

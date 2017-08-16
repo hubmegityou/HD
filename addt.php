@@ -2,7 +2,7 @@
 
     session_start();
     
-    if ((!isset($_POST['topic'])) || (!isset($_POST['description'])) || (!isset($_POST['stime'])) || (!isset($_POST['etime']))){
+    if (empty($_POST)){
             header('Location: add_tasks.php');
             exit();
 	}

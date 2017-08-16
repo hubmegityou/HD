@@ -1,4 +1,8 @@
 <?php
+if (empty($_GET)){
+    header("location: main.php");
+    exit();
+}
 require_once "database/dbinfo.php";
 require_once "objects.php";
 $connection = db_connection();

@@ -5,7 +5,7 @@
  */
     session_start();
 
-    if(!isset($_SESSION['online']) || !$_SESSION['online']){
+    if(!isset($_SESSION['online']) || !$_SESSION['online'] || $_SESSION['function']>1){
             header('Location: index.php');
             exit();
     }

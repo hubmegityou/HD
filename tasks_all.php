@@ -165,8 +165,8 @@
         //dodawanie komentarzy
         echo "<form action='addcom.php' method='post'>";
         echo "<textarea name='comment' id='trescp' rows='6' style='width:50%'></textarea><br><br>";
-        echo "<input type='hidden' name='mySID' value=$sid>";
-        echo "<input type='hidden' name='myTID' value=$tid>";
+        echo "<input type='hidden' name='sid' value=$sid>";
+        echo "<input type='hidden' name='tid' value=$tid>";
         echo "<br /><button type='submit'>Dodaj komentarz</button></form>";
         echo "<br><br>";
         echo "</div>"; ///zakończenie div 57%
@@ -184,12 +184,12 @@
                 echo "<input type=\"hidden\" name=\"tid\" value=$tid>";
                 echo "<input type=\"hidden\" name=\"sid\" value=$sid>";
                 echo "<input type=\"hidden\" name=\"id\" value=$row[$db_attachment_id]>";
-                echo "<input type=\"hidden\" name=\"fname\" value=$row[$db_attachment_name]>";
+                echo "<input type=\"hidden\" name=\"filename\" value=$row[$db_attachment_name]>";
                 echo "<div style='float:left'><input type=\"image\" src=\"template/assets/img/trash.png\" onClick=\"this.form.submit()\"></div>";
                 echo "</form>";
             }
             
-            echo "<a href=\"download.php?id=$row[$db_attachment_id]&sid=$sid&tid=$tid\">".substr($row[$db_attachment_name], 17)."</a>\t";
+            echo "<a href=\"download.php?id=$row[$db_attachment_id]&sid=$sid&tid=$tid\">".substr($row[$db_attachment_name], 12)."</a>\t";
             $attachsize = $row[$db_attachment_size];
             if ($attachsize >= 1073741824) {
                 $attachsize = (round($attachsize / 1073741824 * 100) / 100) . "gb";

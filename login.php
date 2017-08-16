@@ -2,7 +2,7 @@
       
     session_start();
 
-    if((!isset($_POST['login'])) || (!isset($_POST['pass']))){
+    if(empty($_POST)){
         $_SESSION['error'] = true;
         header('Location: index.php');
         exit();
@@ -25,29 +25,28 @@
         mysqli_real_escape_string($connection, $login),
         mysqli_real_escape_string($connection, $hash_pass)))); 
         {
-                if ($result->num_rows == 1)
-                {
-                    $_SESSION['online'] = true;
-                    $row = $result->fetch_assoc();
-                    $_SESSION['id'] = $row[$db_users_id];
-                    $_SESSION['fname'] = $row[$db_users_fname];
-                    $_SESSION['lname'] = $row[$db_users_lname];
-                    $_SESSION['function'] = $row[$db_users_function];
-                    $_SESSION['connection'] = $connection;
+            if ($result->num_rows == 1)
+            {
+                $_SESSION['online'] = true;
+                $row = $result->fetch_assoc();
+                $_SESSION['id'] = $row[$db_users_id];
+                $_SESSION['fname'] = $row[$db_users_fname];
+                $_SESSION['lname'] = $row[$db_users_lname];
+                $_SESSION['function'] = $row[$db_users_function];
+                $_SESSION['connection'] = $connection;
 
-                    unset($_SESSION['error']);
-                    $result->free_result();
+                unset($_SESSION['error']);
+                $result->free_result();
 
-                    header('Location: index.php');
-                }
-                else
-                {      
-                echo "<script type=\"text/javascript\">window.alert('Nieprawidłowy login lub hasło');
-                     window.location.href = 'index.php';</script>";
-                
-                }
+                header('Location: index.php');
+            }
+            else
+            {      
+            echo "<script type=\"text/javascript\">window.alert('Nieprawidłowy login lub hasło');
+                 window.location.href = 'index.php';</script>";
+
+            }
         }
-    }
-
-    $connection->close();	
+    $connection->close();
+    }	
 ?>

@@ -1,5 +1,4 @@
 <?php
-
 function db_connection(){
     require "database/connect.php";
     $conn = new mysqli($host, $db_user, $db_pass, $db_name);
@@ -14,5 +13,4 @@ function db_connection(){
         return $conn;
     }
 }
-
 ?>

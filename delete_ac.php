@@ -1,13 +1,17 @@
 <?php
 //usuwanie załączników/komentarzy
+if (empty($_POST)){
+    header("Location: main.php");
+    exit();
+}
 session_start();
 if ($_SESSION['function'] <= 2){
     $tid= $_POST['tid'];    
     $sid= $_POST['sid'];
     $id = $_POST['id'];
     require_once 'database/dbinfo.php';   
-    if (isset($_POST['fname'])){
-        $fname = $_POST['fname'];
+    if (isset($_POST['filename'])){
+        $fname = $_POST['filename'];
         unlink("attachments/$fname");
         $db_tab = $db_attachment_tab;
         $db_id = $db_attachment_id;
@@ -20,7 +24,6 @@ if ($_SESSION['function'] <= 2){
     $connection = db_connection();
     if ($connection != false){
         $sql = "DELETE FROM $db_tab WHERE $db_id='$id'";
-        echo $sql;
         if ($connection->query($sql));
             //info że ok
         $connection->close();

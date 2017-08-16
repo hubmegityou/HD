@@ -15,7 +15,7 @@ session_start();
     require_once "objects.php";
     $connection = db_connection();
     if ($connection != false){
-        $time=date("y-m-d_H-i-s");
+        $time=date("ymdHis");
         
         //kontrola typu (do poprawy)
         $ext = substr($_FILES['attachment']['name'], -3);

@@ -2,7 +2,7 @@
 
     session_start();
     
-    if ((!isset($_POST['comment']))||(!isset($_POST['mySID']))||(!isset($_POST['myTID']))){
+    if (empty($_POST)){
             header("location: main.php");
             exit();
 	}
@@ -12,9 +12,9 @@
     $connection = db_connection();
     if ($connection != false){
         $comment = $_POST['comment'];
-        $sid= $_POST['mySID'];
+        $sid= $_POST['sid'];
         $curr_timestamp = date('Y-m-d H:i:s');
-        $tid= $_POST['myTID'];
+        $tid= $_POST['tid'];
         $sql = "INSERT INTO $db_messages_tab ($db_messages_id, $db_messages_userid, $db_messages_taskid, $db_messages_date, $db_messages_text) VALUES (NULL,'". $_SESSION['id']."', '$tid', '$curr_timestamp', '$comment')";
         $connection->query($sql);
 

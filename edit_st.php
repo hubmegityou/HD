@@ -1,6 +1,6 @@
 <?php
 session_start();
-    if ( (!isset($_POST['topic'])) || (!isset($_POST['description'])) || (!isset($_POST['etime']))){
+    if (empty($_POST)){
         header('Location: team_tasks.php');
         exit();
     }
@@ -43,7 +43,7 @@ if ($connection != false){
         }
         //dodawanie załącznika
         if (isset($_FILES)){
-            $time=date("y-m-d_H-i-s");
+            $time=date("ymdHis");
             if (move_uploaded_file($_FILES['attachment']['tmp_name'], 'attachments/'.$time.$_FILES['attachment']['name'])){
                 $sql = "INSERT INTO $db_attachment_tab ($db_attachment_id, $db_attachment_name, $db_attachment_type, $db_attachment_size, $db_attachment_taskid) VALUES (NULL, '".$time.$_FILES['attachment']['name']."', '".$_FILES['attachment']['type']."', '".$_FILES['attachment']['size']."','$taskid')";
                 if ($result = $connection->query($sql));

@@ -2,8 +2,12 @@
 /*
  * DOKOŃCZYĆ:
  * - KONTROLA BŁĘDÓW DLA NIEISTNIEJĄCYCH PLIKÓW
- * - POPRAWIĆ POBIERANIE, BŁĘDY W PLIKACH !!!!!!
+ * - KONTROLA DLA NIEUPRAWNIONEGO DOSTĘPU
  */
+if (empty($_GET)){
+    header("Location: main.php");
+    exit();
+}
 require_once 'database/dbinfo.php';
 $id = $_GET['id'];
 require_once "objects.php";
@@ -19,7 +23,7 @@ if ($connection != false){
             header("Content-Type: ".$row[$db_attachment_type]);
             header("Content-Description: File Transfer");
             header("Content-Length: ".$row[$db_attachment_size]);
-            header("Content-Disposition: attachment; filename=\"".substr($name, 17)."\";");
+            header("Content-Disposition: attachment; filename=\"".substr($name, 12)."\";");
             header("Content-Transfer-Encoding: binary");
             readfile("attachments/".$name);
         }

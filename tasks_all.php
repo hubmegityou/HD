@@ -136,7 +136,10 @@
                                 if ($row2[$db_subtask_conf]==0){
                                     echo "<i>oczekuje na zatwierdzenie</i>";
                                 }
-                                echo "<br /><button type='submit'>Zatwierdź datę</button>";
+                                if($row2[$db_subtask_block]=='1'){
+                                    echo "<br><button type='submit' disabled>Zatwierdź datę</button>";}
+                                else{
+                                    echo "<br><button type='submit'>Zatwierdź datę</button>";}
                                 echo "</form>";
                                 // $connection->close();
                             }

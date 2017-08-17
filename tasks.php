@@ -97,7 +97,7 @@
                  <br>
                  <br>
                   <div style='float:left; width: 50%'>   
-                      <center> Zadania krótsze niż tydzień </center>
+                      <center><font size=4px><i> Zadania krótsze niż tydzień </i></font></center>
                  <div class="container">
 	<div class="row">
          
@@ -110,18 +110,20 @@
     require_once "objects.php";
     $connection = db_connection();
     if ($connection != false){
-        $sql = "SELECT $db_subtask_tab.$db_subtask_id, $db_subtask_tab.$db_subtask_taskid, $db_subtask_tab.$db_subtask_name, $db_subtask_tab.$db_subtask_sdate, $db_subtask_tab.$db_subtask_edate, $db_subtask_tab.$db_subtask_description FROM $db_subtask_tab INNER JOIN $db_task_tab ON $db_subtask_tab.$db_subtask_taskid = $db_task_tab.$db_task_id WHERE  DATEDIFF( $db_subtask_tab.$db_subtask_edate, $db_subtask_tab.$db_subtask_sdate )< 7   AND $db_subtask_tab.$db_subtask_done='0' AND $db_subtask_tab.$db_subtask_userid =". $_SESSION['id']." ORDER BY $db_task_tab.$db_task_priority DESC, $db_subtask_tab.$db_subtask_edate ASC";
+        $sql = "SELECT $db_subtask_tab.$db_subtask_id, $db_subtask_tab.$db_subtask_taskid, $db_subtask_tab.$db_subtask_name, $db_subtask_tab.$db_subtask_sdate, $db_subtask_tab.$db_subtask_edate, $db_subtask_tab.$db_subtask_description FROM $db_subtask_tab INNER JOIN $db_task_tab ON $db_subtask_tab.$db_subtask_taskid = $db_task_tab.$db_task_id WHERE  DATEDIFF( $db_subtask_tab.$db_subtask_edate, '".date("Y-m-d")."' )< 7   AND $db_subtask_tab.$db_subtask_done='0' AND $db_subtask_tab.$db_subtask_userid =". $_SESSION['id']." ORDER BY $db_task_tab.$db_task_priority DESC, $db_subtask_tab.$db_subtask_edate ASC";
         $result = $connection->query($sql);
         while($row = $result->fetch_assoc()){   
-            $sql = "SELECT $db_task_tab.$db_task_priority, $db_subtask_tab.$db_subtask_id, $db_task_tab.$db_task_id, $db_task_tab.$db_task_name, $db_task_tab.$db_task_description, $db_task_tab.$db_task_sdate, $db_task_tab.$db_task_edate, $db_users_tab.$db_users_fname, $db_users_tab.$db_users_lname FROM $db_subtask_tab, $db_task_tab LEFT JOIN $db_users_tab ON $db_task_tab.$db_task_userid = $db_users_tab.$db_users_id WHERE $db_task_tab.$db_task_id =".$row[$db_subtask_taskid];
+            $sql = "SELECT $db_task_tab.$db_task_priority, $db_subtask_tab.$db_subtask_conf, $db_subtask_tab.$db_subtask_block, $db_subtask_tab.$db_subtask_id, $db_task_tab.$db_task_id, $db_task_tab.$db_task_name, $db_task_tab.$db_task_description, $db_task_tab.$db_task_sdate, $db_task_tab.$db_task_edate, $db_users_tab.$db_users_fname, $db_users_tab.$db_users_lname FROM $db_subtask_tab, $db_task_tab LEFT JOIN $db_users_tab ON $db_task_tab.$db_task_userid = $db_users_tab.$db_users_id WHERE $db_task_tab.$db_task_id =".$row[$db_subtask_taskid];
             $result2 = $connection->query($sql);
             $row2=$result2->fetch_assoc();
             echo "<br/>";
             echo  '<article class="timeline-entry">
                   <div class="timeline-entry-inner">';
 
-            if ($row2[$db_task_priority] == 1){
+            if ($row2[$db_task_priority]==1){
                 echo '<div class="timeline-icon bg-priority">';}
+            elseif ($row2[$db_subtask_conf]==0 && $row2[$db_subtask_block]==0){
+                echo '<div class="timeline-icon bg-unsetdate">';}
             else{
                 echo '<div class="timeline-icon bg-success">';}
 
@@ -152,7 +154,7 @@
     </div>
                      
                      <div style='float:left; width: 50%'> 
-                      <div style='color: black; text-decoration: none;'> <center style='color: black; text-decoration: none'> Zadania dłuższe niż tydzień </center></div>
+                      <div style='color: black; text-decoration: none;'> <center style='color: black; text-decoration: none'><font size=4px><i> Zadania dłuższe niż tydzień </i></font></center></div>
                       <div class="container">
 	<div class="row">
     
@@ -165,18 +167,19 @@
     require_once "objects.php";
     $connection = db_connection();
     if ($connection != false){
-        $sql = "SELECT $db_subtask_tab.$db_subtask_id, $db_subtask_tab.$db_subtask_taskid, $db_subtask_tab.$db_subtask_name, $db_subtask_tab.$db_subtask_sdate, $db_subtask_tab.$db_subtask_edate, $db_subtask_tab.$db_subtask_description FROM $db_subtask_tab INNER JOIN $db_task_tab ON $db_subtask_tab.$db_subtask_taskid = $db_task_tab.$db_task_id WHERE DATEDIFF(  $db_subtask_tab.$db_subtask_edate, $db_subtask_tab.$db_subtask_sdate )>= 7  AND $db_subtask_tab.$db_subtask_done='0' AND $db_subtask_tab.$db_subtask_userid =". $_SESSION['id']." ORDER BY $db_task_tab.$db_task_priority DESC, $db_subtask_tab.$db_subtask_edate ASC";
+        $sql = "SELECT $db_subtask_tab.$db_subtask_id, $db_subtask_tab.$db_subtask_taskid, $db_subtask_tab.$db_subtask_name, $db_subtask_tab.$db_subtask_sdate, $db_subtask_tab.$db_subtask_edate, $db_subtask_tab.$db_subtask_description FROM $db_subtask_tab INNER JOIN $db_task_tab ON $db_subtask_tab.$db_subtask_taskid = $db_task_tab.$db_task_id WHERE DATEDIFF( $db_subtask_tab.$db_subtask_edate, '".date("Y-m-d")."' )>= 7  AND $db_subtask_tab.$db_subtask_done='0' AND $db_subtask_tab.$db_subtask_userid =". $_SESSION['id']." ORDER BY $db_task_tab.$db_task_priority DESC, $db_subtask_tab.$db_subtask_edate ASC";
         $result = $connection->query($sql);
         while($row = $result->fetch_assoc()){   
-            $sql = "SELECT $db_task_tab.$db_task_priority, $db_subtask_tab.$db_subtask_id, $db_task_tab.$db_task_id, $db_task_tab.$db_task_name, $db_task_tab.$db_task_description, $db_task_tab.$db_task_sdate, $db_task_tab.$db_task_edate, $db_users_tab.$db_users_fname, $db_users_tab.$db_users_lname FROM $db_subtask_tab, $db_task_tab LEFT JOIN $db_users_tab ON $db_task_tab.$db_task_userid = $db_users_tab.$db_users_id WHERE $db_task_tab.$db_task_id =".$row[$db_subtask_taskid];
+            $sql = "SELECT $db_task_tab.$db_task_priority, $db_subtask_tab.$db_subtask_conf, $db_subtask_tab.$db_subtask_id, $db_task_tab.$db_task_id, $db_task_tab.$db_task_name, $db_task_tab.$db_task_description, $db_task_tab.$db_task_sdate, $db_task_tab.$db_task_edate, $db_users_tab.$db_users_fname, $db_users_tab.$db_users_lname FROM $db_subtask_tab, $db_task_tab LEFT JOIN $db_users_tab ON $db_task_tab.$db_task_userid = $db_users_tab.$db_users_id WHERE $db_task_tab.$db_task_id =".$row[$db_subtask_taskid];
             $result2 = $connection->query($sql);
             $row2=$result2->fetch_assoc();
             echo "<br/>";
             echo  '<article class="timeline-entry">
                   <div class="timeline-entry-inner">';
-
             if ($row2[$db_task_priority] == 1){
                 echo '<div class="timeline-icon bg-priority">';}
+            elseif ($row2[$db_subtask_conf] == 1){
+                echo '<div class="timeline-icon bd_unsetdate">';}
             else{
                 echo '<div class="timeline-icon bg-success">';}
 

@@ -99,7 +99,7 @@
                      
                      
                  <div style="float:left; width:50%">   
-                     <center> Zadania krótsze niż tydzień </center>
+                     <center><font size=4px><i> Zadania krótsze niż tydzień </i></font></center>
                  <div class="container">
 	<div class="row">
     
@@ -135,7 +135,7 @@
             echo "Opis zadania: <br> $row[$db_subtask_description]";
             echo "<form action='unactive_subtask.php' method='post'>";
             echo "<input type='hidden' name='active' value=0>";
-            echo "<input type='hidden' name='myID' value=$row[$db_subtask_id]>";
+            echo "<input type='hidden' name='sid' value=$row[$db_subtask_id]>";
             echo "<br /><button type='submit'>Przenieś do aktywnych</button></center>";
             echo "</form>";
             echo'</div>
@@ -159,7 +159,7 @@
                      
                      
   <div style="float:left; width:50%"> 
-      <div style='color: black; text-decoration: none'> <center> Zadania dłuższe niż tydzień </center></div>
+      <div style='color: black; text-decoration: none'> <center><font size=4px><i> Zadania dłuższe niż tydzień </i></font></center></div>
   <div class="container">
 	<div class="row">
     
@@ -195,7 +195,7 @@
             echo "Opis zadania: <br> $row[$db_subtask_description]";
             echo "<form action='unactive_subtask.php' method='post'>";
             echo "<input type='hidden' name='active' value=0>";
-            echo "<input type='hidden' name='myID' value=$row[$db_subtask_id]>";
+            echo "<input type='hidden' name='sid' value=$row[$db_subtask_id]>";
             echo "<br /><button type='submit'>Przenieś do aktywnych</button></center>";
             echo "</form>";
             echo'</div>

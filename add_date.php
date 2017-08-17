@@ -18,8 +18,8 @@
         $select_result = $connection->query($sql);
         $select_row = $select_result -> fetch_assoc();
         
-        if(($edate>$select_row[$db_task_edate]) && ($select_row[$db_task_priority]==1)){
-            $_SESSION['alert']= 'Niepoprawna data';
+        if((($edate>$select_row[$db_task_edate]) && ($select_row[$db_task_priority]==1)) || $edate<$sdate){
+            $_SESSION['alert']= "Wprowadzono niepoprawne daty";
         }
         else{
             $text = 6; // zmieniono datę podzadania
@@ -37,7 +37,7 @@
             }
             $sql = "UPDATE $db_subtask_tab SET $db_subtask_sdate='$sdate', $db_subtask_edate= '$edate', $db_subtask_conf='1' WHERE $db_subtask_id='$sid'";
             $connection->query($sql);
-            //add notification
+            //nowa notyfikacja
             $curr_timestamp = date('Y-m-d H:i:s');
             $sql = "INSERT INTO $db_notifications_tab ($db_notifications_id, $db_notifications_date, $db_notifications_type) VALUES (NULL, '$curr_timestamp', '$text')";        
             if ($result = $connection -> query($sql)){
@@ -47,10 +47,15 @@
                 $result = $connection -> query($sql);
                 $row = $result -> fetch_assoc();
                 $masterid = $row[$db_task_userid];
-                //powiadomienie tylko dla managera: w pola taskID i subtaskID wrzucamy dane dla usera który dokonuje zmian, nie dla usera, który je odczytuje w powiadomieniu (dla managera nie są one potrzebne)
+                //powiadomienie tylko dla managera: w pola taskID i subtaskID wrzucamy dane dla usera który dokonuje zmian, nie dla usera, który je odczytuje w powiadomieniu (dla managera nie są one potrzebne, dostaje za to informacje kto zmienił datę)
                 $sql = "INSERT INTO $db_nots_user_tab ($db_nots_user_id, $db_nots_user_notificationid, $db_nots_user_userid, $db_nots_user_taskid, $db_nots_user_subtaskid, $db_nots_user_readnots) VALUES (NULL, '$notificationid', '$masterid', '$tid', '$sid', '0')";
                 if ($result = $connection->query($sql)){
-                    $_SESSION['alert'] = $text;
+                    if ($text==6){
+                        $_SESSION['alert']="Zmieniono datę podzadania";
+                    }
+                    else {
+                        $_SESSION['alert']="Zatwierdzono datę podzadania";
+                    }
                 }
             }
         }

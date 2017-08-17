@@ -7,9 +7,11 @@ if (!empty($_POST)){
     if ($connection != false){ 
         if(isset($_POST['delete'])){
             foreach($_POST['not'] as $selected){
-                $sql="DELETE  FROM $db_nots_user_tab WHERE  $db_nots_user_id = $selected;";
-                $connection->query($sql); 
-            }   
+                $sql="DELETE FROM $db_nots_user_tab WHERE  $db_nots_user_id = $selected;";
+                $connection->query($sql);
+            }
+            $sql="DELETE $db_notifications_tab FROM $db_notifications_tab LEFT JOIN $db_nots_user_tab ON $db_notifications_tab.$db_notifications_id=$db_nots_user_tab.$db_nots_user_notificationid WHERE $db_nots_user_tab.$db_nots_user_notificationid IS NULL";
+            $connection->query($sql);
         }
         else{
             foreach($_POST['not'] as $selected){

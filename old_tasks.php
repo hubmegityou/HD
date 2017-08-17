@@ -135,7 +135,7 @@
             echo "Opis zadania: <br> $row[$db_subtask_description]";
             echo "<form action='unactive_subtask.php' method='post'>";
             echo "<input type='hidden' name='active' value=0>";
-            echo "<input type='hidden' name='myID' value=$row[$db_subtask_id]>";
+            echo "<input type='hidden' name='sid' value=$row[$db_subtask_id]>";
             echo "<br /><button type='submit'>Przenieś do aktywnych</button></center>";
             echo "</form>";
             echo'</div>
@@ -195,7 +195,7 @@
             echo "Opis zadania: <br> $row[$db_subtask_description]";
             echo "<form action='unactive_subtask.php' method='post'>";
             echo "<input type='hidden' name='active' value=0>";
-            echo "<input type='hidden' name='myID' value=$row[$db_subtask_id]>";
+            echo "<input type='hidden' name='sid' value=$row[$db_subtask_id]>";
             echo "<br /><button type='submit'>Przenieś do aktywnych</button></center>";
             echo "</form>";
             echo'</div>

@@ -149,6 +149,13 @@
                         $row2 = $result2->fetch_assoc();
                         $text = "Użytkownik ".$row2[$db_users_fname]." ".$row2[$db_users_lname]." zatwierdził datę w podzadaniu: ".$row2[$db_subtask_name];
                         break;
+                case 8: $sql = "SELECT $db_users_tab.$db_users_fname, $db_users_tab.$db_users_lname, $db_subtask_tab.$db_subtask_name "
+                        . "FROM $db_subtask_tab INNER JOIN $db_users_tab ON $db_subtask_tab.$db_subtask_userid=$db_users_tab.$db_users_id "
+                        . "WHERE $db_subtask_id=$row[$db_nots_user_subtaskid]";
+                        $result2 = $connection->query($sql);
+                        $row2 = $result2->fetch_assoc();
+                        $text = "Użytkownik ".$row2[$db_users_fname]." ".$row2[$db_users_lname]." zakończył swoje podzadanie: ".$row2[$db_subtask_name];
+                        break;
             }
             if ($row[$db_nots_user_readnots]==0){
                 echo "<div class='teamtask-form'>";

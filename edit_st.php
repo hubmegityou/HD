@@ -23,9 +23,9 @@ if ($connection != false){
     If($_POST['task']=='task'){
 
         $priority = $_POST['priority'];
-        $taskid= $_POST['taskid'];
+        $tid= $_POST['taskid'];
         $userid = $_SESSION['id'];
-        $sql = "UPDATE $db_task_tab SET $db_task_name='$topic', $db_task_description='$desc', $db_task_sdate='$sdate', $db_task_edate='$edate', $db_task_userid= '$userid', $db_task_priority='$priority', $db_task_done='0' WHERE $db_task_id='$taskid'";
+        $sql = "UPDATE $db_task_tab SET $db_task_name='$topic', $db_task_description='$desc', $db_task_sdate='$sdate', $db_task_edate='$edate', $db_task_userid= '$userid', $db_task_priority='$priority', $db_task_done='0' WHERE $db_task_id='$tid'";
         if ($result = $connection->query($sql)){
             $_SESSION['alert']= 'Edytowano zadanie';
         }
@@ -34,10 +34,10 @@ if ($connection != false){
         if ($result = $connection -> query($sql)){
             //info kontrolne, że działa
             $notificationid = $connection->insert_id;
-            $sql = "SELECT $db_subtask_userid, $db_subtask_id FROM $db_subtask_tab WHERE $db_subtask_taskid=$taskid AND $db_subtask_userid<>".$_SESSION['id']." GROUP BY $db_subtask_userid";
+            $sql = "SELECT $db_subtask_userid, $db_subtask_id FROM $db_subtask_tab WHERE $db_subtask_taskid=$tid AND $db_subtask_userid<>".$_SESSION['id']." GROUP BY $db_subtask_userid";
             $result = $connection->query($sql);
             while ($row = $result->fetch_assoc()){
-                $sql = "INSERT INTO $db_nots_user_tab ($db_nots_user_id, $db_nots_user_notificationid, $db_nots_user_userid, $db_nots_user_taskid, $db_nots_user_subtaskid, $db_nots_user_readnots) VALUES (NULL, '$notificationid', '$row[$db_subtask_userid]', '$taskid', '$row[$db_subtask_id]', '0')";
+                $sql = "INSERT INTO $db_nots_user_tab ($db_nots_user_id, $db_nots_user_notificationid, $db_nots_user_userid, $db_nots_user_taskid, $db_nots_user_subtaskid, $db_nots_user_readnots) VALUES (NULL, '$notificationid', '$row[$db_subtask_userid]', '$tid', '$row[$db_subtask_id]', '0')";
                 $connection->query($sql);
             }
         }
@@ -45,7 +45,7 @@ if ($connection != false){
         if (isset($_FILES)){
             $time=date("ymdHis");
             if (move_uploaded_file($_FILES['attachment']['tmp_name'], 'attachments/'.$time.$_FILES['attachment']['name'])){
-                $sql = "INSERT INTO $db_attachment_tab ($db_attachment_id, $db_attachment_name, $db_attachment_type, $db_attachment_size, $db_attachment_taskid) VALUES (NULL, '".$time.$_FILES['attachment']['name']."', '".$_FILES['attachment']['type']."', '".$_FILES['attachment']['size']."','$taskid')";
+                $sql = "INSERT INTO $db_attachment_tab ($db_attachment_id, $db_attachment_name, $db_attachment_type, $db_attachment_size, $db_attachment_taskid) VALUES (NULL, '".$time.$_FILES['attachment']['name']."', '".$_FILES['attachment']['type']."', '".$_FILES['attachment']['size']."','$tid')";
                 if ($result = $connection->query($sql));
                     //info: dodano załącznik poprawnie
                 }
@@ -53,11 +53,11 @@ if ($connection != false){
             }
     }
     else{
-        $subtaskid=$_POST['subtaskid'];
-        $taskid = $_POST['task'];
+        $sid=$_POST['subtaskid'];
+        $tid = $_POST['task'];
         $userid = $_POST['user'];
 
-        $sql = "UPDATE $db_subtask_tab SET $db_subtask_taskid='$taskid' ,$db_subtask_name='$topic',$db_subtask_sdate='$sdate',$db_subtask_edate='$edate',$db_subtask_description='$desc',$db_subtask_userid='$userid' WHERE $db_subtask_id='$subtaskid'";
+        $sql = "UPDATE $db_subtask_tab SET $db_subtask_taskid='$tid' ,$db_subtask_name='$topic',$db_subtask_sdate='$sdate',$db_subtask_edate='$edate',$db_subtask_description='$desc',$db_subtask_userid='$userid' WHERE $db_subtask_id='$sid'";
         if ($result = $connection->query($sql)){
             $_SESSION['alert']= 'Edytowano podzadanie'; 
             $text = 5; //5: edytowano podzadanie
@@ -66,7 +66,7 @@ if ($connection != false){
             if ($result = $connection -> query($sql)){
                     //info testowe: działa
                 $notificationid = $connection->insert_id;       
-                $sql = "INSERT INTO $db_nots_user_tab ($db_nots_user_id, $db_nots_user_notificationid, $db_nots_user_userid, $db_nots_user_taskid, $db_nots_user_subtaskid, $db_nots_user_readnots) VALUES (NULL, '$notificationid', '$userid', '$taskid', '$subtaskid', '0')";
+                $sql = "INSERT INTO $db_nots_user_tab ($db_nots_user_id, $db_nots_user_notificationid, $db_nots_user_userid, $db_nots_user_taskid, $db_nots_user_subtaskid, $db_nots_user_readnots) VALUES (NULL, '$notificationid', '$userid', '$tid', '$sid', '0')";
                 if ($result = $connection->query($sql)){
                     //info testowe: działa
                 }

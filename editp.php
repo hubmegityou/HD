@@ -14,7 +14,7 @@ if (!empty($_POST)){
                 $_SESSION['alert'] = "Błąd: hasła nie są jednakowe";        
             }
             else{
-                $sql = "UPDATE $sb_users_tab SET $db_users_pass = '".md5($_POST['pass1'])."' WHERE $db_users_id='".$_SESSION['id']."'";
+                $sql = "UPDATE $db_users_tab SET $db_users_pass = '".md5($_POST['pass1'])."' WHERE $db_users_id='".$_SESSION['id']."'";
                 if ($connection->query($sql) != true){
                     $_SESSION['alert'] = 'Wystąpił błąd podczas aktualizacji danych';
                 }

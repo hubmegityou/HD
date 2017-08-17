@@ -36,7 +36,7 @@ session_start();
         $pass1 = $_POST['pass1'];
         $pass2 = $_POST['pass2'];
         if ($pass1 == $pass2){
-            $hash_pass = md5($password);
+            $hash_pass = md5($pass1);
             $sql = "INSERT INTO $db_users_tab ($db_users_id,$db_users_fname,$db_users_lname,$db_users_email,$db_users_login,$db_users_pass,$db_users_function) VALUES (NULL,'$fname','$lname','$email','$login','$hash_pass',$function)";
             if ($connection->query($sql)){
                   $_SESSION['alert']='Dodano użytkownika';

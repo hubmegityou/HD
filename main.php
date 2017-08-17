@@ -10,7 +10,7 @@
 
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head>
+    <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>HelpDesk</title>
@@ -110,7 +110,7 @@ $(document).ready(function() {
 });
               </script><?php } //< tu konczy :D-------WTF PO CO TO????      ediiiiiit tak więc jak sobie zauwazysz to nasz kod z php zaczyna sie w linii 75 i to jest jego zamknięcie ponieważ cały ten kod js wykonye sie tylko wtedy session function=2 ?> 
 </head>
-<body>
+<body>   
     <div id="wrapper">
         <nav class="navbar navbar-default navbar-cls-top " role="navigation" style="margin-bottom: 0">
             <div class="navbar-header">

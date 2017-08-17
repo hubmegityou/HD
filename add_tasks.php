@@ -8,10 +8,15 @@
             exit();
     }
     
-      If(isset($_SESSION['alert']) && $_SESSION['alert']!=''){      
-         echo "<script type=\"text/javascript\">window.onload = function(){alert('".$_SESSION['alert']."')}</script>";  
-         $_SESSION['alert']='';
-        }
+       if(isset($_SESSION['alert'])){ 
+            $alert= $_SESSION['alert'];
+            $none='none';
+            echo " <div class='alert'>
+            <span class='closebtn'onclick=this.parentElement.style.display='none';>&times;</span> 
+            <center> $alert </center>
+            </div>";
+            unset($_SESSION['alert']);
+        } 
         
     
 ?>

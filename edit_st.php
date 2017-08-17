@@ -60,6 +60,13 @@ if ($connection != false){
         $sql = "UPDATE $db_subtask_tab SET $db_subtask_taskid='$tid' ,$db_subtask_name='$topic',$db_subtask_sdate='$sdate',$db_subtask_edate='$edate',$db_subtask_description='$desc',$db_subtask_userid='$userid' WHERE $db_subtask_id='$sid'";
         if ($result = $connection->query($sql)){
             $_SESSION['alert']= 'Edytowano podzadanie'; 
+            $sql = "SELECT $db_task_edate FROM $db_task_tab WHERE $db_task_id=$tid";
+            $result = $connection->query($sql);
+            $row = $result->fetch_assoc();
+            if ($row[$db_task_edate]<$edate){
+                $sql = "UPDATE $db_task_tab SET $db_task_edate='$edate' WHERE $db_task_id=$tid";
+                $connection->query($sql);
+            }
             $text = 5; //5: edytowano podzadanie
             $curr_timestamp = date('Y-m-d H:i:s');
             $sql = "INSERT INTO $db_notifications_tab ($db_notifications_id, $db_notifications_date, $db_notifications_type) VALUES (NULL, '$curr_timestamp', '$text')";

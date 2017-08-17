@@ -1,5 +1,4 @@
-﻿
-<?php
+﻿<?php
 
     session_start();
 
@@ -119,7 +118,6 @@
             echo "<br/>";
             echo  '<article class="timeline-entry">
                   <div class="timeline-entry-inner">';
-            echo $row2[$db_subtask_conf].$row2[$db_subtask_block];
             if ($row2[$db_task_priority]==1){
                 echo '<div class="timeline-icon bg-priority">';}
             elseif ($row2[$db_subtask_conf]==0 && $row2[$db_subtask_block]==0){

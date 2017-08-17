@@ -47,7 +47,7 @@
                 $result = $connection -> query($sql);
                 $row = $result -> fetch_assoc();
                 $masterid = $row[$db_task_userid];
-                //powiadomienie tylko dla managera: w pola taskID i subtaskID wrzucamy dane dla usera który dokonuje zmian, nie dla usera, który je odczytuje w powiadomieniu (dla managera nie są one potrzebne)
+                //powiadomienie tylko dla managera: w pola taskID i subtaskID wrzucamy dane dla usera który dokonuje zmian, nie dla usera, który je odczytuje w powiadomieniu (dla managera nie są one potrzebne, dostaje za to informacje kto zmienił datę)
                 $sql = "INSERT INTO $db_nots_user_tab ($db_nots_user_id, $db_nots_user_notificationid, $db_nots_user_userid, $db_nots_user_taskid, $db_nots_user_subtaskid, $db_nots_user_readnots) VALUES (NULL, '$notificationid', '$masterid', '$tid', '$sid', '0')";
                 if ($result = $connection->query($sql)){
                     $_SESSION['alert'] = $text;

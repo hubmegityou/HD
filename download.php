@@ -1,4 +1,5 @@
 <?php
+session_start();
 /*
  * DOKOŃCZYĆ:
  * - KONTROLA BŁĘDÓW DLA NIEISTNIEJĄCYCH PLIKÓW
@@ -28,15 +29,17 @@ if ($connection != false){
             readfile("attachments/".$name);
         }
         else{
-            echo "<script type=\"text/javascript\">window.alert('Wystąpił błąd: plik nie istnieje');</script>";
+            //echo "<script type=\"text/javascript\">window.alert('Wystąpił błąd: plik nie istnieje');</script>";
             $sql = "DELETE FROM $db_attachment_tab WHERE $db_attachment_id='$id'";
             $connection->query($sql);
+            $_SESSION['alert'] = "Błąd: plik nie istnieje!";
             header("Location: tasks_all.php?sid=".$_GET['sid']."&tid=".$_GET['tid']);
         }
         $connection->close();
     }
 }
 else {
-    echo "<script type=\"text/javascript\">window.alert('Błąd w połączeniu z bazą');</script>"; 
+    //echo "<script type=\"text/javascript\">window.alert('Błąd w połączeniu z bazą');</script>"; 
+    $_SESSION['alert'] = "Błąd w połączeniu z bazą danych. Nie można było odczytać pliku";
 }
 ?>

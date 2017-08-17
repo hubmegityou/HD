@@ -6,7 +6,6 @@
         exit();
     }
     
-
       if(isset($_SESSION['alert'])){ 
             $alert= $_SESSION['alert'];
             $none='none';

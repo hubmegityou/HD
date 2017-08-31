@@ -1,4 +1,5 @@
 <?php
+//usuwanie permamentne lub przywracanie powiadomień, przekierowanie z bin
 session_start();
 if (!empty($_POST)){
     require_once "database/dbinfo.php";

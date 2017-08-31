@@ -1,4 +1,5 @@
 <?php
+//blokowanie możliwości zmiany daty dla wykonawcy podzadania, uruchamiane przez blockSubtask z subtasks.js
 if (empty($_GET)){
     header("Location: main.php");
     exit();

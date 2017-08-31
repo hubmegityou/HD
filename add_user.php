@@ -1,5 +1,5 @@
 <?php
-
+//formularz dla admina z tworzeniem nowego użytkownika
     session_start();
 
     if ($_SESSION['function']!=1) //function := 1 ==> admin

@@ -1,5 +1,5 @@
 <?php
-
+//formularz dla managera z tworzeniem zadańs
     session_start();
 
     if(!isset($_SESSION['online']) || !$_SESSION['online'] || $_SESSION['function'] > 2) //function := 2 ==> manager

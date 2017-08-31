@@ -1,12 +1,5 @@
 <?php  
-/*
- * DO POPRAWY
- *  - HASHOWANIE HASEŁ (done)
- *  - WYŚWIETLANIE BŁĘDU DLA PUSTYCH DANYCH LUB ISTNIEJĄCEGO USERA
- *  - POŁĄCZENIE Z BAZĄ DANYCH (done)
- * zmiana testowa
- */
-
+//dodawanie użytkownika do bazy, przekierowanie z add_user 
 session_start();
 
     if (empty($_POST)){

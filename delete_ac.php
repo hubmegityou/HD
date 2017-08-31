@@ -1,5 +1,5 @@
 <?php
-//usuwanie załączników/komentarzy
+//usuwanie załączników lub komentarzy
 if (empty($_POST)){
     header("Location: main.php");
     exit();

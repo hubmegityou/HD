@@ -1,4 +1,5 @@
 <?php
+//funkcja służąca do połączenia z bazą danych
 function db_connection(){
     require "database/connect.php";
     $conn = new mysqli($host, $db_user, $db_pass, $db_name);

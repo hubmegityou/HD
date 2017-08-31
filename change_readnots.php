@@ -1,4 +1,5 @@
 <?php
+//ustawia powiadomienie jako przeczytane, uruchamiane przez change_read z change_readnots.js
 if (empty($_GET)){
     header("Location: main.php");
     exit();

@@ -1,4 +1,5 @@
 <?php
+//oś czasu ze starymi (zrobionymi) zadaniami
 	session_start();
 	
 	if(!isset($_SESSION['online']) || !$_SESSION['online']){

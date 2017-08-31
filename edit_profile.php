@@ -1,4 +1,5 @@
 <?php
+//edycja profilu uzytkownika - formularz
     session_start();
 
     if(!isset($_SESSION['online']) || !$_SESSION['online']){

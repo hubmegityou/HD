@@ -1,4 +1,5 @@
 <?php
+//wyświetlanie szczegółów aktywnego podzadania: informacje, komentarze, załączniki
     session_start();
 
     if(!isset($_SESSION['online']) || !$_SESSION['online']){

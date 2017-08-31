@@ -1,5 +1,5 @@
 <?php
-
+//dodawanie komentarza do bazy, przekierowanie z tasks_all
     session_start();
     
     if (empty($_POST)){

@@ -1,4 +1,5 @@
 <?php
+//strona główna - kalendarz z podzadaniami i (dla managera) z zadaniami
     session_start();
 
     if(!isset($_SESSION['online']) || !$_SESSION['online']){

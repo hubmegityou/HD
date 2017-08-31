@@ -1,4 +1,5 @@
 <?php
+//usuwanie zadań lub podzadań z bazy, uruchamiane przez deleteST z subtasks.js
 if (empty($_GET)){
     header("location: main.php");
     exit();

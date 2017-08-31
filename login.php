@@ -1,5 +1,5 @@
 <?php
-      
+//logowanie - sprawdzanie poprawności loginu i hasła  
     session_start();
 
     if(empty($_POST)){

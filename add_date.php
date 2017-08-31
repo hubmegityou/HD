@@ -1,5 +1,5 @@
 <?php
-
+//zatwierdzanie lub zmiana daty przez usera, przekierowanie z pliku tasks_all.php
     session_start();
     
     if (empty($_POST)){

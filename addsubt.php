@@ -1,5 +1,5 @@
 <?php 
-// do poprawki: kontrola daty!!!
+// dodawanie nowego podzadania, przekierowanie z add_subtasks
     session_start();
     if (empty($_POST)){
 	header('Location: add_subtasks.php');
@@ -31,7 +31,7 @@
         $select_row = $select_result -> fetch_assoc();
         
         if($edate>$select_row[$db_task_edate]&& $select_row[$db_task_priority]==1){
-            $_SESSION['alert']= 'Niepoprawna data';
+            $_SESSION['alert']= 'Niepoprawna data: termin podzadania dłuższy niż zadania głównego';
             header('Location: add_subtasks.php');
         }else{
         if ($edate>$select_row[$db_task_edate]){

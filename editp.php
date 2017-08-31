@@ -1,4 +1,5 @@
 <?php
+//edycja profilu - wpis do bazy
 session_start();
 if (!empty($_POST)){
     require_once "database/dbinfo.php";

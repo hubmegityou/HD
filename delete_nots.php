@@ -1,4 +1,5 @@
 <?php
+//usuwanie (przenoszenie do ksoza) powiadomień
 session_start();
 if (!empty($_POST)){
     require_once "database/dbinfo.php";

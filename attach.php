@@ -1,8 +1,5 @@
 <?php
-/*
- * DOKOŃCZYĆ:
- * - KONTROLA TYPU WYSYŁANYCH DANYCH
- */
+//dodawanie załącznika do folderu attachments oraz informacji do bazy danych, przekierowanie z tasks_all
 session_start();
     
     if (empty($_FILES)){

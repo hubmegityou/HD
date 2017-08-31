@@ -1,4 +1,5 @@
 <?php
+//wyświetlanie w okienku liczby nieprzeczytanych powiadomień
 session_start();
 
 require_once "database/dbinfo.php";

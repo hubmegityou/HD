@@ -1,5 +1,5 @@
 ﻿<?php
-
+//oś czasu z bieżącymi zadaniami, podział na długoterminowe i krótkie
     session_start();
 
     if(!isset($_SESSION['online']) || !$_SESSION['online']){

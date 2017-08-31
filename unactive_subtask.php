@@ -1,4 +1,5 @@
 <?php
+//aktywowanie lub dezaktywowanie zadań (przenoszenie między osie tasks i old_tasks)
 if (empty($_POST)){
     header("Location: main.php");
     exit();

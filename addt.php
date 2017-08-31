@@ -1,5 +1,5 @@
 <?php
-
+//dodawanie zadania do bazy, przekierowanie z add_tasks
     session_start();
     
     if (empty($_POST)){

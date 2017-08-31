@@ -1,4 +1,5 @@
 <?php
+//edycja zadania lub podzadania dla managera
 session_start();
     if (empty($_POST)){
         header('Location: team_tasks.php');

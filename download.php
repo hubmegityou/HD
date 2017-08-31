@@ -1,10 +1,6 @@
 <?php
+//pobieranie załączników, przekierowanie z tasks_all
 session_start();
-/*
- * DOKOŃCZYĆ:
- * - KONTROLA BŁĘDÓW DLA NIEISTNIEJĄCYCH PLIKÓW
- * - KONTROLA DLA NIEUPRAWNIONEGO DOSTĘPU
- */
 if (empty($_GET)){
     header("Location: main.php");
     exit();

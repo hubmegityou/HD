@@ -1,4 +1,5 @@
 <?php
+//zawiera spis nazw tabel i pól z bazy danych
         $db_users_tab = 'users';
                 $db_users_id = 'user_ID';
                 $db_users_login = 'login';

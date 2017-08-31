@@ -1,4 +1,5 @@
 <?php
+//kosz na usunięte powiadomienia
     session_start();
 
     if(!isset($_SESSION['online']) || !$_SESSION['online']){

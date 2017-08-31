@@ -1,5 +1,5 @@
 ﻿<?php
-
+//zakładka dla managera, wyświetla wszystkie zadania i podzadania
 	session_start();
 	
 	if(!isset($_SESSION['online']) || !$_SESSION['online'] || $_SESSION['function'] > 2)

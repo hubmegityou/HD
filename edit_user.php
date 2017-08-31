@@ -1,9 +1,12 @@
 <?php
 /*
  * TEN PLIK NIE DZIAŁA!!!
- * 
+ * docelowo: możliwośc edycji danych innych userów przez admina
  */
     session_start();
+
+header('location: main.php');
+exit();
 
     if(!isset($_SESSION['online']) || !$_SESSION['online'] || $_SESSION['function']>1){
             header('Location: index.php');

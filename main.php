@@ -44,7 +44,7 @@
                           <?php 
 
                         require_once "database/dbinfo.php";
-                        require_once "objects.php";
+                        
                         $connection = db_connection();
                         if ($connection != false){
                             $sql= "select $db_subtask_name, $db_subtask_sdate, $db_subtask_edate FROM $db_subtask_tab WHERE $db_subtask_done='0' AND $db_subtask_userid =". $_SESSION['id'];                        
@@ -90,7 +90,7 @@ $(document).ready(function() {
                   <?php 
         //Z TYM TEŻ
                 require_once "database/dbinfo.php";
-                require_once "objects.php";
+                
                 $connection = db_connection();
                 if ($connection != false){
                     $sql= "select $db_task_name, $db_task_sdate, $db_task_edate FROM $db_task_tab WHERE $db_task_done='0' AND $db_task_userid =". $_SESSION['id'];                        

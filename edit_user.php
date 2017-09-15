@@ -104,7 +104,7 @@ exit();
 <center>
 <?php
     require_once "database/dbinfo.php";
-    require_once "objects.php";
+    
     $connection = db_connection();
     if ($connection != false){
         $sql = "SELECT $db_users_tab.$db_users_id, $db_users_tab.$db_users_login, $db_users_tab.$db_users_email, $db_users_tab.$db_users_fname, $db_users_tab.$db_users_lname,$db_functions_tab.$db_functions_desc FROM $db_users_tab LEFT JOIN $db_functions_tab ON $db_users_tab.$db_users_function=$db_functions_tab.$db_functions_id";

@@ -9,7 +9,7 @@ session_start();
     $sid=$_POST['sid'];
     $tid=$_POST['tid'];
     require_once "database/dbinfo.php";
-    require_once "objects.php";
+    
     $connection = db_connection();
     if ($connection != false){
         $time=date("ymdHis");

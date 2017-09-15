@@ -5,7 +5,7 @@ if (empty($_GET)){
     exit();
 }
 require_once "database/dbinfo.php";
-require_once "objects.php";
+
 $connection = db_connection();
 if ($connection != false){
     //sprawdza czy task(typ := 1) czy subtask (typ := 0)

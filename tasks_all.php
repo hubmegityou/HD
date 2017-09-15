@@ -104,7 +104,7 @@
                
                      <?php  
                     require_once "database/dbinfo.php";
-                    require_once "objects.php";
+                    
                     $connection = db_connection();
                     if ($connection != false){
                             echo "<div class='subtask-form'><div style='margin-left:10px'>"; ///poczatek szarego tla

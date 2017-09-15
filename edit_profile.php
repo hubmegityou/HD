@@ -103,7 +103,7 @@
 <center>
 <?php
     require_once "database/dbinfo.php";
-    require_once "objects.php";
+    
     $connection = db_connection();
     if ($connection != false){
         $sql = "SELECT $db_users_fname, $db_users_lname, $db_users_login, $db_users_email FROM $db_users_tab WHERE $db_users_id=".$_SESSION['id'];

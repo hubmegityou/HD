@@ -3,7 +3,7 @@
 session_start();
 if (!empty($_POST)){
     require_once "database/dbinfo.php";
-    require_once "objects.php";
+    
     $connection = db_connection();
     if ($connection != false){
         $sql = "UPDATE $db_users_tab SET $db_users_fname = '".$_POST['fname']."', $db_users_lname = '".$_POST['lname']."', $db_users_email='".$_POST['email']."', $db_users_login='".$_POST['login']."' WHERE $db_users_id='".$_SESSION['id']."'";

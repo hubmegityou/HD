@@ -93,7 +93,7 @@
     
     
     require_once "database/dbinfo.php";
-    require_once "objects.php";
+    
     $connection = db_connection();
     $sql= "SELECT * FROM $db_subtask_tab WHERE $db_subtask_id=".$_GET['id'];
     $result = $connection->query($sql);

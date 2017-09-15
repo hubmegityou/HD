@@ -116,7 +116,7 @@
 <?php 
 
     require_once "database/dbinfo.php";
-    require_once "objects.php";
+    
     $connection = db_connection();
     
     $sql = "SELECT $db_notifications_tab.$db_notifications_date, $db_notifications_tab.$db_notifications_type, $db_nots_user_tab.$db_nots_user_id, $db_nots_user_tab.$db_nots_user_taskid, $db_nots_user_tab.$db_nots_user_subtaskid, $db_nots_user_tab.$db_nots_user_readnots "

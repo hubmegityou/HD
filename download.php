@@ -7,7 +7,7 @@ if (empty($_GET)){
 }
 require_once 'database/dbinfo.php';
 $id = $_GET['id'];
-require_once "objects.php";
+
 $connection = db_connection();
 if ($connection != false){
     $sql = "SELECT $db_attachment_name, $db_attachment_size, $db_attachment_type FROM $db_attachment_tab WHERE $db_attachment_id='$id'";

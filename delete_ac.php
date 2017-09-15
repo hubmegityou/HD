@@ -10,7 +10,8 @@ if ($_SESSION['function'] <= 2){
     $sid= $_POST['sid'];
     $id = $_POST['id'];
     require_once 'database/dbinfo.php';   
-    if (isset($_POST['filename'])){
+    require_once 'database/connect.php';
+	if (isset($_POST['filename'])){
         $fname = $_POST['filename'];
         unlink("attachments/$fname");
         $db_tab = $db_attachment_tab;
@@ -20,7 +21,6 @@ if ($_SESSION['function'] <= 2){
         $db_tab = $db_messages_tab;
         $db_id = $db_messages_id;
     }
-    require_once 'objects.php';
     $connection = db_connection();
     if ($connection != false){
         $sql = "DELETE FROM $db_tab WHERE $db_id='$id'";

@@ -7,7 +7,6 @@
             exit();
     }
 
-    include 'objects.php';
     ?>
 
 
@@ -97,7 +96,7 @@
                      </div>
                  <hr />
 
-                 <form  action="restore_nots.php" method='post' >
+                 <form  action="restore_nots.php" method='post' onsubmit="return (del(3))">
                   <select onchange='changeChecked()' id='deletenots' name="deletenots" style="margin-left: 30px">
                         <option value="----" >----</option>
                         <option value="wszystkie">wszystkie</option>
@@ -106,7 +105,7 @@
                   </select>
                  
                       <button type="submit" name="restore">Przywróć</button>
-                      <button type="submit"  name="delete" value="delete"  >Usuń</button>
+                      <button type="submit"  name="delete" value="delete" >Usuń</button>
                   
 
                  <a href="nots.php" style='position:relative; margin-left: 30%; background-color: grey' class="btn btn-danger square-btn-adjust">Powiadomienia</a>

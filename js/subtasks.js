@@ -64,27 +64,26 @@ function editSubtask(id){
 
 var deleteST=
 function deleteST(id, typ){
-    
-
-       if (window.XMLHttpRequest){
+    if(del(typ)){
+        if (window.XMLHttpRequest){
             xmlhttp=new XMLHttpRequest();
         }
 
-       else{
+        else{
             xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
         }
 
-    var PageToSendTo = "delete_st.php?";
-    var IDPlaceholder = "id=";
-    var TYPPlaceholder = "typ=";
-    
-    var UrlToSend = PageToSendTo + IDPlaceholder + id + '&' + TYPPlaceholder + typ;
+         var PageToSendTo = "delete_st.php?";
+         var IDPlaceholder = "id=";
+         var TYPPlaceholder = "typ=";
 
-    xmlhttp.open("GET", UrlToSend, false);
-    xmlhttp.send();
-    window.location.href = "team_tasks.php";
+         var UrlToSend = PageToSendTo + IDPlaceholder + id + '&' + TYPPlaceholder + typ;
 
- }
+         xmlhttp.open("GET", UrlToSend, false);
+         xmlhttp.send();
+         window.location.href = "team_tasks.php";
+    }
+}
  
  var blockSubtask=
  function blockSubtask (id){

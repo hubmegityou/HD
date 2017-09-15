@@ -158,7 +158,7 @@
         while($row = $result->fetch_assoc()){       
             //usuwanie komentarzy (admin lub manager)
             if ($_SESSION['function'] <= 2){
-                echo "<form action=\"delete_ac.php\" method=\"post\">";
+                echo "<form action=\"delete_ac.php\" method=\"post\" onsubmit=\"return (del(4))\">";
                 echo "<input type=\"hidden\" name=\"tid\" value=$tid>";
                 echo "<input type=\"hidden\" name=\"sid\" value=$sid>";
                 echo "<input type=\"hidden\" name=\"id\" value=$row[$db_messages_id]>";
@@ -189,7 +189,7 @@
             
               //usuwanie załączników (admin lub manager)
             if ($_SESSION['function'] <= 2){
-                echo "<form action=\"delete_ac.php\" method=\"post\">";
+                echo "<form action=\"delete_ac.php\" method=\"post\" onsubmit=\"return (del(5))\">";
                 echo "<input type=\"hidden\" name=\"tid\" value=$tid>";
                 echo "<input type=\"hidden\" name=\"sid\" value=$sid>";
                 echo "<input type=\"hidden\" name=\"id\" value=$row[$db_attachment_id]>";

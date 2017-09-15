@@ -7,7 +7,6 @@
             exit();
     }
 
-    include 'objects.php';
     ?>
 
 
@@ -97,7 +96,7 @@
                      </div>
                  <hr />
 
-                 <form  action="delete_nots.php" method='post' >
+                 <form  action="delete_nots.php" method="post" onsubmit="return (del(2))" >
                   <select onchange='changeChecked()' id='deletenots' name="deletenots" style="margin-left: 30px">
                         <option value="----" >----</option>
                         <option value="wszystkie">wszystkie</option>

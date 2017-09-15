@@ -47,6 +47,6 @@ require_once "database/connect.php";
         }
     $connection->close();
 
-    header('Location: add_tasks.php');
+    header("Location: add_subtasks.php?id=$tid");
 
 ?>

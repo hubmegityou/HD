@@ -120,14 +120,38 @@ require_once "database/connect.php";
         echo '</select>';
     echo "<br/><br/>";
     $id = $_SESSION['id'];
-    $sql = "SELECT $db_task_id, $db_task_name, $db_task_edate, $db_task_userid FROM $db_task_tab WHERE $db_task_userid = $id";
+    if (isset($_GET['id'])){
+        
+    $sql = "SELECT $db_task_id, $db_task_name, $db_task_edate, $db_task_userid FROM $db_task_tab WHERE $db_task_userid = $id AND $db_task_id =".$_GET['id'];
+    $result2 = $connection->query($sql);
+    $row2 = $result2->fetch_assoc();
+                 
+            
+    $sql = "SELECT $db_task_id, $db_task_name, $db_task_edate, $db_task_userid FROM $db_task_tab WHERE $db_task_userid = $id AND NOT $db_task_id =".$_GET['id'];
     $result = $connection->query($sql);
         echo '<select name="task" class="task" required>';
-        echo '<option value="">Wybierz zadanie</option>';
+        echo '<option value="'.$row2[$db_task_id].'">'.$row2[$db_task_name] .' </option>';
         while($row = $result->fetch_assoc()) {
             echo '<option value="'.$row[$db_task_id].'">'.$row[$db_task_name].'</option>';
         }
-        echo '</select>';
+    echo '</select>';
+    
+        }else{
+            
+         $sql = "SELECT $db_task_id, $db_task_name, $db_task_edate, $db_task_userid FROM $db_task_tab WHERE $db_task_userid = $id ";
+    $result = $connection->query($sql);
+        echo '<select name="task" class="task" required>';
+        echo '<option value=""> Wybierz zadanie </option>';
+        while($row = $result->fetch_assoc()) {
+            echo '<option value="'.$row[$db_task_id].'">'.$row[$db_task_name].'</option>';
+        }
+    echo '</select>';       
+            
+        }
+    
+    
+    
+    
     $connection->close();
 ?>
         <div class="stemat"><p class="tematt">Temat podzadania: <br><input type="text" name="topic" class="stematp" style="width:90%" required/></p></div>

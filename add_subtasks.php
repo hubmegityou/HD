@@ -106,6 +106,7 @@
     
     
     require_once "database/dbinfo.php";
+require_once "database/connect.php";
     
     $connection = db_connection();
     $sql = "SELECT $db_users_fname, $db_users_lname, $db_functions_desc, $db_users_id FROM $db_users_tab INNER JOIN $db_functions_tab ON $db_users_function = $db_functions_id WHERE $db_users_function>1 ORDER BY $db_users_function, $db_users_lname ASC";

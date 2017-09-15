@@ -3,6 +3,7 @@
 session_start();
 
 require_once "database/dbinfo.php";
+require_once "database/connect.php";
 
 $connection = db_connection();
 if ($connection != false){

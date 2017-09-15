@@ -91,6 +91,7 @@
         
         <?php
         require_once "database/dbinfo.php";
+require_once "database/connect.php";
         
         $connection = db_connection();
         $sql= "SELECT * FROM $db_task_tab WHERE $db_task_id=".$_GET['id'];

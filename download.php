@@ -6,6 +6,8 @@ if (empty($_GET)){
     exit();
 }
 require_once 'database/dbinfo.php';
+require_once "database/connect.php";
+
 $id = $_GET['id'];
 
 $connection = db_connection();
@@ -25,7 +27,6 @@ if ($connection != false){
             readfile("attachments/".$name);
         }
         else{
-            //echo "<script type=\"text/javascript\">window.alert('Wystąpił błąd: plik nie istnieje');</script>";
             $sql = "DELETE FROM $db_attachment_tab WHERE $db_attachment_id='$id'";
             $connection->query($sql);
             $_SESSION['alert'] = "Błąd: plik nie istnieje!";
@@ -35,7 +36,6 @@ if ($connection != false){
     }
 }
 else {
-    //echo "<script type=\"text/javascript\">window.alert('Błąd w połączeniu z bazą');</script>"; 
     $_SESSION['alert'] = "Błąd w połączeniu z bazą danych. Nie można było odczytać pliku";
 }
 ?>

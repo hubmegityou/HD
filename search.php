@@ -1,18 +1,14 @@
 <?php
-/*
- * TEN PLIK NIE DZIAŁA!!!
- * docelowo: możliwośc edycji danych innych userów przez admina
- */
-    session_start();
-
-header('location: main.php');
-exit();
-
-    if(!isset($_SESSION['online']) || !$_SESSION['online'] || $_SESSION['function']>1){
-            header('Location: index.php');
+//formularz dla managera z przydzielaniem podzadań
+        session_start();
+	
+	if(!isset($_SESSION['online']) || !$_SESSION['online'] || $_SESSION['function'] > 2) //function := 2 ==> manager
+        {
+            header('Location: main.php');
             exit();
-    }
-       if(isset($_SESSION['alert'])){ 
+	}
+        
+         if(isset($_SESSION['alert'])){ 
             $alert= $_SESSION['alert'];
             $none='none';
             echo " <div class='alert'>
@@ -21,6 +17,7 @@ exit();
             </div>";
             unset($_SESSION['alert']);
         }
+        
 ?>
 
 
@@ -31,6 +28,7 @@ exit();
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>HelpDesk</title>
 	<!-- BOOTSTRAP STYLES-->
+	<link rel="stylesheet" href="table/css/style.css">
     <link href="template/assets/css/bootstrap.css" rel="stylesheet" />
         <!-- CUSTOM STYLES-->
     <link href="template/assets/css/custom.css" rel="stylesheet" />
@@ -48,7 +46,7 @@ exit();
     <div style="color: white;
     padding: 15px 50px 5px 50px;
     float: right;
-    font-size: 16px;"><div class="circle" id="circle"></div> <a href="nots.php" class="btn btn-danger square-btn-adjust">Powiadomienia</a>
+    font-size: 16px;"> <div class="circle" id="circle"> </div><a href="nots.php" class="btn btn-danger square-btn-adjust">Powiadomienia</a>
         <a href="logout.php" class="btn btn-danger square-btn-adjust">Wyloguj</a> </div>
         </nav>   
            <!-- /. NAV TOP  -->
@@ -97,19 +95,23 @@ exit();
                       echo '<li>
                         <a  href="add_tasks.php"><i "></i> Dodaj zadanie</a>
                     </li>';  
-                      echo '<li> <a  href="add_subtasks.php"><i "></i> Dodaj podzadanie</a>
+                      echo '<li> <a href="add_subtasks.php"><i "></i> Dodaj podzadanie</a>
                     </li>';
                        echo '<li><a href="team_tasks.php"><i "></i> Zadania grupy</a>
                     </li>';
-                   }
+                   } 
                    
                    
                    ?>
-				   <li>
-                        <a  href="search.php" ><i "></i>Wyszukaj</a>
+                    <li>
+                        <a  href="edit_profile.php" ><i "></i>Edytuj profil</a>
+                    </li>
+					
+					<li>
+                        <a class= "active-menu" href="search.php" ><i "></i>Wyszukaj</a>
                     </li>
 					<li>
-                        <a  href="search.php" ><i "></i>Zawieszone</a>
+                        <a href="search.php" ><i "></i>Zawieszone</a>
                     </li>
                     	
                 </ul>
@@ -122,43 +124,55 @@ exit();
             <div id="page-inner">
                 <div class="row">
                     <div class="col-md-12">
-                     <h2>Edytuj profil</h2> 
+                     <h2>Wyszukaj</h2> 
                        </div>
                      </div>
                  <hr />
-				 <div class="subtask-form">
-<form action="editp.php" method="post">
-<center>
-<?php
-    require_once "database/dbinfo.php";
-require_once "database/connect.php";
-    
+				 
+				 
+				 <div style='margin-left:70%' > wyszukaj <input id='search' type='text'> </div> 
+				
+				<table class="responstable" id='table'>
+        <thead>                          
+            <tr>
+                <th>Data ropoczęcia</th>
+                <th>Data zakończenia</th>
+                <th>Nazwa zadania</th>
+                <th>Nazwa podzadania</th>
+            </tr>
+        </thead>
+   <tbody>
+   
+   <?php
+  
+   require_once "database/dbinfo.php";
+   require_once "database/connect.php";
+  
+	
     $connection = db_connection();
-    if ($connection != false){
-        $sql = "SELECT $db_users_tab.$db_users_id, $db_users_tab.$db_users_login, $db_users_tab.$db_users_email, $db_users_tab.$db_users_fname, $db_users_tab.$db_users_lname,$db_functions_tab.$db_functions_desc FROM $db_users_tab LEFT JOIN $db_functions_tab ON $db_users_tab.$db_users_function=$db_functions_tab.$db_functions_id";
-        if ($result = $connection->query($sql)){
-            echo '<div class="temat"><p class="stemat">';
-            echo '<select class="task">';
-            while ($row = $result->fetch_assoc()){
-                $r[$row[$db_users_id]] = $row;
-                echo "<option value='$row[$db_users_id]'>$row[$db_functions_desc] $row[$db_users_fname] $row[$db_users_lname]</option>";
-            }
-            echo "</select>";
-            echo "<div class='stemat'><p class='tematt'>login: <br><input type='text' value='$row[$db_users_login]' name='login' class='stematp' style='width:40%' required/></p></div>";
-            echo "<div class='stemat'><p class='tematt'>email: <br><input type='email' value='$row[$db_users_email]' name='email' required/></p></div>";
-            echo "<div class='stemat'><p class='tematt'>nowe hasło: <br><input type='password' name='pass1' ></p></div>";
-            echo "<div class='stemat'><p class='tematt'>powtórz hasło: <br><input type='password' name='pass2' ></p></div>";
-        }
-    }
-?>
-<div><p><button type="submit" >Zapisz</button></p></div>
-</center>
-</form>
-</div>
-                 <br>
-                 <br>
-</div>
-
+           $sql = "Select * FROM $db_task_tab WHERE $db_task_done='1' AND $db_task_hang='0'";
+           $result = $connection->query($sql);
+			while ($row=$result->fetch_assoc()){	
+				$sql_sb="SELECT * FROM $db_subtask_tab WHERE $db_subtask_taskid= $row[$db_task_id]";
+				$result_sb=$connection->query($sql_sb);
+				while ($row_sb=$result_sb->fetch_assoc()){
+					echo "<tr onMouseover=this.bgColor='#D9E4E6' onMouseout=this.bgColor='white' onclick='showAll($row[$db_task_id], $row_sb[$db_subtask_id])'>";
+					echo "<td> $row[$db_task_sdate]</td>";
+					echo "<td> $row[$db_task_edate]</td>";
+					echo "<td> $row[$db_task_name]</td>";
+					echo "<td> $row_sb[$db_subtask_name]</td>";
+					
+				}
+			}
+   
+   ?>   
+        </tr> 
+		</tbody> 
+	</table>                                              
+   
+				 		 
+				 
+				 
     
 	</div>
 </div>
@@ -174,8 +188,8 @@ require_once "database/connect.php";
    
 </body>
 </html>
-
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script type="text/javascript" src="js/datefield.js"></script>
 <script type="text/javascript" src="js/datefield2.js"></script>
 <script type="text/javascript" src="js/notifications.js"></script>
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script type="text/javascript" src="js/table.js"></script>

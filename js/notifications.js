@@ -25,12 +25,14 @@ function del(ver){
             break;
         case 2: text = "Czy na pewno chcesz przenieść zaznaczone powiadomienia do kosza?";
             break;
-        case 3: text = "Czy na pewno chcesz permamentnie usunąć zaznaczone powiadomienia?";
+        case 3: text = "Czy jesteś pewien?";
             break;
         case 4: text = "Czy na pewno chcesz usunąć komentarz?";
             break;
         case 5: text = "Czy na pewno chcesz usunąć załącznik?";
             break;
     }
+    
+    
     return confirm(text);
 }                

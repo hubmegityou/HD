@@ -42,7 +42,28 @@
             <div class="sidebar-collapse">
                 <ul class="nav" id="main-menu">
 				<li class="text-center">
-                    <img src="template/assets/img/find_user.png" class="user-image img-responsive"/>
+                      <?php 
+                    
+                    require_once "database/dbinfo.php";
+                    require_once "database/connect.php";
+    
+                    $connection = db_connection(); 
+                    
+                    $sql='SELECT COUNT(id) FROM cats';
+                    $result= $connection->query($sql);
+                    $row = $result->fetch_assoc();
+                    $ile=$row['COUNT(id)'];
+                    
+                    $id= rand(1,$ile);
+                    $sql2= "SELECT link FROM cats WHERE ID=$id";
+                    $result2= $connection->query($sql2);
+                    $row2 = $result2->fetch_assoc();
+                    $path=$row2['link'];
+                    
+                    
+                   echo " <img src='$path' class='user-image img-responsive'/>";
+      
+                       ?>
 					</li>
 				
                     <li>
@@ -70,6 +91,12 @@
                    }
  
                    ?>
+				   <li>
+                        <a  href="search.php" ><i "></i>Wyszukaj</a>
+                    </li>
+					<li>
+                        <a  href="search.php" ><i "></i>Zawieszone</a>
+                    </li>
                     	
                 </ul>
                

@@ -54,7 +54,29 @@
             <div class="sidebar-collapse">
                 <ul class="nav" id="main-menu">
 				<li class="text-center">
-                    <img src="template/assets/img/find_user.png" class="user-image img-responsive"/>
+                                    
+                                 <?php 
+                    
+                    require_once "database/dbinfo.php";
+                    require_once "database/connect.php";
+    
+                    $connection = db_connection(); 
+                    
+                    $sql='SELECT COUNT(id) FROM cats';
+                    $result= $connection->query($sql);
+                    $row = $result->fetch_assoc();
+                    $ile=$row['COUNT(id)'];
+                    
+                    $id= rand(1,$ile);
+                    $sql2= "SELECT link FROM cats WHERE ID=$id";
+                    $result2= $connection->query($sql2);
+                    $row2 = $result2->fetch_assoc();
+                    $path=$row2['link'];
+                    
+                    
+                   echo " <img src='$path' class='user-image img-responsive'/>";
+      
+                       ?>
 					</li>
 				
                     <li>
@@ -90,6 +112,14 @@
                     <li>
                         <a  href="edit_profile.php" ><i "></i>Edytuj profil</a>
                     </li>
+					
+					<li>
+                        <a  href="search.php" ><i "></i>Wyszukaj</a>
+                    </li>
+					<li>
+                        <a  href="search.php" ><i "></i>Zawieszone</a>
+                    </li>
+					
                     	
                 </ul>
                
@@ -121,7 +151,9 @@ require_once "database/connect.php";
             echo "<p class='team-taskform'";
             echo "<br><div style ='float:left;position: relative;left: 30px; width:40%'> nazwa zadania: $row[$db_task_name] <br> manager: $row[$db_users_fname]  $row[$db_users_lname] <br>  data rozpoczęcia: $row[$db_task_sdate]<br>  data zakończenia:  $row[$db_task_edate]<br> opis:  $row[$db_task_description]</div>";
             echo "<br><br><button style ='float:right;position: relative;right: 30px;' type='submit' id='utask'  onclick='deleteST($row[$db_task_id], 1)'>usuń</button>";
-            echo "<br> <br><button style ='float:right;position: relative;right: 30px;' type='submit' id='etask'  onclick='editTask($row[$db_task_id])'>edytuj</button><br><br> <br>";  
+            echo "<br><br><button style ='float:right;position: relative;right: 30px;' type='submit' id='etask'  onclick='editTask($row[$db_task_id])'>edytuj</button>"; 
+			echo "<br><br><button style ='float:right;position: relative;right: 30px;' type='submit' id='utask'  onclick='hangST($row[$db_task_id])'>zawieś</button>";
+			echo "<br><br><button style ='float:right;position: relative;right: 30px;' type='submit' id='utask'  onclick='closeST($row[$db_task_id])'>zamknij</button>";			
             echo "<br><br><button type='submit' style='position: relative;left: 30px;' id='$row[$db_task_id]'  onclick='hide($row[$db_task_id])'>pokaż podzadania</button><br><br> <br>";
             echo "<div id='sh$row[$db_task_id]' style='display:none'>";
             echo "</p>";

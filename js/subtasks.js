@@ -84,6 +84,55 @@ function deleteST(id, typ){
          window.location.href = "team_tasks.php";
     }
 }
+
+
+
+var closeST=
+function closeST(id){
+ 
+        if (window.XMLHttpRequest){
+            xmlhttp=new XMLHttpRequest();
+        }
+
+        else{
+            xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+        }
+
+         var PageToSendTo = "close_st.php?";
+         var IDPlaceholder = "id=";
+
+         var UrlToSend = PageToSendTo + IDPlaceholder + id ;
+
+         xmlhttp.open("GET", UrlToSend, false);
+         xmlhttp.send();
+         window.location.href = "team_tasks.php";
+    
+}
+ 
+ 
+ 
+var hangST=
+function hangST(id){
+ 
+        if (window.XMLHttpRequest){
+            xmlhttp=new XMLHttpRequest();
+        }
+
+        else{
+            xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+        }
+
+         var PageToSendTo = "hang_st.php?";
+         var IDPlaceholder = "id=";
+
+         var UrlToSend = PageToSendTo + IDPlaceholder + id ;
+
+         xmlhttp.open("GET", UrlToSend, false);
+         xmlhttp.send();
+         window.location.href = "team_tasks.php";
+    
+}
+ 
  
  var blockSubtask=
  function blockSubtask (id){

@@ -1,10 +1,10 @@
 <?php
 //funkcja służąca do połączenia z bazą danych
 function db_connection(){
-    $host = "localhost";
-	$db_user = "root";
-	$db_pass = "";
-	$db_name = "hd";
+    $host = "mysql3.mydevil.net";
+	$db_user = "m1147_hdvena";
+	$db_pass = "ji0ywlLExhlPOZ6aRy3N";
+	$db_name = "m1147_hdvena";
 
     $conn = new mysqli($host, $db_user, $db_pass, $db_name);
     if ($conn->connect_errno!=0){

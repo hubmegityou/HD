@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 16 Sie 2017, 13:16
+-- Czas generowania: 19 Paź 2017, 13:57
 -- Wersja serwera: 10.1.24-MariaDB
 -- Wersja PHP: 7.1.6
 
@@ -40,10 +40,42 @@ CREATE TABLE `attachment` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- RELATIONSHIPS FOR TABLE `attachment`:
---   `task_ID`
---       `task` -> `task_ID`
+-- Zrzut danych tabeli `attachment`
 --
+
+INSERT INTO `attachment` (`att_ID`, `name`, `type`, `size`, `task_ID`, `description`) VALUES
+(3, '17101913335611903695_967660986606515_3784587976557799151_n.jpg', 'image/jpeg', 69321, 50, '');
+
+-- --------------------------------------------------------
+
+--
+-- Struktura tabeli dla tabeli `cats`
+--
+
+CREATE TABLE `cats` (
+  `ID` int(11) NOT NULL,
+  `link` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Zrzut danych tabeli `cats`
+--
+
+INSERT INTO `cats` (`ID`, `link`) VALUES
+(1, 'https://media.giphy.com/media/JIX9t2j0ZTN9S/giphy.gif'),
+(2, 'https://media.giphy.com/media/l4KibK3JwaVo0CjDO/giphy.gif'),
+(3, 'https://media.giphy.com/media/13CoXDiaCcCoyk/giphy.gif'),
+(4, 'https://media.giphy.com/media/WPWrU2AeK3aV2/giphy.gif'),
+(5, 'https://media.giphy.com/media/RJDmEeLNgzgxW/giphy.gif'),
+(6, 'https://media.giphy.com/media/VIcgtjYlDLfkk/giphy.gif'),
+(7, 'https://media.giphy.com/media/wPud2z0g029Xy/giphy.gif'),
+(8, 'https://media.giphy.com/media/NwzLnMN3YaWZ2/giphy.gif'),
+(9, 'https://media.giphy.com/media/BeGJ3IXngxyeY/giphy.gif'),
+(10, 'https://media.giphy.com/media/XVHVUJm4ElVbq/giphy.gif'),
+(11, 'http://www.catgifpage.com/gifs/323.gif'),
+(12, 'http://www.catgifpage.com/gifs/298.gif'),
+(13, 'http://www.catgifpage.com/gifs/280.gif'),
+(14, 'http://www.catgifpage.com/gifs/272.gif');
 
 -- --------------------------------------------------------
 
@@ -55,10 +87,6 @@ CREATE TABLE `functions` (
   `function_ID` int(11) NOT NULL,
   `function_description` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- RELATIONSHIPS FOR TABLE `functions`:
---
 
 --
 -- Zrzut danych tabeli `functions`
@@ -85,27 +113,6 @@ CREATE TABLE `messages` (
   `text` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- RELATIONSHIPS FOR TABLE `messages`:
---   `task_ID`
---       `task` -> `task_ID`
---   `user_ID`
---       `users` -> `user_ID`
---
-
---
--- Zrzut danych tabeli `messages`
---
-
-INSERT INTO `messages` (`message_ID`, `user_ID`, `date`, `task_ID`, `text`) VALUES
-(4, 17, '2017-08-09 14:41:39', 41, 'vvv'),
-(5, 18, '2017-08-09 14:46:50', 41, 'hhhhhh'),
-(6, 18, '2017-08-09 14:46:58', 41, 'vvvvvvv'),
-(7, 17, '2017-08-16 10:50:33', 41, 'bb'),
-(8, 17, '2017-08-16 10:51:18', 41, 'hyehyehehehehe'),
-(9, 17, '2017-08-16 11:13:47', 43, 'eee'),
-(10, 17, '2017-08-16 11:13:52', 43, 'fff');
-
 -- --------------------------------------------------------
 
 --
@@ -119,8 +126,39 @@ CREATE TABLE `notifications` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- RELATIONSHIPS FOR TABLE `notifications`:
+-- Zrzut danych tabeli `notifications`
 --
+
+INSERT INTO `notifications` (`notification_ID`, `date`, `type`) VALUES
+(122, '2017-08-17 09:37:27', 4),
+(123, '2017-08-17 09:39:26', 7),
+(124, '2017-08-17 09:41:29', 6),
+(125, '2017-08-17 09:46:24', 3),
+(126, '2017-08-17 09:46:48', 7),
+(127, '2017-08-17 09:47:28', 3),
+(128, '2017-08-17 09:47:50', 3),
+(129, '2017-08-17 09:54:27', 3),
+(130, '2017-08-17 09:54:48', 3),
+(131, '2017-08-17 09:59:19', 3),
+(132, '2017-08-17 10:00:03', 3),
+(133, '2017-08-17 10:02:31', 3),
+(134, '2017-08-17 10:18:36', 4),
+(135, '2017-08-17 10:19:57', 3),
+(136, '2017-08-17 10:21:16', 3),
+(137, '2017-08-17 10:23:37', 3),
+(138, '2017-08-17 10:24:53', 3),
+(139, '2017-09-15 09:22:55', 4),
+(140, '2017-10-18 08:28:55', 1),
+(141, '2017-10-18 08:48:03', 1),
+(142, '2017-10-18 08:53:44', 2),
+(143, '2017-10-19 08:27:01', 4),
+(144, '2017-10-19 08:27:33', 8),
+(145, '2017-10-19 08:38:58', 7),
+(146, '2017-10-19 08:39:14', 8),
+(147, '2017-10-19 08:42:00', 5),
+(148, '2017-10-19 13:13:21', 2),
+(149, '2017-10-19 13:33:56', 2),
+(150, '2017-10-19 13:33:56', 2);
 
 -- --------------------------------------------------------
 
@@ -139,16 +177,15 @@ CREATE TABLE `nots_user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- RELATIONSHIPS FOR TABLE `nots_user`:
---   `notification_ID`
---       `notifications` -> `notification_ID`
---   `user_ID`
---       `users` -> `user_ID`
---   `subtask_ID`
---       `subtask` -> `subtask_ID`
---   `task_ID`
---       `task` -> `task_ID`
+-- Zrzut danych tabeli `nots_user`
 --
+
+INSERT INTO `nots_user` (`nots_ID`, `notification_ID`, `user_ID`, `task_ID`, `subtask_ID`, `read_nots`, `delete_n`) VALUES
+(104, 143, 5, 50, 56, 0, 0),
+(105, 144, 5, 50, 56, 0, 0),
+(106, 145, 5, 50, 56, 0, 0),
+(107, 146, 5, 50, 56, 0, 0),
+(108, 147, 5, 50, 56, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -170,26 +207,12 @@ CREATE TABLE `subtask` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- RELATIONSHIPS FOR TABLE `subtask`:
---   `task_ID`
---       `task` -> `task_ID`
---   `user_ID`
---       `users` -> `user_ID`
---
-
---
 -- Zrzut danych tabeli `subtask`
 --
 
 INSERT INTO `subtask` (`subtask_ID`, `task_ID`, `name`, `start_date`, `end_date`, `description`, `user_ID`, `done`, `confirmed`, `blocked`) VALUES
-(44, 40, 'bbbbbb', '2017-08-10', '2017-08-18', 'bbbb', 17, 0, 1, 0),
-(45, 41, 'gggggg', '2017-08-11', '2017-08-24', 'ghjjhjk', 17, 0, 0, 0),
-(46, 41, 'gggggg', '2017-08-10', '2017-08-17', 'fffff', 18, 0, 0, 0),
-(47, 40, 'dddddd', '2017-08-10', '2017-08-13', 'ggggg', 18, 1, 0, 0),
-(48, 42, 'jjjjjj', '2017-08-10', '2017-08-13', 'vvvvvv', 17, 0, 0, 1),
-(49, 43, 'vv', '2017-08-17', '2017-08-21', 'bb', 17, 0, 1, 0),
-(50, 41, 'cccc', '0000-00-00', '0000-00-00', 'sddd', 17, 0, 1, 0),
-(51, 43, 'cccccc', '2019-12-18', '2021-12-20', 'ddd', 17, 0, 0, 0);
+(56, 50, 'hheheheehhehehehehehhe', '2017-10-05', '2017-10-26', 'rrrrr', 5, 0, 1, 1),
+(57, 46, 'hheheheehhehehehehehhe', '2017-10-05', '2017-10-26', 'rrrrr', 5, 0, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -205,25 +228,22 @@ CREATE TABLE `task` (
   `end_date` date NOT NULL,
   `user_ID` int(11) NOT NULL,
   `priority` tinyint(1) NOT NULL,
-  `done` tinyint(1) NOT NULL
+  `done` tinyint(1) NOT NULL,
+  `hang` tinyint(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- RELATIONSHIPS FOR TABLE `task`:
---   `user_ID`
---       `users` -> `user_ID`
---
 
 --
 -- Zrzut danych tabeli `task`
 --
 
-INSERT INTO `task` (`task_ID`, `name`, `description`, `start_date`, `end_date`, `user_ID`, `priority`, `done`) VALUES
-(40, 'bbbb', 'mmm', '2017-08-10', '2017-08-18', 17, 0, 0),
-(41, 'vvvvv', 'ssss', '2017-08-10', '2017-08-25', 17, 1, 0),
-(42, 'zdanie', 'vvvv', '2017-08-10', '2017-08-18', 17, 0, 0),
-(43, 'xx', 'xx', '2017-08-24', '2017-08-31', 17, 1, 0),
-(44, 'ccccccc', 'cc', '2017-08-24', '2017-08-31', 17, 0, 0);
+INSERT INTO `task` (`task_ID`, `name`, `description`, `start_date`, `end_date`, `user_ID`, `priority`, `done`, `hang`) VALUES
+(46, 'ccc', '        fff', '2017-08-17', '2017-08-20', 17, 0, 1, 0),
+(49, 'ccccccccccccccc', 'fffff', '2017-08-19', '2017-08-26', 22, 0, 1, 0),
+(50, 'huehuehue', 'fffff', '2017-09-22', '2017-10-26', 5, 0, 1, 0),
+(52, 'eeeee', 'eeeee', '2017-09-01', '2017-09-22', 22, 0, 1, 0),
+(53, 'yyyyyy', 'fff', '2017-09-15', '2017-09-16', 22, 0, 0, 0),
+(54, 'mmmmmm', 'cccc', '2017-09-15', '2017-09-29', 22, 0, 0, 0),
+(55, 'jjjjjj', 'heheheh', '2017-09-29', '2017-10-01', 22, 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -238,25 +258,18 @@ CREATE TABLE `users` (
   `email` text NOT NULL,
   `login` text NOT NULL,
   `password` text NOT NULL,
-  `user_function` int(11) NOT NULL
+  `user_function` int(11) NOT NULL,
+  `pic` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- RELATIONSHIPS FOR TABLE `users`:
---   `user_function`
---       `functions` -> `function_ID`
---
 
 --
 -- Zrzut danych tabeli `users`
 --
 
-INSERT INTO `users` (`user_ID`, `first_name`, `last_name`, `email`, `login`, `password`, `user_function`) VALUES
-(5, 'asdas', 'asdasd', '', 'aaa', 'b2ca678b4c936f905fb82f2733f5297f', 1),
-(17, 'Jan', 'Kowalski', 'email@lajs', 'qwe', '202cb962ac59075b964b07152d234b70', 2),
-(18, 'Pracownik', 'Aaaa', '', 'zxc', '202cb962ac59075b964b07152d234b70', 3),
-(19, '', '', '', '', 'd41d8cd98f00b204e9800998ecf8427e', 1),
-(20, 'Lol', 'Ll', '', '', '9cdfb439c7876e703e307864c9167a15', 1);
+INSERT INTO `users` (`user_ID`, `first_name`, `last_name`, `email`, `login`, `password`, `user_function`, `pic`) VALUES
+(5, 'pan i władca', 'helpdesku', 'lol@lol.lol', 'aaa', 'b2ca678b4c936f905fb82f2733f5297f', 2, 'http://dailycat.net/cats/2016/10/b9be13e0399cfdb44ed1ce8bfb009e46.gif'),
+(17, 'Jan', 'Kowalski', 'email@lajs', 'qwe', '202cb962ac59075b964b07152d234b70', 1, 'http://dailycat.net/cats/2016/10/b9be13e0399cfdb44ed1ce8bfb009e46.gif'),
+(22, 'Lolaa', 'Lol', 'lol@lol.lol', 'lol', '41df0f088fcc2e16ff5bb349470a7c8c', 2, 'http://dailycat.net/cats/2016/10/b9be13e0399cfdb44ed1ce8bfb009e46.gif');
 
 --
 -- Indeksy dla zrzutów tabel
@@ -268,6 +281,12 @@ INSERT INTO `users` (`user_ID`, `first_name`, `last_name`, `email`, `login`, `pa
 ALTER TABLE `attachment`
   ADD PRIMARY KEY (`att_ID`),
   ADD KEY `task_ID` (`task_ID`);
+
+--
+-- Indexes for table `cats`
+--
+ALTER TABLE `cats`
+  ADD PRIMARY KEY (`ID`);
 
 --
 -- Indexes for table `functions`
@@ -329,7 +348,12 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT dla tabeli `attachment`
 --
 ALTER TABLE `attachment`
-  MODIFY `att_ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `att_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+--
+-- AUTO_INCREMENT dla tabeli `cats`
+--
+ALTER TABLE `cats`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 --
 -- AUTO_INCREMENT dla tabeli `functions`
 --
@@ -339,32 +363,32 @@ ALTER TABLE `functions`
 -- AUTO_INCREMENT dla tabeli `messages`
 --
 ALTER TABLE `messages`
-  MODIFY `message_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `message_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT dla tabeli `notifications`
 --
 ALTER TABLE `notifications`
-  MODIFY `notification_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=121;
+  MODIFY `notification_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=151;
 --
 -- AUTO_INCREMENT dla tabeli `nots_user`
 --
 ALTER TABLE `nots_user`
-  MODIFY `nots_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=97;
+  MODIFY `nots_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=109;
 --
 -- AUTO_INCREMENT dla tabeli `subtask`
 --
 ALTER TABLE `subtask`
-  MODIFY `subtask_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
+  MODIFY `subtask_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
 --
 -- AUTO_INCREMENT dla tabeli `task`
 --
 ALTER TABLE `task`
-  MODIFY `task_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+  MODIFY `task_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
 --
 -- AUTO_INCREMENT dla tabeli `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `user_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 --
 -- Ograniczenia dla zrzutów tabel
 --

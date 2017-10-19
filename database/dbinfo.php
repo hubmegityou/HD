@@ -18,7 +18,7 @@
                 $db_task_userid = 'user_ID';
                 $db_task_priority = 'priority';
                 $db_task_done = 'done';
-				$db_task_hang = 'hang';
+		$db_task_hang = 'hang';
 
         $db_subtask_tab = 'subtask';	
                 $db_subtask_id = 'subtask_ID';

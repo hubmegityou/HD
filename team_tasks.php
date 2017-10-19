@@ -117,7 +117,7 @@
                         <a  href="search.php" ><i "></i>Wyszukaj</a>
                     </li>
 					<li>
-                        <a  href="search.php" ><i "></i>Zawieszone</a>
+                        <a  href="suspended.php" ><i "></i>Zawieszone</a>
                     </li>
 					
                     	
@@ -141,7 +141,7 @@
 require_once "database/connect.php";
     
     $connection = db_connection();
-           $sql = "SELECT $db_task_tab.$db_task_id, $db_task_tab.$db_task_name, $db_task_tab.$db_task_description, $db_task_tab.$db_task_sdate, $db_task_tab.$db_task_edate, $db_users_tab.$db_users_fname, $db_users_tab.$db_users_lname FROM $db_task_tab LEFT JOIN $db_users_tab ON $db_task_tab.$db_task_userid = $db_users_tab.$db_users_id WHERE $db_task_tab.$db_task_userid=".$_SESSION['id'];
+           $sql = "SELECT $db_task_tab.$db_task_id, $db_task_tab.$db_task_name, $db_task_tab.$db_task_description, $db_task_tab.$db_task_sdate, $db_task_tab.$db_task_edate, $db_users_tab.$db_users_fname, $db_users_tab.$db_users_lname FROM $db_task_tab LEFT JOIN $db_users_tab ON $db_task_tab.$db_task_userid = $db_users_tab.$db_users_id WHERE $db_task_tab.$db_task_hang = '0' AND $db_task_tab.$db_task_done = '0' AND $db_task_tab.$db_task_userid=".$_SESSION['id'];
            $result = $connection->query($sql);
 
 

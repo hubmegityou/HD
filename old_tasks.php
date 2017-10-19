@@ -104,7 +104,7 @@
                         <a  href="search.php" ><i "></i>Wyszukaj</a>
                     </li>
 					<li>
-                        <a  href="search.php" ><i "></i>Zawieszone</a>
+                        <a  href="suspended.php" ><i "></i>Zawieszone</a>
                     </li>
                     	
                 </ul>

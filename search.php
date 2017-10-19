@@ -1,4 +1,5 @@
 <?php
+//wyszkiwarka wszystkich archiwalnych niezawieszonych zadań (done = 1, hang = 0)
 //formularz dla managera z przydzielaniem podzadań
         session_start();
 	
@@ -124,7 +125,7 @@
             <div id="page-inner">
                 <div class="row">
                     <div class="col-md-12">
-                     <h2>Wyszukaj</h2> 
+                     <h2>Wyszukaj w archiwum zadań</h2> 
                        </div>
                      </div>
                  <hr />

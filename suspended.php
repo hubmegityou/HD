@@ -163,7 +163,7 @@
 					echo "<td> $row[$db_task_edate]</td>";
 					echo "<td> $row[$db_task_name]</td>";
 					echo "<td> $row_sb[$db_subtask_name]</td>";
-					echo "<td> <button type='submit' onclick='hangST($row[$db_subtask_taskid])'>Reaktywuj</button></td>";
+					echo "<td> <button type='submit' onclick='event.stopPropagation();hangST($row[$db_subtask_taskid])'>Reaktywuj</button></td>";
 				}
 			}
    

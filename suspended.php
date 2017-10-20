@@ -139,7 +139,7 @@
                 <th>Data ropoczęcia</th>
                 <th>Data zakończenia</th>
                 <th>Nazwa zadania</th>
-                <th>Opis</th>
+                <th>Nazwa podzadania</th>
                 <th></th>
             </tr>
         </thead>
@@ -155,15 +155,17 @@
            $sql = "Select * FROM $db_task_tab WHERE $db_task_done = '0' AND $db_task_hang='1'";
            $result = $connection->query($sql);
 			while ($row=$result->fetch_assoc()){	
-					echo "<tr  onMouseover=this.bgColor='#D9E4E6' onMouseout=this.bgColor='white' onclick='showAll($row[$db_task_id])'>";
+				$sql_sb="SELECT * FROM $db_subtask_tab WHERE $db_subtask_taskid= $row[$db_task_id]";
+				$result_sb=$connection->query($sql_sb);
+				while ($row_sb=$result_sb->fetch_assoc()){
+					echo "<tr  onMouseover=this.bgColor='#D9E4E6' onMouseout=this.bgColor='white' onclick='showAll($row[$db_task_id], $row_sb[$db_subtask_id])'>";
 					echo "<td> $row[$db_task_sdate]</td>";
 					echo "<td> $row[$db_task_edate]</td>";
 					echo "<td> $row[$db_task_name]</td>";
-					echo "<td> $row[$db_task_description]</td>";
-					echo "<td>";
-					if ($row[$db_task_userid]== $_SESSION['id']){
-					echo "<button type='submit' onclick='event.stopPropagation();hangST($row[$db_subtask_taskid])'>Reaktywuj</button></td>";}
+					echo "<td> $row_sb[$db_subtask_name]</td>";
+					echo "<td><button type='submit' onclick='event.stopPropagation();hangST($row[$db_subtask_taskid])'>Reaktywuj</button></td>";
 
+				}
 			}
    
    ?>   

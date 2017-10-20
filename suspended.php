@@ -158,12 +158,12 @@
 				$sql_sb="SELECT * FROM $db_subtask_tab WHERE $db_subtask_taskid= $row[$db_task_id]";
 				$result_sb=$connection->query($sql_sb);
 				while ($row_sb=$result_sb->fetch_assoc()){
-					echo "<tr onMouseover=this.bgColor='#D9E4E6' onMouseout=this.bgColor='white' onclick='showAll($row[$db_task_id], $row_sb[$db_subtask_id])'>";
+					echo "<tr  onMouseover=this.bgColor='#D9E4E6' onMouseout=this.bgColor='white' onclick='showAll($row[$db_task_id], $row_sb[$db_subtask_id])'>";
 					echo "<td> $row[$db_task_sdate]</td>";
 					echo "<td> $row[$db_task_edate]</td>";
 					echo "<td> $row[$db_task_name]</td>";
 					echo "<td> $row_sb[$db_subtask_name]</td>";
-					echo "<td> <button type='submit' onclick='hangST($row[$db_subtask_taskid])'>Reaktywuj</button></td>";
+					echo "<td><button type='button' onclick='event.stopPropagation();hangST($row[$db_subtask_taskid])'>Reaktywuj</button></td></tr>";
 				}
 			}
    
@@ -195,3 +195,4 @@
 <script type="text/javascript" src="js/datefield2.js"></script>
 <script type="text/javascript" src="js/notifications.js"></script>
 <script type="text/javascript" src="js/table.js"></script>
+<script type="text/javascript" src="js/subtasks.js"></script>

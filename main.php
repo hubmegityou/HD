@@ -48,22 +48,16 @@
                         
                         $connection = db_connection();
                         if ($connection != false){
-                            $sql= "select $db_subtask_name, $db_subtask_sdate, $db_subtask_edate FROM $db_subtask_tab WHERE $db_subtask_done='0' AND $db_subtask_userid =". $_SESSION['id'];                        
+                            $sql= "select $db_subtask_name, $db_subtask_sdate, $db_subtask_edate, $db_subtask_id, $db_subtask_taskid FROM $db_subtask_tab WHERE $db_subtask_done='0' AND $db_subtask_userid =". $_SESSION['id'];                        
                             $result = $connection->query($sql);
                             
                             while($row = $result->fetch_assoc()){
                                 $edate = strtotime("$row[$db_subtask_edate] + 1 day");
                                 $edate = date("Y-m-d", $edate);
-                                $rows= "{ title: '".$row[$db_subtask_name]."', start: '".$row[$db_subtask_sdate]."', end: '".$edate."'},";    
+                                $rows= "{url:'tasks_all.php?sid=$row[$db_subtask_id]&tid=$row[$db_subtask_taskid]' , title: '$row[$db_subtask_name]', start: '$row[$db_subtask_sdate]', end: '$edate'},";    
                                 echo $rows;
                             }
                       
-                            while($row = $result->fetch_assoc()){
-                                $edate = strtotime("$row[$db_task_edate] + 1 day");
-                                $edate = date("Y-m-d", $edate);
-                                $rows= "{ title: '".$row[$db_task_name]."', start: '".$row[$db_task_sdate]."', end: '".$edate."'},";    
-                                echo $rows;
-                            }
                             $connection->close();
                         }
                         //else info o błędzie
@@ -101,7 +95,7 @@ $(document).ready(function() {
                     while($row = $result->fetch_assoc()){
                         $edate= strtotime("$row[$db_task_edate] + 1 day");
                         $edate = date("Y-m-d", $edate);
-                        $rows= "{ title: '".$row[$db_task_name]."', start: '".$row[$db_task_sdate]."', end: '".$edate."'},";    
+                        $rows= "{title: '$row[$db_task_name]', start: '$row[$db_task_sdate]', end: '$edate'},";    
                         echo $rows;
                     }
                 $connection->close();
@@ -230,8 +224,7 @@ $(document).ready(function() {
             </div>
          <!-- /. PAGE WRAPPER  -->
         </div>
-    
-   
+
 </body>
 </html>
 <script type="text/javascript" src="js/notifications.js"></script>

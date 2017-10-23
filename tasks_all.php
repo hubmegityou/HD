@@ -99,6 +99,8 @@
                     </li>';
                        echo '<li><a href="team_tasks.php"><i "></i> Zadania grupy</a>
                     </li>';
+					 echo '<li><a href="managers.php"><i "></i> Zadania innych managerów</a>
+                    </li>';
                    } 
                    
                    

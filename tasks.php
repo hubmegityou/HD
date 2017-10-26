@@ -147,7 +147,7 @@
 
 			echo "<div class='row' id='show$row_task[$db_task_id]' style='display:none'>";
          
-			echo '<div id="sortable-row" class="timeline-centeredleft">';
+			echo '<div  class="timeline-centeredleft">';
 		
         while($row = $result->fetch_assoc()){  
 		
@@ -173,11 +173,11 @@
                     . "Data rozpoczęcia: $row2[$db_task_sdate] <br> "
                     . "Data zakończenia: $row2[$db_task_edate]<br> "
                     . "Opis: $row2[$db_task_description]<br> "
-                    . "<br>----------------------------------------------------<br> </span> </a><span></span><h2>"; 
+                    . "<br>----------------------------------------------------<br> </span> </a><h2>"; 
 
             echo "<a><span>Data rozpoczęcia: $row[$db_subtask_sdate]  <br> ";
             echo "Data zakończenia: $row[$db_subtask_edate]<br><br>";
-            echo "Opis zadania: <br> $row[$db_subtask_description] </a></span>";
+            echo "Opis zadania: <br> $row[$db_subtask_description] </span></a>";
             echo "<form action='unactive_subtask.php' method='post'>";
             echo "<input type='hidden' name='active' value=1>";
             echo "<input type='hidden' name='tid' value=$row[$db_subtask_taskid]>";

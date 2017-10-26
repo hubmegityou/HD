@@ -20,7 +20,7 @@ $( ".clickme" ).click(function() {
 
 function save_position(){
  $(function() {
-    $( "#sortable-row" ).sortable();
+    $( ".timeline-centeredleft" ).sortable();
   });
   
   function saveOrder() {

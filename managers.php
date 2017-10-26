@@ -16,10 +16,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>HelpDesk</title>
 	<!-- BOOTSTRAP STYLES-->
+    <link rel="stylesheet" href="table/css/style.css">
     <link href="template/assets/css/bootstrap.css" rel="stylesheet" />
-        <!-- CUSTOM STYLES-->
+    <!-- CUSTOM STYLES-->
     <link href="template/assets/css/custom.css" rel="stylesheet" />
-     <!-- GOOGLE FONTS-->
+    <!-- GOOGLE FONTS-->
    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
    <link rel="Stylesheet" type="text/css" href="timeline/style.css" />
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
@@ -44,12 +45,13 @@
                 <ul class="nav" id="main-menu">
 				<li class="text-center">                       
                                     
-                    <?php 
+                    <?php
                     
                     require_once "database/dbinfo.php";
                     require_once "database/connect.php";
     
                     $connection = db_connection(); 
+                
                     
                     $sql='SELECT COUNT(id) FROM cats';
                     $result= $connection->query($sql);
@@ -125,8 +127,46 @@
                        </div>
                      </div>
                  <hr />         
-                 tu se cos będzie :D 
-               
+                 
+                <div style='margin-left:70%' > wyszukaj <input id='search' type='text'> </div> 
+                
+                <table class="responstable" id='table'>
+        <thead>                          
+            <tr>
+                <th>Imię i nazwisko managera</th>
+                <th>Nazwa zadania</th>
+                <th>Data rozpoczęcia</th>
+                <th>Data zakończenia</th>
+            </tr>
+        </thead>
+
+          <?php
+  
+   require_once "database/dbinfo.php";
+   require_once "database/connect.php";
+  
+    
+    $connection = db_connection();
+           $sql = "Select * FROM $db_task_tab WHERE $db_task_done='0' AND $db_task_hang='0' AND not $db_task_userid=".$_SESSION['id'];
+           
+           $result = $connection->query($sql);
+            while ($row=$result->fetch_assoc()){  
+
+                $sql_user = "Select $db_users_fname, $db_users_lname FROM $db_users_tab WHERE $db_users_id=$row[$db_task_userid]";
+                $result_user = $connection->query($sql_user);
+                $row_user = $result_user->fetch_assoc();
+                echo "<tr  onMouseover=this.bgColor='#D9E4E6' onMouseout=this.bgColor='white'>";
+                    echo "<td> $row_user[$db_users_fname] $row_user[$db_users_lname]</td>"; 
+                    echo "<td> $row[$db_task_name]</td>";
+                    echo "<td> $row[$db_task_sdate]</td>";
+                    echo "<td> $row[$db_task_edate]</td>";
+            }
+
+   
+   ?>  
+       </tr> 
+    </tbody> 
+  </table>                
     </div>
              <!-- /. PAGE INNER  -->
             </div>
@@ -135,4 +175,9 @@
 
 </body>
 </html>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script type="text/javascript" src="js/datefield.js"></script>
+<script type="text/javascript" src="js/datefield2.js"></script>
 <script type="text/javascript" src="js/notifications.js"></script>
+<script type="text/javascript" src="js/table.js"></script>
+<script type="text/javascript" src="js/subtasks.js"></script>

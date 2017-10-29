@@ -2,11 +2,9 @@
 
 jQuery(document).ready(function(){
 	
-	
 clickme();
 save_position();
-
-
+	
 })
 
 
@@ -18,9 +16,10 @@ $( ".clickme" ).click(function() {
 
 
 
+
 function save_position(){
  $(function() {
-    $( "#sortable-row" ).sortable();
+    $( ".timeline-centeredleft" ).sortable();
   });
   
   function saveOrder() {

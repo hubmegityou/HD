@@ -147,6 +147,7 @@
 		
 		if (mysqli_num_rows($result)>0){
 			//echo "<div class='timeline-icon'><i class='entypo-feather'></i></div>";
+			echo "<div>";
 			echo "<div class='clickme' style='cursor:pointer' id='$row_task[$db_task_id]'> $row_task[$db_task_name]</div>";
 
 			echo "<div class='row' id='show$row_task[$db_task_id]' style='display:none'>";
@@ -193,7 +194,7 @@
                  </div>
                  </article>';
 		}
-		echo "</div></div>";
+		echo "</div></div></div>";
 		}
         }
 		}

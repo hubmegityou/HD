@@ -32,3 +32,9 @@ function save_position(){
   }
   
 }
+
+function verify_order(){
+    var article = $(".timeline-entry");
+    for (i = 0; i < article.length; i++)
+        console.log(article[i].id);
+}

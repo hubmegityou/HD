@@ -6,6 +6,7 @@
             header('Location: index.php');
             exit();
     }
+    
 ?>
 
 
@@ -25,6 +26,8 @@
    <link rel="Stylesheet" type="text/css" href="timeline/style.css" />
 </head>
 <body>
+    
+    <button onclick="verify_order()">verify order</button>
     <div id="wrapper">
         <nav class="navbar navbar-default navbar-cls-top " role="navigation" style="margin-bottom: 0">
             <div class="navbar-header">
@@ -155,7 +158,7 @@
 			$result2 = $connection->query($sql);
             $row2=$result2->fetch_assoc();
             echo "<br>";
-            echo  "<article id='$row2[$db_subtask_id]' class='timeline-entry'>
+            echo  "<article id='$row2[$db_subtask_id]' value='$row2[$db_subtask_id]' class='timeline-entry'>
                   <div class='timeline-entry-inner'>";
             if ($row2[$db_task_priority]==1){
                 echo '<div class="timeline-icon bg-priority">';}

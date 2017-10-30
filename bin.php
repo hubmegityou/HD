@@ -165,7 +165,10 @@
         
         $result = $connection->query($sql);
         if (mysqli_num_rows($result)>0){
-        echo "<div class='clickme' id='$row2[$db_task_id]' style='cursor:pointer'> $row2[$db_task_name]</div>";}
+			$sql_getnots=" SELECT count($db_nots_user_id) FROM $db_nots_user_tab  WHERE  $db_nots_user_readnots=0 AND $db_nots_user_delete=1 AND $db_nots_user_taskid= $row2[$db_task_id] AND $db_nots_user_userid=".$_SESSION['id'];
+			 $result_getnots= $connection->query($sql_getnots);
+			  $row_getnots= $result_getnots->fetch_assoc();
+        echo "<br><div class='circle2' id='circle2'>".$row_getnots["count($db_nots_user_id)"]."</div><div class='clickme' id='$row2[$db_task_id]' style='cursor:pointer'> $row2[$db_task_name]</div><div style='clear:both'></div>";}
         
         echo "<div id='show$row2[$db_task_id]' style='display:none'>";
         while($row = $result->fetch_assoc()){

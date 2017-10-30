@@ -17,7 +17,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>HelpDesk</title>
-	<!-- BOOTSTRAP STYLES-->
+    <!-- BOOTSTRAP STYLES-->
     <link href="template/assets/css/bootstrap.css" rel="stylesheet" />
         <!-- CUSTOM STYLES-->
     <link href="template/assets/css/custom.css" rel="stylesheet" />
@@ -43,7 +43,7 @@
                 <nav class="navbar-default navbar-side" role="navigation">
             <div class="sidebar-collapse">
                 <ul class="nav" id="main-menu">
-				<li class="text-center">
+                <li class="text-center">
                       <?php 
                     
                     require_once "database/dbinfo.php";
@@ -66,16 +66,16 @@
                    echo " <img src='$path' class='user-image img-responsive'/>";
       
                        ?>
-					</li>
-				
+                    </li>
+                
                     <li>
                         <a  href="main.php" ><i "></i> Strona główna</a>
                     </li>
                     
                     <li>
                         <a  href="tasks.php" ><i "></i> Moje aktywne zadania</a>
-                    </li>			
-	 
+                    </li>           
+     
                     <li>
                         <a href="old_tasks.php" ><i "></i>Zamknięte zadania</a>
                     </li>
@@ -90,7 +90,7 @@
                     </li>';  
                        echo '<li><a href="team_tasks.php"><i "></i> Zadania grupy</a>
                     </li>';
-					 echo '<li><a href="managers.php"><i "></i> Zadania innych managerów</a>
+                     echo '<li><a href="managers.php"><i "></i> Zadania innych managerów</a>
                     </li>';
                    }
                    
@@ -103,13 +103,13 @@
                     <li>
                         <a  href="edit_profile.php" ><i "></i>Edytuj profil</a>
                     </li>
-					<li>
+                    <li>
                         <a  href="search.php" ><i "></i>Wyszukaj</a>
                     </li>
-					<li>
+                    <li>
                         <a  href="suspended.php" ><i "></i>Zawieszone</a>
                     </li>
-                    	
+                        
                 </ul>
                
             </div>
@@ -142,18 +142,37 @@
                  <br><br><br><br><br>
                  
 <?php 
-
+    
     require_once "database/dbinfo.php";
-require_once "database/connect.php";
+    require_once "database/connect.php";
     
     $connection = db_connection();
+
+
+
+    $test= "SELECT $db_task_name, $db_task_id FROM $db_task_tab";
+    $result3 = $connection->query($test); 
+        while($row2 = $result3->fetch_assoc()){
+        
     
-    $sql = "SELECT $db_notifications_tab.$db_notifications_date, $db_notifications_tab.$db_notifications_type, $db_nots_user_tab.$db_nots_user_id, $db_nots_user_tab.$db_nots_user_taskid, $db_nots_user_tab.$db_nots_user_subtaskid, $db_nots_user_tab.$db_nots_user_readnots "
+
+   $sql = "SELECT $db_notifications_tab.$db_notifications_date, $db_notifications_tab.$db_notifications_type, $db_nots_user_tab.$db_nots_user_id, $db_nots_user_tab.$db_nots_user_taskid, $db_nots_user_tab.$db_nots_user_subtaskid, $db_nots_user_tab.$db_nots_user_readnots "
         . " FROM $db_notifications_tab INNER JOIN $db_nots_user_tab ON $db_notifications_tab.$db_notifications_id=$db_nots_user_tab.$db_nots_user_notificationid "
-        . " WHERE $db_nots_user_tab.$db_nots_user_userid = ".$_SESSION['id']." AND $db_nots_user_delete=0 "
+        . " WHERE $db_nots_user_tab.$db_nots_user_taskid=$row2[$db_task_id] AND $db_nots_user_tab.$db_nots_user_userid = ".$_SESSION['id']." AND $db_nots_user_delete=0 "
         . " ORDER BY $db_notifications_tab.$db_notifications_date DESC";
+        
         $result = $connection->query($sql);
+        if (mysqli_num_rows($result)>0){
+			$sql_getnots=" SELECT count($db_nots_user_id) FROM $db_nots_user_tab  WHERE  $db_nots_user_readnots=0 AND $db_nots_user_delete=0 AND $db_nots_user_taskid= $row2[$db_task_id] AND $db_nots_user_userid=".$_SESSION['id'];
+			 $result_getnots= $connection->query($sql_getnots);
+			 $row_getnots= $result_getnots->fetch_assoc();
+	
+        echo "<div class='clickme' id='$row2[$db_task_id]' style='cursor:pointer'> $row2[$db_task_name]</div> <div class='circle2' id='circle2'>".$row_getnots["count($db_nots_user_id)"]."</div>";}
+		
+        
+        echo "<div id='show$row2[$db_task_id]' style='display:none'>";
         while($row = $result->fetch_assoc()){
+
             switch ($row[$db_notifications_type]){
                 case 1: $text = "Dodano nowy komentarz do aktywnego zadania: ";
                         break;
@@ -218,7 +237,12 @@ require_once "database/connect.php";
                 echo "<input class='checkboxr' type='checkbox' name='not[]' id='not' value='$row[$db_nots_user_id]'><a href=\"$url\" style='color:black; text-decoration: none'><i>$row[$db_notifications_date]</i>".'    '." $text</a>".'<br><br>'; 
                 echo "</p>";
                 }
-        }                 
+        }             
+        echo '</div>';
+    }
+
+
+
 ?>
      </form>
                                  
@@ -231,7 +255,9 @@ require_once "database/connect.php";
    
 </body>
 </html>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
 <script type="text/javascript" src="js/changeChecked.js"></script>
 <script type="text/javascript" src="js/change_readnots.js"></script>
 <script type="text/javascript" src="js/notifications.js"></script>
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script type="text/javascript" src="js/list.js"></script>

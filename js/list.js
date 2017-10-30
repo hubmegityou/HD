@@ -2,11 +2,9 @@
 
 jQuery(document).ready(function(){
 	
-	
 clickme();
 save_position();
-
-
+	
 })
 
 
@@ -15,6 +13,7 @@ $( ".clickme" ).click(function() {
   $("#show"+this.id).toggle();
 });
 }
+
 
 
 

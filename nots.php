@@ -167,7 +167,7 @@
 			 $result_getnots= $connection->query($sql_getnots);
 			 $row_getnots= $result_getnots->fetch_assoc();
 	
-        echo "<div class='clickme' id='$row2[$db_task_id]' style='cursor:pointer'> $row2[$db_task_name]</div><div class='circle2' id='circle2'>".$row_getnots["count($db_nots_user_id)"]."</div>";}
+        echo "<br><div class='circle2' id='circle2'>".$row_getnots["count($db_nots_user_id)"]."</div><div class='clickme' id='$row2[$db_task_id]' style='cursor:pointer'> $row2[$db_task_name]</div><div style='clear:both'></div>";}
 		
         
         echo "<div id='show$row2[$db_task_id]' style='display:none'>";

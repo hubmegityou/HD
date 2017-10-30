@@ -144,8 +144,8 @@
 		$result = $connection->query($sql);
 		
 		if (mysqli_num_rows($result)>0){
-			
-			echo "<div class='clickme' style='cursor:pointer' id='$row_task[$db_task_id]'> $row_task[$db_task_name]</div>";
+			echo "<div>";
+			echo "<div class='clickme' id='$row_task[$db_task_id]'> $row_task[$db_task_name]</div>";
 
 			echo "<div class='row' id='show$row_task[$db_task_id]' style='display:none'>";
          
@@ -177,20 +177,20 @@
                     . "Opis: $row2[$db_task_description]<br> "
                     . "<br>----------------------------------------------------<br> </span> </a></h2>"; 
 
-            echo "<a><span>Data rozpoczęcia: $row[$db_subtask_sdate]  <br> ";
+            echo "<h2>Data rozpoczęcia: $row[$db_subtask_sdate]  <br> ";
             echo "Data zakończenia: $row[$db_subtask_edate]<br><br>";
-            echo "Opis zadania: <br> $row[$db_subtask_description] </a></span>";
+            echo "Opis zadania: <br> $row[$db_subtask_description] </h2>";
             echo "<form action='unactive_subtask.php' method='post'>";
             echo "<input type='hidden' name='active' value=1>";
             echo "<input type='hidden' name='tid' value=$row[$db_subtask_taskid]>";
             echo "<input type='hidden' name='sid' value=$row[$db_subtask_id]>";
-            echo "<br /><button type='submit'>Przenieś do zrobionych</button></center>";
+            echo "<br /><button type='submit'>Przenieś do aktywnych</button></center>";
             echo "</form>";
             echo'</div>
                  </div>
                  </article>';
 		}
-		echo "</div></div>";
+		echo "</div></div></div>";
 		}
         }
 		}
@@ -217,7 +217,8 @@
 		
 		
 		if (mysqli_num_rows($result)>0){
-			echo "<div class='clickme' style='cursor:pointer' id='a$row_task[$db_task_id]'> $row_task[$db_task_name]</div>";
+                        echo "<div>";
+			echo "<div class='clickme' id='a$row_task[$db_task_id]'> $row_task[$db_task_name]</div>";
 
 			echo "<div class='row' id='showa$row_task[$db_task_id]' style='display:none'>";
          
@@ -248,20 +249,20 @@
                     . "Opis: $row2[$db_task_description]<br> "
                     . "<br>----------------------------------------------------<br> </span> </a></h2>";
             
-            echo "<a><span>Data rozpoczęcia: $row[$db_subtask_sdate]  <br> ";
+            echo "<h2>Data rozpoczęcia: $row[$db_subtask_sdate]  <br> ";
             echo "Data zakończenia: $row[$db_subtask_edate]<br><br>";
-            echo "Opis zadania: <br> $row[$db_subtask_description]";
+            echo "Opis zadania: <br> $row[$db_subtask_description]</h2>";
             echo "<form action='unactive_subtask.php' method='post'>";
             echo "<input type='hidden' name='active' value=1>";
             echo "<input type='hidden' name='tid' value=$row[$db_subtask_taskid]>";
             echo "<input type='hidden' name='sid' value=$row[$db_subtask_id]></span> </a>";
-            echo "<br /><button type='submit'>Przenieś do zrobionych</button></center>";
+            echo "<br /><button type='submit'>Przenieś do aktywnych</button></center>";
             echo "</form>";
             echo'</div>
                  </div>
                  </article>';
         }
-		echo "</div></div>";
+		echo "</div></div></div>";
 		}
         }
 		}

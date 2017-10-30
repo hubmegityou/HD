@@ -180,9 +180,9 @@
                     . "Opis: $row2[$db_task_description]<br> "
                     . "<br>----------------------------------------------------<br> </span> </a></h2>"; 
 
-            echo "<a><span>Data rozpoczęcia: $row[$db_subtask_sdate]  <br> ";
+            echo "<h2>Data rozpoczęcia: $row[$db_subtask_sdate]  <br> ";
             echo "Data zakończenia: $row[$db_subtask_edate]<br><br>";
-            echo "Opis zadania: <br> $row[$db_subtask_description] </span></a>";
+            echo "Opis zadania: <br> $row[$db_subtask_description]</h2>";
             echo "<form action='unactive_subtask.php' method='post'>";
             echo "<input type='hidden' name='active' value=1>";
             echo "<input type='hidden' name='tid' value=$row[$db_subtask_taskid]>";
@@ -249,9 +249,9 @@
                     . "Opis: $row2[$db_task_description]<br> "
                     . "<br>----------------------------------------------------<br> </span> </a></h2>";
             
-            echo "<a><span>Data rozpoczęcia: $row[$db_subtask_sdate]  <br> ";
+            echo "<h2>Data rozpoczęcia: $row[$db_subtask_sdate]  <br> ";
             echo "Data zakończenia: $row[$db_subtask_edate]<br><br>";
-            echo "Opis zadania: <br> $row[$db_subtask_description]";
+            echo "Opis zadania: <br> $row[$db_subtask_description]<h2>";
             echo "<form action='unactive_subtask.php' method='post'>";
             echo "<input type='hidden' name='active' value=1>";
             echo "<input type='hidden' name='tid' value=$row[$db_subtask_taskid]>";

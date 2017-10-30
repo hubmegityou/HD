@@ -21,6 +21,7 @@ $( ".clickme" ).click(function() {
 function save_position(){
  $(function() {
     $( ".timeline-centeredleft" ).sortable();
+    $( ".clickme" ).sortable();
   });
   
   function saveOrder() {

@@ -133,6 +133,8 @@
                 
 
 	    <div class="container">
+                <div  class="timeline-centeredleft">
+                
 		
 	   <?php  
 		
@@ -145,7 +147,7 @@
 		$result = $connection->query($sql);
 		
 		if (mysqli_num_rows($result)>0){
-			
+			//echo "<div class='timeline-icon'><i class='entypo-feather'></i></div>";
 			echo "<div class='clickme' style='cursor:pointer' id='$row_task[$db_task_id]'> $row_task[$db_task_name]</div>";
 
 			echo "<div class='row' id='show$row_task[$db_task_id]' style='display:none'>";
@@ -196,6 +198,7 @@
         }
 		}
     ?>
+    </div>
     </div>
     </div>
                      <div style='float:left; width: 50%'> 

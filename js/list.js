@@ -4,6 +4,7 @@ jQuery(document).ready(function () {
 
     clickme();
     save_position();
+	colorChange();
 
 })
 
@@ -38,3 +39,13 @@ function verify_order() {
     for (i = 0; i < article.length; i++)
         console.log(article[i].id);
 }
+
+function colorChange(){
+$(".color").change(function(){
+    var id = this.id;
+    var color = this.value;
+	$('#color'+this.id).css('background', this.value);
+     $.post("changeColor.php", {id: id, color: color}, function(result){
+
+});
+})}

@@ -177,7 +177,7 @@
                     . "Opis: $row2[$db_task_description]<br> "
                     . "<br>----------------------------------------------------<br> </span> </a></h2>"; 
 
-            echo "<a><span>Data rozpoczęcia: $row[$db_subtask_sdate]  <br> ";
+            echo "<a style='text-decoration: none;'><span>Data rozpoczęcia: $row[$db_subtask_sdate]  <br> ";
             echo "Data zakończenia: $row[$db_subtask_edate]<br><br>";
             echo "Opis zadania: <br> $row[$db_subtask_description] </a></span>";
             echo "<form action='unactive_subtask.php' method='post'>";
@@ -248,7 +248,7 @@
                     . "Opis: $row2[$db_task_description]<br> "
                     . "<br>----------------------------------------------------<br> </span> </a></h2>";
             
-            echo "<a><span>Data rozpoczęcia: $row[$db_subtask_sdate]  <br> ";
+            echo "<a style='text-decoration: none;'><span>Data rozpoczęcia: $row[$db_subtask_sdate]  <br> ";
             echo "Data zakończenia: $row[$db_subtask_edate]<br><br>";
             echo "Opis zadania: <br> $row[$db_subtask_description]";
             echo "<form action='unactive_subtask.php' method='post'>";

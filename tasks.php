@@ -131,7 +131,7 @@
                       <center><font size=4px><i> Zadania krótsze niż tydzień </i></font></center>
                 
 	    <div class="container">
-                <div  class="timeline-centeredleft">
+            
 		
 	   <?php  
 	   
@@ -145,7 +145,6 @@
 		$result = $connection->query($sql);
 		
 		if (mysqli_num_rows($result)>0){
-			//echo "<div class='timeline-icon'><i class='entypo-feather'></i></div>";
 			echo "<div>";
 			echo "<div class='clickme' style='cursor:pointer' id='$row_task[$db_task_id]'> $row_task[$db_task_name]</div>";
                         echo "<div style='clear:both;'></div>";
@@ -180,7 +179,7 @@
                     . "Opis: $row2[$db_task_description]<br> "
                     . "<br>----------------------------------------------------<br> </span> </a></h2>"; 
 
-            echo "<a><span>Data rozpoczęcia: $row[$db_subtask_sdate]  <br> ";
+            echo "<a style='text-decoration: none;'><span>Data rozpoczęcia: $row[$db_subtask_sdate]  <br> ";
             echo "Data zakończenia: $row[$db_subtask_edate]<br><br>";
             echo "Opis zadania: <br> $row[$db_subtask_description] </span></a>";
             echo "<form action='unactive_subtask.php' method='post'>";
@@ -249,7 +248,7 @@
                     . "Opis: $row2[$db_task_description]<br> "
                     . "<br>----------------------------------------------------<br> </span> </a></h2>";
             
-            echo "<a><span>Data rozpoczęcia: $row[$db_subtask_sdate]  <br> ";
+            echo "<a style='text-decoration: none;'><span>Data rozpoczęcia: $row[$db_subtask_sdate]  <br> ";
             echo "Data zakończenia: $row[$db_subtask_edate]<br><br>";
             echo "Opis zadania: <br> $row[$db_subtask_description]";
             echo "<form action='unactive_subtask.php' method='post'>";

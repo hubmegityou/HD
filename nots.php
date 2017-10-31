@@ -157,7 +157,7 @@
         
     
 
-   $sql = "SELECT $db_notifications_tab.$db_notifications_date, $db_notifications_tab.$db_notifications_type, $db_nots_user_tab.$db_nots_user_id, $db_nots_user_tab.$db_nots_user_taskid, $db_nots_user_tab.$db_nots_user_subtaskid, $db_nots_user_tab.$db_nots_user_readnots "
+   $sql = "SELECT $db_notifications_tab.$db_notifications_date, $db_notifications_tab.$db_notifications_type, $db_nots_user_tab.$db_nots_user_color, $db_nots_user_tab.$db_nots_user_id, $db_nots_user_tab.$db_nots_user_taskid, $db_nots_user_tab.$db_nots_user_subtaskid, $db_nots_user_tab.$db_nots_user_readnots "
         . " FROM $db_notifications_tab INNER JOIN $db_nots_user_tab ON $db_notifications_tab.$db_notifications_id=$db_nots_user_tab.$db_nots_user_notificationid "
         . " WHERE $db_nots_user_tab.$db_nots_user_taskid=$row2[$db_task_id] AND $db_nots_user_tab.$db_nots_user_userid = ".$_SESSION['id']." AND $db_nots_user_delete=0 "
         . " ORDER BY $db_notifications_tab.$db_notifications_date DESC";
@@ -224,7 +224,7 @@
             if ($row[$db_nots_user_readnots]==0){
                 echo "<div class='teamtask-form'>";
                 echo "<p class='team-taskform'>";
-                echo "<input class='checkboxu' type='checkbox' name='not[]' id='not' value='$row[$db_nots_user_id]'>   <a  href='javascript:change_read($row[$db_nots_user_id],$row[$db_nots_user_subtaskid], $row[$db_nots_user_taskid], $row[$db_notifications_type])' style='color:black; text-decoration: none'><i>$row[$db_notifications_date]</i>".'    '." $text</a>".'<br><br>';
+                echo "<input class='checkboxu' type='checkbox' name='not[]' id='not' value='$row[$db_nots_user_id]'>   <a  href='javascript:change_read($row[$db_nots_user_id],$row[$db_nots_user_subtaskid], $row[$db_nots_user_taskid], $row[$db_notifications_type])' style='color:black; text-decoration: none'><i>$row[$db_notifications_date]</i>".'    '." $text</a><input id='$row[$db_nots_user_id]' type='color' style='float:right' class='color' value='#ff0000'>".'<br><br>';
                 echo "</p>";
                 echo "</div>";
             }else {
@@ -234,8 +234,8 @@
                 else{
                     $url = "tasks_all.php?sid=$row[$db_nots_user_subtaskid]&tid=$row[$db_nots_user_taskid]";
                 }
-                echo "<p class='team-taskform'>";
-                echo "<input class='checkboxr' type='checkbox' name='not[]' id='not' value='$row[$db_nots_user_id]'><a href=\"$url\" style='color:black; text-decoration: none'><i>$row[$db_notifications_date]</i>".'    '." $text</a>".'<br><br>'; 
+                echo "<p class='team-taskform' style='background-color: $row[$db_nots_user_color]'>";
+                echo "<input class='checkboxr' type='checkbox' name='not[]' id='not' value='$row[$db_nots_user_id]'><a href=\"$url\" style='color:black; text-decoration: none'><i>$row[$db_notifications_date]</i>".'    '." $text</a><input id='$row[$db_nots_user_id]' type='color' style='float:right' class='color' value='#ff0000'>".'<br><br>'; 
                 echo "</p>";
                 }
         }             

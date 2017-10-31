@@ -65,4 +65,5 @@
                 $db_nots_user_subtaskid = 'subtask_ID';
                 $db_nots_user_readnots = 'read_nots';
                 $db_nots_user_delete= 'delete_n';
+				$db_nots_user_color ='nots_color';
 ?>

@@ -25,9 +25,9 @@
    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
    <link rel="Stylesheet" type="text/css" href="timeline/style.css" />
 </head>
-<body>
+    <body onunload="verify_order()">
     
-    <button onclick="verify_order()">verify order</button>
+    <!--<button onclick="verify_order()">verify order</button>-->
     <div id="wrapper">
         <nav class="navbar navbar-default navbar-cls-top " role="navigation" style="margin-bottom: 0">
             <div class="navbar-header">

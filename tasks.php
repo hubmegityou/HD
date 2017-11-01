@@ -132,7 +132,7 @@
                       <center><font size=4px><i> Zadania krótsze niż tydzień </i></font></center>
                 
 	    <div class="container">
-            
+             <div  class="timeline-centeredleft">
 		
 	   <?php  
 	   

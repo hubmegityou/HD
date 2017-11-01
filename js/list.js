@@ -35,7 +35,7 @@ function save_position() {
 }
 
 function verify_order() {
-    var article = $(".timeline-entry"); // ta tablica ma być przekazana do saveorder.php
+    var article = $(".timeline-entry");	// ta tablica ma być przekazana do saveorder.php
     for (i = 0; i < article.length; i++)
         console.log(article[i].id);
 }

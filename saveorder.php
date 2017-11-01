@@ -8,10 +8,9 @@ $connection = db_connection();
 
 foreach ($order as $i => $sid)
 {
-	$e=$i+1;
+    $e=$i+1;
     $sql = "UPDATE $db_subtask_tab SET $db_subtask_row = '$e' WHERE $db_subtask_id = '$sid'";
     $result = $connection->query($sql);
-	echo $e;
 }
 
 ?>

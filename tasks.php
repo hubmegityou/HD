@@ -141,7 +141,10 @@
         while($row_task = $result_task->fetch_assoc()){   
 
     if ($connection != false){
-        $sql = "SELECT $db_subtask_tab.$db_subtask_id, $db_subtask_tab.$db_subtask_taskid, $db_subtask_tab.$db_subtask_name, $db_subtask_tab.$db_subtask_sdate, $db_subtask_tab.$db_subtask_edate, $db_subtask_tab.$db_subtask_description FROM $db_subtask_tab INNER JOIN $db_task_tab ON $db_subtask_tab.$db_subtask_taskid = $db_task_tab.$db_task_id WHERE  DATEDIFF( $db_subtask_tab.$db_subtask_edate, '".date("Y-m-d")."' )< 7   AND $db_subtask_tab.$db_subtask_done='0' AND $db_subtask_tab.$db_subtask_taskid='$row_task[$db_task_id]' AND $db_subtask_tab.$db_subtask_userid =". $_SESSION['id']." ORDER BY $db_task_tab.$db_task_priority DESC, $db_subtask_tab.$db_subtask_edate ASC,$db_subtask_row ASC";
+        $sql = "SELECT $db_subtask_tab.$db_subtask_id, $db_subtask_tab.$db_subtask_taskid, $db_subtask_tab.$db_subtask_name, $db_subtask_tab.$db_subtask_sdate, $db_subtask_tab.$db_subtask_edate, $db_subtask_tab.$db_subtask_description "
+                . "FROM $db_subtask_tab INNER JOIN $db_task_tab ON $db_subtask_tab.$db_subtask_taskid = $db_task_tab.$db_task_id "
+                . "WHERE  DATEDIFF( $db_subtask_tab.$db_subtask_edate, '".date("Y-m-d")."' )< 7   AND $db_subtask_tab.$db_subtask_done='0' AND $db_subtask_tab.$db_subtask_taskid='$row_task[$db_task_id]' AND $db_subtask_tab.$db_subtask_userid =". $_SESSION['id']." "
+                . "ORDER BY $db_subtask_row ASC, $db_task_tab.$db_task_priority DESC, $db_subtask_tab.$db_subtask_edate ASC";
 		$result = $connection->query($sql);
 		
 		if (mysqli_num_rows($result)>0){
@@ -214,7 +217,10 @@
 		
 	
     if ($connection != false){
-        $sql = "SELECT $db_subtask_tab.$db_subtask_id, $db_subtask_tab.$db_subtask_taskid, $db_subtask_tab.$db_subtask_name, $db_subtask_tab.$db_subtask_sdate, $db_subtask_tab.$db_subtask_edate, $db_subtask_tab.$db_subtask_description FROM $db_subtask_tab INNER JOIN $db_task_tab ON $db_subtask_tab.$db_subtask_taskid = $db_task_tab.$db_task_id WHERE DATEDIFF( $db_subtask_tab.$db_subtask_edate, '".date("Y-m-d")."' )>= 7  AND $db_subtask_tab.$db_subtask_done='0' AND $db_subtask_tab.$db_subtask_taskid='$row_task2[$db_task_id]' AND $db_subtask_tab.$db_subtask_userid =". $_SESSION['id']." ORDER BY $db_task_tab.$db_task_priority DESC, $db_subtask_tab.$db_subtask_edate ASC,$db_subtask_row ASC";
+        $sql = "SELECT $db_subtask_tab.$db_subtask_id, $db_subtask_tab.$db_subtask_taskid, $db_subtask_tab.$db_subtask_name, $db_subtask_tab.$db_subtask_sdate, $db_subtask_tab.$db_subtask_edate, $db_subtask_tab.$db_subtask_description "
+                . "FROM $db_subtask_tab INNER JOIN $db_task_tab ON $db_subtask_tab.$db_subtask_taskid = $db_task_tab.$db_task_id "
+                . "WHERE DATEDIFF( $db_subtask_tab.$db_subtask_edate, '".date("Y-m-d")."' )>= 7  AND $db_subtask_tab.$db_subtask_done='0' AND $db_subtask_tab.$db_subtask_taskid='$row_task2[$db_task_id]' AND $db_subtask_tab.$db_subtask_userid =". $_SESSION['id']." "
+                . "ORDER BY $db_subtask_row ASC, $db_task_tab.$db_task_priority DESC, $db_subtask_tab.$db_subtask_edate ASC";
         $result = $connection->query($sql);
 		if (mysqli_num_rows($result)>0){
                         echo "<div>";
@@ -224,7 +230,9 @@
 			echo '<div class="timeline-centeredleft">';
 		
         while($row = $result->fetch_assoc()){   
-            $sql = "SELECT $db_task_tab.$db_task_priority, $db_subtask_tab.$db_subtask_conf, $db_subtask_tab.$db_subtask_block, $db_subtask_tab.$db_subtask_id, $db_task_tab.$db_task_id, $db_task_tab.$db_task_name, $db_task_tab.$db_task_description, $db_task_tab.$db_task_sdate, $db_task_tab.$db_task_edate, $db_users_tab.$db_users_fname, $db_users_tab.$db_users_lname FROM $db_subtask_tab INNER JOIN $db_task_tab ON $db_subtask_tab.$db_subtask_taskid=$db_task_tab.$db_task_id INNER JOIN $db_users_tab ON $db_task_tab.$db_task_userid = $db_users_tab.$db_users_id WHERE $db_task_tab.$db_task_id =".$row[$db_subtask_taskid]." AND $db_subtask_tab.$db_subtask_id=$row[$db_subtask_id]";
+            $sql = "SELECT $db_task_tab.$db_task_priority, $db_subtask_tab.$db_subtask_conf, $db_subtask_tab.$db_subtask_block, $db_subtask_tab.$db_subtask_id, $db_task_tab.$db_task_id, $db_task_tab.$db_task_name, $db_task_tab.$db_task_description, $db_task_tab.$db_task_sdate, $db_task_tab.$db_task_edate, $db_users_tab.$db_users_fname, $db_users_tab.$db_users_lname "
+                    . "FROM $db_subtask_tab INNER JOIN $db_task_tab ON $db_subtask_tab.$db_subtask_taskid=$db_task_tab.$db_task_id INNER JOIN $db_users_tab ON $db_task_tab.$db_task_userid = $db_users_tab.$db_users_id "
+                    . "WHERE $db_task_tab.$db_task_id =".$row[$db_subtask_taskid]." AND $db_subtask_tab.$db_subtask_id=$row[$db_subtask_id]";
             $result2 = $connection->query($sql);
             $row2=$result2->fetch_assoc();
             echo "<br/>";

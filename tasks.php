@@ -204,7 +204,7 @@
                      <div style='float:left; width: 50%'> 
                       <div style='color: black; text-decoration: none;'> <center style='color: black; text-decoration: none'><font size=4px><i> Zadania dłuższe niż tydzień </i></font></center></div>
                       <div class="container">
-
+					<div  class="timeline-centeredleft">
 
                     
     <?php  

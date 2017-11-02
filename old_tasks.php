@@ -224,7 +224,7 @@
 		if (mysqli_num_rows($result)>0){
                         echo "<div>";
 			echo "<div class='clickme' style='cursor:pointer' id='a$row_task2[$db_task_id]'> $row_task2[$db_task_name]</div>";
-                        echo "<div style='clear:both;'>TEST DIVA</div>";
+                        echo "<div style='clear:both;'></div>";
                         echo "<div class='row' id='showa$row_task2[$db_task_id]' style='display:none'>";
 			echo '<div class="timeline-centeredleft">';
 		
